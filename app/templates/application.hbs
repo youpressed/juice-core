@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{#if session.isAuthenticated}}
+  <div>
+    You are currently logged as: {{session.data.authenticated.profile.email}}
+  </div>
+  <a href="" {{ action "logout" }}>Logout</a>
+{{else}}
+  <a href="" {{ action "login" }}>Login</a>
+{{/if}}
 
+{{navs/main-nav}}
 {{outlet}}

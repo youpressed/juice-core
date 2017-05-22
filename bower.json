@@ -1,5 +1,6 @@
 {
   "name": "juice-core",
   "dependencies": {
+    "ramda": "^0.23.0"
   }
 }

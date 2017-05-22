@@ -11,6 +11,9 @@ module.exports = function(defaults) {
     babel: {
       optional: ['es7.decorators', 'es7.functionBind']
     },
+    'ember-cli-babel': {
+      includePolyfill: true
+    },
     stylusOptions: {
       use: [
         rupture(),
@@ -31,6 +34,12 @@ module.exports = function(defaults) {
         'images/marker-icon.png',
         'images/marker-shadow.png'
       ]
+    },
+    'ember-cli-qunit': {
+      useLintTree: false
+    },
+    dotEnv: {
+      clientAllowedKeys: ['API_KEY', 'AUTH_DOMAIN', 'DATABASE_URL', 'STORAGE_BUCKET']
     }
   });
 
@@ -46,6 +55,8 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+
+  app.import("bower_components/ramda/dist/ramda.min.js");
 
   return app.toTree();
 };

@@ -1,0 +1,27 @@
+Node ID: {{model.id}}
+
+{{log products}}
+
+{{#power-select
+    options=products
+    selected=selectedProduct
+    onchange=addProductToProduction
+    as |node|}}
+      {{node.label}}
+{{/power-select}}
+
+{{#each model.children as |edge|}}
+  <div class="row">
+    {{edge.b.label}} - {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
+  </div>
+{{/each}}
+
+<hr>
+
+<div class="col">
+  {{#each-in model.normalizedChildren as |key nodeData|}}
+    <div class="row">
+      {{nodeData.node.label}} - {{floor nodeData.factor}}oz
+    </div>
+  {{/each-in}}
+</div>

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  setupController(controller, model) {
+  setupController(controller) {
     controller.set('nodes', this.store.peekAll('node'));
     this._super(...arguments);
   },
@@ -25,7 +25,6 @@ export default Ember.Route.extend({
     },
 
     async createAndAddNode(a, type, label) {
-      console.log(a, type, label);
       const b = this.store.createRecord('node', {type, label});
       await b.save();
 

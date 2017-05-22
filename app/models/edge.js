@@ -23,6 +23,7 @@ export default DS.Model.extend({
     const q = this.get("q");
     const mul = obj => ({
       node: obj.node,
+      type: obj.type,
       factor: obj.factor * q
     });
 

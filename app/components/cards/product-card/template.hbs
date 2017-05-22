@@ -1,0 +1,11 @@
+<h4>{{model.node.label}}</h4>
+
+<div class="col">
+  {{#each-in model.node.normalizedChildren as |key nodeData|}}
+    {{#if (eq nodeData.node.type 'ingredient')}}
+      <div class="row">
+        {{nodeData.node.label}} - {{mult nodeData.factor model.factor}}
+      </div>
+    {{/if}}
+  {{/each-in}}
+</div>

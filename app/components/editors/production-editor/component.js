@@ -7,5 +7,7 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  products: filterBy('nodes', 'isProduct', true)
+  products: filterBy('nodes', 'isProduct', true),
+
+  yoSon: filterBy('model.normalizedChildren', 'type', 'product')
 });

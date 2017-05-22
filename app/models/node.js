@@ -39,6 +39,7 @@ export default DS.Model.extend({
     const selfData = {
       [this.get("id")]: {
         node: this,
+        type: this.get('type'),
         factor: 1
       }
     };
@@ -46,11 +47,13 @@ export default DS.Model.extend({
     const normalizedYield = this.get("normalizedYield");
     const mul = obj => ({
         node: obj.node,
+        type: obj.type,
         factor: obj.factor * normalizedYield
     });
 
     const sum = (a, b) => ({
       node: a.node,
+      type: a.type,
       factor: a.factor + b.factor
     });
 

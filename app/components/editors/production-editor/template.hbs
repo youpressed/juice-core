@@ -1,7 +1,3 @@
-Node ID: {{model.id}}
-
-{{log products}}
-
 {{#power-select
     options=products
     selected=selectedProduct
@@ -18,10 +14,23 @@ Node ID: {{model.id}}
 
 <hr>
 
+<h4>Product Cards:</h4>
 <div class="col">
   {{#each-in model.normalizedChildren as |key nodeData|}}
-    <div class="row">
-      {{nodeData.node.label}} - {{floor nodeData.factor}}oz
-    </div>
+    {{#if (eq nodeData.node.type 'product')}}
+      {{cards/product-card model=nodeData}}
+    {{/if}}
+  {{/each-in}}
+</div>
+
+<hr>
+<h4>Ingredients:</h4>
+<div class="col">
+  {{#each-in model.normalizedChildren as |key nodeData|}}
+    {{#if (eq nodeData.node.type 'ingredient')}}
+      <div class="row">
+        {{nodeData.node.label}} - {{nodeData.factor}}
+      </div>
+    {{/if}}
   {{/each-in}}
 </div>

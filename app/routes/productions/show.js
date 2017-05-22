@@ -9,10 +9,8 @@ export default Ember.Route.extend({
   model(params) {
     return Ember.RSVP.all([
       this.store.findRecord('node', params.production_id),
-      this.store.query('node', {
-        orderBy: "type",
-        equalTo: "product"
-      })
+      this.store.findAll('node'),
+      this.store.findAll('edge')
     ]);
   },
 

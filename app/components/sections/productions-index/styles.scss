@@ -1,0 +1,16 @@
+.main-header {
+  justify-content: space-between;
+  align-items: center;
+  background: $sky-blue;
+  color: white;
+  padding: 0 1em;
+}
+
+.content-container {
+  padding: 2em;
+}
+
+.empty-message {
+  font-size: 2em;
+  color: $slate;
+}

@@ -1,36 +1,76 @@
-{{#power-select
-    options=products
-    selected=selectedProduct
-    onchange=addProductToProduction
-    as |node|}}
-      {{node.label}}
-{{/power-select}}
-
-{{#each model.children as |edge|}}
-  <div class="row">
-    {{edge.b.label}} - {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
-  </div>
-{{/each}}
-
-<hr>
-
-<h4>Product Cards:</h4>
-<div class="col">
-  {{#each-in model.normalizedChildren as |key nodeData|}}
-    {{#if (eq nodeData.node.type 'product')}}
-      {{cards/product-card model=nodeData}}
-    {{/if}}
-  {{/each-in}}
-</div>
-
-<hr>
-<h4>Ingredients:</h4>
-<div class="col">
-  {{#each-in model.normalizedChildren as |key nodeData|}}
-    {{#if (eq nodeData.node.type 'ingredient')}}
-      <div class="row">
-        {{nodeData.node.label}} - {{nodeData.factor}}
+{{#paper-content class="md-whiteframe-z1 product-qty-editor"}}
+  <div class="header-container layout-row">
+    <div class="date-container layout-row layout-xs-column">
+      <span class="label flex-gt-xs-50">Production for:</span>
+      <label class="date flex-gt-xs-30">
+        {{pikaday-input format="ddd MM/DD" value=model.date}}
+      </label>
+    </div>
+    <div>
+      <div class="ui-container hide-xs">
+        {{#paper-button
+            raised=true
+            primary=true}}
+              Print All
+            {{/paper-button}}
       </div>
-    {{/if}}
-  {{/each-in}}
-</div>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <div class="layout-row product-container-header">
+      <div class="flex-5">#</div>
+      <div class="flex-70">Product Name</div>
+      <div class="flex-10">Count</div>
+      <div class="flex-15"></div>
+    </div>
+
+    <div class="layout-col products-container">
+      {{#each model.children as |edge index|}}
+        <div class="layout-row product-row">
+          <div class="flex-5 index">
+            {{inc index}}.
+          </div>
+          <div class="flex-70 label">
+            {{edge.b.label}}
+          </div>
+          <div class="flex-10 qty">
+            {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
+          </div>
+          <div class="flex-15"></div>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- <h4>Product Cards:</h4>
+    <div class="col">
+      {{#each-in model.normalizedChildren as |key nodeData|}}
+        {{#if (eq nodeData.node.type 'product')}}
+          {{cards/product-card model=nodeData}}
+        {{/if}}
+      {{/each-in}}
+    </div> -->
+
+
+  </div>
+{{/paper-content}}
+
+{{#paper-content class="md-whiteframe-z1"}}
+  <div class="header-container layout-row">
+    <div class="date-container layout-row layout-xs-column">
+      <span class="label">Prep List</span>
+    </div>
+    <div>
+      <div class="ui-container hide-xs">
+        {{#paper-button
+            raised=true
+            primary=true}}
+              Print Prep List
+            {{/paper-button}}
+      </div>
+    </div>
+  </div>
+  <div class="content-container">
+    {{lists/ingredient-list model=model.normalizedChildren}}
+  </div>
+{{/paper-content}}

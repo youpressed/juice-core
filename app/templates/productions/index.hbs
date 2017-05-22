@@ -1,5 +1,5 @@
-<button type="button" name="button" {{action (route-action "createProduction" products)}}>Create Production</button>
-
-{{#each model as |production|}}
-  {{link-to production.id "productions.show" production.id}} - <button type="button" name="button" {{action (route-action "destroyNode" production)}}>Destroy</button>
-{{/each}}
+{{sections/productions-index
+    model=model
+    navigateToProduction=(route-action 'navigateToProduction')
+    createProduction=(route-action 'createProduction' products)
+    destroyNode=(route-action 'destroyNode')}}

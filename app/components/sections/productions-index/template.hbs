@@ -1,0 +1,27 @@
+{{#paper-content class="md-whiteframe-z1"}}
+  <div class="layout-row main-header">
+    <h1>Productions</h1>
+
+    <div>
+      {{#paper-button
+          onClick=createProduction
+          raised=true
+          primary=true}}
+            Create New Production +
+          {{/paper-button}}
+    </div>
+  </div>
+
+  <div class="content-container">
+    {{#if hasProductions}}
+      {{lists/productions-list
+          model=model
+          navigateToProduction=navigateToProduction
+          destroyNode=destroyNode}}
+    {{else}}
+      <div class="empty-message">
+        No productions have been created yet.
+      </div>
+    {{/if}}
+  </div>
+{{/paper-content}}

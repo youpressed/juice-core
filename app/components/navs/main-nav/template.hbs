@@ -1,2 +1,4 @@
-{{link-to 'Products' 'products'}}
-{{link-to 'Productions' 'productions'}}
+<div class="layout-row">
+  {{#paper-button onClick=(action navigateTo 'products')}}Products{{/paper-button}}
+  {{#paper-button onClick=(action navigateTo 'productions')}}Productions{{/paper-button}}
+</div>

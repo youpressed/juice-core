@@ -14,6 +14,10 @@ module.exports = function(environment) {
       storageBucket: process.env.STORAGE_BUCKET
     },
 
+    docService: {
+      allDocsEndpoint: process.env.ALL_DOCS_ENDPOINT
+    },
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

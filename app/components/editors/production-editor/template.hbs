@@ -20,9 +20,8 @@
   <div class="content-container">
     <div class="layout-row product-container-header">
       <div class="flex-5">#</div>
-      <div class="flex-70">Product Name</div>
+      <div class="flex">Product Name</div>
       <div class="flex-10">Count</div>
-      <div class="flex-15"></div>
     </div>
 
     <div class="layout-col products-container">
@@ -31,13 +30,12 @@
           <div class="flex-5 index">
             {{inc index}}.
           </div>
-          <div class="flex-70 label">
+          <div class="flex label">
             {{edge.b.label}}
           </div>
           <div class="flex-10 qty">
             {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
           </div>
-          <div class="flex-15"></div>
         </div>
       {{/each}}
     </div>

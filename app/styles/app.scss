@@ -2,7 +2,11 @@
 @import 'colors';
 @import 'variables';
 @import 'layout';
-@import 'ember-paper';
+@import "ember-power-select";
+
 @import 'pod-styles';
-@import 'base';
 @import 'utils';
+
+@import 'ember-paper';
+
+@import 'base';

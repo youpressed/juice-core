@@ -42,6 +42,7 @@
     "ember-lodash": "^4.17.3",
     "ember-math-helpers": "^2.1.0",
     "ember-moment": "^7.3.0",
+    "ember-netlify": "0.0.1",
     "ember-one-way-controls": "^2.0.0",
     "ember-paper": "^1.0.0-alpha.19",
     "ember-pikaday": "^2.2.2",

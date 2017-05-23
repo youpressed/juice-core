@@ -10,13 +10,34 @@
 {{#power-select
     options=validNodes
     search=(action 'search')
+    onchange=(action 'handleSelect')
+    as |node|}}
+      {{node.label}}
+{{/power-select}}
+
+<!-- {{#power-select
+    options=validNodes
+    search=(action 'search')
     selected=selectedPerson
     onchange=(action 'handleSelected')
     as |node|}}
       <div class="yo">
         {{node.type}} - {{node.label}}
       </div>
-{{/power-select}}
+{{/power-select}} -->
+
+<!-- {{#paper-autocomplete
+  onCreate=(action 'handleSelect')
+  options=validNodes
+  searchField="label"
+  labelPath="label"
+  searchText=(readonly nodeQuery)
+  onSearchTextChange=(action (mut nodeQuery))
+  noMatchesMessage="Not found, create it?"
+  onSelectionChange=(action 'handleSelect')
+    as |item|}}
+  <span class="item-title">{{item.label}}</span>
+{{/paper-autocomplete}} -->
 
 <ul>
   {{#each model.children as |edge|}}

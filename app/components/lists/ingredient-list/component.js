@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
 const {
-  computed
+  computed,
+  computed: {
+    sort
+  }
 } = Ember;
 
 export default Ember.Component.extend({
-  yoson: computed('model', function(){
+  ingredients: computed('model', function(){
     const data = this.get('model');
     return Object.keys(data)
       .map(key => {
@@ -17,5 +20,8 @@ export default Ember.Component.extend({
         }
       })
       .filter(obj => obj.type === 'ingredient')
-  })
+  }),
+
+  sortByLabel: ['label'],
+  sortedIngredients: sort('ingredients', 'sortByLabel')
 });

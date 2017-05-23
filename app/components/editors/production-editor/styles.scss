@@ -7,7 +7,7 @@
 }
 
 .header-container {
-  background: $sky-blue;
+  background: $dope-blue;
   color: $off-white;
   align-items: center;
   padding: 1em 2em;
@@ -24,7 +24,6 @@
 }
 
 .date {
-  // padding: 1em;
   font-size: 1.4em;
 
   input, input:focus {
@@ -47,7 +46,7 @@
 }
 
 
-.product-row, .product-container-header {
+.product-row {
   padding: 0.5em 1em;
   align-items: baseline;
 }
@@ -68,7 +67,7 @@
   }
 
   .label {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 }
 

@@ -30,7 +30,7 @@ export default Ember.Component.extend({
       }
     },
 
-    handleSelected(option) {
+    handleSelect(option) {
       if(option.action === "createIngredient") {
         this.get('createAndAddNode')('ingredient', option.stashedName);
       } else {

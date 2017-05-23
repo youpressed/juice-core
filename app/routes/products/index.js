@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import _ from 'lodash';
 
 export default Ember.Route.extend({
   model() {
@@ -22,12 +23,22 @@ export default Ember.Route.extend({
     },
 
     async destroyNode(node) {
-      const edges = await node.get("children");
-      edges.forEach(async edge => {
-        const b = await edge.get("b");
-        edge.destroyRecord();
-        b.save();
-      });
+      const children = await node.get("children");
+      const parents = await node.get("parents");
+
+      children
+        .forEach(async edge => {
+          const b = await edge.get("b");
+          edge.destroyRecord();
+          b.save();
+        });
+
+      parents
+        .forEach(async edge => {
+          const a = await edge.get("a");
+          edge.destroyRecord();
+          a.save();
+        });
 
       node.destroyRecord();
     }

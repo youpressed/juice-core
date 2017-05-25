@@ -6,6 +6,13 @@ const {
 
 export default Ember.Component.extend({
   sample: 1,
+  uoms: [
+    'tsp',
+    'tbs',
+    'floz',
+    'qt',
+    'gal'
+  ],
 
   validNodes: computed('model.@each.{type}', function() {
     return this.get('nodes')

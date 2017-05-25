@@ -1,0 +1,9 @@
+<button type="button" name="button" {{action (route-action "createRecipe")}}>Create Recipe</button>
+
+<ul>
+  {{#each model as |recipe|}}
+    <li>
+      {{link-to recipe.label "recipes.show" recipe.id}} - <button type="button" name="button" {{action (route-action "destroyNode" recipe)}}>Destroy</button>
+    </li>
+  {{/each}}
+</ul>

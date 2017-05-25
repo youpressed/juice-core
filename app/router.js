@@ -14,7 +14,10 @@ Router.map(function() {
   this.route('productions', function() {
     this.route('show', {path:':production_id'});
   });
-  this.route('login');
+
+  this.route('recipes', function() {
+    this.route('show', {path:':recipe_id'});
+  });
 });
 
 export default Router;

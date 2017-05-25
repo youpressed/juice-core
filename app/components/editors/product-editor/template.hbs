@@ -1,0 +1,53 @@
+{{one-way-input model.label
+    class='node-label'
+    placeholder='Type name'
+    update=(action handleUpdate model "label")
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck=false}}
+
+{{#power-select
+    options=validNodes
+    search=(action 'search')
+    onchange=(action 'handleSelect')
+    as |node|}}
+      {{node.label}}
+{{/power-select}}
+
+<div class="layout-col">
+
+
+{{#each model.children as |edge|}}
+  <div class="layout-row">
+    <div class="">
+      {{edge.b.label}}
+    </div>
+    <div class="">
+      {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
+    </div>
+    <div class="unit-container">
+      {{#power-select
+          selected=edge.b.uom
+          options=uoms
+          onchange=(action (mut selectedUom))
+          as |uom|}}
+            {{uom}}
+      {{/power-select}}
+    </div>
+  </div>
+{{/each}}
+</div>
+
+
+Yield
+{{one-way-input model.yield class='edge-yield' update=(action handleUpdate model "yield")}}
+{{one-way-input sample class='edge-qty' update=(action (mut sample))}}
+
+<div class="col">
+  {{#each-in model.normalizedChildren as |key nodeData|}}
+    <div class="row">
+      {{nodeData.node.label}} - {{mult nodeData.factor sample}}
+    </div>
+  {{/each-in}}
+</div>

@@ -19,7 +19,7 @@ export default DS.Model.extend({
   label:        attr('string'),
   uom:          attr('string'),
   yield:        attr('number', {defaultValue: 1}),
-  type:         attr('string', {defaultValue:"ingredient"}),
+  type:         attr('string', {defaultValue: 'ingredient'}),
 
   children:     hasMany('edge'),
   parents:      hasMany('edge'),
@@ -33,8 +33,8 @@ export default DS.Model.extend({
   isProduct:    equal('type', 'product'),
   isProduction: equal('type', 'production'),
 
-  normalizedYield: computed("yield", "hasChildren", function() {
-    return this.get("hasChildren") ? 1 / this.get("yield") : 1;
+  normalizedYield: computed("yield", function() {
+    return 1 / this.get("yield");
   }),
 
   normalizedChildren: computed("children.@each.{normalizedChildren,q}", "normalizedYield", function() {

@@ -15,6 +15,7 @@ const {
 
 export default DS.Model.extend({
   q:     attr('number', {defaultValue: 0}),
+  uom:     attr('string', {defaultValue: 'floz'}),
 
   a:     belongsTo('node', {inverse: 'children'}),
   b:     belongsTo('node', {inverse: 'parents'}),

@@ -12,6 +12,7 @@ module.exports = {
   rules: {
   },
   globals: {
-    "R": true
+    "R": true,
+    "math": true
   }
 };

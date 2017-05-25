@@ -1,10 +1,12 @@
 <div class="flex-5 index">{{index}}.</div>
 <div class="flex label">{{label}}</div>
 <div class="flex-10">
-  <span class="qty">
-    {{factor}}
-  </span>
-  <span class="uom">
-    qt
-  </span>
+    {{#with (nearest-volume factor) as |scaled|}}
+      <span class="qty">
+        scaled.qty
+      </span>
+      <span class="uom">
+        scaled.uom
+      </span>
+    {{/with}}
 </div>

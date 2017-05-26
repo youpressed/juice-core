@@ -18,11 +18,13 @@ const toBest = function(qty, from, precision = 1) {
 
 const uom = function(qty, from) {
   const unitMap = units[from].map;
-  const inBaseQty = qty / unitMap[from];
+  const inBaseQty = qty * unitMap[from];
 
   return {
     toBase: () => inBaseQty,
-    to: (newUom, precision = 1) => (inBaseQty / unitMap[newUom]).toFixed(precision)
+    to: (newUom, precision = 1) => {
+      return (inBaseQty / unitMap[newUom]).toFixed(precision);
+    }
   }
 }
 

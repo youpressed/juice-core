@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import _ from 'lodash';
+import { uom } from 'juice-core/utils/converters';
 
 const {
   attr,
@@ -34,7 +35,8 @@ export default DS.Model.extend({
   isProduction: equal('type', 'production'),
 
   normalizedYield: computed("yield", function() {
-    return 1 / this.get("yield");
+    const yieldOfBase = uom(this.get("yield"), this.get('uom')).toBase()
+    return 1 / yieldOfBase;
   }),
 
   normalizedChildren: computed("children.@each.{normalizedChildren,q}", "normalizedYield", function() {
@@ -43,22 +45,27 @@ export default DS.Model.extend({
         node: this,
         label: this.get('label'),
         type: this.get('type'),
-        factor: 1
+        uom: this.get('uom'),
+        factor: this.get('normalizedYield')
       }
     };
 
     const normalizedYield = this.get("normalizedYield");
-    const mul = obj => ({
-        node: obj.node,
-        label: obj.node.get('label'),
-        type: obj.type,
-        factor: obj.factor * normalizedYield
-    });
+    const mul = obj => {
+      return {
+          node: obj.node,
+          label: obj.node.get('label'),
+          type: obj.type,
+          uom: obj.uom,
+          factor: obj.factor * normalizedYield
+      }
+    };
 
     const sum = (a, b) => ({
       node: a.node,
       label: a.label,
       type: a.type,
+      uom: a.uom,
       factor: a.factor + b.factor
     });
 

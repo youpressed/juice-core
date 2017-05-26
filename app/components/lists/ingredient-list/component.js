@@ -16,6 +16,7 @@ export default Ember.Component.extend({
         return {
           label: obj.label,
           type: obj.type,
+          uom: obj.uom,
           factor: obj.factor
         }
       })

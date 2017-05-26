@@ -19,7 +19,8 @@ export default Ember.Route.extend({
         .filter(node => node.get('isProduct'));
 
       const node = this.store.createRecord("node", {
-        type:"production"
+        type:"production",
+        uom:"count"
       });
 
       node.save();

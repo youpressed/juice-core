@@ -14,6 +14,7 @@ export default Ember.Route.extend({
       const node = this.store.createRecord("node", {
         type:"recipe",
         label:"untitled",
+        uom: 'floz',
         yield: 1
       });
 

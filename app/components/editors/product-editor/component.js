@@ -5,7 +5,6 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  sample: 1,
   uoms: [
     'tsp',
     'tbs',

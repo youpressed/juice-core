@@ -6,7 +6,6 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  sample: 1,
   uoms: unitTypes,
   hellos: ['a', 'b', 'c'],
 
@@ -16,6 +15,12 @@ export default Ember.Component.extend({
       .filter(n => !n.get('isProduct') && !n.get('isProduction'))
       .filter(n => n !== self);
   }),
+
+  startCreateIngredient(name) {
+    this.set('newIngredientUom', 'floz');
+    this.set('newIngredientName', name);
+    this.set('showCreateIngredient', true);
+  },
 
   actions: {
     search(q, data) {
@@ -39,17 +44,14 @@ export default Ember.Component.extend({
       this.set('showCreateIngredient', false);
     },
 
-    createIngredient(data) {
-      console.log(data);
+    createIngredient() {
+      this.get('createAndAddNode')('ingredient', this.get('newIngredientName'), this.get('newIngredientUom'));
       this.set('showCreateIngredient', false);
     },
 
     handleSelect(option) {
       if(option.action === "createIngredient") {
-        // this.get('createAndAddNode')('ingredient', option.stashedName);
-
-        this.set('showCreateIngredient', true);
-
+        this.startCreateIngredient(option.stashedName);
       } else {
         this.get('addNode')(option);
       }

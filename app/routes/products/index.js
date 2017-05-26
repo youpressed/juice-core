@@ -14,7 +14,8 @@ export default Ember.Route.extend({
       const node = this.store.createRecord("node", {
         type:"product",
         label:"untitled",
-        yield: 1
+        yield: 1,
+        uom: "count"
       });
 
       await node.save();

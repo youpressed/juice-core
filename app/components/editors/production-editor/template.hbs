@@ -1,4 +1,24 @@
-{{#paper-content class="md-whiteframe-z1 product-qty-editor"}}
+<div class="md-whiteframe-z1 info-section">
+  <div class="header-container layout-row">
+    <div class="date-container layout-row layout-xs-column">
+      <span class="label">Product List</span>
+    </div>
+    <div>
+      <div class="ui-container hide-xs">
+        {{#paper-button
+            raised=true
+            primary=true}}
+              Print
+            {{/paper-button}}
+      </div>
+    </div>
+  </div>
+  <div class="content-container">
+    {{lists/product-list model=model.children}}
+  </div>
+</div>
+
+<div class="md-whiteframe-z1 info-section">
   <div class="header-container layout-row">
     <div class="date-container layout-row layout-xs-column">
       <span class="label flex-gt-xs-50">Production for:</span>
@@ -40,24 +60,13 @@
         </div>
       {{/each}}
     </div>
-
-    <!-- <h4>Product Cards:</h4>
-    <div class="col">
-      {{#each-in model.normalizedChildren as |key nodeData|}}
-        {{#if (eq nodeData.node.type 'product')}}
-          {{cards/product-card model=nodeData}}
-        {{/if}}
-      {{/each-in}}
-    </div> -->
-
-
   </div>
-{{/paper-content}}
+</div>
 
-{{#paper-content class="md-whiteframe-z1"}}
+<div class="md-whiteframe-z1 info-section">
   <div class="header-container layout-row">
     <div class="date-container layout-row layout-xs-column">
-      <span class="label">Prep List</span>
+      <span class="label">Ingredient List</span>
     </div>
     <div>
       <div class="ui-container hide-xs">
@@ -70,6 +79,26 @@
     </div>
   </div>
   <div class="content-container">
-    {{lists/ingredient-list model=model.normalizedChildren}}
+    {{lists/node-list model=model.normalizedChildren type='ingredient'}}
   </div>
-{{/paper-content}}
+</div>
+
+<div class="md-whiteframe-z1 info-section">
+  <div class="header-container layout-row">
+    <div class="date-container layout-row layout-xs-column">
+      <span class="label">Juice List</span>
+    </div>
+    <div>
+      <div class="ui-container hide-xs">
+        {{#paper-button
+            raised=true
+            primary=true}}
+              Print
+            {{/paper-button}}
+      </div>
+    </div>
+  </div>
+  <div class="content-container">
+    {{lists/node-list model=model.normalizedChildren type='recipe'}}
+  </div>
+</div>

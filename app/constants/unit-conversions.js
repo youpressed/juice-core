@@ -4,7 +4,6 @@ const volumes = {
     tbs: 1/2,
     floz: 1,
     cup: 8,
-    pnt: 16,
     qt: 32,
     gal: 128
   },
@@ -13,7 +12,6 @@ const volumes = {
     {uom: 'tbs', factor: 1/2},
     {uom: 'floz', factor: 1},
     {uom: 'cup', factor: 8},
-    {uom: 'pnt', factor: 16},
     {uom: 'qt', factor: 32},
     {uom: 'gal', factor: 128}
   ]
@@ -44,7 +42,6 @@ const units = {
   tbs: volumes,
   floz: volumes,
   cup: volumes,
-  pnt: volumes,
   qt: volumes,
   gal: volumes,
   oz: weights,
@@ -57,7 +54,6 @@ const unitTypes = [
   'tbs',
   'floz',
   'cup',
-  'pnt',
   'qt',
   'gal',
   'oz',

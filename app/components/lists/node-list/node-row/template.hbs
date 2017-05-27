@@ -1,7 +1,7 @@
 <div class="flex-5 index">{{index}}.</div>
-<div class="flex label">{{label}}</div>
+<div class="flex label">{{model.label}}</div>
 <div class="flex-10">
-    {{#with (to-best-unit factor uom) as |scaled|}}
+    {{#with (to-best-unit model.factor model.uom) as |scaled|}}
       <span class="qty">
         {{scaled.qty}}
       </span>

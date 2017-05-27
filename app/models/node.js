@@ -18,6 +18,7 @@ const {
 
 export default DS.Model.extend({
   label:        attr('string'),
+  note:         attr('string'),
   uom:          attr('string'),
   yield:        attr('number', {defaultValue: 1}),
   type:         attr('string', {defaultValue: 'ingredient'}),

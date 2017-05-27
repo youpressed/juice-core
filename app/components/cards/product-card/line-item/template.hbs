@@ -1,0 +1,17 @@
+{{#with (to-best-unit (mult model.q factor) model.uom) as |scaled|}}
+  <div class="layout-row row-content-container">
+    <span class="index">
+      {{index}}.
+    </span>
+    <span class="label">
+      {{model.b.label}}
+    </span>
+    <span class="flex"></span>
+    <span class="qty">
+      {{scaled.qty}}
+    </span>
+    <span class="uom">
+      {{scaled.uom}}
+    </span>
+  </div>
+{{/with}}

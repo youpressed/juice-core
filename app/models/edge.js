@@ -22,7 +22,6 @@ export default DS.Model.extend({
   b:     belongsTo('node', {inverse: 'parents'}),
 
   normalizedQuantity: computed("q", "uom", function() {
-    console.log(this.get('q'), this.get('uom'), uom(this.get('q'), this.get('uom')).toBase());
     return uom(this.get('q'), this.get('uom')).toBase();
   }),
 

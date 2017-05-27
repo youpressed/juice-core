@@ -11,8 +11,6 @@ export default Ember.Component.extend({
   products: filterBy('nodes', 'isProduct', true),
   pdfGenerator: Ember.inject.service(),
 
-  yoSon: filterBy('model.normalizedChildren', 'type', 'product'),
-
   actions: {
     async printAll() {
       const data = await this.get('model.normalizedChildren');

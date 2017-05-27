@@ -1,0 +1,22 @@
+& {
+  padding: 0.4em;
+}
+
+&:nth-child(even) {
+  background: $light-blue;
+}
+
+.row-content-container {
+  align-items: baseline;
+
+  .index {
+    margin-right: 0.4em;
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+  .uom {
+    margin-left: 0.3em;
+    font-style: italic;
+  }
+}

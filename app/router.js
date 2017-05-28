@@ -12,7 +12,8 @@ Router.map(function() {
   });
 
   this.route('productions', function() {
-    this.route('show', {path:':production_id'});
+    this.route('show', {path:'/edit/:production_id'});
+    this.route('sheets', {path:'/sheets/:production_id'});
   });
 
   this.route('recipes', function() {

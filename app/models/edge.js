@@ -21,20 +21,18 @@ export default DS.Model.extend({
   a:     belongsTo('node', {inverse: 'children'}),
   b:     belongsTo('node', {inverse: 'parents'}),
 
-  normalizedQuantity: computed("q", "uom", function() {
-    return uom(this.get('q'), this.get('uom')).toBase();
+  normalizedQuantity: computed("q", "uom", 'b.uom', function() {
+    return uom(this.get('q'), this.get('uom')).to(this.get('b.uom'));
   }),
 
-  normalizedChildren: computed("b.normalizedChildren", "q", "uom", function() {
-    const q = this.get("q");
-
+  normalizedChildren: computed("b.normalizedChildren", "normalizedQuantity", function() {
     const mul = obj => {
       return {
         label: obj.label,
         node: obj.node,
         type: obj.type,
         uom: obj.uom,
-        factor: obj.factor * this.get('normalizedQuantity')
+        factor: obj.factor * this.get("normalizedQuantity")
       }
     };
 

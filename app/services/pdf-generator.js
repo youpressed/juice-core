@@ -15,9 +15,21 @@ export default Ember.Service.extend({
         const converted = toBest(ing.factor, ing.uom)
         return {
           label: ing.label,
-          q: converted.qty,
+          q: converted.q,
           uom: converted.uom
         }
+      })
+      .sort((a, b) => {
+        const labelA = a.label.toUpperCase();
+        const labelB = b.label.toUpperCase();
+        if (labelA < labelB) {
+          return -1;
+        }
+        if (labelA > labelB) {
+          return 1;
+        }
+
+        return 0;
       });
 
     const recipes = _
@@ -26,9 +38,21 @@ export default Ember.Service.extend({
         const converted = toBest(recipe.factor, recipe.uom)
         return {
           label: recipe.label,
-          q: converted.qty,
+          q: converted.q,
           uom: converted.uom
         }
+      })
+      .sort((a, b) => {
+        const labelA = a.label.toUpperCase();
+        const labelB = b.label.toUpperCase();
+        if (labelA < labelB) {
+          return -1;
+        }
+        if (labelA > labelB) {
+          return 1;
+        }
+
+        return 0;
       });
 
     const products =
@@ -45,25 +69,54 @@ export default Ember.Service.extend({
 
               return {
                 label: childNode.get('label'),
-                q: converted.qty,
+                q: converted.q,
                 uom: converted.uom
               }
             }));
+
+          await scaledChildren;
+          const sortedChildren = scaledChildren
+            .sort((a, b) => {
+              const labelA = a.label.toUpperCase();
+              const labelB = b.label.toUpperCase();
+              if (labelA < labelB) {
+                return -1;
+              }
+              if (labelA > labelB) {
+                return 1;
+              }
+
+              return 0;
+            });
 
           return {
             label: node.get('label'),
             q: edge.get('q'),
             note: node.get('note') || '',
-            children: scaledChildren
+            children: sortedChildren
           }
         }));
 
+    await products;
+    const sortedProducts = products
+      .sort((a, b) => {
+        const labelA = a.label.toUpperCase();
+        const labelB = b.label.toUpperCase();
+        if (labelA < labelB) {
+          return -1;
+        }
+        if (labelA > labelB) {
+          return 1;
+        }
+
+        return 0;
+      });
 
     const payload = {
       date: moment(production.get('date')).format('ddd MM/DD/YY'),
       ingredients,
       recipes,
-      products
+      products: sortedProducts
     };
 
     return Ember.$.ajax({

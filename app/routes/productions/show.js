@@ -15,6 +15,10 @@ export default Ember.Route.extend({
   },
 
   actions: {
+    navigateTo(route, id) {
+      this.transitionTo(route, id);
+    },
+
     handleUpdate(model, key, val) {
       model.set(key, val);
       model.save();

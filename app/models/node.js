@@ -36,11 +36,11 @@ export default DS.Model.extend({
   isProduction: equal('type', 'production'),
 
   normalizedYield: computed("yield", function() {
-    const yieldOfBase = uom(this.get("yield"), this.get('uom')).toBase();
-    return 1 / yieldOfBase;
+    return 1/this.get("yield");
   }),
 
   normalizedChildren: computed("children.@each.{normalizedChildren,q}", "normalizedYield", function() {
+    const normalizedYield = this.get("normalizedYield");
     const selfData = {
       [this.get("id")]: {
         node: this,
@@ -51,13 +51,14 @@ export default DS.Model.extend({
       }
     };
 
+
     const mul = obj => {
       return {
           node: obj.node,
           label: obj.node.get('label'),
           type: obj.type,
           uom: obj.uom,
-          factor: obj.factor * this.get("normalizedYield")
+          factor: obj.factor * normalizedYield
       }
     };
 

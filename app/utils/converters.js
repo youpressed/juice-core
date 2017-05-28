@@ -1,29 +1,43 @@
 import { units } from 'juice-core/constants/unit-conversions';
 import _ from 'lodash';
 
-const toBest = function(qty, from, precision = 1) {
-  const inBaseQty = uom(qty, from).toBase();
+const toBest = function(q, from, precision = 1) {
+  const castQ = parseFloat(q);
+  const baseData = uom(castQ, from).toBase();
 
   const sorted = _
     .map(units[from].list, measure => {
       return {
         uom: measure.uom,
-        qty: (inBaseQty / measure.factor).toFixed(precision)
+        q: (baseData.q / measure.factor).toFixed(precision)
       }
     })
-    .sort((a, b) => Math.abs(1-a.qty) - Math.abs(1-b.qty));
+    .sort((a, b) => Math.abs(1-a.q) - Math.abs(1-b.q));
 
   return sorted[0];
 }
 
-const uom = function(qty, from) {
-  const unitMap = units[from].map;
-  const inBaseQty = qty * unitMap[from];
+const uom = function(q, from) {
+  const castQ = parseFloat(q);
+  const unitData = units[from];
+  const baseUom = unitData.base;
+  const unitMap = unitData.map;
+  const inBaseQty = castQ * unitMap[from];
 
   return {
-    toBase: () => inBaseQty,
+    toBase: () => {
+      return {
+        q: inBaseQty,
+        uom: baseUom
+      }
+    },
     to: (newUom, precision = 1) => {
-      return (inBaseQty / unitMap[newUom]).toFixed(precision);
+      const toQty = inBaseQty / unitMap[newUom];
+      if(Number.isNaN(toQty)) {
+        return castQ.toFixed(precision);
+      } else {
+        return toQty.toFixed(precision);
+      }
     }
   }
 }

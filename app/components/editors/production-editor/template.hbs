@@ -1,26 +1,6 @@
 <div class="md-whiteframe-z1 info-section">
   <div class="header-container layout-row">
     <div class="date-container layout-row layout-xs-column">
-      <span class="label">Product List</span>
-    </div>
-    <div>
-      <div class="ui-container hide-xs">
-        {{#paper-button
-            raised=true
-            primary=true}}
-              Print
-            {{/paper-button}}
-      </div>
-    </div>
-  </div>
-  <div class="content-container">
-    {{lists/product-list model=model.children}}
-  </div>
-</div>
-
-<div class="md-whiteframe-z1 info-section">
-  <div class="header-container layout-row">
-    <div class="date-container layout-row layout-xs-column">
       <span class="label flex-gt-xs-50">Production for:</span>
       <label class="date flex-gt-xs-30">
         {{pikaday-input format="ddd MM/DD" value=model.date onSelection=updateProductionDate}}
@@ -63,42 +43,4 @@
   </div>
 </div>
 
-<div class="md-whiteframe-z1 info-section">
-  <div class="header-container layout-row">
-    <div class="date-container layout-row layout-xs-column">
-      <span class="label">Ingredient List</span>
-    </div>
-    <div>
-      <div class="ui-container hide-xs">
-        {{#paper-button
-            raised=true
-            primary=true}}
-              Print Prep List
-            {{/paper-button}}
-      </div>
-    </div>
-  </div>
-  <div class="content-container">
-    {{lists/node-list model=model.normalizedChildren type='ingredient'}}
-  </div>
-</div>
-
-<div class="md-whiteframe-z1 info-section">
-  <div class="header-container layout-row">
-    <div class="date-container layout-row layout-xs-column">
-      <span class="label">Juice List</span>
-    </div>
-    <div>
-      <div class="ui-container hide-xs">
-        {{#paper-button
-            raised=true
-            primary=true}}
-              Print
-            {{/paper-button}}
-      </div>
-    </div>
-  </div>
-  <div class="content-container">
-    {{lists/node-list model=model.normalizedChildren type='recipe'}}
-  </div>
-</div>
+{{#paper-button onClick=(action navigateTo 'productions.sheets' model.id)}}View Production Sheets{{/paper-button}}

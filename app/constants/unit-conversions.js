@@ -1,4 +1,5 @@
 const volumes = {
+  base:'floz',
   map: {
     tsp: 1/6,
     tbs: 1/2,
@@ -18,6 +19,7 @@ const volumes = {
 }
 
 const weights = {
+  base:'lb',
   map: {
     oz: 1/16,
     lb: 1
@@ -29,6 +31,7 @@ const weights = {
 }
 
 const counts = {
+  base:'count',
   map: {
     count: 1
   },

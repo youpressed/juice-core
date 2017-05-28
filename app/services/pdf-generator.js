@@ -2,55 +2,75 @@ import Ember from 'ember';
 import config from 'juice-core/config/environment';
 import _ from 'lodash';
 
-// import ConvertUnits from "npm:convert-units";
+import { toBest } from 'juice-core/utils/converters';
 
 export default Ember.Service.extend({
-  generateFullPrepSheet(data) {
+  async generateFullPrepSheet(production) {
+    const data = await production.get('normalizedChildren');
+    const edges = await production.get('children');
 
     const ingredients = _
       .filter(data, node => node.type === 'ingredient')
       .map(ing => {
+        const converted = toBest(ing.factor, ing.uom)
         return {
           label: ing.label,
-          vol: ing.factor,
-          vUom: 'oz',
-          raw: 10,
-          rUom: 'lb'
+          q: converted.qty,
+          uom: converted.uom
         }
       });
 
     const recipes = _
-      .filter(data, node => node.type === 'product')
+      .filter(data, node => node.type === 'recipe')
       .map(recipe => {
+        const converted = toBest(recipe.factor, recipe.uom)
         return {
           label: recipe.label,
-          count: recipe.factor,
-          note: "The bentonite clay needs to be added last and mixed very well, be added last and mixed very well.",
-          ingredients: _
-            .filter(recipe.node.get('normalizedChildren'), node => node.type === "ingredient")
-            .map(ing => {
-              return {
-                label: ing.label,
-                qty: ing.factor * recipe.factor,
-                uom: 'fl oz'
-              }
-            })
+          q: converted.qty,
+          uom: converted.uom
         }
       });
 
-    const sample = {
-      date:'6/1/17',
+    const products =
+      await Ember.RSVP.all(edges
+        .map(async edge => {
+          const node = await edge.get('b');
+          const children = await node.get('children');
+
+          const scaledChildren = await Ember.RSVP.all(children
+            .map(async childEdge => {
+              const childNode = await childEdge.get('b');
+              const qtyInBase = (childEdge.get('normalizedQuantity') * edge.get('normalizedQuantity'));
+              const converted = toBest(qtyInBase, childEdge.get('uom'));
+
+              return {
+                label: childNode.get('label'),
+                q: converted.qty,
+                uom: converted.uom
+              }
+            }));
+
+          return {
+            label: node.get('label'),
+            q: edge.get('q'),
+            note: node.get('note') || '',
+            children: scaledChildren
+          }
+        }));
+
+
+    const payload = {
+      date: moment(production.get('date')).format('ddd MM/DD/YY'),
       ingredients,
-      recipes
+      recipes,
+      products
     };
 
     return Ember.$.ajax({
       url: config.docService.allDocsEndpoint,
       type:"POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(sample)
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify(payload)
      });
   }
 });

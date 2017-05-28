@@ -13,8 +13,8 @@ export default Ember.Component.extend({
 
   actions: {
     async printAll() {
-      const data = await this.get('model.normalizedChildren');
-      const { url } = await this.get('pdfGenerator').generateFullPrepSheet(data);
+      // const data = await this.get('model.normalizedChildren');
+      const { url } = await this.get('pdfGenerator').generateFullPrepSheet(this.get('model'));
       return downloadFile(url, 'mykey');
     }
   }

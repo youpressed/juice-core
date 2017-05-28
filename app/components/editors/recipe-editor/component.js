@@ -7,7 +7,6 @@ const {
 
 export default Ember.Component.extend({
   uoms: unitTypes,
-  hellos: ['a', 'b', 'c'],
 
   validNodes: computed('model.@each.{type}', function() {
     const self = this.get('model');

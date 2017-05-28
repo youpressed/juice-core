@@ -17,18 +17,18 @@ export default Ember.Route.extend({
     },
 
     async addNode(a, b) {
-      const edge = this.store.createRecord('edge', {a, b, q: 0});
+      const edge = this.store.createRecord('edge', {a, b, q: 0, uom:b.get('uom')});
       await edge.save();
 
       a.save();
       b.save();
     },
 
-    async createAndAddNode(a, type, label) {
-      const b = this.store.createRecord('node', {type, label});
+    async createAndAddNode(a, type, label, uom) {
+      const b = this.store.createRecord('node', {type, label, uom});
       await b.save();
 
-      const edge = this.store.createRecord('edge', {a, b, q: 0});
+      const edge = this.store.createRecord('edge', {a, b, q: 0, uom});
       await edge.save();
 
       a.save();

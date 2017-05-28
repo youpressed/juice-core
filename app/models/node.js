@@ -22,11 +22,11 @@ export default DS.Model.extend({
   uom:          attr('string'),
   yield:        attr('number', {defaultValue: 1}),
   type:         attr('string', {defaultValue: 'ingredient'}),
+  date:         attr('date'),
 
   children:     hasMany('edge'),
   parents:      hasMany('edge'),
 
-  date: '2017-05-22',
 
   hasChildren:  notEmpty("children"),
 
@@ -36,7 +36,7 @@ export default DS.Model.extend({
   isProduction: equal('type', 'production'),
 
   normalizedYield: computed("yield", function() {
-    const yieldOfBase = uom(this.get("yield"), this.get('uom')).toBase()
+    const yieldOfBase = uom(this.get("yield"), this.get('uom')).toBase();
     return 1 / yieldOfBase;
   }),
 
@@ -47,18 +47,17 @@ export default DS.Model.extend({
         label: this.get('label'),
         type: this.get('type'),
         uom: this.get('uom'),
-        factor: this.get('normalizedYield')
+        factor: 1
       }
     };
 
-    const normalizedYield = this.get("normalizedYield");
     const mul = obj => {
       return {
           node: obj.node,
           label: obj.node.get('label'),
           type: obj.type,
           uom: obj.uom,
-          factor: obj.factor * normalizedYield
+          factor: obj.factor * this.get("normalizedYield")
       }
     };
 

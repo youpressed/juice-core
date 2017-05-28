@@ -8,6 +8,8 @@
       autocapitalize="off"
       spellcheck=false}}
 
+  {{one-way-textarea model.note update=(action handleUpdate model "note")}}
+
   {{#power-select
       options=validNodes
       search=(action 'search')
@@ -40,7 +42,31 @@
   {{/each}}
   </div>
 
+  {{#if showCreateIngredient}}
+    {{#paper-dialog fullscreen=fullscreen onClose=(action "cancelCreateIngredient" "cancel")}}
 
-  Yield
-  {{one-way-input model.yield class='edge-yield' update=(action handleUpdate model "yield")}}
+      {{#paper-dialog-content}}
+        <h2 class="md-title">Create a new ingredient.</h2>
+        <p>Bowser is a common name.</p>
+        <div class="layout-row">
+          {{paper-input placeholder="Kale..." autofocus=true value=newIngredientName onChange=(action (mut newIngredientName))}}
+            <div class="">
+              {{#x-select value=newIngredientUom action=(action (mut newIngredientUom)) as |xs|}}
+                {{#each uoms as |uom|}}
+                  {{#xs.option value=uom}}{{uom}}{{/xs.option}}
+                {{/each}}
+              {{/x-select}}
+            </div>
+        </div>
+
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        <span class="flex"></span>
+        {{#paper-button primary=true onClick=(action "cancelCreateIngredient")}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action "createIngredient")}}Create and add{{/paper-button}}
+      {{/paper-dialog-actions}}
+
+    {{/paper-dialog}}
+  {{/if}}
 {{/paper-content}}

@@ -23,7 +23,7 @@
     <div class="date-container layout-row layout-xs-column">
       <span class="label flex-gt-xs-50">Production for:</span>
       <label class="date flex-gt-xs-30">
-        {{pikaday-input format="ddd MM/DD" value=model.date}}
+        {{pikaday-input format="ddd MM/DD" value=model.date onSelection=updateProductionDate}}
       </label>
     </div>
     <div>

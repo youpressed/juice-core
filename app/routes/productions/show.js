@@ -20,6 +20,11 @@ export default Ember.Route.extend({
       model.save();
     },
 
+    updateProductionDate(production, date) {
+      production.set('date', date);
+      production.save();
+    },
+
     async addProductToProduction(a, b) {
       const edge = this.store.createRecord('edge', {a, b, q: 0});
       await edge.save();

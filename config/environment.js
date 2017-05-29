@@ -22,6 +22,7 @@ module.exports = function(environment) {
     'ember-simple-auth': {
       authenticationRoute: 'index',
       routeAfterAuthentication: 'productions',
+      routeIfAlreadyAuthenticated: 'productions',
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         clientID: process.env.AUTH0_CLIENT_ID,

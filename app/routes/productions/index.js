@@ -18,9 +18,11 @@ export default Ember.Route.extend({
       const products = this.store.peekAll('node')
         .filter(node => node.get('isProduct'));
 
+      const date = moment().toDate();
       const node = this.store.createRecord("node", {
         type:"production",
-        uom:"count"
+        uom:"count",
+        date
       });
 
       node.save();

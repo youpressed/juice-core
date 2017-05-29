@@ -15,7 +15,7 @@
   <div class="content-container">
     {{#if hasProductions}}
       {{lists/productions-list
-          model=model
+          model=sortedProductions
           navigateToProduction=navigateToProduction
           destroyNode=destroyNode}}
     {{else}}

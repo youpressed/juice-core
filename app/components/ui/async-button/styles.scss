@@ -1,0 +1,21 @@
+.async-button {
+  min-width: 9em;
+  padding: 0 1em;
+
+  .print-icon {
+    margin-left: 0.5em;
+  }
+}
+
+.content {
+  align-items: center;
+  transition: color 0.25s;
+}
+
+.async-button:disabled {
+  background-color: rgba($slate, 0.5) !important;
+
+  .content {
+    color: white !important;
+  }
+}

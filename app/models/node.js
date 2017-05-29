@@ -23,10 +23,10 @@ export default DS.Model.extend({
   yield:        attr('number', {defaultValue: 1}),
   type:         attr('string', {defaultValue: 'ingredient'}),
   date:         attr('date'),
+  ts:           attr('number', {defaultValue: () => moment.utc().valueOf()}),
 
   children:     hasMany('edge'),
   parents:      hasMany('edge'),
-
 
   hasChildren:  notEmpty("children"),
 
@@ -34,6 +34,11 @@ export default DS.Model.extend({
   isRecipe:     equal('type', 'recipe'),
   isProduct:    equal('type', 'product'),
   isProduction: equal('type', 'production'),
+
+
+  totalChildQuantity: computed("children.@each.{q}", function() {
+    return this.get('children').reduce((acc, cur) => acc + parseFloat(cur.get('q')), 0);
+  }),
 
   normalizedYield: computed("yield", function() {
     return 1/this.get("yield");
@@ -51,7 +56,6 @@ export default DS.Model.extend({
         factor: 1
       }
     };
-
 
     const mul = obj => {
       return {

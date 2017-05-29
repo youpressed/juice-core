@@ -1,19 +1,15 @@
-<div class="md-whiteframe-z1 info-section">
+<div class="md-whiteframe-z1">
   <div class="header-container layout-row">
-    <div class="date-container layout-row layout-xs-column">
-      <span class="label flex-gt-xs-50">Production for:</span>
-      <label class="date flex-gt-xs-30">
+    <div class="date-container layout-row">
+      <span class="label flex-50">Production for:</span>
+      <div class="spacer flex-xs-10"></div>
+      <label class="date flex-40">
         {{pikaday-input format="ddd MM/DD" value=model.date onSelection=updateProductionDate}}
       </label>
     </div>
     <div>
       <div class="ui-container hide-xs">
-        {{#paper-button
-            onClick=(action 'printAll')
-            raised=true
-            primary=true}}
-              Print All
-            {{/paper-button}}
+        {{ui/async-button onClick=(action 'printAll')}}
       </div>
     </div>
   </div>
@@ -28,7 +24,7 @@
     <div class="layout-col products-container">
       {{#each model.children as |edge index|}}
         <div class="layout-row product-row">
-          <div class="flex-5 index">
+          <div class="flex-5 flex-xs-10 index">
             {{inc index}}.
           </div>
           <div class="flex label">
@@ -43,4 +39,4 @@
   </div>
 </div>
 
-{{#paper-button onClick=(action navigateTo 'productions.sheets' model.id)}}View Production Sheets{{/paper-button}}
+{{#paper-button onClick=(action navigateToProductionSheets model.id)}}View Production Sheets{{/paper-button}}

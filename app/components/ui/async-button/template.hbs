@@ -1,0 +1,15 @@
+{{#paper-button
+    class='async-button'
+    onClick=(action 'clickHandler')
+    raised=true
+    disabled=loading
+    primary=true}}
+      <div class="layout-row content">
+        Print Production Sheets
+        {{#if loading}}
+          {{paper-progress-circular class="md-hue-3" diameter="25%"}}
+        {{else}}
+          {{paper-icon "print" size=14 class='print-icon'}}
+        {{/if}}
+      </div>
+    {{/paper-button}}

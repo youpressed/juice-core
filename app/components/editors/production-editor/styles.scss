@@ -6,12 +6,20 @@
   padding: 1em;
 }
 
+// .header-container {
+//   background: $dope-blue;
+//   color: $off-white;
+//   align-items: center;
+//   padding: 1em 2em;
+//   justify-content: space-between;
+// }
+
 .header-container {
-  background: $dope-blue;
-  color: $off-white;
-  align-items: center;
-  padding: 1em 2em;
   justify-content: space-between;
+  align-items: center;
+  background: $sky-blue;
+  color: white;
+  padding: 1em 1em;
 }
 
 .date-container {

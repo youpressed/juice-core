@@ -15,8 +15,8 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    navigateTo(route, id) {
-      this.transitionTo(route, id);
+    navigateToProductionSheets(productionId) {
+      this.transitionTo('productions.sheets', productionId);
     },
 
     handleUpdate(model, key, val) {

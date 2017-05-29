@@ -14,6 +14,11 @@ module.exports = function(environment) {
       storageBucket: process.env.STORAGE_BUCKET
     },
 
+    intercom: {
+      appId: process.env.INTERCOM_APP_ID,
+      enabled: true,
+    },
+
     docService: {
       allDocsEndpoint: process.env.ALL_DOCS_ENDPOINT
     },

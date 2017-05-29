@@ -1,4 +1,4 @@
 <div class="flex-5 index">{{inc index}}.</div>
 <div class="flex-45">{{moment-format model.date 'ddd MM/DD' 'YYYY-MM-DD'}}</div>
-<div class="flex-45">20</div>
+<div class="flex-45">{{model.totalChildQuantity}}</div>
 <div class="flex-5 ui-container" {{action 'handleDestroyClicked' bubbles=false}}>{{paper-icon "delete" size=22}}</div>

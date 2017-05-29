@@ -19,6 +19,22 @@ module.exports = function(environment) {
       enabled: true,
     },
 
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['development', 'production'],
+        config: {
+          id: process.env.INTERCOM_APP_ID,
+          // Use `analytics_debug.js` in development
+          debug: environment === 'development',
+          // Use verbose tracing of GA events
+          trace: environment === 'development',
+          // Ensure development env hits aren't sent to GA
+          sendHitTask: environment !== 'development'
+        }
+      }
+    ],
+
     docService: {
       allDocsEndpoint: process.env.ALL_DOCS_ENDPOINT
     },

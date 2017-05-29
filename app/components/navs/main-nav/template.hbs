@@ -1,5 +1,19 @@
-<div class="layout-row">
-  <!-- {{#paper-button onClick=(action navigateTo 'products')}}Products{{/paper-button}} -->
-  <!-- {{#paper-button onClick=(action navigateTo 'recipes')}}Recipes{{/paper-button}} -->
+<span class="logo"><a href="#" {{action navigateTo 'productions'}}>you pressed</a></span>
+<!-- {{#paper-button onClick=(action navigateTo 'products')}}Products{{/paper-button}} -->
+<!-- {{#paper-button onClick=(action navigateTo 'recipes')}}Recipes{{/paper-button}} -->
+
+{{#if session.isAuthenticated}}
   {{#paper-button onClick=(action navigateTo 'productions')}}Productions{{/paper-button}}
-</div>
+{{/if}}
+
+<div class="flex"></div>
+
+{{#if session.isAuthenticated}}
+  <div class="layout-row account-ui-container">
+    <span>{{session.session.authenticated.profile.email}}</span>
+    <span class="divider">|</span>
+    {{#paper-button onClick=(action logout)}}Logout{{/paper-button}}
+  </div>
+{{else}}
+  {{#paper-button onClick=(action login)}}Login{{/paper-button}}
+{{/if}}

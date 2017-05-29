@@ -19,6 +19,16 @@ module.exports = function(environment) {
       enabled: true,
     },
 
+    'ember-simple-auth': {
+      authenticationRoute: 'index',
+      routeAfterAuthentication: 'productions',
+      auth0: {
+        domain: process.env.AUTH0_DOMAIN,
+        clientID: process.env.AUTH0_CLIENT_ID,
+        logoutReturnToURL: 'index',
+      }
+    },
+
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',

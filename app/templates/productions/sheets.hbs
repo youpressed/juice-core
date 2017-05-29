@@ -1,11 +1,17 @@
-<div class="md-whiteframe-z1 info-section">
-  {{lists/product-list model=model.children}}
-</div>
+<div class="main-container layout-row">
+  <div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
+  <div class="layout-col flex">
+    <div class="md-whiteframe-z1 info-section">
+      {{lists/product-list model=model.children}}
+    </div>
 
-<div class="md-whiteframe-z1 info-section">
-  {{lists/node-list model=model.normalizedChildren type='ingredient'}}
-</div>
+    <div class="md-whiteframe-z1 info-section">
+      {{lists/node-list model=model.normalizedChildren type='ingredient'}}
+    </div>
 
-<div class="md-whiteframe-z1 info-section">
-  {{lists/node-list model=model.normalizedChildren type='recipe'}}
+    <div class="md-whiteframe-z1 info-section">
+      {{lists/node-list model=model.normalizedChildren type='recipe'}}
+    </div>
+  </div>
+  <div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
 </div>

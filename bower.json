@@ -2,6 +2,9 @@
   "name": "juice-core",
   "dependencies": {
     "ramda": "^0.23.0",
-    "mathjs": "^3.13.1"
+    "mathjs": "^3.13.1",
+    "auth0-lock": "^10.16.0",
+    "auth0.js": "^8.7.0",
+    "auth0-lock-passwordless": "^2.2.3"
   }
 }

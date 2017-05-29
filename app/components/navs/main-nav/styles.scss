@@ -3,4 +3,24 @@
   background: $dark-blue;
   margin-bottom: 1em;
   color: $off-white;
+  align-items: baseline;
+}
+
+.logo {
+  font-size: 1.2em;
+  font-family: 'Montserrat', sans-serif;
+  margin-right: 1em;
+  a {
+    border: none;
+    text-decoration: none;
+    color: rgba(white, 0.9);
+  }
+}
+
+.account-ui-container {
+  align-items: baseline;
+
+  .divider {
+    margin-left: 1.2em;
+  }
 }

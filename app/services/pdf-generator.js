@@ -2,7 +2,9 @@ import Ember from 'ember';
 import config from 'juice-core/config/environment';
 import _ from 'lodash';
 
+
 import { toBest } from 'juice-core/utils/converters';
+import { roundTo } from 'juice-core/utils/math';
 
 export default Ember.Service.extend({
   async generateFullPrepSheet(production) {
@@ -15,10 +17,11 @@ export default Ember.Service.extend({
         const converted = toBest(ing.factor, ing.uom)
         return {
           label: ing.label,
-          q: converted.q,
+          q: roundTo(converted.q),
           uom: converted.uom
         }
       })
+      .filter(ing => ing.q > 0)
       .sort((a, b) => {
         const labelA = a.label.toUpperCase();
         const labelB = b.label.toUpperCase();
@@ -38,10 +41,11 @@ export default Ember.Service.extend({
         const converted = toBest(recipe.factor, recipe.uom)
         return {
           label: recipe.label,
-          q: converted.q,
+          q: roundTo(converted.q),
           uom: converted.uom
         }
       })
+      .filter(recipe => recipe.q > 0)
       .sort((a, b) => {
         const labelA = a.label.toUpperCase();
         const labelB = b.label.toUpperCase();
@@ -69,7 +73,7 @@ export default Ember.Service.extend({
 
               return {
                 label: childNode.get('label'),
-                q: converted.q,
+                q: roundTo(converted.q),
                 uom: converted.uom
               }
             }));
@@ -99,6 +103,7 @@ export default Ember.Service.extend({
 
     await products;
     const sortedProducts = products
+      .filter(product => product.q > 0)
       .sort((a, b) => {
         const labelA = a.label.toUpperCase();
         const labelB = b.label.toUpperCase();

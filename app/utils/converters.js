@@ -1,7 +1,7 @@
 import { units } from 'juice-core/constants/unit-conversions';
 import _ from 'lodash';
 
-const toBest = function(q, from, precision = 1) {
+const toBest = function(q, from) {
   const castQ = parseFloat(q);
   const baseData = uom(castQ, from).toBase();
 
@@ -9,7 +9,7 @@ const toBest = function(q, from, precision = 1) {
     .map(units[from].list, measure => {
       return {
         uom: measure.uom,
-        q: (baseData.q / measure.factor).toFixed(precision)
+        q: (baseData.q / measure.factor)
       }
     })
     .sort((a, b) => Math.abs(1-a.q) - Math.abs(1-b.q));
@@ -31,12 +31,12 @@ const uom = function(q, from) {
         uom: baseUom
       }
     },
-    to: (newUom, precision = 1) => {
+    to: (newUom) => {
       const toQty = inBaseQty / unitMap[newUom];
       if(Number.isNaN(toQty)) {
-        return castQ.toFixed(precision);
+        return castQ;
       } else {
-        return toQty.toFixed(precision);
+        return toQty;
       }
     }
   }

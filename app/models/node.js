@@ -41,6 +41,7 @@ export default DS.Model.extend({
 
   normalizedChildren: computed("children.@each.{normalizedChildren,q}", "normalizedYield", function() {
     const normalizedYield = this.get("normalizedYield");
+
     const selfData = {
       [this.get("id")]: {
         node: this,

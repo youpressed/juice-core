@@ -3,7 +3,7 @@
 <div class="flex-10">
     {{#with (to-best-unit model.factor model.uom) as |scaled|}}
       <span class="qty">
-        {{scaled.q}}
+        {{round scaled.q}}
       </span>
       <span class="uom">
         {{scaled.uom}}

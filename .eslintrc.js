@@ -13,6 +13,7 @@ module.exports = {
   },
   globals: {
     "R": true,
-    "math": true
+    "math": true,
+    "moment": true
   }
 };

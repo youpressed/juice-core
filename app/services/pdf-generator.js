@@ -31,7 +31,7 @@ export default Ember.Service.extend({
         const converted =
           toMixed(ing.factor, ing.uom, ing.forceUomsParsed)
           .map(obj => ({
-            q: roundTo(obj.q, 0),
+            q: roundTo(obj.q, 1),
             uom: obj.uom
           }));
         return {
@@ -48,7 +48,7 @@ export default Ember.Service.extend({
         const converted =
           toMixed(recipe.factor, recipe.uom, recipe.forceUomsParsed)
           .map(obj => ({
-            q: roundTo(obj.q, 0),
+            q: roundTo(obj.q, 1),
             uom: obj.uom
           }));
         return {
@@ -72,7 +72,7 @@ export default Ember.Service.extend({
               const converted =
                 toMixed(qtyInBase, childEdge.get('uom'), childNode.get('forceUomsParsed'))
                 .map(obj => ({
-                  q: roundTo(obj.q, 0),
+                  q: roundTo(obj.q, 1),
                   uom: obj.uom
                 }));
 

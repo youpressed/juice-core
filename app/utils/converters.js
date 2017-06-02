@@ -48,7 +48,6 @@ const toMixed = (q, from, allowed) => {
   let secondUnit;
 
   if(remainder > 0) {
-    const uoms = units[firstUnit.uom].list;
     const currentUom = uoms.find(uom => uom.uom === firstUnit.uom)
     const nextIndex = uoms.indexOf(currentUom) - 1;
     const nextUom = uoms[nextIndex];

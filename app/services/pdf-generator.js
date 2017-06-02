@@ -2,8 +2,6 @@ import Ember from 'ember';
 import config from 'juice-core/config/environment';
 import _ from 'lodash';
 
-
-import { toBest } from 'juice-core/utils/converters';
 import { toMixed } from 'juice-core/utils/converters';
 import { roundTo } from 'juice-core/utils/math';
 

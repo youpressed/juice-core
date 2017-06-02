@@ -14,6 +14,7 @@ module.exports = {
   globals: {
     "R": true,
     "math": true,
-    "moment": true
+    "moment": true,
+    "Set": true
   }
 };

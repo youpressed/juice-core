@@ -3,7 +3,6 @@ import config from 'juice-core/config/environment';
 import _ from 'lodash';
 
 import { toMixed } from 'juice-core/utils/converters';
-import { roundTo } from 'juice-core/utils/math';
 
 const sortFunc = (a, b) => {
   const labelA = a.label.toUpperCase();
@@ -31,7 +30,7 @@ export default Ember.Service.extend({
         const converted =
           toMixed(ing.factor, ing.uom, ing.forceUomsParsed)
           .map(obj => ({
-            q: roundTo(obj.q, 1),
+            q: obj.q,
             uom: obj.uom
           }));
         return {
@@ -48,7 +47,7 @@ export default Ember.Service.extend({
         const converted =
           toMixed(recipe.factor, recipe.uom, recipe.forceUomsParsed)
           .map(obj => ({
-            q: roundTo(obj.q, 1),
+            q: obj.q,
             uom: obj.uom
           }));
         return {
@@ -72,7 +71,7 @@ export default Ember.Service.extend({
               const converted =
                 toMixed(qtyInBase, childEdge.get('uom'), childNode.get('forceUomsParsed'))
                 .map(obj => ({
-                  q: roundTo(obj.q, 1),
+                  q: obj.q,
                   uom: obj.uom
                 }));
 

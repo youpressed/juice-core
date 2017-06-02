@@ -1,0 +1,7 @@
+Ingredients list:
+
+<ol>
+  {{#each ingredients as |ingredient|}}
+    {{link-to ingredient.label 'ingredients.show' ingredient.id}}
+  {{/each}}
+</ol>

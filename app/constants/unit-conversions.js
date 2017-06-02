@@ -4,14 +4,14 @@ const volumes = {
     tsp: 1/6,
     tbs: 1/2,
     floz: 1,
-    cup: 8,
+    // cup: 8,
     qt: 32
   },
   list: [
     {uom: 'tsp', factor: 1/6},
     {uom: 'tbs', factor: 1/2},
     {uom: 'floz', factor: 1},
-    {uom: 'cup', factor: 8},
+    // {uom: 'cup', factor: 8},
     {uom: 'qt', factor: 32}
   ]
 }
@@ -42,7 +42,7 @@ const units = {
   tsp: volumes,
   tbs: volumes,
   floz: volumes,
-  cup: volumes,
+  // cup: volumes,
   qt: volumes,
   oz: weights,
   lb: weights,
@@ -53,7 +53,7 @@ const unitTypes = [
   'tsp',
   'tbs',
   'floz',
-  'cup',
+  // 'cup',
   'qt',
   'oz',
   'lb',

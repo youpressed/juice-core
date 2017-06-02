@@ -1,0 +1,17 @@
+{{model.label}}
+
+{{#power-select
+    options=uoms
+    onchange=(action addUom model)
+    as |uom|}}
+      {{uom}}
+{{/power-select}}
+
+{{#each model.forceUomsParsed as |uom index|}}
+  <div class="layout-row">
+    <div class="label">
+      {{inc index}}. {{uom}}
+    </div>
+    <div class="flex-5 ui-container" {{action removeUom model uom}}>{{paper-icon "delete" size=22}}</div>
+  </div>
+{{/each}}

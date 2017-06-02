@@ -23,6 +23,7 @@ export default DS.Model.extend({
   type:         attr('string', {defaultValue: 'ingredient'}),
   date:         attr('date'),
   ts:           attr('number', {defaultValue: () => moment.utc().valueOf()}),
+  forceUoms:    attr('string', {defaultValue: ""}),
 
   children:     hasMany('edge'),
   parents:      hasMany('edge'),
@@ -34,6 +35,15 @@ export default DS.Model.extend({
   isProduct:    equal('type', 'product'),
   isProduction: equal('type', 'production'),
 
+  forceUomsParsed: computed("forceUoms", function() {
+    const str = this.get('forceUoms');
+
+    if(str) {
+      return str.split(',');
+    } else {
+      return undefined;
+    }
+  }),
 
   totalChildQuantity: computed("children.@each.{q}", function() {
     return this.get('children').reduce((acc, cur) => acc + parseFloat(cur.get('q')), 0);
@@ -43,8 +53,9 @@ export default DS.Model.extend({
     return 1/this.get("yield");
   }),
 
-  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "normalizedYield", function() {
+  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "forceUomsParsed", "normalizedYield", function() {
     const normalizedYield = this.get("normalizedYield");
+    const forceUomsParsed = this.get('forceUomsParsed');
 
     const selfData = {
       [this.get("id")]: {
@@ -52,6 +63,7 @@ export default DS.Model.extend({
         label: this.get('label'),
         type: this.get('type'),
         uom: this.get('uom'),
+        forceUomsParsed,
         factor: 1
       }
     };
@@ -62,6 +74,7 @@ export default DS.Model.extend({
           label: obj.node.get('label'),
           type: obj.type,
           uom: obj.uom,
+          forceUomsParsed: obj.forceUomsParsed,
           factor: obj.factor * normalizedYield
       }
     };
@@ -71,6 +84,7 @@ export default DS.Model.extend({
       label: a.label,
       type: a.type,
       uom: a.uom,
+      forceUomsParsed: a.forceUomsParsed,
       factor: a.factor + b.factor
     });
 

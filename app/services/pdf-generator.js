@@ -4,60 +4,61 @@ import _ from 'lodash';
 
 
 import { toBest } from 'juice-core/utils/converters';
+import { toMixed } from 'juice-core/utils/converters';
 import { roundTo } from 'juice-core/utils/math';
 
+const sortFunc = (a, b) => {
+  const labelA = a.label.toUpperCase();
+  const labelB = b.label.toUpperCase();
+  if (labelA < labelB) {
+    return -1;
+  }
+  if (labelA > labelB) {
+    return 1;
+  }
+
+  return 0;
+}
+
 export default Ember.Service.extend({
+
   async generateFullPrepSheet(production) {
     const data = await production.get('normalizedChildren');
     const edges = await production.get('children');
 
     const ingredients = _
       .filter(data, node => node.type === 'ingredient')
+      .filter(ing => ing.factor > 0)
       .map(ing => {
-        const converted = toBest(ing.factor, ing.uom)
+        const converted =
+          toMixed(ing.factor, ing.uom, ing.forceUomsParsed)
+          .map(obj => ({
+            q: roundTo(obj.q, 0),
+            uom: obj.uom
+          }));
         return {
           label: ing.label,
-          q: roundTo(converted.q),
-          uom: converted.uom
+          converted
         }
       })
-      .filter(ing => ing.q > 0)
-      .sort((a, b) => {
-        const labelA = a.label.toUpperCase();
-        const labelB = b.label.toUpperCase();
-        if (labelA < labelB) {
-          return -1;
-        }
-        if (labelA > labelB) {
-          return 1;
-        }
-
-        return 0;
-      });
+      .sort(sortFunc);
 
     const recipes = _
       .filter(data, node => node.type === 'recipe')
+      .filter(recipe => recipe.factor > 0)
       .map(recipe => {
-        const converted = toBest(recipe.factor, recipe.uom)
+        const converted =
+          toMixed(recipe.factor, recipe.uom, recipe.forceUomsParsed)
+          .map(obj => ({
+            q: roundTo(obj.q, 0),
+            uom: obj.uom
+          }));
         return {
           label: recipe.label,
-          q: roundTo(converted.q),
-          uom: converted.uom
+          converted
         }
       })
-      .filter(recipe => recipe.q > 0)
-      .sort((a, b) => {
-        const labelA = a.label.toUpperCase();
-        const labelB = b.label.toUpperCase();
-        if (labelA < labelB) {
-          return -1;
-        }
-        if (labelA > labelB) {
-          return 1;
-        }
-
-        return 0;
-      });
+      .sort(sortFunc);
 
     const products =
       await Ember.RSVP.all(edges
@@ -69,29 +70,22 @@ export default Ember.Service.extend({
             .map(async childEdge => {
               const childNode = await childEdge.get('b');
               const qtyInBase = (childEdge.get('normalizedQuantity') * edge.get('normalizedQuantity'));
-              const converted = toBest(qtyInBase, childEdge.get('uom'));
+
+              const converted =
+                toMixed(qtyInBase, childEdge.get('uom'), childNode.get('forceUomsParsed'))
+                .map(obj => ({
+                  q: roundTo(obj.q, 0),
+                  uom: obj.uom
+                }));
 
               return {
                 label: childNode.get('label'),
-                q: roundTo(converted.q),
-                uom: converted.uom
+                converted
               }
             }));
 
           await scaledChildren;
-          const sortedChildren = scaledChildren
-            .sort((a, b) => {
-              const labelA = a.label.toUpperCase();
-              const labelB = b.label.toUpperCase();
-              if (labelA < labelB) {
-                return -1;
-              }
-              if (labelA > labelB) {
-                return 1;
-              }
-
-              return 0;
-            });
+          const sortedChildren = scaledChildren.sort(sortFunc);
 
           return {
             label: node.get('label'),
@@ -104,18 +98,7 @@ export default Ember.Service.extend({
     await products;
     const sortedProducts = products
       .filter(product => product.q > 0)
-      .sort((a, b) => {
-        const labelA = a.label.toUpperCase();
-        const labelB = b.label.toUpperCase();
-        if (labelA < labelB) {
-          return -1;
-        }
-        if (labelA > labelB) {
-          return 1;
-        }
-
-        return 0;
-      });
+      .sort(sortFunc);
 
     const payload = {
       date: moment(production.get('date')).format('ddd MM/DD/YY'),

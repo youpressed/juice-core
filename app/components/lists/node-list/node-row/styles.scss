@@ -17,6 +17,10 @@
   }
 }
 
+.row-content-container {
+  justify-content: flex-end;
+}
+
 .index {
   font-weight: bold;
   font-style: italic;
@@ -29,8 +33,15 @@
 .qty {
   font-size: 1.2em;
   font-weight: bold;
+  text-align: right;
 }
 
 .uom {
+  margin-left: 0.5em;
   font-style: italic;
+}
+
+.measurement {
+  justify-content: flex-end;
+  align-items: baseline;
 }

@@ -1,12 +1,18 @@
 <div class="flex-5 index">{{index}}.</div>
 <div class="flex label">{{model.label}}</div>
-<div class="flex-10">
-    {{#with (to-best-unit model.factor model.uom) as |scaled|}}
-      <span class="qty">
-        {{round scaled.q}}
-      </span>
-      <span class="uom">
-        {{scaled.uom}}
-      </span>
-    {{/with}}
-</div>
+
+<div class="flex"></div>
+{{#with (to-mixed model.factor model.uom model.forceUomsParsed) as |mixed|}}
+  <div class="layout-row row-content-container flex-25">
+    {{#each mixed as |uom|}}
+      <div class="measurement layout-row flex-30">
+        <span class="qty flex-50">
+          {{round uom.q 0}}
+        </span>
+        <span class="uom flex-50">
+          {{uom.uom}}
+        </span>
+      </div>
+    {{/each}}
+  </div>
+{{/with}}

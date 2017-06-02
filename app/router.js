@@ -34,6 +34,10 @@ Router.map(function() {
   this.route('recipes', function() {
     this.route('show', {path:':recipe_id'});
   });
+
+  this.route('ingredients', function() {
+    this.route('show', {path:':ingredient_id'});
+  });
 });
 
 export default Router;

@@ -1,17 +1,21 @@
-{{#with (to-best-unit (mult model.q factor) model.uom) as |scaled|}}
+{{#with (to-mixed (mult model.q factor) model.uom model.forceUomsParsed) as |mixed|}}
   <div class="layout-row row-content-container">
     <span class="index">
       {{index}}.
     </span>
-    <span class="label">
+    <span class="label flex-50">
       {{model.b.label}}
     </span>
     <span class="flex"></span>
-    <span class="qty">
-      {{round scaled.q}}
-    </span>
-    <span class="uom">
-      {{scaled.uom}}
-    </span>
+    {{#each mixed as |uom|}}
+      <div class="measurement layout-row flex-15">
+        <span class="qty flex-50">
+          {{round uom.q 0}}
+        </span>
+        <span class="uom flex-50">
+          {{uom.uom}}
+        </span>
+      </div>
+    {{/each}}
   </div>
 {{/with}}

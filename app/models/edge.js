@@ -27,11 +27,13 @@ export default DS.Model.extend({
 
   normalizedChildren: computed("b.normalizedChildren", "normalizedQuantity", function() {
     const mul = obj => {
+      
       return {
         label: obj.label,
         node: obj.node,
         type: obj.type,
         uom: obj.uom,
+        forceUomsParsed: obj.forceUomsParsed,
         factor: obj.factor * this.get("normalizedQuantity")
       }
     };

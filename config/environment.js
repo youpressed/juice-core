@@ -37,9 +37,9 @@ module.exports = function(environment) {
         config: {
           id: process.env.INTERCOM_APP_ID,
           // Use `analytics_debug.js` in development
-          debug: environment === 'development',
-          // Use verbose tracing of GA events
-          trace: environment === 'development',
+          // debug: environment === 'development',
+          // // Use verbose tracing of GA events
+          // trace: environment === 'development',
           // Ensure development env hits aren't sent to GA
           sendHitTask: environment !== 'development'
         }

@@ -10,6 +10,7 @@ const {
 
 export default Controller.extend({
   session: service(),
+
   actions: {
     login () {
       const lockOptions = {

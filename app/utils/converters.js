@@ -66,7 +66,7 @@ const toMixed = (q, from, allowed) => {
   .filter(measure => measure.q > 0);
 
   if(results.length < 1) {
-    results = [{q: Math.ceil(firstPass.q), uom:firstPass.uom}];
+    results = [{q: roundTo(firstPass.q), uom:firstPass.uom}];
   }
 
   return results;

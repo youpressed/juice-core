@@ -1,4 +1,5 @@
 import { units } from 'juice-core/constants/unit-conversions';
+import { roundTo } from 'juice-core/utils/math';
 import _ from 'lodash';
 
 const buildAllowedUoms = (from, allowed) => {
@@ -54,7 +55,7 @@ const toMixed = (q, from, allowed) => {
 
     if(nextUom !== undefined) {
       const next = uom(remainder, firstUnit.uom).to(nextUom.uom);
-      secondUnit = {q: next, uom:nextUom.uom};
+      secondUnit = {q: Math.round(next), uom:nextUom.uom};
     }
   }
 
@@ -66,7 +67,7 @@ const toMixed = (q, from, allowed) => {
   .filter(measure => measure.q > 0);
 
   if(results.length < 1) {
-    results = [{q: roundTo(firstPass.q), uom:firstPass.uom}];
+    results = [{q: roundTo(firstPass.q, 1), uom:firstPass.uom}];
   }
 
   return results;

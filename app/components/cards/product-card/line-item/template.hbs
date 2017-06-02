@@ -10,7 +10,7 @@
     {{#each mixed as |uom|}}
       <div class="measurement layout-row flex-15">
         <span class="qty flex-50">
-          {{round uom.q 0}}
+          {{uom.q}}
         </span>
         <span class="uom flex-50">
           {{uom.uom}}

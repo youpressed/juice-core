@@ -19,11 +19,11 @@ const volumes = {
 const weights = {
   base:'lb',
   map: {
-    oz: 1/16,
+    // oz: 1/16,
     lb: 1
   },
   list: [
-    {uom: 'oz', factor: 1/16},
+    // {uom: 'oz', factor: 1/16},
     {uom: 'lb', factor: 1}
   ]
 }
@@ -44,7 +44,7 @@ const units = {
   floz: volumes,
   // cup: volumes,
   // qt: volumes,
-  oz: weights,
+  // oz: weights,
   lb: weights,
   count: counts
 };
@@ -55,7 +55,7 @@ const unitTypes = [
   'floz',
   // 'cup',
   // 'qt',
-  'oz',
+  // 'oz',
   'lb',
   'count'
 ];

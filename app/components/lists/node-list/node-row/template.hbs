@@ -2,12 +2,12 @@
 <div class="flex label">{{model.label}}</div>
 
 <div class="flex"></div>
-{{#with (to-mixed model.factor model.uom model.forceUomsParsed) as |mixed|}}
+{{#with (to-best-unit model.factor model.uom model.forceUomsParsed) as |mixed|}}
   <div class="layout-row row-content-container flex-25">
     {{#each mixed as |uom|}}
       <div class="measurement layout-row flex-30">
         <span class="qty flex-50">
-          {{uom.q}}
+          {{round uom.q 1}}
         </span>
         <span class="uom flex-50">
           {{uom.uom}}

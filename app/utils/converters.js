@@ -34,7 +34,7 @@ const toBest = (q, from, allowed) => {
       }
     });
 
-  return sorted[0];
+  return [sorted[0]];
 }
 
 const toMixed = (q, from, allowed) => {

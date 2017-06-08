@@ -2,7 +2,8 @@ import Ember from 'ember';
 import config from 'juice-core/config/environment';
 import _ from 'lodash';
 
-import { toMixed } from 'juice-core/utils/converters';
+import { toBest } from 'juice-core/utils/converters';
+import { roundTo } from 'juice-core/utils/math';
 
 const sortFunc = (a, b) => {
   const labelA = a.label.toUpperCase();
@@ -28,9 +29,9 @@ export default Ember.Service.extend({
       .filter(ing => ing.factor > 0)
       .map(ing => {
         const converted =
-          toMixed(ing.factor, ing.uom, ing.forceUomsParsed)
+          toBest(ing.factor, ing.uom, ing.forceUomsParsed)
           .map(obj => ({
-            q: obj.q,
+            q: roundTo(obj.q, 1),
             uom: obj.uom
           }));
         return {
@@ -45,9 +46,9 @@ export default Ember.Service.extend({
       .filter(recipe => recipe.factor > 0)
       .map(recipe => {
         const converted =
-          toMixed(recipe.factor, recipe.uom, recipe.forceUomsParsed)
+          toBest(recipe.factor, recipe.uom, recipe.forceUomsParsed)
           .map(obj => ({
-            q: obj.q,
+            q: roundTo(obj.q, 1),
             uom: obj.uom
           }));
         return {
@@ -66,12 +67,12 @@ export default Ember.Service.extend({
           const scaledChildren = await Ember.RSVP.all(children
             .map(async childEdge => {
               const childNode = await childEdge.get('b');
-              const qtyInBase = (childEdge.get('normalizedQuantity') * edge.get('normalizedQuantity'));
+              const qtyInBase = (childEdge.get('q') * edge.get('q'));
 
               const converted =
-                toMixed(qtyInBase, childEdge.get('uom'), childNode.get('forceUomsParsed'))
+                toBest(qtyInBase, childEdge.get('uom'), childNode.get('forceUomsParsed'))
                 .map(obj => ({
-                  q: obj.q,
+                  q: roundTo(obj.q, 1),
                   uom: obj.uom
                 }));
 

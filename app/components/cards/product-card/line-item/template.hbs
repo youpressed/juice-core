@@ -1,4 +1,4 @@
-{{#with (to-mixed (mult model.q factor) model.uom model.forceUomsParsed) as |mixed|}}
+{{#with (to-best-unit (mult model.q factor) model.uom model.forceUomsParsed) as |mixed|}}
   <div class="layout-row row-content-container">
     <span class="index">
       {{index}}.
@@ -10,7 +10,7 @@
     {{#each mixed as |uom|}}
       <div class="measurement layout-row flex-15">
         <span class="qty flex-50">
-          {{uom.q}}
+          {{round uom.q 1}}
         </span>
         <span class="uom flex-50">
           {{uom.uom}}

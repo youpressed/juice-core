@@ -1,0 +1,32 @@
+{{#paper-content class="md-whiteframe-z1"}}
+  <div class="layout-row main-header">
+    <h1>{{label}}</h1>
+
+    <div>
+      {{#paper-button
+          onClick=createAction
+          raised=true
+          primary=true}}
+            Create New {{createActionLabel}} +
+          {{/paper-button}}
+    </div>
+  </div>
+
+  <div class="content-container">
+    {{#if hasContent}}
+      <div class="layout-col">
+        {{#each sortedContent as |item index|}}
+          {{component rowType
+              clickAction=selectAction
+              destroyAction=destroyAction
+              model=item
+              index=(inc index)}}
+        {{/each}}
+      </div>
+    {{else}}
+      <div class="empty-message">
+        Empty, create some?
+      </div>
+    {{/if}}
+  </div>
+{{/paper-content}}

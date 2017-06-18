@@ -1,0 +1,6 @@
+<div class="flex-15 flex-gt-sm-5 index">{{index}}.</div>
+<div class="flex-80">{{model.label}}</div>
+
+{{#if hasDestroyAction}}
+  <div class="flex-5 ui-container" {{action 'handleDestroyClicked' bubbles=false}}>{{paper-icon "delete" size=22}}</div>
+{{/if}}

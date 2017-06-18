@@ -1,0 +1,17 @@
+{{#paper-button primary=true onClick=(action 'showSetting')}}Setting{{/paper-button}}
+
+<div class="md-whiteframe-z1 info-section">
+  {{lists/product-list model=model.children}}
+</div>
+
+<div class="md-whiteframe-z1 info-section">
+  {{lists/node-list model=model.normalizedChildren type='ingredient'}}
+</div>
+
+<div class="md-whiteframe-z1 info-section">
+  {{lists/node-list model=model.normalizedChildren type='recipe'}}
+</div>
+
+{{#if shouldShowSettings}}
+  {{settings/general-settings closeSetting=(action 'closeSetting')}}
+{{/if}}

@@ -10,7 +10,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    async createProduct() {
+    showNode(node) {
+      this.transitionTo('products.show', node.get('id'));
+    },
+
+    async createNode() {
       const node = this.store.createRecord("node", {
         type:"product",
         label:"untitled",

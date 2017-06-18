@@ -1,9 +1,10 @@
-<button type="button" name="button" {{action (route-action "createProduct")}}>Create Product</button>
-
-<ul>
-{{#each model as |product|}}
-  <li>
-    {{link-to product.label "products.show" product.id}} - <button type="button" name="button" {{action (route-action "destroyNode" product)}}>Destroy</button>
-  </li>
-{{/each}}
-</ul>
+{{#containers/section-container}}
+  {{lists/label-list
+      label='Products'
+      rowType='rows/label-row'
+      createAction=(route-action 'createNode')
+      createActionLabel='product'
+      selectAction=(route-action 'showNode')
+      destroyAction=(route-action 'destroyNode')
+      model=model}}
+{{/containers/section-container}}

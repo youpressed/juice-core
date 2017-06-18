@@ -1,9 +1,10 @@
-<button type="button" name="button" {{action (route-action "createRecipe")}}>Create Recipe</button>
-
-<ul>
-  {{#each model as |recipe|}}
-    <li>
-      {{link-to recipe.label "recipes.show" recipe.id}} - <button type="button" name="button" {{action (route-action "destroyNode" recipe)}}>Destroy</button>
-    </li>
-  {{/each}}
-</ul>
+{{#containers/section-container}}
+  {{lists/label-list
+      label='Recipes'
+      rowType='rows/label-row'
+      createAction=(route-action 'createNode')
+      createActionLabel='recipe'
+      selectAction=(route-action 'showNode')
+      destroyAction=(route-action 'destroyNode')
+      model=model}}
+{{/containers/section-container}}

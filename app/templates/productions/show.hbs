@@ -1,13 +1,9 @@
-<div class="main-container layout-row">
-  <div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
-  <div class="layout-col flex">
-    {{editors/production-editor
-        navigateToProductionSheets=(route-action 'navigateToProductionSheets')
-        handleUpdate=(route-action 'handleUpdate')
-        updateProductionDate=(route-action 'updateProductionDate' model)
-        addProductToProduction=(route-action 'addProductToProduction' model)
-        nodes=nodes
-        model=model}}
-  </div>
-  <div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
-</div>
+{{#containers/section-container}}
+  {{editors/production-editor
+      navigateToProductionSheets=(route-action 'navigateToProductionSheets')
+      handleUpdate=(route-action 'handleUpdate')
+      updateProductionDate=(route-action 'updateProductionDate' model)
+      addProductToProduction=(route-action 'addProductToProduction' model)
+      nodes=nodes
+      model=model}}
+{{/containers/section-container}}

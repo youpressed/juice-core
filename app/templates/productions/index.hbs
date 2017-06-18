@@ -1,11 +1,10 @@
-<div class="main-container layout-row">
-  <div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
-  <div class="layout-col flex">
-    {{sections/productions-index
-        model=model
-        navigateToProduction=(route-action 'navigateToProduction')
-        createProduction=(route-action 'createProduction' products)
-        destroyNode=(route-action 'destroyNode')}}
-  </div>
-  <div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
-</div>
+{{#containers/section-container}}
+  {{lists/label-list
+      label='Productions'
+      rowType='rows/date-label-row'
+      createAction=(route-action 'createNode')
+      createActionLabel='production'
+      selectAction=(route-action 'showNode')
+      destroyAction=(route-action 'destroyNode')
+      model=productions}}
+{{/containers/section-container}}

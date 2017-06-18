@@ -2,13 +2,24 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  setupController(controller) {
+  setupController(controller, model) {
+    controller.set('model', model[0]);
     controller.set('nodes', this.store.peekAll('node'));
     this._super(...arguments);
   },
 
   model(params) {
-    return this.store.findRecord("node", params.product_id);
+    return Ember.RSVP.Promise.all([
+      this.store.findRecord("node", params.product_id),
+      this.store.query('node', {
+        orderBy: "type",
+        equalTo: "recipe"
+      }),
+      this.store.query('node', {
+        orderBy: "type",
+        equalTo: "ingredient"
+      })
+    ]);
   },
 
   actions: {

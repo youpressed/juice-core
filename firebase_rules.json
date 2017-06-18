@@ -1,0 +1,42 @@
+{
+  "rules": {
+    "users": {
+      "$user_id": {
+        ".read": "$user_id === auth.uid"
+      }
+    },
+    "orgs": {
+      "$org": {
+        //Only users of the org can read
+        ".read": "data.child('users/' + auth.uid + '/role').val() === 'admin'",
+
+        //Only users of the org can write
+        ".write": "data.child('users/' + auth.uid + '/role').val() === 'admin'",
+
+        "nodes": {
+          // We filter on org and type
+          ".indexOn": ["org", "type"],
+
+          //Only users of the org can read
+          ".read": "data.child('users/' + auth.uid + '/role').val() === 'admin'",
+
+          //Only users of the org can write
+          ".write": "data.child('users/' + auth.uid + '/role').val() === 'admin'",
+
+      	},
+
+        "edges": {
+          // We filter on org and type
+          ".indexOn": ["org", "type"],
+
+          //Only users of the org can read
+          ".read": "data.child('users/' + auth.uid + '/role').val() === 'admin'",
+
+          //Only users of the org can write
+          ".write": "data.child('users/' + auth.uid + '/role').val() === 'admin'",
+
+      	}
+      }
+    }
+  }
+}

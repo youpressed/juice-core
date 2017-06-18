@@ -1,9 +1,10 @@
 <span class="logo"><a href="#" {{action navigateTo 'productions'}}>you pressed</a></span>
-<!-- {{#paper-button onClick=(action navigateTo 'products')}}Products{{/paper-button}} -->
-<!-- {{#paper-button onClick=(action navigateTo 'recipes')}}Recipes{{/paper-button}} -->
 
 {{#if session.isAuthenticated}}
   {{#paper-button onClick=(action navigateTo 'productions')}}Productions{{/paper-button}}
+  {{#paper-button onClick=(action navigateTo 'products')}}Products{{/paper-button}}
+  {{#paper-button onClick=(action navigateTo 'recipes')}}Recipes{{/paper-button}}
+  {{#paper-button onClick=(action navigateTo 'ingredients')}}Ingredients{{/paper-button}}
 {{/if}}
 
 <div class="flex"></div>

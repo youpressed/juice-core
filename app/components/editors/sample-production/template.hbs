@@ -1,0 +1,28 @@
+<div class="production-info-container">
+  <div class="title">Sample Production</div>
+  <div class="description">The cards below show the break down of the scaled product recipe, sub recipes, and all ingredients. Use this area for
+quick batches and to make sure the recipes match your R&D.</div>
+
+  <div class="grid">
+    <div class="col-6">
+      <div class="row baseline production-input-container">
+        <span class="instruction">Make</span>
+        <span class="count">
+          {{ui/desc-input
+              class='product-description-input'
+              value=unitCount
+              description='qty'
+              placeholder='Qty...'
+              update=(action (mut unitCount))}}
+        </span>
+        <span class="instruction">{{product.uom}}(s) of {{product.label}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-container">
+  {{#each cards key="id" as |card|}}
+    {{component card.type data=card.data}}
+  {{/each}}
+</div>

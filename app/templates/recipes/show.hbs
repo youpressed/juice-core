@@ -1,8 +1,8 @@
-{{#containers/section-container}}
-  {{editors/recipe-editor
-      handleUpdate=(route-action 'handleUpdate')
-      addNode=(route-action 'addNode' model)
-      createAndAddNode=(route-action 'createAndAddNode' model)
-      nodes=nodes
-      model=model}}
-{{/containers/section-container}}
+{{sections/recipes-show
+    navigateTo=(route-action 'navigateTo')
+    handleUpdate=(route-action 'handleUpdate')
+    addNode=(route-action 'addNode' model)
+    deleteEdge=(route-action 'deleteEdge')
+    createAndAddNode=(route-action 'createAndAddNode' model)
+    nodes=nodes
+    model=model}}

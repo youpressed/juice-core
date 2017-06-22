@@ -1,72 +1,17 @@
-{{#paper-content class="md-whiteframe-z1 product-qty-editor"}}
-  {{one-way-input model.label
-      class='node-label'
-      placeholder='Type name'
-      update=(action handleUpdate model "label")
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="off"
-      spellcheck=false}}
+<div class="info-form-container">
+  {{forms/node-info-form
+      title='Product Editor'
+      instructions='Add the basic info for this product.'
+      model=model
+      handleUpdate=handleUpdate}}
+</div>
 
-  {{one-way-textarea model.note update=(action handleUpdate model "note")}}
-
-  {{#power-select
-      options=validNodes
-      search=(action 'search')
-      onchange=(action 'handleSelect')
-      as |node|}}
-        {{node.label}}
-  {{/power-select}}
-
-  <div class="layout-col">
-
-
-  {{#each model.children as |edge|}}
-    <div class="layout-row">
-      <div class="">
-        {{edge.b.label}}
-      </div>
-      <div class="">
-        {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
-      </div>
-      <div class="unit-container">
-        {{#power-select
-            selected=edge.uom
-            options=uoms
-            onchange=(action handleUpdate edge "uom")
-            as |uom|}}
-              {{uom}}
-        {{/power-select}}
-      </div>
-    </div>
-  {{/each}}
-  </div>
-
-  {{#if showCreateIngredient}}
-    {{#paper-dialog fullscreen=fullscreen onClose=(action "cancelCreateIngredient" "cancel")}}
-
-      {{#paper-dialog-content}}
-        <h2 class="md-title">Create a new ingredient.</h2>
-        <p>Bowser is a common name.</p>
-        <div class="layout-row">
-          {{paper-input placeholder="Kale..." autofocus=true value=newIngredientName onChange=(action (mut newIngredientName))}}
-            <div class="">
-              {{#x-select value=newIngredientUom action=(action (mut newIngredientUom)) as |xs|}}
-                {{#each uoms as |uom|}}
-                  {{#xs.option value=uom}}{{uom}}{{/xs.option}}
-                {{/each}}
-              {{/x-select}}
-            </div>
-        </div>
-
-      {{/paper-dialog-content}}
-
-      {{#paper-dialog-actions class="layout-row"}}
-        <span class="flex"></span>
-        {{#paper-button primary=true onClick=(action "cancelCreateIngredient")}}Cancel{{/paper-button}}
-        {{#paper-button primary=true onClick=(action "createIngredient")}}Create and add{{/paper-button}}
-      {{/paper-dialog-actions}}
-
-    {{/paper-dialog}}
-  {{/if}}
-{{/paper-content}}
+<div class="children-form-container">
+  {{forms/node-children-form
+      title='Product Recipe'
+      validNodes=validNodes
+      model=model
+      addNode=addNode
+      handleUpdate=handleUpdate
+      deleteEdge=deleteEdge}}
+</div>

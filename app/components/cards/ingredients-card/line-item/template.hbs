@@ -1,0 +1,25 @@
+{{log q}}
+{{log factor}}
+{{#with (to-best-unit (mult q factor) uom forceUomsParsed) as |mixed|}}
+  <div class="grid-spaceBetween row-content-container">
+    <div class="">
+      <span class="index">
+        {{index}}.
+      </span>
+      <span class="label flex-50">
+        {{label}}
+      </span>
+    </div>
+
+    {{#each mixed as |uom|}}
+      <div class="measurement">
+        <span class="qty flex-50">
+          {{round uom.q 1}}
+        </span>
+        <span class="uom flex-50">
+          {{uom.uom}}
+        </span>
+      </div>
+    {{/each}}
+  </div>
+{{/with}}

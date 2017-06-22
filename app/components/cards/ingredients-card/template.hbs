@@ -1,0 +1,21 @@
+<div class="content-container card-1">
+  <div class="header grid-spaceBetween">
+    <span class="title">
+      Ingredients
+    </span>
+  </div>
+
+  <div class="line-item-container grid">
+    {{#each data.model as |ingredient index|}}
+      <div class="col-12">
+        {{cards/ingredients-card/line-item
+            index=(inc index)
+            factor=data.factor
+            label=ingredient.label
+            q=ingredient.factor
+            uom=ingredient.uom
+            forceUomsParsed=ingredient.forceUomsParsed}}
+      </div>
+    {{/each}}
+  </div>
+</div>

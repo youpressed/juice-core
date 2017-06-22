@@ -1,14 +1,9 @@
-{{#paper-content class="md-whiteframe-z1"}}
+
   <div class="layout-row main-header">
     <h1>{{label}}</h1>
 
     <div>
-      {{#paper-button
-          onClick=createAction
-          raised=true
-          primary=true}}
-            Create New {{createActionLabel}} +
-          {{/paper-button}}
+      <button type="button" name="button" {{action createAction}}>Create New {{createActionLabel}} +</button>
     </div>
   </div>
 
@@ -29,4 +24,3 @@
       </div>
     {{/if}}
   </div>
-{{/paper-content}}

@@ -1,0 +1,18 @@
+<div class="col-4_sm-12_md-6">
+  {{ui/label-button
+      class='back-button'
+      label='< Back to products'
+      onClick=(action navigateTo 'products')}}
+
+  {{editors/product-editor
+      handleUpdate=handleUpdate
+      addNode=addNode
+      deleteEdge=deleteEdge
+      createAndAddNode=createAndAddNode
+      nodes=nodes
+      model=model}}
+</div>
+
+<div class="col-8_sm-12_md-6">
+  {{editors/sample-production product=model}}
+</div>

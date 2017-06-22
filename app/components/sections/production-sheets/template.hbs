@@ -1,4 +1,4 @@
-{{#paper-button primary=true onClick=(action 'showSetting')}}Setting{{/paper-button}}
+<button type="button" name="button" {{action 'showSetting'}}>Setting</button>
 
 <div class="md-whiteframe-z1 info-section">
   {{lists/product-list model=model.children}}

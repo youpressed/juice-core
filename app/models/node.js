@@ -20,6 +20,8 @@ export default DS.Model.extend({
   note:         attr('string'),
   uom:          attr('string'),
   yield:        attr('number', {defaultValue: 1}),
+  shelfLife:    attr('number', {defaultValue: 3}),
+  shelfLifeUom: attr('string', {defaultValue: 'day(s)'}),
   type:         attr('string', {defaultValue: 'ingredient'}),
   date:         attr('date'),
   ts:           attr('number', {defaultValue: () => moment.utc().valueOf()}),

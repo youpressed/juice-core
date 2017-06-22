@@ -1,14 +1,16 @@
-{{#with (to-best-unit (mult model.q factor) model.uom model.forceUomsParsed) as |mixed|}}
-  <div class="layout-row row-content-container">
-    <span class="index">
-      {{index}}.
-    </span>
-    <span class="label flex-50">
-      {{model.b.label}}
-    </span>
-    <span class="flex"></span>
+{{#with (to-best-unit (mult edge.q factor) edge.uom edge.forceUomsParsed) as |mixed|}}
+  <div class="grid-spaceBetween row-content-container">
+    <div class="">
+      <span class="index">
+        {{index}}.
+      </span>
+      <span class="label flex-50">
+        {{edge.b.label}}
+      </span>
+    </div>
+
     {{#each mixed as |uom|}}
-      <div class="measurement layout-row flex-15">
+      <div class="measurement">
         <span class="qty flex-50">
           {{round uom.q 1}}
         </span>

@@ -1,0 +1,38 @@
+<div class="form-header">
+  <div class="title">
+    {{title}}
+  </div>
+  <div class="options-container">
+    {{#power-select
+        options=validNodes
+        search=(action 'search')
+        onchange=(action 'handleSelect')
+        placeholder="Search and add recipes or ingredients..."
+        as |node|}}
+          {{node.label}}
+    {{/power-select}}
+  </div>
+</div>
+
+<div class="line-items-container">
+  {{#each model.children as |edge index|}}
+    {{rows/line-item-row
+        index=(inc index)
+        label=edge.b.label
+        value=edge.q
+        delete=(action deleteEdge edge)
+        update=(action handleUpdate edge "q")
+        options=uoms
+        optionOnchange=(action handleUpdate edge "uom")
+        selectedOption=edge.uom}}
+  {{/each}}
+</div>
+
+{{#modal-dialog
+    onClose=(action (mut isShowingTranslucent) false)
+    translucentOverlay=true
+}}
+  <h1>Stop! Modal Time!</h1>
+  <p>With Translucent Overlay</p>
+  <button onclick={{action (mut isShowingTranslucent) false}}>Close</button>
+{{/modal-dialog}}

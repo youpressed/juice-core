@@ -1,6 +1,10 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var rupture =  require('rupture');
+var lost = require('lost');
+var rucksack = require('rucksack-css');
+var poststylus = require('poststylus');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
@@ -9,6 +13,15 @@ module.exports = function(defaults) {
     },
     'ember-cli-babel': {
       includePolyfill: true
+    },
+    stylusOptions: {
+      use: [
+        rupture(),
+        poststylus([
+          lost(),
+          rucksack({ autoprefixer: true })
+        ])
+      ]
     },
     fingerprint: {
       exclude: [

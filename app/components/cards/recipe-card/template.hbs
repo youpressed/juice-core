@@ -1,0 +1,38 @@
+<div class="content-container card-1">
+  <div class="header grid-spaceBetween">
+    <span class="title">
+      {{link-to data.model.label 'recipes.show' data.model.id}}
+      <span class="icon">{{ui-icon 'pencil'}}</span>
+    </span>
+  </div>
+
+  <div class="line-item-container grid">
+    {{#each data.model.children as |edge index|}}
+      <div class="col-12">
+        {{cards/product-card/line-item
+            index=(inc index)
+            factor=(mult data.factor data.model.normalizedYield)
+            edge=edge}}
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="make-info-container grid">
+    <div class="col-12">
+      <div class="grid-spaceBetween row-content-container">
+        <div>
+          <span class="label">Makes</span>
+        </div>
+        <div class="measurement">
+          <span class="qty">{{mult data.factor}}</span>
+          <span class="uom">{{data.model.uom}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{#if hasNote}}
+    <div class="notes">{{recipe.note}}</div>
+  {{/if}}
+
+</div>

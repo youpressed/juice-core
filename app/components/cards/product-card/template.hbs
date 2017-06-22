@@ -1,33 +1,46 @@
-<div class="inner-container">
-  <div class="header layout-row">
-    <span class="index">
-      #{{index}}.
-    </span>
+<div class="content-container card-1">
+  <div class="header grid-spaceBetween">
     <span class="title">
-      {{model.node.label}}
+      {{data.model.label}}
     </span>
-    <span class="flex"></span>
-    <span class="count">
-      {{model.factor}}
-    </span>
-    <span class="uom">
-      ct
-    </span>
+
+    <div class="">
+      <span class="count">
+        {{data.factor}}
+      </span>
+      <span class="uom">
+        ct
+      </span>
+    </div>
   </div>
 
-  <div class="layout-col line-item-container">
-    {{#each model.node.children as |edge index|}}
-      {{cards/product-card/line-item
-          index=(inc index)
-          model=edge
-          factor=model.factor}}
+  <div class="line-item-container grid">
+    {{#each data.model.children as |edge index|}}
+      <div class="col-12">
+        {{cards/product-card/line-item
+            index=(inc index)
+            factor=data.factor
+            edge=edge}}
+      </div>
     {{/each}}
   </div>
 
-  {{#if hasNote}}
-    <div class="notes">
-      {{model.node.note}}
+  <div class="make-info-container grid">
+    <div class="col-12">
+      <div class="grid-spaceBetween row-content-container">
+        <div>
+          <span class="label">Makes</span>
+        </div>
+        <div class="measurement">
+          <span class="qty">{{data.factor}}</span>
+          <span class="uom">unit(s)</span>
+        </div>
+      </div>
     </div>
+  </div>
+
+  {{#if hasNote}}
+    <div class="notes">{{data.model.note}}</div>
   {{/if}}
 
 </div>

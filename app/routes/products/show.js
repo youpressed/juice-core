@@ -22,9 +22,22 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
+    navigateTo(path) {
+      this.transitionTo(path);
+    },
+
     handleUpdate(model, key, val) {
       model.set(key, val);
       model.save();
+    },
+
+    async deleteEdge(edge) {
+      const a = await edge.get('a');
+      const b = await edge.get('b');
+      await edge.destroyRecord();
+
+      a.save();
+      b.save();
     },
 
     async addNode(a, b) {

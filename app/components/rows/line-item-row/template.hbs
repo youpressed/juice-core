@@ -1,0 +1,25 @@
+<div class="index-container col">
+  {{index}}.
+</div>
+<div class="label-container col-6">
+  {{label}}
+</div>
+<div class="col-4">
+  <div class="grid-noGutter-noBottom-middle">
+    <div class="value-container col-5">
+      {{one-way-input value class='value' update=update}}
+    </div>
+    <div class="line-item-option-container col">
+      {{#power-select
+          class='options-select'
+          selected=selectedOption
+          options=options
+          onchange=optionOnchange
+          as |option|}}
+            {{option}}
+      {{/power-select}}
+    </div>
+  </div>
+</div>
+
+<div class="ui-container col" {{action delete}}>X</div>

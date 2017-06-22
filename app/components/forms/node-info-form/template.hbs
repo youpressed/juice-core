@@ -1,0 +1,50 @@
+<div class="title-container">
+  <div class="title">
+    {{title}}
+  </div>
+  <div class="instruction">
+    {{instructions}}
+  </div>
+</div>
+
+<div class="grid form-row">
+  <div class="col-7">
+    {{ui/desc-input
+        value=model.label
+        description='Name'
+        placeholder='Start typing...'
+        update=(action handleUpdate model "label")}}
+  </div>
+
+  <div class="col-2">
+    {{ui/desc-input
+        value=model.shelfLife
+        description="Shelf Life"
+        placeholder='1'
+        update=(action handleUpdate model "shelfLife")}}
+  </div>
+
+  <div class="product-shelflife-uom-select col-3">
+    {{#power-select
+        selected=model.shelfLifeUom
+        options=timeUoms
+        onchange=(action handleUpdate model "shelfLifeUom")
+        as |uom|}}
+          {{uom}}
+    {{/power-select}}
+  </div>
+</div>
+
+<div class="form-row">
+  {{ui/desc-input
+      value=model.description
+      description='Description'
+      placeholder='Start typing...'
+      update=(action handleUpdate model "description")}}
+</div>
+
+{{ui/desc-text-area
+    value=model.note
+    description='Instructions/notes'
+    placeholder='Instructions/notes...'
+    update=(action handleUpdate model "note")}}

@@ -7,7 +7,6 @@ export default Ember.Component.extend({
     },
 
     closeSetting() {
-      console.log("called");
       this.set('shouldShowSettings', false);
     }
   }

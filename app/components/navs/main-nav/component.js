@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['layout-row'],
+  classNames: ['grid-noGutter-middle'],
 
   session: Ember.inject.service()
 });

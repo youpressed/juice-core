@@ -1,6 +1,7 @@
-{{#containers/section-container}}
-  {{editors/ingredient-editor
-      addUom=(route-action 'addUom')
-      removeUom=(route-action 'removeUom')
-      model=model}}
-{{/containers/section-container}}
+{{sections/ingredients-show
+    navigateTo=(route-action 'navigateTo')
+    handleUpdate=(route-action 'handleUpdate')
+    addUom=(route-action 'addUom')
+    removeUom=(route-action 'removeUom')
+    destroyNode=(route-action 'destroyNode')
+    model=model}}

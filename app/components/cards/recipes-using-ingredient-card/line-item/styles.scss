@@ -1,0 +1,20 @@
+& {
+  cursor: pointer;
+  .ui-container {
+    opacity: 0;
+  }
+}
+
+&:hover {
+  .ui-container {
+    opacity: 1;
+  }
+}
+
+.index {
+  margin-right: 0.5em;
+}
+
+.label {
+  margin-right: 0.5em;
+}

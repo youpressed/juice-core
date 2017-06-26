@@ -1,0 +1,46 @@
+.wrapper {
+  border-radius: 6px;
+  overflow: hidden;
+
+  background: $light-blue;
+  color: $dark-grey;
+
+  > .ui-container {
+    padding: 1em;
+    background: $medium-blue;
+  }
+}
+
+.header {
+  padding: 1em;
+  background: $dark-red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.content {
+  padding: 2em 1em;
+  background: $light-blue;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-right: 5em;
+}
+
+.ui-container {
+  display: flex;
+  justify-content: flex-end;
+
+  .delete-button {
+    background: $dark-red;
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+  }
+}

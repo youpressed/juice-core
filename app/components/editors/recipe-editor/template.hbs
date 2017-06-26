@@ -13,6 +13,7 @@
       model=model
       addNode=addNode
       handleUpdate=handleUpdate
+      createAndAddNode=createAndAddNode
       deleteEdge=deleteEdge}}
 </div>
 
@@ -38,4 +39,12 @@
           {{uom}}
     {{/power-select}}
   </div>
+</div>
+
+<div class="destroy-form-container">
+  {{forms/delete-node-form
+      destroyNode=destroyNode
+      destroyLabel='Delete Recipe'
+      nodeLabel=model.label
+      node=model}}
 </div>

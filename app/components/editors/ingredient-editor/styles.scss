@@ -1,0 +1,57 @@
+& {
+	background: $medium-blue;
+}
+
+.info-form-container {
+	background: $light-blue;
+	padding: 2em;
+}
+
+.children-form-container {
+	background: $medium-blue;
+}
+
+.form-field {
+  margin-bottom: 2em;
+}
+
+.uom-container {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+
+  .instructions {
+    margin-right: 1em;
+  }
+
+  .uom {
+    min-width: 4em;
+  }
+}
+
+.forced-uom-container {
+	margin-bottom: 2em;
+
+	input {
+		padding: 0.5em 1em;
+	}
+}
+
+.uom-form-container {
+	padding: 2em;
+}
+
+.label {
+	font-size: 1.2em;
+	margin-bottom: 1em;
+}
+
+.uom-container {
+	border-top: 1px dashed $dark-grey;
+	padding-top: 1em;
+}
+
+.destroy-form-container {
+	padding: 2em;
+	background: $light-red;
+}

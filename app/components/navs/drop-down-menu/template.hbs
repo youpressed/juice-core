@@ -1,0 +1,17 @@
+{{ui/icon-label-button
+  class='trigger'
+  label=label
+  icon=(if showMenu 'chevron-up' 'chevron-down')
+  click=(action 'toggle')}}
+
+{{#if showMenu}}
+    {{#modal-dialog
+        hasOverlay=false
+        attachment='top left'
+        targetAttachment='right left'
+        tetherTarget=this}}
+        <div class="content">
+          {{yield}}
+        </div>
+    {{/modal-dialog}}
+{{/if}}

@@ -9,10 +9,20 @@
         label='Productions'
         onClick=(action navigateTo 'productions')}}
 
-    {{ui/label-button
-        class='main-menu-button col'
-        label='Settings'
-        onClick=(action navigateTo 'products')}}
+    {{#navs/drop-down-menu label="Settings"}}
+      {{ui/label-button
+          class='main-menu-button col'
+          label='Products'
+          onClick=(action navigateTo 'products')}}
+      {{ui/label-button
+          class='main-menu-button col'
+          label='Recipes'
+          onClick=(action navigateTo 'recipes')}}
+      {{ui/label-button
+          class='main-menu-button col'
+          label='Ingredients'
+          onClick=(action navigateTo 'ingredients')}}
+    {{/navs/drop-down-menu}}
   </div>
 {{/if}}
 
@@ -29,5 +39,8 @@
         onClick=logout}}
   </div>
 {{else}}
-  <button type="button" name="button" {{action login}}>Login</button>
+  {{ui/label-button
+      class='main-menu-button'
+      label='Login'
+      onClick=login}}
 {{/if}}

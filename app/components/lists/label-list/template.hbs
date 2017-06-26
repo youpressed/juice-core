@@ -1,26 +1,20 @@
-
-  <div class="layout-row main-header">
+<div class="content-container">
+  <div class="main-header">
     <h1>{{label}}</h1>
-
     <div>
-      <button type="button" name="button" {{action createAction}}>Create New {{createActionLabel}} +</button>
+      {{ui/icon-label-button
+          class='create-button'
+          click=createAction
+          label=createLabel
+          icon='plus'}}
     </div>
   </div>
-
-  <div class="content-container">
-    {{#if hasContent}}
-      <div class="layout-col">
-        {{#each sortedContent as |item index|}}
-          {{component rowType
-              clickAction=selectAction
-              destroyAction=destroyAction
-              model=item
-              index=(inc index)}}
-        {{/each}}
-      </div>
-    {{else}}
-      <div class="empty-message">
-        Empty, create some?
-      </div>
-    {{/if}}
+  <div class="children-container">
+    {{#each sortedContent as |item index|}}
+      {{component rowType
+          clickAction=selectAction
+          model=item
+          index=(inc index)}}
+    {{/each}}
   </div>
+</div>

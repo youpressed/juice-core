@@ -1,0 +1,29 @@
+& {
+  padding: 1em 1em;
+  background: $dark-orange;
+  color: $dark-grey;
+  align-items: center;
+  font-weight: 500;
+}
+
+.logo {
+	font-size: 1.5em;
+	margin-right: 1em;
+}
+
+.logo a {
+	border: none;
+	text-decoration: none;
+}
+
+.main-menu-button {
+	margin-right: 1em;
+}
+
+.account-ui-container {
+	align-items: baseline;
+}
+
+.account-ui-container .divider {
+	margin: 0 1.2em;
+}

@@ -1,0 +1,15 @@
+<div class="content-container card-1">
+  <div class="header grid-spaceBetween">
+    <span class="title">
+      Ingredients
+    </span>
+  </div>
+
+  <div class="line-item-container grid-spaceBetween">
+    {{#each recipes as |recipe index|}}
+      {{cards/recipes-using-ingredient-card/line-item
+          index=(inc index)
+          model=recipe}}
+    {{/each}}
+  </div>
+</div>

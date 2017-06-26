@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  // loading:true,
-
+  classNameBindings:['loading:disabled'],
+  
   async clickHandler() {
     this.set('loading', true);
     await this.get('onClick')();
@@ -10,6 +10,8 @@ export default Ember.Component.extend({
   },
 
   click() {
-    this.clickHandler();
+    if(!this.get('loading')) {
+      this.clickHandler();
+    }
   }
 });

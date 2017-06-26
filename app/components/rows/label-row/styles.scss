@@ -1,0 +1,32 @@
+& {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em;
+  transition: 0.25s background;
+}
+
+&:nth-child(even) {
+  background: $medium-blue;
+}
+
+&:hover {
+  background: darken($medium-blue, 10%);
+}
+
+.content {
+  display: flex;
+  align-items: baseline;
+}
+
+.index {
+  font-weight: bold;
+  margin-right: 1em;
+  width: 2em;
+}
+
+.label {
+  font-size: 1.4em;
+  margin-right: 4em;
+}

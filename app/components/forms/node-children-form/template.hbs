@@ -27,12 +27,9 @@
         selectedOption=edge.uom}}
   {{/each}}
 </div>
-
-{{#modal-dialog
-    onClose=(action (mut isShowingTranslucent) false)
-    translucentOverlay=true
-}}
-  <h1>Stop! Modal Time!</h1>
-  <p>With Translucent Overlay</p>
-  <button onclick={{action (mut isShowingTranslucent) false}}>Close</button>
-{{/modal-dialog}}
+{{#if showCreateIngredient}}
+  {{dialogs/new-ingredient
+      cancel=(action 'cancelCreateIngredient')
+      create=createAndAddNode
+      label=tempIngredientName}}
+{{/if}}

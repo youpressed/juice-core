@@ -9,6 +9,7 @@ const {
 
 
 export default Ember.Component.extend({
+  classNames: ['row', 'center'],
   products: filterBy('nodes', 'isProduct', true),
   pdfGenerator: Ember.inject.service(),
   metrics: Ember.inject.service(),

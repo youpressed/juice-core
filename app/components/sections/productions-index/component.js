@@ -8,6 +8,7 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
+  classNames: ['row', 'center'],
   hasProductions: notEmpty('model'),
 
   sortByTimestamp: ['ts:desc'],

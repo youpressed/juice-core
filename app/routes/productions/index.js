@@ -10,8 +10,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return Ember.RSVP.Promise.all([
       this.store.query('node', {
         orderBy: "type",
-        equalTo: "production",
-        limitToFirst: 10
+        equalTo: "production"
       }),
       this.store.query('node', {
         orderBy: "type",
@@ -45,17 +44,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }));
 
       this.transitionTo('productions.show', node.get('id'));
-    },
-
-    async destroyNode(node) {
-      const edges = await node.get("children");
-      edges.forEach(async edge => {
-        const b = await edge.get("b");
-        edge.destroyRecord();
-        b.save();
-      });
-
-      node.destroyRecord();
     }
   }
 });

@@ -1,0 +1,70 @@
+& {
+	break-inside: avoid;
+	padding: 1em;
+}
+
+&.hide {
+	display: none;
+}
+
+.content-container {
+	background: $dark-blue;
+	padding: 2em;
+	color: #fff;
+}
+
+.header {
+	font-size: 1.2em;
+	align-items: baseline;
+	padding-bottom: 0.5em;
+	border-bottom: 1px dashed #fff;
+}
+
+.header .title {
+	font-size: 1.2em;
+	font-weight: 500;
+	border-bottom: 1px solid $dark-blue;
+	transition: 0.25s border-bottom;
+}
+
+.header .title .icon {
+	opacity: 0;
+	transition: 0.25s opacity;
+}
+
+.header .title:hover {
+	border-bottom: 1px solid #fff;
+}
+
+.header .title:hover .icon {
+	opacity: 1;
+}
+
+.header .uom {
+	font-size: 0.8em;
+	font-style: italic;
+	margin-left: 0.3em;
+	font-weight: normal;
+}
+
+.line-item-container {
+	padding-top: 1em;
+	border-bottom: 1px dashed #fff;
+}
+
+.make-info-container {
+	margin-top: 1em;
+	font-size: 1.2em;
+}
+
+.make-info-container .label {
+	font-style: italic;
+	font-weight: 500;
+}
+
+.notes {
+	font-size: 0.9em;
+	font-weight: normal;
+	margin-top: 1em;
+	white-space: pre;
+}

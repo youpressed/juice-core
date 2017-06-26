@@ -1,18 +1,21 @@
-<div class="col-4_sm-12_md-6">
-  {{ui/label-button
-      class='back-button'
-      label='< Back to recipes'
-      onClick=(action navigateTo 'recipes')}}
+<div class="grid-noGutter stretch">
+  <div class="col-4_sm-12_md-6">
+    {{ui/label-button
+        class='back-button'
+        label='< Back to recipes'
+        onClick=(action navigateTo 'recipes')}}
 
-  {{editors/recipe-editor
-      handleUpdate=handleUpdate
-      addNode=addNode
-      deleteEdge=deleteEdge
-      createAndAddNode=createAndAddNode
-      nodes=nodes
-      model=model}}
-</div>
+    {{editors/recipe-editor
+        handleUpdate=handleUpdate
+        addNode=addNode
+        deleteEdge=deleteEdge
+        createAndAddNode=createAndAddNode
+        destroyNode=destroyNode
+        nodes=nodes
+        model=model}}
+  </div>
 
-<div class="col-8_sm-12_md-6">
-  {{editors/sample-production product=model}}
+  <div class="col-8_sm-12_md-6">
+    {{editors/sample-production product=model}}
+  </div>
 </div>

@@ -36,6 +36,19 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
       a.save();
       b.save();
+    },
+
+    async destroyNode(node) {
+      const edges = await node.get("children");
+      edges.forEach(async edge => {
+        const b = await edge.get("b");
+        edge.destroyRecord();
+        b.save();
+      });
+
+      node.destroyRecord();
+
+      this.transitionTo('products');
     }
   }
 });

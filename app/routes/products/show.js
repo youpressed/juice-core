@@ -48,8 +48,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       b.save();
     },
 
-    async createAndAddNode(a, type, label, uom) {
-      const b = this.store.createRecord('node', {type, label, uom});
+    async createAndAddNode(a, data) {
+      const { type, label, description, uom } = data;
+      const b = this.store.createRecord('node', {type, label, description, uom});
       await b.save();
 
       const edge = this.store.createRecord('edge', {a, b, q: 0, uom});
@@ -57,6 +58,29 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
       a.save();
       b.save();
+    },
+
+    async destroyNode(node) {
+      const children = await node.get("children");
+      const parents = await node.get("parents");
+
+      children
+        .forEach(async edge => {
+          const b = await edge.get("b");
+          edge.destroyRecord();
+          b.save();
+        });
+
+      parents
+        .forEach(async edge => {
+          const a = await edge.get("a");
+          edge.destroyRecord();
+          a.save();
+        });
+
+      node.destroyRecord();
+
+      this.transitionTo('products');
     }
   }
 });

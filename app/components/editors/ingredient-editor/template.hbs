@@ -1,17 +1,44 @@
-{{model.label}}
+<div class="info-form-container">
+  {{forms/node-info-form
+      title='Ingredient Editor'
+      instructions='Add/edit basic info for this ingredient.'
+      model=model
+      handleUpdate=handleUpdate}}
+</div>
 
-{{#power-select
-    options=uoms
-    onchange=(action addUom model)
-    as |uom|}}
-      {{uom}}
-{{/power-select}}
-
-{{#each model.forceUomsParsed as |uom index|}}
-  <div class="layout-row">
-    <div class="label">
-      {{inc index}}. {{uom}}
-    </div>
-    <div class="flex-5 ui-container" {{action removeUom model uom}}>Delete</div>
+<div class="uom-form-container">
+  <div class="forced-uom-container">
+    <div class="label">Only use the following units</div>
+    {{#power-select-multiple
+        options=uoms
+        selected=model.forceUomsParsed
+        placeholder="Any"
+        onchange=(action addUom model)
+        as |uom|}}
+          {{uom}}
+    {{/power-select-multiple}}
   </div>
-{{/each}}
+
+  <div class="uom-container form-field">
+    <div class="instructions">
+      We use this by the
+    </div>
+    <div class="uom">
+      {{#power-select
+          selected=model.uom
+          options=uoms
+          onchange=(action handleUpdate model 'uom')
+          as |uom|}}
+            {{uom}}
+      {{/power-select}}
+    </div>
+  </div>
+</div>
+
+<div class="destroy-form-container">
+  {{forms/delete-node-form
+      destroyNode=destroyNode
+      destroyLabel='Delete Ingredient'
+      nodeLabel=model.label
+      node=model}}
+</div>

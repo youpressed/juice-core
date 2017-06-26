@@ -13,5 +13,14 @@
       model=model
       addNode=addNode
       handleUpdate=handleUpdate
+      createAndAddNode=createAndAddNode
       deleteEdge=deleteEdge}}
+</div>
+
+<div class="destroy-form-container">
+  {{forms/delete-node-form
+      destroyNode=destroyNode
+      destroyLabel='Delete Product'
+      nodeLabel=model.label
+      node=model}}
 </div>

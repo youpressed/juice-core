@@ -1,21 +1,18 @@
-
-<div class="layout-row main-header">
-  <h1>Productions</h1>
-
-  <div>
-    <button type="button" name="button" {{action 'createProduction'}}>Create Production</button>
-  </div>
-</div>
-
 <div class="content-container">
-  {{#if hasProductions}}
-    {{lists/productions-list
-        model=sortedProductions
-        navigateToProduction=navigateToProduction
-        destroyNode=destroyNode}}
-  {{else}}
-    <div class="empty-message">
-      No productions have been created yet.
+  <div class="main-header">
+    <h1>Productions</h1>
+
+    <div>
+      {{ui/icon-label-button
+          click=createAction
+          label='Create New Production'
+          icon='plus'}}
     </div>
-  {{/if}}
+  </div>
+  {{lists/label-list
+      rowType='rows/date-label-row'
+      createAction=createAction
+      selectAction=selectAction
+      destroyAction=destroyAction
+      model=model}}
 </div>

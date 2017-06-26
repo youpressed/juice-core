@@ -3,7 +3,13 @@ import { unitTypes } from 'juice-core/constants/unit-conversions';
 
 export default Ember.Component.extend({
   uoms: unitTypes,
-  
+  showCreateIngredient: false,
+
+  startCreateIngredient(newName) {
+    this.set('tempIngredientName', newName);
+    this.set('showCreateIngredient', true);
+  },
+
   actions: {
     search(q, data) {
       const reg = new RegExp(q, "i");

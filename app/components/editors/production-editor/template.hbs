@@ -1,42 +1,52 @@
-<div class="md-whiteframe-z1">
-  <div class="header-container layout-row">
-    <div class="date-container layout-row">
-      <span class="label flex-50">Production for:</span>
-      <div class="spacer flex-xs-10"></div>
-      <label class="date flex-40">
+<div class="content-container">
+  <div class="header-container row">
+    <div class="date-container row">
+      <span class="label">Production for:</span>
+      <div class="spacer"></div>
+      <label class="date">
         {{pikaday-input format="ddd MM/DD" value=model.date onSelection=updateProductionDate}}
       </label>
     </div>
     <div>
       <div class="ui-container hide-xs">
-        {{ui/async-button onClick=(action 'printAll')}}
+        {{ui/async-button
+            label='Print Production Sheets'
+            icon='print'
+            onClick=(action 'printAll')}}
       </div>
     </div>
   </div>
 
-  <div class="content-container">
-    <div class="layout-row product-container-header">
-      <div class="flex-5">#</div>
-      <div class="flex">Product Name</div>
-      <div class="flex-10">Count</div>
-    </div>
+  <div class="product-container-header row">
+    <div class="index-col">#</div>
+    <div class="label-col">Product Name</div>
+    <div class="stretch"></div>
+    <div class="qty-col">Total</div>
+  </div>
 
-    <div class="layout-col products-container">
-      {{#each model.children as |edge index|}}
-        <div class="layout-row product-row">
-          <div class="flex-5 flex-xs-10 index">
-            {{inc index}}.
-          </div>
-          <div class="flex label">
-            {{edge.b.label}}
-          </div>
-          <div class="flex-10 qty">
-            {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
-          </div>
+  <div class="dashed-hr"></div>
+
+  <div class="layout-col products-container">
+    {{#each model.children as |edge index|}}
+      <div class="row product-row">
+        <div class="index-col">
+          {{inc index}}.
         </div>
-      {{/each}}
-    </div>
+        <div class="label-col row">
+          {{#link-to 'products.show' edge.b.id class='product-link-button row'}}
+              <div class="label">
+                {{edge.b.label}}
+              </div>
+              <div class="ui-container">
+                {{ui-icon 'pencil'}}
+              </div>
+          {{/link-to}}
+        </div>
+        <div class="stretch"></div>
+        <div class="qty-col">
+          {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
+        </div>
+      </div>
+    {{/each}}
   </div>
 </div>
-
-<!-- {{#paper-button onClick=(action navigateToProductionSheets model.id)}}View Production Sheets{{/paper-button}} -->

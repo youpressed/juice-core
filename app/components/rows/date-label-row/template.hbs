@@ -1,7 +1,12 @@
-<div class="flex-5 index">{{index}}.</div>
-<div class="flex-45">{{moment-format model.date 'ddd MM/DD' 'YYYY-MM-DD'}}</div>
-<div class="flex-45">{{model.totalChildQuantity}}</div>
-
-{{#if hasDestroyAction}}
-  <div class="flex-5 ui-container" {{action 'handleDestroyClicked' bubbles=false}}>Delete</div>
-{{/if}}
+<div class="content">
+  <div class="index">{{index}}.</div>
+  <div class="date-container">
+    <div class="day">{{moment-format model.date 'ddd' 'YYYY-MM-DD'}}</div>
+    <span class="dash"></span>
+    <div class="date">{{moment-format model.date 'MM/DD' 'YYYY-MM-DD'}}</div>
+  </div>
+  <div class="qty-container">
+    <span class="qty">{{model.totalChildQuantity}}</span>
+    <span class="instructions">Total Units</span>
+  </div>
+</div>

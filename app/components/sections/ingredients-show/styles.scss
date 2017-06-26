@@ -1,0 +1,18 @@
+.back-button {
+  background: $dark-blue;
+  color: white;
+  font-size: 1.6em;
+  padding: 0.8em;
+}
+
+.card-container {
+	column-count: 1;
+	column-gap: 0;
+  @include breakpoint(1200px) {
+    column-count: 2;
+  }
+
+  @include breakpoint(1600px) {
+    column-count: 3;
+  }
+}

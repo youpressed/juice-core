@@ -1,0 +1,53 @@
+& {
+	break-inside: avoid;
+	padding: 1em;
+}
+
+&.hide {
+	display: none;
+}
+
+.content-container {
+	background: $dark-green;
+	padding: 2em;
+}
+
+.header {
+	font-size: 1.2em;
+	align-items: baseline;
+	padding-bottom: 0.5em;
+	border-bottom: 1px dashed $dark-grey;
+
+  .title {
+  	font-size: 1.2em;
+  	font-weight: 500;
+  }
+
+  .uom {
+  	font-size: 0.8em;
+  	font-style: italic;
+  	margin-left: 0.3em;
+  	font-weight: normal;
+  }
+}
+
+.line-item-container {
+	padding-top: 1em;
+}
+
+.make-info-container {
+	margin-top: 1em;
+	font-size: 1.2em;
+
+  .label {
+  	font-style: italic;
+  	font-weight: 500;
+  }
+}
+
+.notes {
+	font-size: 0.9em;
+	font-weight: normal;
+	margin-top: 1em;
+	white-space: pre;
+}

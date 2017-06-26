@@ -1,0 +1,14 @@
+<div class="form-header">
+  {{ui/icon-label-button
+    class='delete-button'
+    click=(action 'showDestroyNode')
+    label=destroyLabel
+    icon='trash'}}
+</div>
+
+{{#if showDestroyModal}}
+  {{dialogs/destroy-node
+      cancel=(action 'cancelDestroyNode')
+      submit=(action destroyNode node)
+      nodeLabel=nodeLabel}}
+{{/if}}

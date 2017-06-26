@@ -1,10 +1,7 @@
-{{#containers/section-container}}
-  {{lists/label-list
-      label='Productions'
-      rowType='rows/date-label-row'
-      createAction=(route-action 'createNode')
-      createActionLabel='production'
-      selectAction=(route-action 'showNode')
-      destroyAction=(route-action 'destroyNode')
-      model=productions}}
-{{/containers/section-container}}
+{{lists/label-list
+    label='Productions'
+    rowType='rows/date-label-row'
+    createAction=(route-action 'createNode')
+    createLabel='Create New Production'
+    selectAction=(route-action 'showNode')
+    model=recentProductions}}

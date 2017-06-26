@@ -7,6 +7,8 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  // classNames: ['col'],
-  hasNote: notEmpty('product.note')
+  classNameBindings: ['hasChildren::hide'],
+
+  hasNote: notEmpty('data.model.note'),
+  hasChildren: notEmpty('data.model.children')
 });

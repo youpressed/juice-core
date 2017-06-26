@@ -1,8 +1,8 @@
-<div class="layout-row content">
-  Print Production Sheets
+<div class="row">
+  <span class="label">{{label}}</span>
   {{#if loading}}
-    Loading
+    <span class="icon">{{ui-icon 'spinner' pulse=true}}</span>
   {{else}}
-    Print
+    <span class="icon">{{ui-icon icon}}</span>
   {{/if}}
 </div>

@@ -1,0 +1,49 @@
+& {
+  padding: 1em
+}
+
+.production-info-container {
+	padding: 1em;
+	background: $light-blue;
+}
+
+.production-info-container .title {
+	font-size: 2em;
+	margin-bottom: 0.3em;
+}
+
+.production-info-container .description {
+	font-style: italic;
+	font-size: 0.9em;
+	max-width: 60em;
+}
+
+.card-container {
+	column-count: 1;
+	column-gap: 0;
+  @include breakpoint(1200px) {
+    column-count: 2;
+  }
+
+  @include breakpoint(1600px) {
+    column-count: 3;
+  }
+}
+
+.production-input-container {
+	margin-top: 1.5em;
+}
+
+.production-input-container .instruction {
+	font-size: 1.5em;
+}
+
+.production-input-container .count {
+	margin: 0 1em;
+	max-width: 4em;
+	text-align: center;
+}
+
+.production-input-container .count input {
+	text-align: center;
+}

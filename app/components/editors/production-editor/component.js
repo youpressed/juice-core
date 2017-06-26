@@ -19,6 +19,18 @@ export default Ember.Component.extend({
       this.get('metrics').trackEvent({eventCategory:'docs', eventAction:'printall'});
       const { url } = await this.get('pdfGenerator').generateFullPrepSheet(this.get('model'));
       return downloadFile(url, 'mykey');
+    },
+
+    handleQuantityUpdate(edge, val) {
+      if(val !== undefined) {
+        this.get('handleUpdate')(edge, "q", val);
+      }
+    },
+
+    handleQuantityBlur(edge, event) {
+      if(event.target.value === "" || event.target.value === undefined) {
+        this.get('handleUpdate')(edge, "q", 0);
+      }
     }
   }
 });

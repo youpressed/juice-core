@@ -2,13 +2,13 @@
   <div class="header-container row">
     <div class="date-container row">
       <span class="label">Production for:</span>
-      <div class="spacer"></div>
+      <div class="spacer hide-mobile"></div>
       <label class="date">
         {{pikaday-input format="ddd MM/DD" value=model.date onSelection=updateProductionDate}}
       </label>
     </div>
     <div>
-      <div class="ui-container hide-xs">
+      <div class="ui-container hide-mobile">
         {{ui/async-button
             label='Print Production Sheets'
             icon='print'
@@ -33,7 +33,7 @@
           {{inc index}}.
         </div>
         <div class="label-col row">
-          {{#link-to 'products.show' edge.b.id class='product-link-button row'}}
+          {{#link-to 'products.show' edge.b.id class='product-link-button row' tabindex="-1"}}
               <div class="label">
                 {{edge.b.label}}
               </div>
@@ -44,7 +44,10 @@
         </div>
         <div class="stretch"></div>
         <div class="qty-col">
-          {{one-way-input edge.q class='edge-qty' update=(action handleUpdate edge "q")}}
+          {{one-way-input edge.q
+              class='edge-qty'
+              update=(action 'handleQuantityUpdate' edge)
+              onblur=(action 'handleQuantityBlur' edge)}}
         </div>
       </div>
     {{/each}}

@@ -76,7 +76,7 @@ export default DS.Model.extend({
   }),
 
   totalChildQuantity: computed("children.@each.{q}", function() {
-    return this.get('children').reduce((acc, cur) => acc + parseFloat(cur.get('q')), 0);
+    return this.get('children').reduce((acc, cur) => acc + (parseFloat(cur.get('q')) || 0), 0);
   }),
 
   normalizedYield: computed("yield", function() {

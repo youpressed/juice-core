@@ -53,9 +53,15 @@
 }
 
 .only-mobile {
-	display: none;
+	display: inline-flex;
+	@include breakpoint(500px) {
+    display: none;
+  }
 }
 
 .hide-mobile {
-	display: inline-flex;
+	display: none;
+	@include breakpoint(500px) {
+    display: inline-flex;
+  }
 }

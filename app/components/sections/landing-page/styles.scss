@@ -1,18 +1,36 @@
 .hero-container {
   align-items: center;
-  margin-top: 2em;
-  padding: 5em;
+  justify-content: space-around;
+  padding: 2em;
   color: $dark-grey;
+
+  @include breakpoint(1000px) {
+    padding: 5em;
+  }
 }
 
 .image-container {
-  min-width: 30em;
-  margin-left: 5em;
-  display: inline-block;
+  justify-content: center;
+  flex: 1;
+  display: none;
+
+  @include breakpoint(1000px) {
+    display: block;
+  }
+
+}
+
+.copy-container {
+  justify-content: center;
+  flex: 1;
+
+  @include breakpoint(1000px) {
+    padding-right: 5em;
+  }
 }
 
 .landing-image {
-  width: 80%;
+  width: 100%;
   height: auto;
 }
 
@@ -24,16 +42,6 @@
 .sub-title {
   font-size: 1.2em;
   line-height: 2em;
-}
-
-.ui-container {
-  margin-top: 2em;
-  button {
-    background-color: $dark-green !important;
-    margin: 0;
-    padding: 0.5em 1em;
-    font-size: 1.1em;
-  }
 }
 
 .benefit {
@@ -51,11 +59,20 @@
 
 .signup-button {
   background: $dark-green;
-  font-size: 2em;
-  padding: 1em;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 1.2em;
   border-radius: 6px;
   justify-content: center;
   .button-label {
     text-align: center;
+  }
+
+  @include breakpoint(1700px) {
+    font-size: 1em;
+  }
+
+  @include breakpoint(1810px) {
+    font-size: 1.5em;
   }
 }

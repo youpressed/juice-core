@@ -16,14 +16,14 @@
 }
 
 .content {
-  display: flex;
   align-items: baseline;
+  justify-content: space-between;
 }
 
 .index {
   font-weight: bold;
   margin-right: 1em;
-  width: 2em;
+  width: 2rem;
 }
 
 .date-container {
@@ -40,14 +40,14 @@
 
   .date {
     font-size: 1.4em;
-    margin-right: 4em;
-    width: 10em;
+    // margin-right: 4em;
+    // width: 10em;
   }
 }
 
 
 .qty-container {
-  margin-right: 4em;
+  // margin-right: 4em;
 }
 
 .qty {

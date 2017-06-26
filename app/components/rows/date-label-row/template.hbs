@@ -1,9 +1,11 @@
-<div class="content">
-  <div class="index">{{index}}.</div>
-  <div class="date-container">
-    <div class="day">{{moment-format model.date 'ddd' 'YYYY-MM-DD'}}</div>
-    <span class="dash"></span>
-    <div class="date">{{moment-format model.date 'MM/DD' 'YYYY-MM-DD'}}</div>
+<div class="content stretch row">
+  <div class="row baseline">
+    <div class="index">{{index}}.</div>
+    <div class="date-container">
+      <div class="day">{{moment-format model.date 'ddd' 'YYYY-MM-DD'}}</div>
+      <span class="dash"></span>
+      <div class="date">{{moment-format model.date 'MM/DD' 'YYYY-MM-DD'}}</div>
+    </div>
   </div>
   <div class="qty-container">
     <span class="qty">{{model.totalChildQuantity}}</span>

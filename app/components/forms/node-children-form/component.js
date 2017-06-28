@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
 
+const {
+  computed
+} = Ember;
+
 export default Ember.Component.extend({
   uoms: unitTypes,
   showCreateIngredient: false,

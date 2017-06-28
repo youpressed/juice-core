@@ -72,8 +72,6 @@ export default Ember.Service.extend({
       ]
     };
 
-    // console.log(payload.data[1].collection[0]);
-
     return Ember.$.ajax({
       url: config.docService.allDocsEndpoint,
       type:"POST",

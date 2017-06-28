@@ -100,7 +100,6 @@ export default DS.Model.extend({
     };
 
     const mul = obj => {
-      console.log(obj.label, obj.factor, normalizedYield);
       return {
         node: obj.node,
         label: obj.node.get('label'),

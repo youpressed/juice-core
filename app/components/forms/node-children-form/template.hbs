@@ -18,6 +18,7 @@
   {{#each model.children as |edge index|}}
     {{rows/line-item-row
         index=(inc index)
+        model=edge.b
         label=edge.b.label
         value=edge.q
         delete=(action deleteEdge edge)

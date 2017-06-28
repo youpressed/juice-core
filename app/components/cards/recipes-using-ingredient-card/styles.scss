@@ -23,21 +23,6 @@
 .header .title {
 	font-size: 1.2em;
 	font-weight: 500;
-	border-bottom: 1px solid $dark-blue;
-	transition: 0.25s border-bottom;
-}
-
-.header .title .icon {
-	opacity: 0;
-	transition: 0.25s opacity;
-}
-
-.header .title:hover {
-	border-bottom: 1px solid #fff;
-}
-
-.header .title:hover .icon {
-	opacity: 1;
 }
 
 .header .uom {

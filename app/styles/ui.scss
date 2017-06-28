@@ -1,0 +1,13 @@
+.edit-indicator {
+  .icon {
+    margin-left: 0.5em;
+  	opacity: 0;
+  	transition: 0.25s opacity;
+  }
+}
+
+.edit-indicator:hover {
+  .icon {
+  	opacity: 1;
+  }
+}

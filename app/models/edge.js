@@ -53,7 +53,6 @@ export default DS.Model.extend({
         uom: obj.uom,
         forceUomsParsed: obj.forceUomsParsed,
         factor: obj.factor * this.get("normalizedQuantity"),
-        q: obj.q * this.get("normalizedQuantity"),
         tree: normalizeLeaf(obj.tree, this.get("normalizedQuantity"))
       }
     };

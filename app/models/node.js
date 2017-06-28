@@ -17,16 +17,16 @@ const {
 } = Ember;
 
 const buildAndNormalize = leaf => {
-  const data = {
+  const children = leaf.get('children').map(edge => edge.get('normalizedTree'));
+
+  return {
     type: leaf.get('type'),
     label: leaf.get('label'),
     q: 1,
     uom: leaf.get('uom'),
     forceUomsParsed: leaf.get('forceUomsParsed'),
-    tree: leaf.get('children').map(edge => edge.get('normalizedTree'))
+    tree: children.map(tree => normalizeLeaf(tree, leaf.get("normalizedYield")))
   };
-
-  return normalizeLeaf(data, leaf.get('normalizedYield'));
 }
 
 const normalizeLeaf = (leaf, q) => {
@@ -100,6 +100,7 @@ export default DS.Model.extend({
     };
 
     const mul = obj => {
+      console.log(obj.label, obj.factor, normalizedYield);
       return {
         node: obj.node,
         label: obj.node.get('label'),

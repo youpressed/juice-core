@@ -22,6 +22,7 @@ const buildCollection = (data, type) => {
   return _
     .map(data)
     .filter(child => child.type === type)
+    .filter(child => child.factor > 0)
     .map(child => child.tree)
     .map(tree => {
       return {
@@ -70,6 +71,8 @@ export default Ember.Service.extend({
         products
       ]
     };
+
+    // console.log(payload.data[1].collection[0]);
 
     return Ember.$.ajax({
       url: config.docService.allDocsEndpoint,

@@ -43,7 +43,7 @@ export default Ember.Service.extend({
 
     const ingredients = {
       renderer: 'items-v2',
-      title: 'Item Sheet',
+      title: 'Step 1 - Gather All Material',
       collection: [
         {
           label: 'Items',
@@ -53,14 +53,14 @@ export default Ember.Service.extend({
     };
 
     const recipes = {
-      renderer: 'composites-v2',
-      title: 'Recipe Sheet',
+      renderer: 'simplified-composite',
+      title: 'Step 2 - Juice All Items',
       collection: buildCollection(normalizedChildren, 'recipe')
     };
 
     const products = {
       renderer: 'composites-v2',
-      title: 'Product Sheet',
+      title: 'Step 3 - Mix Juices',
       collection: buildCollection(normalizedChildren, 'product')
     };
 

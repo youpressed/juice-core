@@ -60,6 +60,19 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       b.save();
     },
 
+    async addUom(node, uoms) {
+      node.set('forceUoms', uoms.join(','))
+      node.save();
+    },
+
+    async removeUom(node, label) {
+      const newArr = node.get('forceUomsParsed')
+        .filter(uom => uom !== label);
+
+      node.set('forceUoms', newArr.join(','))
+      node.save();
+    },
+
     async destroyNode(node) {
       const children = await node.get("children");
       const parents = await node.get("parents");

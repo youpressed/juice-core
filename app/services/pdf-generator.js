@@ -29,9 +29,10 @@ const buildCollection = (data, type) => {
         label: tree.label,
         q: tree.q,
         uom: tree.uom,
-        collection: tree.tree
+        collection: tree.tree.sort(sortFunc)
       }
-    });
+    })
+    .sort(sortFunc);
 }
 
 export default Ember.Service.extend({

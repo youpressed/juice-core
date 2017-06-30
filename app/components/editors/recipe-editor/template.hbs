@@ -41,6 +41,20 @@
   </div>
 </div>
 
+
+<div class="forced-uom-container col">
+  <div class="label">Only use the following units</div>
+  {{#power-select-multiple
+      options=uoms
+      selected=model.forceUomsParsed
+      placeholder="Any"
+      onchange=(action addUom model)
+      as |uom|}}
+        {{uom}}
+  {{/power-select-multiple}}
+</div>
+
+
 <div class="destroy-form-container">
   {{forms/delete-node-form
       destroyNode=destroyNode

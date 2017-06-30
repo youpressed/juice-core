@@ -4,26 +4,26 @@ const volumes = {
     tsp: 1/6,
     tbs: 1/2,
     floz: 1,
-    // cup: 8,
-    // qt: 32
+    cup: 8,
+    qt: 32
   },
   list: [
     {uom: 'tsp', factor: 1/6},
     {uom: 'tbs', factor: 1/2},
     {uom: 'floz', factor: 1},
-    // {uom: 'cup', factor: 8},
-    // {uom: 'qt', factor: 32}
+    {uom: 'cup', factor: 8},
+    {uom: 'qt', factor: 32}
   ]
 }
 
 const weights = {
   base:'lb',
   map: {
-    // oz: 1/16,
+    oz: 1/16,
     lb: 1
   },
   list: [
-    // {uom: 'oz', factor: 1/16},
+    {uom: 'oz', factor: 1/16},
     {uom: 'lb', factor: 1}
   ]
 }
@@ -42,9 +42,9 @@ const units = {
   tsp: volumes,
   tbs: volumes,
   floz: volumes,
-  // cup: volumes,
-  // qt: volumes,
-  // oz: weights,
+  cup: volumes,
+  qt: volumes,
+  oz: weights,
   lb: weights,
   count: counts
 };
@@ -53,9 +53,9 @@ const unitTypes = [
   'tsp',
   'tbs',
   'floz',
-  // 'cup',
-  // 'qt',
-  // 'oz',
+  'cup',
+  'qt',
+  'oz',
   'lb',
   'count'
 ];

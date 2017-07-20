@@ -4,7 +4,7 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   actions: {
     didTransition() {
-      window.location.replace('http://localhost:4200');
+      window.location.replace('https://www.youpressed.com');
     }
   }
 });

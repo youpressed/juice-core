@@ -39,7 +39,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   sessionInvalidated() {
     this.signOutFB();
-    this._super(...arguments);
+    window.location.replace('http://localhost:4200');
   },
 
   beforeModel() {

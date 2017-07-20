@@ -38,6 +38,9 @@ Router.map(function() {
   this.route('ingredients', function() {
     this.route('show', {path:':ingredient_id'});
   });
+
+  this.route('signup');
+  this.route('login');
 });
 
 export default Router;

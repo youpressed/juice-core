@@ -38,6 +38,7 @@
     "ember-component-css": "0.2.11",
     "ember-composable-helpers": "^2.0.1",
     "ember-data": "^2.13.0",
+    "ember-drag-drop": "^0.4.8",
     "ember-export-application-global": "^2.0.0",
     "ember-intercom-io": "^0.1.4",
     "ember-load-initializers": "^1.0.0",

@@ -15,9 +15,24 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
 
     async createNode() {
+      const products = this.controllerFor('products.index').get('model');
+
+      const sortedProducts = products.sortBy('position');
+
+      const firstProduct = sortedProducts[0];
+
+      let nextPosition = -1;
+
+      if(firstProduct !== undefined) {
+        if(firstProduct.get('position') !== undefined) {
+          nextPosition = firstProduct.get('position') - 1;
+        }
+      }
+
       const node = this.store.createRecord("node", {
         type:"product",
         label:"untitled",
+        position: nextPosition,
         yield: 1,
         uom: "count"
       });

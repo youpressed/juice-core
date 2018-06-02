@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { toBest } from 'juice-core/utils/converters';
 import { roundTo } from 'juice-core/utils/math';
 
-const sortFunc = (a, b) => {
+const labelSortFunc = (a, b) => {
   const labelA = a.label.toUpperCase();
   const labelB = b.label.toUpperCase();
   if (labelA < labelB) {
@@ -18,21 +18,32 @@ const sortFunc = (a, b) => {
   return 0;
 }
 
-const buildCollection = (data, type) => {
+const positionSortFunc = (a, b) => {
+    if (a.position > b.position) {
+      return 1;
+    } else if (a.position > b.position) {
+      return -1;
+    }
+
+    return 0;
+}
+
+const buildCollection = (data, type, sortFunc = labelSortFunc) => {
   return _
     .map(data)
     .filter(child => child.type === type)
     .filter(child => child.factor > 0)
+    .sort(sortFunc)
     .map(child => child.tree)
     .map(tree => {
       return {
         label: tree.label,
+        position: tree.position,
         q: tree.q,
         uom: tree.uom,
         collection: tree.tree.sort(sortFunc)
       }
-    })
-    .sort(sortFunc);
+    });
 }
 
 export default Ember.Service.extend({
@@ -62,7 +73,7 @@ export default Ember.Service.extend({
     const products = {
       renderer: 'composites-v2',
       title: 'Step 3 - Mix Juices',
-      collection: buildCollection(normalizedChildren, 'product')
+      collection: buildCollection(normalizedChildren, 'product', positionSortFunc)
     };
 
     const payload = {

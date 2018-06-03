@@ -11,6 +11,26 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   firebaseApp: service(),
   userService: service(),
 
+  async flushLS () {
+    await localforage.setItem("appdata", {version:2});
+
+    this.get('session').invalidate();
+  },
+
+  async checkMigration() {
+    let appData = await localforage.getItem("appdata");
+
+    if(appData === null) {
+      await this.flushLS();
+    }
+
+    appData = await localforage.getItem("appdata");
+
+    if(appData.version != 2) {
+      await this.flushLS();
+    }
+  },
+
   async signInFB() {
     const auth0Data = this.get('session.data.authenticated.profile');
 
@@ -48,6 +68,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   actions: {
+    async didTransition() {
+      await this.checkMigration();
+    },
+
     navigateTo(path) {
       this.transitionTo(path);
     }

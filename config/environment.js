@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(environment) {
+console.log(process.env);
   var ENV = {
     modulePrefix: 'juice-core',
     environment: environment,

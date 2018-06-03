@@ -35,7 +35,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   },
 
   actions: {
-    didTransition() {
+    async didTransition() {
       this.startSignup();
     },
 

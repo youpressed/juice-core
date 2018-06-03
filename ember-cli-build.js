@@ -51,6 +51,7 @@ module.exports = function(defaults) {
   app.import("bower_components/ramda/dist/ramda.min.js");
   app.import("bower_components/mathjs/dist/math.min.js");
   app.import('bower_components/rxjs/dist/rx.all.min.js');
+  app.import('bower_components/localforage/dist/localforage.min.js');
 
   return app.toTree();
 };

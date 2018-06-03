@@ -45,6 +45,7 @@ const normalizeLeaf = (leaf, q) => {
 export default DS.Model.extend({
   label:        attr('string'),
   description:  attr('string'),
+  position:     attr('number', {defaultValue: 0}),
   note:         attr('string'),
   uom:          attr('string'),
   yield:        attr('number', {defaultValue: 1}),
@@ -83,7 +84,7 @@ export default DS.Model.extend({
     return 1/this.get("yield");
   }),
 
-  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "children.@each.{normalizedTree,q}", "forceUomsParsed", "normalizedYield", function() {
+  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "children.@each.{normalizedTree,q}", "forceUomsParsed", "normalizedYield", "position", function() {
     const normalizedYield = this.get("normalizedYield");
     const forceUomsParsed = this.get('forceUomsParsed');
 
@@ -91,6 +92,7 @@ export default DS.Model.extend({
       [this.get("id")]: {
         node: this,
         label: this.get('label'),
+        position: this.get('position'),
         type: this.get('type'),
         uom: this.get('uom'),
         forceUomsParsed,
@@ -103,6 +105,7 @@ export default DS.Model.extend({
       return {
         node: obj.node,
         label: obj.node.get('label'),
+        position: obj.node.get('position'),
         type: obj.type,
         uom: obj.uom,
         forceUomsParsed: obj.forceUomsParsed,
@@ -121,6 +124,7 @@ export default DS.Model.extend({
       return {
         type: a.type,
         label: a.label,
+        position: a.position,
         q: summedBest.q,
         uom: summedBest.uom,
         forceUomsParsed: a.forceUomsParsed,
@@ -133,6 +137,7 @@ export default DS.Model.extend({
       return {
         node: a.node,
         label: a.label,
+        position: a.position,
         type: a.type,
         uom: a.uom,
         forceUomsParsed: a.forceUomsParsed,

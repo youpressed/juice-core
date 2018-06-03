@@ -2,8 +2,11 @@ import Ember from 'ember';
 import downloadFile from "juice-core/utils/download-file";
 
 const {
+  computed,
   computed: {
-    filterBy
+    filterBy,
+    sort,
+    alias
   }
 } = Ember;
 
@@ -13,6 +16,18 @@ export default Ember.Component.extend({
   products: filterBy('nodes', 'isProduct', true),
   pdfGenerator: Ember.inject.service(),
   metrics: Ember.inject.service(),
+
+  products: alias('model.children'),
+
+  sortedProducts: sort('products', (a, b) => {
+    if (a.get('b.position') > b.get('b.position')) {
+      return 1;
+    } else if (a.get('b.position') > b.get('b.position')) {
+      return -1;
+    }
+
+    return 0;
+  }),
 
   actions: {
     async printAll() {

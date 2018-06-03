@@ -14,12 +14,12 @@ export default Controller.extend({
   actions: {
     login () {
       const lockOptions = {
-       auth: {
-         redirect: false,
-         params: {
-           scope: 'openid user_metadata'
+        autoclose: true,
+         auth: {
+           params: {
+             scope: 'openid profile email'
+           }
          }
-       }
       };
 
       get(this, 'session').authenticate('authenticator:auth0-lock', lockOptions);

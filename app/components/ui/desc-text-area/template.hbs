@@ -1,6 +1,9 @@
-{{one-way-textarea value
-    placeholder=placeholder
-    update=update}}
+
+<textarea
+  value={{value}}
+  oninput={{action update value="target.value"}}
+  placeholder={{placeholder}}>
+</textarea>
 
 <div class="description">
   {{description}}

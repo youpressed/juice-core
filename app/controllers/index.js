@@ -26,7 +26,7 @@ export default Controller.extend({
        auth: {
          redirect: false,
          params: {
-           scope: 'openid user_metadata'
+           scope: 'openid profile email'
          }
        }
       };

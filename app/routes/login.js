@@ -13,6 +13,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 
   startSignup() {
     const lockOptions = {
+      autoclose: true,
       allowLogin: true,
       languageDictionary: {
         emailInputPlaceholder: "prepmaster@gmail.com",
@@ -25,7 +26,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
        auth: {
          redirect: false,
          params: {
-           scope: 'openid user_metadata'
+           scope: 'openid profile email'
          }
        }
     };

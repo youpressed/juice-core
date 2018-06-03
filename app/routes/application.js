@@ -12,13 +12,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   userService: service(),
 
   async signInFB() {
-    const auth0Data = this.get('session.session.authenticated.profile.user_metadata');
+    const auth0Data = this.get('session.data.authenticated.profile');
 
     this.get('firebaseApp');
 
     if(auth0Data) {
       await this.get('firebaseApp').auth()
-        .signInWithCustomToken(auth0Data.fbtoken)
+        .signInWithCustomToken(auth0Data['https://app.youpressed.com/fbToken'])
         .catch(error => console.log(error.code, error.message));
 
       this.get('userService').manage(auth0Data);

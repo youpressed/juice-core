@@ -54,3 +54,16 @@ Specify what it takes to deploy your app.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+
+## Setting up dev environment
+
+1. Setup .env with the following vars
+  1. ALL_DOCS_ENDPOINT=printing-servicing-endpoint(AWS Lambda etc)
+  1. API_KEY=AWS Key
+  1. AUTH0_CLIENT_ID=AUTH0_CLIENT_ID
+  1. AUTH0_DOMAIN=AUTH0_DOMAIN
+  1. AUTH_DOMAIN=FIREBASE_AUTH_DOMAIN
+  1. DATABASE_URL=FIREBASE_DATABASE_URL
+  1. STORAGE_BUCKET=FIREBASE_STORAGE_BUCKET_URL
+1. Setup Auth0

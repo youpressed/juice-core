@@ -1,3 +1,5 @@
+@import 'tailwind';
+
 @import "breakpoint";
 @import "variables";
 @import "reset";
@@ -10,6 +12,7 @@
 
 @import "ember-power-select";
 @import "ember-modal-dialog/ember-modal-structure";
+@import 'ember-burger-menu';
 
 .ember-modal-overlay.translucent {
   background-color: rgba(#808080, .77);

@@ -12,6 +12,14 @@ export default Controller.extend({
   session: service(),
 
   actions: {
+    async didTransition() {
+      await this.checkMigration();
+    },
+
+    navigateTo(path) {
+      this.transitionToRoute(path);
+    },
+
     login () {
       const lockOptions = {
         autoclose: true,

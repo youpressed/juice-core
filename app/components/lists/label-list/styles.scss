@@ -1,32 +1,32 @@
-& {
-  // min-width: 60em;
-  // max-width: 80em;
-  // background: $light-blue;
-
-  width: 100%;
-  background: $light-blue;
-
-  @include breakpoint(1000px) {
-    width: 80%;
-    margin-top: 2em;
-  }
-
-  @include breakpoint(1200px) {
-    width: 70%;
-  }
-
-  @include breakpoint(1400px) {
-    width: 60%;
-  }
-
-  @include breakpoint(1600px) {
-    width: 50%;
-  }
-
-  @include breakpoint(1800px) {
-    width: 40%;
-  }
-}
+// & {
+//   // min-width: 60em;
+//   // max-width: 80em;
+//   // background: $light-blue;
+//
+//   width: 100%;
+//   background: $light-blue;
+//
+//   @include breakpoint(1000px) {
+//     width: 80%;
+//     margin-top: 2em;
+//   }
+//
+//   @include breakpoint(1200px) {
+//     width: 70%;
+//   }
+//
+//   @include breakpoint(1400px) {
+//     width: 60%;
+//   }
+//
+//   @include breakpoint(1600px) {
+//     width: 50%;
+//   }
+//
+//   @include breakpoint(1800px) {
+//     width: 40%;
+//   }
+// }
 
 .main-header {
   display: flex;

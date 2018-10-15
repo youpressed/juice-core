@@ -1,12 +1,36 @@
-<div class="site-container">
-  {{navs/main-nav
-      login=(action 'login')
-      logout=(action 'logout')
-      navigateTo=(route-action 'navigateTo')}}
-  <div class="site-content">
-    {{outlet}}
-  </div>
-  {{navs/footer-nav navigateTo=(route-action 'navigateTo')}}
-</div>
+  {{#if session.isAuthenticated}}
 
-{{intercom-io}}
+      {{#burger-menu class="w-full flex flex-1 flex-col items-left" as |burger|}}
+        {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
+          <button {{action burger.state.actions.close}}>Close</button>
+
+          <ul>
+            {{#menu.item}}
+              {{link-to 'Productions' 'productions'}}
+            {{/menu.item}}
+
+            {{#menu.item}}
+              {{link-to 'Products' 'products'}}
+            {{/menu.item}}
+
+            {{#menu.item}}
+              {{link-to 'Recipes' 'recipes'}}
+            {{/menu.item}}
+
+            {{#menu.item}}
+              {{link-to 'Ingredients' 'ingredients'}}
+            {{/menu.item}}
+          </ul>
+        {{/burger.menu}}
+
+        <button class="w-10" {{action burger.state.actions.toggle}}>Menu</button>
+        <div class="min-h-screen w-full self-center">
+            {{#burger.outlet}}
+                {{outlet}}
+            {{/burger.outlet}}
+        </div>
+
+      {{/burger-menu}}
+  {{/if}}
+
+<!-- {{intercom-io}} -->

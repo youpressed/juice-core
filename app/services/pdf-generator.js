@@ -38,6 +38,8 @@ const buildCollection = (data, type, sortFunc = labelSortFunc) => {
     .map(tree => {
       return {
         label: tree.label,
+        shelfLife: tree.shelfLife,
+        tags: tree.tags,
         position: tree.position,
         q: tree.q,
         uom: tree.uom,
@@ -54,7 +56,7 @@ export default Ember.Service.extend({
     const date = moment(production.get('date')).format('ddd MM/DD/YY');
 
     const ingredients = {
-      renderer: 'items-v2',
+      renderer: 'detailed/items',
       title: 'Step 1 - Gather All Material',
       collection: [
         {
@@ -65,14 +67,21 @@ export default Ember.Service.extend({
     };
 
     const recipes = {
-      renderer: 'simplified-composite',
+      renderer: 'detailed/recipes',
       title: 'Step 2 - Juice All Items',
       collection: buildCollection(normalizedChildren, 'recipe')
     };
 
     const products = {
-      renderer: 'composites-v2',
+      renderer: 'detailed/products',
       title: 'Step 3 - Mix Juices',
+      collection: buildCollection(normalizedChildren, 'product', positionSortFunc)
+    };
+
+    const productionDetails = {
+      renderer: 'detailed/productionDetails',
+      title: 'Production Details',
+      date,
       collection: buildCollection(normalizedChildren, 'product', positionSortFunc)
     };
 
@@ -80,7 +89,8 @@ export default Ember.Service.extend({
       data: [
         ingredients,
         recipes,
-        products
+        products,
+        productionDetails
       ]
     };
 

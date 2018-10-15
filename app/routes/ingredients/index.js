@@ -10,21 +10,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    showNode(node) {
-      this.transitionTo('ingredients.show', node.get('id'));
-    },
-
-    async createNode() {
-      const node = this.store.createRecord("node", {
-        type:"ingredient",
-        label:"untitled",
-        yield: 1,
-        uom: "lb"
-      });
-
-      await node.save();
-
-      this.transitionTo('ingredients.show', node.get('id'));
-    }
+    
   }
 });

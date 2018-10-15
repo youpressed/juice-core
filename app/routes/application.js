@@ -65,15 +65,5 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel() {
     this._super(...arguments);
     return this.signInFB();
-  },
-
-  actions: {
-    async didTransition() {
-      await this.checkMigration();
-    },
-
-    navigateTo(path) {
-      this.transitionTo(path);
-    }
   }
 });

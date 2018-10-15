@@ -1,4 +1,5 @@
-{{#containers/section-container}}
+<div class="w-full flex justify-center">
+  <div class="lg:w-1/3 md:w-1/2 w-full">
   {{editors/production-editor
       navigateToProductionSheets=(route-action 'navigateToProductionSheets')
       handleUpdate=(route-action 'handleUpdate')
@@ -7,4 +8,5 @@
       destroyNode=(route-action 'destroyNode')
       nodes=nodes
       model=model}}
-{{/containers/section-container}}
+    </div>
+</div>

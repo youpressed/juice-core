@@ -22,6 +22,8 @@ const buildAndNormalize = leaf => {
   return {
     type: leaf.get('type'),
     label: leaf.get('label'),
+    shelfLife: leaf.get('shelfLife'),
+    tags: leaf.get('tags'),
     q: 1,
     uom: leaf.get('uom'),
     forceUomsParsed: leaf.get('forceUomsParsed'),
@@ -35,6 +37,8 @@ const normalizeLeaf = (leaf, q) => {
   return {
     type: leaf.type,
     label: leaf.label,
+    tags: leaf.tags,
+    shelfLife: leaf.shelfLife,
     q: converted.q,
     uom: converted.uom,
     forceUomsParsed: leaf.forceUomsParsed,
@@ -47,6 +51,7 @@ export default DS.Model.extend({
   description:  attr('string'),
   position:     attr('number', {defaultValue: 0}),
   note:         attr('string'),
+  tags:         attr('string'),
   uom:          attr('string'),
   yield:        attr('number', {defaultValue: 1}),
   shelfLife:    attr('number', {defaultValue: 3}),
@@ -92,6 +97,8 @@ export default DS.Model.extend({
       [this.get("id")]: {
         node: this,
         label: this.get('label'),
+        shelfLife: this.get('shelfLife'),
+        tags: this.get('tags'),
         position: this.get('position'),
         type: this.get('type'),
         uom: this.get('uom'),
@@ -105,6 +112,8 @@ export default DS.Model.extend({
       return {
         node: obj.node,
         label: obj.node.get('label'),
+        shelfLife: obj.node.get('shelfLife'),
+        tags: obj.node.get('tags'),
         position: obj.node.get('position'),
         type: obj.type,
         uom: obj.uom,
@@ -124,6 +133,8 @@ export default DS.Model.extend({
       return {
         type: a.type,
         label: a.label,
+        shelfLife: a.shelfLife,
+        tags: a.tags,
         position: a.position,
         q: summedBest.q,
         uom: summedBest.uom,
@@ -137,6 +148,8 @@ export default DS.Model.extend({
       return {
         node: a.node,
         label: a.label,
+        shelfLife: a.shelfLife,
+        tags: a.tags,
         position: a.position,
         type: a.type,
         uom: a.uom,

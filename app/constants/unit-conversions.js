@@ -19,10 +19,12 @@ const volumes = {
 const weights = {
   base:'lb',
   map: {
+    g: 1/453.592,
     oz: 1/16,
     lb: 1
   },
   list: [
+    {uom: 'g', factor: 1/453.592},
     {uom: 'oz', factor: 1/16},
     {uom: 'lb', factor: 1}
   ]
@@ -46,6 +48,7 @@ const units = {
   qt: volumes,
   oz: weights,
   lb: weights,
+  g: weights,
   count: counts
 };
 
@@ -57,6 +60,7 @@ const unitTypes = [
   'qt',
   'oz',
   'lb',
+  'g',
   'count'
 ];
 

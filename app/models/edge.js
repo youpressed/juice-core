@@ -20,6 +20,10 @@ const normalizeLeaf = (leaf, q) => {
 
   return {
     label: leaf.label,
+    shelfLife: leaf.shelfLife,
+    tags: leaf.tags,
+    notes: leaf.notes,
+    type: leaf.type,
     q: converted.q,
     uom: converted.uom,
     forceUomsParsed: leaf.forceUomsParsed,
@@ -48,6 +52,8 @@ export default DS.Model.extend({
     const mul = obj => {
       return {
         label: obj.label,
+        shelfLife: obj.shelfLife,
+        tags: obj.tags,
         node: obj.node,
         type: obj.type,
         uom: obj.uom,

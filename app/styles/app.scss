@@ -12,8 +12,33 @@
 
 @import "ember-power-select";
 @import "ember-modal-dialog/ember-modal-structure";
+
+$bm-transition-duration: 0.3s;
+
 @import 'ember-burger-menu';
 
 .ember-modal-overlay.translucent {
   background-color: rgba(#808080, .77);
+}
+
+.bm-menu {
+  background-color: $medium-blue;
+  margin: 0;
+  padding: 0;
+}
+
+.bm-menu-item {
+  list-style: none;
+  width: 100%;
+
+  a {
+    display: inline-block;
+    width: 100%;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  :hover {
+    background-color: $light-blue;
+  }
 }

@@ -10,6 +10,7 @@ const {
 export default Ember.Route.extend(ApplicationRouteMixin, {
   firebaseApp: service(),
   userService: service(),
+  settingsService: service(),
 
   async flushLS () {
     await localforage.setItem("appdata", {version:2});
@@ -42,6 +43,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         .catch(error => console.log(error.code, error.message));
 
       this.get('userService').manage(auth0Data);
+      this.get('settingsService').boot();
     } else {
       return Ember.RSVP.resolve();
     }

@@ -41,6 +41,9 @@ export default DS.Model.extend({
   parentType:  alias('a.type'),
   childType:   alias('b.type'),
 
+  aPosition:   alias('a.position'),
+  bPosition:   alias('b.position'),
+
   childNodes:  alias("b.childNodes"),
   childEdges:  alias("b.childEdges"),
 

@@ -1,10 +1,19 @@
+<div class="relative">
+
   {{#if session.isAuthenticated}}
+      {{#burger-menu
+        class="w-full flex flex-1 flex-col items-left" as |burger|}}
+        {{#burger.menu
+            itemTagName="li"
+            dismissOnItemClick=true as |menu|}}
 
-      {{#burger-menu class="w-full flex flex-1 flex-col items-left" as |burger|}}
-        {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
-          <button {{action burger.state.actions.close}}>Close</button>
+          <div class="flex justify-end">
+            {{ui/icon-label-button
+                class='p-4 text-5xl'
+                icon='close' onClick=(action burger.state.actions.close)}}
+          </div>
 
-          <ul>
+          <ul class="m-0 p-0">
             {{#menu.item}}
               {{link-to 'Productions' 'productions'}}
             {{/menu.item}}
@@ -20,11 +29,18 @@
             {{#menu.item}}
               {{link-to 'Ingredients' 'ingredients'}}
             {{/menu.item}}
+
+            {{#menu.item}}
+              {{link-to 'Settings' 'settings'}}
+            {{/menu.item}}
           </ul>
         {{/burger.menu}}
 
-        <button class="w-10" {{action burger.state.actions.toggle}}>Menu</button>
-        <div class="min-h-screen w-full self-center">
+        {{ui/icon-label-button
+            class='menu-toggle pin-t pin-l absolute p-4 text-5xl'
+            icon='bars' onClick=(action burger.state.actions.toggle)}}
+
+        <div class="min-h-screen w-full self-center mt-24">
             {{#burger.outlet}}
                 {{outlet}}
             {{/burger.outlet}}
@@ -33,4 +49,5 @@
       {{/burger-menu}}
   {{/if}}
 
+</div>
 <!-- {{intercom-io}} -->

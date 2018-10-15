@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="children-container">
-    {{#sortable-objects sortableObjectList=sortedModel sortEndAction='sortEndAction' enableSort=true useSwap=true inPlace=false sortingScope="sortingGroup"}}
+    {{#sortable-objects sortableObjectList=sortedModel sortEndAction=(action 'sortEndAction') enableSort=true useSwap=true inPlace=false sortingScope="sortingGroup"}}
       {{#each sortedModel as |item index|}}
         {{#draggable-object content=item isSortable=true sortingScope="sortingGroup"}}
           {{component rowType

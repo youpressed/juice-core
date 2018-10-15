@@ -41,6 +41,7 @@ Router.map(function() {
 
   this.route('signup');
   this.route('login');
+  this.route('settings');
 });
 
 export default Router;

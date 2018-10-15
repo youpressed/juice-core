@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 
 const {
   inject: {
@@ -11,15 +13,43 @@ export default Ember.Service.extend({
   intercom: service(),
   store: service(),
 
+  email: alias('data.email'),
+
+  userId: computed('data', function() {
+    return this.get('data')['https://app.youpressed.com/fbId'];
+  }),
+
+  orgId: computed('data', function() {
+    return this.get('data')['https://app.youpressed.com/org'];
+  }),
+
+  fbRefURL: computed('orgId', function() {
+    return `orgs/${this.get('orgId')}`;
+  }),
+
   manage(data) {
-    this.get('intercom').set('user.name', data.email);
-    this.get('intercom').set('user.email', data.email);
+    console.log(data);
+    this.set('data', data);
 
-    this.set('userId', data['https://app.youpressed.com/fbId']);
-    this.set('orgId',  data['https://app.youpressed.com/org']);
+    this.setupFB();
+    this.setupIntercom();
+  },
 
-    const tenantRef = this.get('firebaseApp').database().ref(`orgs/${data['https://app.youpressed.com/org']}`);
+  setupFB() {
+    console.log(this.get('fbRefURL'));
 
-    this.get('store').adapterFor('application')._ref = tenantRef;
-  }
+    const orgRef = this.get('firebaseApp')
+      .database()
+        .ref(this.get('fbRefURL'));
+
+    this.set('fbRef', orgRef);
+
+    // Update internal ref to point to tenant
+    this.get('store').adapterFor('application')._ref = this.get('fbRef');
+  },
+
+  setupIntercom() {
+    this.get('intercom').set('user.name', this.get('email'));
+    this.get('intercom').set('user.email', this.get('email'));
+  },
 });

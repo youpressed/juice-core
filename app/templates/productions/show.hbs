@@ -1,12 +1,10 @@
 <div class="w-full flex justify-center">
-  <div class="lg:w-1/3 md:w-1/2 w-full">
+  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
   {{editors/production-editor
       navigateToProductionSheets=(route-action 'navigateToProductionSheets')
       handleUpdate=(route-action 'handleUpdate')
       updateProductionDate=(route-action 'updateProductionDate' model)
-      addProductToProduction=(route-action 'addProductToProduction' model)
       destroyNode=(route-action 'destroyNode')
-      nodes=nodes
       model=model}}
     </div>
 </div>

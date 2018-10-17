@@ -10,6 +10,7 @@ const {
 
 export default Controller.extend({
   session: service(),
+  quoteService: service(),
 
   actions: {
     async didTransition() {

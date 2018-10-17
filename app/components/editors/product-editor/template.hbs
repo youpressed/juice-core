@@ -1,26 +1,20 @@
-<div class="info-form-container">
-  {{forms/node-info-form
-      title='Product Editor'
-      instructions='Add the basic info for this product.'
-      model=model
-      handleUpdate=handleUpdate}}
-</div>
+{{forms/node-info-form
+    title='Product Editor'
+    instructions='Add the basic info for this product.'
+    model=model
+    handleUpdate=handleUpdate}}
 
-<div class="children-form-container">
-  {{forms/node-children-form
-      title='Product Recipe'
-      validNodes=validNodes
-      model=model
-      addNode=addNode
-      handleUpdate=handleUpdate
-      createAndAddNode=createAndAddNode
-      deleteEdge=deleteEdge}}
-</div>
+{{forms/node-children-form
+    title='Product Recipe'
+    validNodes=validNodes
+    model=model
+    addNode=addNode
+    handleUpdate=handleUpdate
+    createAndAddNode=createAndAddNode
+    deleteEdge=deleteEdge}}
 
-<div class="destroy-form-container">
-  {{forms/delete-node-form
-      destroyNode=destroyNode
-      destroyLabel='Delete Product'
-      nodeLabel=model.label
-      node=model}}
-</div>
+{{forms/delete-node-form
+    destroyNode=destroyNode
+    destroyLabel='Delete Product'
+    nodeLabel=model.label
+    node=model}}

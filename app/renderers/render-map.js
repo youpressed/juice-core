@@ -3,5 +3,6 @@ import simplified from './simplified';
 
 export default {
   detailed,
-  simplified
+  simplified,
+
 }

@@ -1,30 +1,27 @@
-<div class="index-container col">
-  {{index}}.
-</div>
-<div class="label-container col-6">
-  <div class="">
-    <div class="edit-indicator row">
-      {{link-to label (node-link-path model) model.id}}
-      <span class="icon">{{ui-icon 'pencil'}}</span>
-    </div>
+<div class="flex items-baseline">
+  <div class="w-10">
+    {{index}}.
   </div>
-</div>
-<div class="col-4">
-  <div class="grid-noGutter-noBottom-middle">
-    <div class="value-container col-5">
-      {{one-way-input value class='value' update=update}}
-    </div>
-    <div class="line-item-option-container col">
-      {{#power-select
-          class='options-select'
-          selected=selectedOption
-          options=options
-          onchange=optionOnchange
-          as |option|}}
-            {{option}}
-      {{/power-select}}
-    </div>
-  </div>
-</div>
 
-<div class="ui-container col" {{action delete}}>X</div>
+  <div class="text-lg w-64 hover:border-2 border-blue">
+    {{link-to model.b.label (node-link-path model.b) model.b.id}}
+  </div>
+
+  <div class="flex items-center mr-2">
+    {{one-way-input model.q class='p-2 w-16 border-2 border-grey-light focus:border-grey mr-2' update=(action handleUpdate model "q")}}
+    {{one-way-input model.notes class='p-2 w-32 border-2 border-grey-light focus:border-grey' update=(action handleUpdate model "notes")}}
+  </div>
+
+  <div class="w-24">
+    {{#power-select
+        class='options-select'
+        selected=model.uom
+        options=uoms
+        onchange=(action handleUpdate model "uom")
+        as |option|}}
+          {{option}}
+    {{/power-select}}
+  </div>
+
+  <div class="ml-4 cursor-pointer" {{action (action deleteEdge model)}}>X</div>
+</div>

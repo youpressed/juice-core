@@ -71,6 +71,8 @@ export default DS.Model.extend({
   isProduct:    equal('type', 'product'),
   isProduction: equal('type', 'production'),
 
+  isActive:     attr('boolean', true),
+
   forceUomsParsed: computed("forceUoms", function() {
     const str = this.get('forceUoms');
 

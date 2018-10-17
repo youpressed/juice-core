@@ -1,92 +1,44 @@
-import config from 'juice-core/config/environment';
-import _ from 'lodash';
+import NodeRender from 'juice-core/renderers/partials/node';
 
-import { toBest } from 'juice-core/utils/converters';
-import { roundTo } from 'juice-core/utils/math';
-
-const labelSortFunc = (a, b) => {
-  const labelA = a.label.toUpperCase();
-  const labelB = b.label.toUpperCase();
-  if (labelA < labelB) {
-    return -1;
-  }
-  if (labelA > labelB) {
-    return 1;
-  }
-
-  return 0;
-}
-
-const positionSortFunc = (a, b) => {
-    if (a.position > b.position) {
-      return 1;
-    } else if (a.position > b.position) {
-      return -1;
-    }
-
-    return 0;
-}
-
-const buildCollection = (data, type, sortFunc = labelSortFunc) => {
-  return _
-    .map(data)
-    .filter(child => child.type === type)
-    .filter(child => child.factor > 0)
-    .sort(sortFunc)
-    .map(child => child.tree)
-    .map(tree => {
-      return {
-        label: tree.label,
-        shelfLife: tree.shelfLife,
-        tags: tree.tags,
-        position: tree.position,
-        q: tree.q,
-        uom: tree.uom,
-        collection: tree.tree.sort(sortFunc)
-      }
-    });
-}
+import {
+  positionSort,
+  labelSort
+} from 'juice-core/utils/sorting';
 
 const buildPayload = async function (production) {
-  const normalizedChildren = await production.get('normalizedChildren');
-
   const date = moment(production.get('date')).format('ddd MM/DD/YY');
 
+  const ingredientsData = await NodeRender(production, 'ingredient');
   const ingredients = {
     renderer: 'detailed/items',
-    title: 'Step 1 - Gather All Material',
+    title: 'Materials',
     collection: [
       {
         label: 'Items',
-        collection: buildCollection(normalizedChildren, 'ingredient')
+        collection: ingredientsData
       }
     ]
   };
 
+  const recipesData = await NodeRender(production, 'recipe');
   const recipes = {
     renderer: 'detailed/recipes',
-    title: 'Step 2 - Juice All Items',
-    collection: buildCollection(normalizedChildren, 'recipe')
+    title: 'Recipes',
+    collection: recipesData
   };
 
-  const products = {
-    renderer: 'detailed/products',
-    title: 'Step 3 - Mix Juices',
-    collection: buildCollection(normalizedChildren, 'product', positionSortFunc)
-  };
-
+  const productionData = await NodeRender(production, 'product', positionSort);
   const productionDetails = {
     renderer: 'detailed/productionDetails',
     title: 'Production Details',
     date,
-    collection: buildCollection(normalizedChildren, 'product', positionSortFunc)
+    collection: productionData
   };
 
   return {
     data: [
       ingredients,
       recipes,
-      products,
       productionDetails
     ]
   };

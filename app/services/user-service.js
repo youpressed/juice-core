@@ -28,7 +28,6 @@ export default Ember.Service.extend({
   }),
 
   manage(data) {
-    console.log(data);
     this.set('data', data);
 
     this.setupFB();
@@ -36,8 +35,6 @@ export default Ember.Service.extend({
   },
 
   setupFB() {
-    console.log(this.get('fbRefURL'));
-
     const orgRef = this.get('firebaseApp')
       .database()
         .ref(this.get('fbRefURL'));

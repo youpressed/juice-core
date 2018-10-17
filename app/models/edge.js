@@ -18,22 +18,31 @@ const {
 const normalizeLeaf = (leaf, q) => {
   const converted = toBest(leaf.q * q, leaf.uom, leaf.forceUomsParsed)[0];
 
-  return {
-    label: leaf.label,
-    shelfLife: leaf.shelfLife,
-    tags: leaf.tags,
-    notes: leaf.notes,
-    type: leaf.type,
+  const newData = {
     q: converted.q,
     uom: converted.uom,
-    forceUomsParsed: leaf.forceUomsParsed,
     tree: leaf.tree.map(tree => normalizeLeaf(tree, q))
-  }
+  };
+
+  return Object.assign({}, leaf, newData);
+
+  // return {
+  //   label: leaf.label,
+  //   shelfLife: leaf.shelfLife,
+  //   tags: leaf.tags,
+  //   notes: leaf.notes,
+  //   type: leaf.type,
+  //   q: converted.q,
+  //   uom: converted.uom,
+  //   forceUomsParsed: leaf.forceUomsParsed,
+  //   tree: leaf.tree.map(tree => normalizeLeaf(tree, q))
+  // }
 }
 
 export default DS.Model.extend({
   q:           attr('number', {defaultValue: 0}),
   uom:         attr('string', {defaultValue: 'floz'}),
+  notes:       attr('string'),
 
   a:           belongsTo('node', {inverse: 'children'}),
   b:           belongsTo('node', {inverse: 'parents'}),

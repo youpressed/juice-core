@@ -1,8 +1,7 @@
-<div class="relative">
-
+<div class="relative min-h-screen">
   {{#if session.isAuthenticated}}
       {{#burger-menu
-        class="w-full flex flex-1 flex-col items-left" as |burger|}}
+        class="min-h-screen w-full flex flex-1 flex-col items-left" as |burger|}}
         {{#burger.menu
             itemTagName="li"
             dismissOnItemClick=true as |menu|}}
@@ -37,17 +36,53 @@
         {{/burger.menu}}
 
         {{ui/icon-label-button
-            class='menu-toggle pin-t pin-l absolute p-4 text-5xl'
+            class='menu-toggle pin-t pin-l absolute p-0 text-5xl mt-2'
             icon='bars' onClick=(action burger.state.actions.toggle)}}
 
-        <div class="min-h-screen w-full self-center mt-24">
+        <div class="min-h-full w-full self-center mt-20">
             {{#burger.outlet}}
+
+              <div class="absolute pin-t pin-r p-4 flex items-baseline">
+                <p class="bold">{{session.session.authenticated.profile.email}}</p>
+                <p class="ml-2 mr-2">|</p>
+
+                {{ui/label-button
+                    class='rounded shadow bg-blue text-white p-2 pr-4 pl-4 hover:bg-blue-light'
+                    label='Logout'
+                    onClick=(action 'logout')}}
+              </div>
+
+              <div class="xl:p-8 mb-12">
                 {{outlet}}
+              </div>
+
             {{/burger.outlet}}
         </div>
-
       {{/burger-menu}}
-  {{/if}}
 
+      {{else}}
+        <div class="absolute pin-t pin-r p-4 flex items-baseline">
+
+          {{ui/label-button
+              class='rounded shadow bg-blue text-white p-2 pr-4 pl-4 hover:bg-blue-light'
+              label='Login'
+              onClick=(action 'login')}}
+        </div>
+      {{/if}}
+
+      <footer class="flex bg-blue absolute pin-b w-full p-4 text-white h-12 -mt-12 items-baseline justify-between">
+        <p>
+          ©2016-2018 You Pressed - <a href="mailto:hello@youpressed.com">hello@youpressed.com</a>
+        </p>
+        <div class="flex items-baseline {{if quoteService.hasQuote 'visible' 'invisible'}}">
+          <p class="bold mr-2">
+            {{quoteService.quote}}
+          </p>
+          <p class="text-sm italic">
+            ~{{quoteService.author}}
+          </p>
+        </div>
+      </footer>
 </div>
-<!-- {{intercom-io}} -->
+
+{{intercom-io}}

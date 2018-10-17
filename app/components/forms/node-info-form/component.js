@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['node-info-form'],
+  tag: '',
   timeUoms: ['day(s)', 'week(s)', 'month(s)', 'year(s)'],
 });

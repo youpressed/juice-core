@@ -1,9 +1,18 @@
-{{sections/products-show
-    navigateTo=(route-action 'navigateTo')
-    handleUpdate=(route-action 'handleUpdate')
-    addNode=(route-action 'addNode' model)
-    deleteEdge=(route-action 'deleteEdge')
-    createAndAddNode=(route-action 'createAndAddNode' model)
-    destroyNode=(route-action 'destroyNode')
-    nodes=nodes
-    model=model}}
+<div class="flex flex-col xxl:flex-row">
+
+  <div class="xxl:w-1/2 xxl:mr-4">
+    {{editors/product-editor
+        handleUpdate=(action 'handleUpdate')
+        addNode=(action 'addNode' model)
+        deleteEdge=(action 'deleteEdge')
+        createAndAddNode=(action 'createAndAddNode' model)
+        destroyNode=(action 'destroyNode')
+        nodes=nodes
+        model=model}}
+
+  </div>
+
+  <div class="xxl:w-1/2">
+    {{editors/sample-production product=model}}
+  </div>
+</div>

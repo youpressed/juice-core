@@ -2,14 +2,12 @@
   {{#if session.isAuthenticated}}
       {{#burger-menu
         class="min-h-screen w-full flex flex-1 flex-col items-left" as |burger|}}
-        {{#burger.menu
-            itemTagName="li"
-            dismissOnItemClick=true as |menu|}}
+        {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
 
           <div class="flex justify-end">
-            {{ui/icon-label-button
-                class='p-4 text-5xl'
-                icon='close' onClick=(action burger.state.actions.close)}}
+            <button type="button" name="button" {{action burger.state.actions.close}}>
+              {{fa-icon "close" class="p-4 text-5xl"}}
+            </button>
           </div>
 
           <ul class="m-0 p-0">
@@ -35,9 +33,9 @@
           </ul>
         {{/burger.menu}}
 
-        {{ui/icon-label-button
-            class='menu-toggle pin-t pin-l absolute p-0 text-5xl mt-2'
-            icon='bars' onClick=(action burger.state.actions.toggle)}}
+          <button type="button" name="button" class="pin-t pin-l absolute ml-4 mt-4" {{action burger.state.actions.toggle}}>
+            {{fa-icon "bars" class="text-5xl cursor-pointer"}}
+          </button>
 
         <div class="min-h-full w-full self-center mt-20">
             {{#burger.outlet}}

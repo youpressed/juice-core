@@ -54,14 +54,14 @@
 
 .only-mobile {
 	display: inline-flex;
-	@include breakpoint(500px) {
-    display: none;
-  }
+	// @include breakpoint(500px) {
+  //   display: none;
+  // }
 }
 
 .hide-mobile {
 	display: none;
-	@include breakpoint(500px) {
-    display: inline-flex;
-  }
+	// @include breakpoint(500px) {
+  //   display: inline-flex;
+  // }
 }

@@ -1,20 +1,12 @@
 /*jshint node:true*/
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const fs = require('fs-extra');
+const Funnel = require('broccoli-funnel');
+const MergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    babel: {
-      optional: ['es7.decorators', 'es7.functionBind']
-    },
-    'ember-cli-babel': {
-      includePolyfill: true
-    },
-    sassOptions: {
-      includePaths: [
-        'bower_components/breakpoint-sass/stylesheets'
-      ]
-    },
     fingerprint: {
       exclude: [
         'apple-touch-icon',
@@ -57,8 +49,11 @@ module.exports = function(defaults) {
 
   app.import("bower_components/ramda/dist/ramda.min.js");
   app.import("bower_components/mathjs/dist/math.min.js");
-  app.import('bower_components/rxjs/dist/rx.all.min.js');
   app.import('bower_components/localforage/dist/localforage.min.js');
 
-  return app.toTree();
+  const netlifyTree = new Funnel('.', {
+    files: ['.netlifyconfig']
+  });
+
+  return MergeTrees([app.toTree(), netlifyTree]);
 };

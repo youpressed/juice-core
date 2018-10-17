@@ -1,6 +1,5 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2017,
     sourceType: 'module'
@@ -16,12 +15,6 @@ module.exports = {
     browser: true
   },
   rules: {
-  },
-  globals: {
-    "R": true,
-    "math": true,
-    "moment": true,
-    "Set": true
   },
   overrides: [
     // node files

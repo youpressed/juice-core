@@ -21,7 +21,7 @@ const buildCollection = (data, type, sortFunc) => {
     .map(child => child.tree)
 
     // Merge props at this level but sort children
-    .map(tree => Object.assign({collection: tree.tree.sort(sortFunc)}, tree));
+    .map(tree => Object.assign({}, tree, {collection: tree.tree.sort(sortFunc)}));
 }
 
 const buildPayload = async function (node, type, sort = labelSort) {

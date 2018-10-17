@@ -15,28 +15,17 @@ const {
   }
 } = Ember;
 
-const normalizeLeaf = (leaf, q) => {
+const normalizeLeaf = (leaf, q, notes) => {
   const converted = toBest(leaf.q * q, leaf.uom, leaf.forceUomsParsed)[0];
 
   const newData = {
     q: converted.q,
+    notes: notes,
     uom: converted.uom,
-    tree: leaf.tree.map(tree => normalizeLeaf(tree, q))
+    tree: leaf.tree.map(tree => normalizeLeaf(tree, q, tree.notes))
   };
 
   return Object.assign({}, leaf, newData);
-
-  // return {
-  //   label: leaf.label,
-  //   shelfLife: leaf.shelfLife,
-  //   tags: leaf.tags,
-  //   notes: leaf.notes,
-  //   type: leaf.type,
-  //   q: converted.q,
-  //   uom: converted.uom,
-  //   forceUomsParsed: leaf.forceUomsParsed,
-  //   tree: leaf.tree.map(tree => normalizeLeaf(tree, q))
-  // }
 }
 
 export default DS.Model.extend({
@@ -62,25 +51,20 @@ export default DS.Model.extend({
 
   normalizedChildren: computed("b.normalizedChildren", "b.normalizedTree", "normalizedQuantity", function() {
     const mul = obj => {
-      return {
-        label: obj.label,
-        shelfLife: obj.shelfLife,
-        tags: obj.tags,
-        node: obj.node,
-        type: obj.type,
-        uom: obj.uom,
-        forceUomsParsed: obj.forceUomsParsed,
+      const newData = {
         factor: obj.factor * this.get("normalizedQuantity"),
         tree: normalizeLeaf(obj.tree, this.get("normalizedQuantity"))
       }
+
+      return Object.assign({}, obj, newData);
     };
 
-    const childDatoms = this.get("b.normalizedChildren") || {};
+    const childDatoms = this.get("b.normalizedChildren");
 
     return R.map(mul, childDatoms);
   }),
 
-  normalizedTree: computed("b.normalizedTree", "normalizedQuantity", function() {
-    return normalizeLeaf(this.get('b.normalizedTree'), this.get("normalizedQuantity"));
+  normalizedTree: computed("b.normalizedTree", "normalizedQuantity", 'notes', function() {
+    return normalizeLeaf(this.get('b.normalizedTree'), this.get("normalizedQuantity"), this.get('notes'));
   })
 });

@@ -16,34 +16,32 @@ const {
   }
 } = Ember;
 
-const buildAndNormalize = leaf => {
-  const children = leaf.get('children').map(edge => edge.get('normalizedTree'));
+const buildAndNormalize = node => {
+  const children = node.get('children').map(edge => edge.get('normalizedTree'));
 
   return {
-    type: leaf.get('type'),
-    label: leaf.get('label'),
-    shelfLife: leaf.get('shelfLife'),
-    tags: leaf.get('tags'),
+    type: node.get('type'),
+    label: node.get('label'),
+    shelfLife: node.get('shelfLife'),
+    tags: node.get('tags'),
     q: 1,
-    uom: leaf.get('uom'),
-    forceUomsParsed: leaf.get('forceUomsParsed'),
-    tree: children.map(tree => normalizeLeaf(tree, leaf.get("normalizedYield")))
+    uom: node.get('uom'),
+    forceUomsParsed: node.get('forceUomsParsed'),
+    tree: children.map(tree => normalizeLeaf(tree, node.get("normalizedYield")))
   };
 }
 
-const normalizeLeaf = (leaf, q) => {
-  const converted = toBest(leaf.q * q, leaf.uom, leaf.forceUomsParsed)[0];
+const normalizeLeaf = (obj, q) => {
+  const converted = toBest(obj.q * q, obj.uom, obj.forceUomsParsed)[0];
 
-  return {
-    type: leaf.type,
-    label: leaf.label,
-    tags: leaf.tags,
-    shelfLife: leaf.shelfLife,
+  const newData = {
     q: converted.q,
     uom: converted.uom,
-    forceUomsParsed: leaf.forceUomsParsed,
-    tree: leaf.tree.map(tree => normalizeLeaf(tree, q))
-  }
+    forceUomsParsed: obj.forceUomsParsed,
+    tree: obj.tree.map(tree => normalizeLeaf(tree, q))
+  };
+
+  return Object.assign({}, obj, newData);
 }
 
 export default DS.Model.extend({
@@ -97,8 +95,9 @@ export default DS.Model.extend({
 
     const selfData = {
       [this.get("id")]: {
-        node: this,
+        // node: this,
         label: this.get('label'),
+        description: this.get('description'),
         shelfLife: this.get('shelfLife'),
         tags: this.get('tags'),
         position: this.get('position'),
@@ -111,18 +110,13 @@ export default DS.Model.extend({
     };
 
     const mul = obj => {
-      return {
-        node: obj.node,
-        label: obj.node.get('label'),
-        shelfLife: obj.node.get('shelfLife'),
-        tags: obj.node.get('tags'),
-        position: obj.node.get('position'),
-        type: obj.type,
-        uom: obj.uom,
+      const newData = {
         forceUomsParsed: obj.forceUomsParsed,
         factor: obj.factor * normalizedYield,
         tree: normalizeLeaf(obj.tree, normalizedYield)
       }
+
+      return Object.assign({}, obj, newData);
     };
 
     const sumTree = (a, b) => {
@@ -132,33 +126,23 @@ export default DS.Model.extend({
       const summedUom = aNormalized.uom;
       const summedBest = toBest(summedQ, summedUom, a.forceUomsParsed)[0];
 
-      return {
-        type: a.type,
-        label: a.label,
-        shelfLife: a.shelfLife,
-        tags: a.tags,
-        position: a.position,
+      const newData = {
         q: summedBest.q,
         uom: summedBest.uom,
         forceUomsParsed: a.forceUomsParsed,
         tree: R.zip(a.tree, b.tree).map(zipped => sumTree(zipped[0], zipped[1]))
       }
+
+      return Object.assign({}, a, newData);
     };
 
     const sum = (a, b) => {
-
-      return {
-        node: a.node,
-        label: a.label,
-        shelfLife: a.shelfLife,
-        tags: a.tags,
-        position: a.position,
-        type: a.type,
-        uom: a.uom,
-        forceUomsParsed: a.forceUomsParsed,
+      const newData = {
         factor: a.factor + b.factor,
         tree: sumTree(a.tree, b.tree)
-      };
+      }
+
+      return Object.assign({}, a, newData);
     };
 
     const childDatoms = this.get("children")
@@ -170,7 +154,7 @@ export default DS.Model.extend({
     return R.mergeWith(() => {}, selfData, factored);
   }),
 
-  normalizedTree: computed("children.@each.{normalizedTree,q}", "forceUomsParsed", "normalizedYield", function() {
+  normalizedTree: computed("children.@each.{normalizedTree,q,notes}", "forceUomsParsed", "normalizedYield", function() {
     return buildAndNormalize(this);
   }),
 

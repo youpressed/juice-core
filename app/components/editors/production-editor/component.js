@@ -15,7 +15,6 @@ const {
 export default Ember.Component.extend({
   classNames: ['row', 'center'],
   pdfGenerator: inject(),
-  metrics: inject(),
   settingsService: inject(),
 
   edges: alias('model.children'),
@@ -36,8 +35,6 @@ export default Ember.Component.extend({
       const renderer = RenderMap[templateType];
 
       const payload = await renderer.buildPayload(this.get('model'));
-
-      this.get('metrics').trackEvent({eventCategory:'docs', eventAction:'printall'});
 
       const { url } = await this.get('pdfGenerator').generatePdf(payload);
 

@@ -8,8 +8,11 @@
   </div>
 
   <div class="flex items-center mr-2">
-    {{one-way-input model.q class='p-2 w-16 border-2 border-grey-light focus:border-grey mr-2' update=(action handleUpdate model "q")}}
-    {{one-way-input model.notes class='p-2 w-32 border-2 border-grey-light focus:border-grey' update=(action handleUpdate model "notes")}}
+    <input class='p-2 w-16 border-2 border-grey-light focus:border-grey mr-2'
+           value={{model.q}} oninput={{action (action handleUpdate model "q") value="target.value"}}>
+
+    <input class='p-2 w-32 border-2 border-grey-light focus:border-grey'
+           value={{model.notes}} oninput={{action (action handleUpdate model "notes") value="target.value"}}>
   </div>
 
   <div class="w-24">

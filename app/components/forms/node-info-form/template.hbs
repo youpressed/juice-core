@@ -38,7 +38,9 @@
 
   <div class="flex flex-col mb-2 p-4 shadow bg-blue-lightest">
     <label class="is-active-container">
-      {{one-way-checkbox model.isActive update=(action handleUpdate model "isActive") class="mr-2 leading-tight"}}
+
+      <input type="checkbox" class="mr-2 leading-tight" checked={{model.isActive}} onclick={{action (action handleUpdate model "isActive") value="target.checked"}}>
+
       <span class="text-lg">
         Active
       </span>

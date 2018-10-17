@@ -12,12 +12,9 @@ export default Ember.Component.extend({
 
   pdfGenerator: service(),
   store: service(),
-  metrics: service(),
 
   actions: {
     async printRecipe() {
-      this.get('metrics').trackEvent({eventCategory:'docs', eventAction:'printsample'});
-
       const node = await this.get('store').createRecord('node');
       const edge = await this.get('store').createRecord('edge', {a:node, b:this.get('product'), q:this.get('unitCount'), uom:this.get('product.uom')});
 

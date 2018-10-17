@@ -44,10 +44,11 @@
           {{/link-to}}
         </div>
 
-        {{one-way-input edge.q
-            class='p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue'
-            update=(action 'handleQuantityUpdate' edge)
-            onblur=(action 'handleQuantityBlur' edge)}}
+        <input class='p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue'
+          value={{edge.q}}
+          oninput={{action (action 'handleQuantityUpdate' edge) value="target.value"}}
+          onblur={{action 'handleQuantityBlur' edge}}>
+
       </div>
     {{/each}}
   </div>

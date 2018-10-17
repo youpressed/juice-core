@@ -1,16 +1,3 @@
-& {
-  cursor: pointer;
-  background: $dark-orange;
-  padding: 0.5em 1em;
-  border-radius: 6px;
-  color: $dark-grey;
-}
-
 &.disabled {
   cursor: not-allowed;
-  background-color: darken($dark-orange, 5%);
-}
-
-.label {
-  margin-right: 0.25em;
 }

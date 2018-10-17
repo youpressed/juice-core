@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import _ from 'lodash';
+import { inject as service } from '@ember/service';
+import downloadFile from "juice-core/utils/download-file";
+import NodeRender from 'juice-core/renderers/partials/node';
 
 const {
   computed
@@ -8,53 +10,33 @@ const {
 export default Ember.Component.extend({
   unitCount: 10,
 
-  recipes: computed("product.normalizedChildren.@each.{q,uom}", function() {
-    return _.filter(this.get('product.normalizedChildren'), edge => edge.type === 'recipe')
-  }),
+  pdfGenerator: service(),
+  store: service(),
 
-  ingredients: computed("product.normalizedChildren.@each.{q,uom}", function() {
-    return _.filter(this.get('product.normalizedChildren'), edge => edge.type === 'ingredient')
-  }),
+  actions: {
+    async printRecipe() {
+      const node = await this.get('store').createRecord('node');
+      const edge = await this.get('store').createRecord('edge', {a:node, b:this.get('product'), q:this.get('unitCount'), uom:this.get('product.uom')});
 
-  cards: computed("recipes", "ingredients", "product", "unitCount", function() {
-    const recipes = this.get('recipes');
-    const ingredients = this.get('ingredients');
-    const product = this.get('product');
-    const unitCount = this.get('unitCount');
-    const factoredCount = product.get('normalizedYield') * unitCount;
-    const baseUom = product.get('uom');
+      const data = await NodeRender(node, 'recipe');
 
-    const recipeCards = recipes
-      .filter(recipe => recipe.node != product)
-      .map(recipe => {
-        return {
-          type:'cards/recipe-card',
-          id: recipe.node.get('id'),
-          data: {
-            model:recipe.node,
-            factor: factoredCount * recipe.factor
+      const payload = {
+        data: [
+          {
+            renderer: 'detailed/recipes',
+            title: 'Recipes',
+            collection: data
           }
-        }
-      });
+        ]
+      };
 
-    return _.flatten([
-      {
-        type:`cards/${product.get('type')}-card`,
-        id: product.get('id'),
-        data:{
-          model: product,
-          factor: unitCount
-        }
-      },
-      recipeCards,
-      {
-        type:'cards/ingredients-card',
-        id: 'ingredients',
-        data: {
-          model:ingredients,
-          factor: unitCount
-        }
-      }
-    ]);
-  })
+      // Cleanup the temp models
+      this.get('store').unloadRecord(node);
+      this.get('store').unloadRecord(edge);
+
+      const { url } = await this.get('pdfGenerator').generatePdf(payload);
+
+      return downloadFile(url, 'mykey');
+    }
+  }
 });

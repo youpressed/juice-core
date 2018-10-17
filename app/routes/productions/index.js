@@ -27,7 +27,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     async createNode() {
       const products = this.store.peekAll('node')
-        .filter(node => node.get('isProduct'));
+        .filter(node => node.get('isProduct'))
+        .filter(node => node.get('isActive'));
 
       const date = moment().toDate();
       const node = this.store.createRecord("node", {

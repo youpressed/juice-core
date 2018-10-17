@@ -10,6 +10,8 @@ const {
 export default Ember.Route.extend(ApplicationRouteMixin, {
   firebaseApp: service(),
   userService: service(),
+  settingsService: service(),
+  quoteService: service(),
 
   async flushLS () {
     await localforage.setItem("appdata", {version:2});
@@ -42,6 +44,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         .catch(error => console.log(error.code, error.message));
 
       this.get('userService').manage(auth0Data);
+      this.get('settingsService').boot();
+      this.get('quoteService').refreshQuote();
     } else {
       return Ember.RSVP.resolve();
     }
@@ -65,15 +69,5 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel() {
     this._super(...arguments);
     return this.signInFB();
-  },
-
-  actions: {
-    async didTransition() {
-      await this.checkMigration();
-    },
-
-    navigateTo(path) {
-      this.transitionTo(path);
-    }
   }
 });

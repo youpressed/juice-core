@@ -1,54 +1,54 @@
-<div class="content-container">
-  <div class="header-container row">
-    <div class="date-container row">
-      <span class="label">Production for:</span>
-      <div class="spacer hide-mobile"></div>
-      <label class="date">
-        {{pikaday-input format="ddd MM/DD" value=model.date onSelection=updateProductionDate}}
+<div class="flex flex-col shadow-md bg-blue-lightest w-full">
+  <div class="text-5xl font-bold text-grey-darkest p-12">
+    Edit Production
+  </div>
+  <div class="flex-row md:flex items-baseline justify-between pl-12 pr-12 pt-4 pb-4">
+
+    <div class="flex-row md:flex items-baseline">
+      <p class="text-2xl mr-4 mb-12 md:mb-0">Production for:</p>
+      <label class="border-4 p-2 pl-4 pr-4 bg-white border-grey-light text-lg hover:border-grey">
+        {{pikaday-input format="ddd MM/DD/YY" value=model.date onSelection=updateProductionDate}}
       </label>
     </div>
-    <div>
-      <div class="ui-container hide-mobile">
-        {{ui/async-button
-            label='Print Production Sheets'
-            icon='print'
-            onClick=(action 'printAll')}}
-      </div>
+
+    <div class="invisible md:visible">
+      {{ui/async-button
+          label='Print Production Sheets'
+          icon='print'
+          onClick=(action 'printAll')}}
     </div>
   </div>
 
-  <div class="product-container-header row">
-    <div class="index-col">#</div>
-    <div class="label-col">Product Name</div>
-    <div class="stretch"></div>
-    <div class="qty-col">Total</div>
+  <div class="flex pl-12 pr-12 pt-4 pb-4 bold text-2xl justify-between items-baseline bg-blue-light text-white">
+    <div class="flex items-baseline">
+      <div class="w-10">#</div>
+      <div class="label-col">Product Name</div>
+    </div>
+
+    <div class="w-24">Total</div>
   </div>
 
-  <div class="dashed-hr"></div>
+  <div class="pl-12 pr-12 pt-6">
+    {{#each sortedRow as |edge index|}}
+      <div class="flex justify-between items-baseline pt-2 pb-2 border-b-2 border-grey-light">
 
-  <div class="layout-col products-container">
-    {{#each sortedProducts as |edge index|}}
-      <div class="row product-row">
-        <div class="index-col">
-          {{inc index}}.
-        </div>
-        <div class="label-col row">
-          {{#link-to 'products.show' edge.b.id class='product-link-button row' tabindex="-1"}}
-              <div class="label">
+        <div class="flex items-baseline">
+          <div class="mr-2 w-10 text-lg italic">
+            {{inc index}}.
+          </div>
+
+          {{#link-to 'products.show' edge.b.id tabindex="-1"}}
+              <div class="text-2xl bold hover:border-blue-light border-b-4 border-blue-lightest">
                 {{edge.b.label}}
-              </div>
-              <div class="ui-container">
-                {{ui-icon 'pencil'}}
               </div>
           {{/link-to}}
         </div>
-        <div class="stretch"></div>
-        <div class="qty-col">
-          {{one-way-input edge.q
-              class='edge-qty'
-              update=(action 'handleQuantityUpdate' edge)
-              onblur=(action 'handleQuantityBlur' edge)}}
-        </div>
+
+        <input class='p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue'
+          value={{edge.q}}
+          oninput={{action (action 'handleQuantityUpdate' edge) value="target.value"}}
+          onblur={{action 'handleQuantityBlur' edge}}>
+
       </div>
     {{/each}}
   </div>

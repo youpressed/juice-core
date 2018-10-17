@@ -4,7 +4,6 @@ import config from './config/environment';
 const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL,
-  metrics: Ember.inject.service(),
 
   didTransition() {
     this._super(...arguments);
@@ -15,8 +14,6 @@ const Router = EmberRouter.extend({
     Ember.run.scheduleOnce('afterRender', this, () => {
       const page = this.get('url');
       const title = this.getWithDefault('currentRouteName', 'unknown');
-
-      Ember.get(this, 'metrics').trackPage({ page, title });
     });
   }
 });
@@ -28,7 +25,6 @@ Router.map(function() {
 
   this.route('productions', function() {
     this.route('show', {path:'/edit/:production_id'});
-    this.route('sheets', {path:'/sheets/:production_id'});
   });
 
   this.route('recipes', function() {
@@ -41,6 +37,7 @@ Router.map(function() {
 
   this.route('signup');
   this.route('login');
+  this.route('settings');
 });
 
 export default Router;

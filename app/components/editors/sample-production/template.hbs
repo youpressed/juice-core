@@ -1,28 +1,41 @@
-<div class="production-info-container">
-  <div class="title">Sample Production</div>
-  <div class="description">The cards below show the break down of the scaled product recipe, sub recipes, and all ingredients. Use this area for
+<div class="flex flex-col mb-4 bg-blue-light shadow p-4 text-white">
+  <div class="text-3xl">Sample Production</div>
+  <div class="text-sm">The cards below show the break down of the scaled product recipe, sub recipes, and all ingredients. Use this area for
 quick batches and to make sure the recipes match your R&D.</div>
+</div>
 
-  <div class="grid">
-    <div class="col-6">
-      <div class="row baseline production-input-container">
-        <span class="instruction">Make</span>
-        <span class="count">
-          {{ui/desc-input
-              class='product-description-input'
-              value=unitCount
-              description='qty'
-              placeholder='Qty...'
-              update=(action (mut unitCount))}}
-        </span>
-        <span class="instruction">{{product.uom}}(s) of {{product.label}}</span>
-      </div>
+<div class="flex-col mb-4 bg-blue-lightest shadow p-4">
+
+  <p class="text-3xl pr-2 mb-4 font border-b-4 border-blue-light">Quick Calculate</p>
+
+  <div class="flex items-center justify-between">
+
+    <div class="flex items-baseline">
+      <p class="text-2xl pr-2">Make</p>
+      <p class="text-3xl pr-2">
+
+        <input class='p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue'
+          value={{unitCount}}
+          oninput={{action (mut unitCount) value="target.value"}}>
+
+      </p>
+      <p class="text-2xl pr-2">{{product.uom}}(s)</p>
+      <p class="text-2xl italic pr-2">of</p>
+      <p class="text-3xl font-extrabold italic">{{product.label}}</p>
     </div>
+
+    <div class="">
+      {{ui/async-button
+          label='Print Recipe'
+          icon='print'
+          onClick=(action 'printRecipe')}}
+    </div>
+
   </div>
+
 </div>
 
-<div class="card-container">
-  {{#each cards key="id" as |card|}}
+
+  {{!-- {{#each cards key="id" as |card|}}
     {{component card.type data=card.data}}
-  {{/each}}
-</div>
+  {{/each}} --}}

@@ -1,28 +1,28 @@
 import Ember from 'ember';
 import downloadFile from "juice-core/utils/download-file";
+import { sort } from '@ember/object/computed';
+import { inject } from '@ember/service';
+import RenderMap from 'juice-core/renderers/render-map';
 
 const {
   computed,
   computed: {
     filterBy,
-    sort,
     alias
   }
 } = Ember;
 
-
 export default Ember.Component.extend({
   classNames: ['row', 'center'],
-  products: filterBy('nodes', 'isProduct', true),
-  pdfGenerator: Ember.inject.service(),
-  metrics: Ember.inject.service(),
+  pdfGenerator: inject(),
+  settingsService: inject(),
 
-  products: alias('model.children'),
+  edges: alias('model.children'),
 
-  sortedProducts: sort('products', (a, b) => {
-    if (a.get('b.position') > b.get('b.position')) {
+  sortedRow: sort('edges.@each.{bPosition}', (a, b) => {
+    if (a.get('bPosition') > b.get('bPosition')) {
       return 1;
-    } else if (a.get('b.position') > b.get('b.position')) {
+    } else if (a.get('bPosition') < b.get('bPosition')) {
       return -1;
     }
 
@@ -31,8 +31,13 @@ export default Ember.Component.extend({
 
   actions: {
     async printAll() {
-      this.get('metrics').trackEvent({eventCategory:'docs', eventAction:'printall'});
-      const { url } = await this.get('pdfGenerator').generateFullPrepSheet(this.get('model'));
+      const templateType = this.get('settingsService').get('printTemplate');
+      const renderer = RenderMap[templateType];
+
+      const payload = await renderer.buildPayload(this.get('model'));
+
+      const { url } = await this.get('pdfGenerator').generatePdf(payload);
+
       return downloadFile(url, 'mykey');
     },
 

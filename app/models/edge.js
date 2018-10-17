@@ -15,27 +15,32 @@ const {
   }
 } = Ember;
 
-const normalizeLeaf = (leaf, q) => {
+const normalizeLeaf = (leaf, q, notes) => {
   const converted = toBest(leaf.q * q, leaf.uom, leaf.forceUomsParsed)[0];
 
-  return {
-    label: leaf.label,
+  const newData = {
     q: converted.q,
+    notes: notes,
     uom: converted.uom,
-    forceUomsParsed: leaf.forceUomsParsed,
-    tree: leaf.tree.map(tree => normalizeLeaf(tree, q))
-  }
+    tree: leaf.tree.map(tree => normalizeLeaf(tree, q, tree.notes))
+  };
+
+  return Object.assign({}, leaf, newData);
 }
 
 export default DS.Model.extend({
   q:           attr('number', {defaultValue: 0}),
   uom:         attr('string', {defaultValue: 'floz'}),
+  notes:       attr('string'),
 
   a:           belongsTo('node', {inverse: 'children'}),
   b:           belongsTo('node', {inverse: 'parents'}),
 
   parentType:  alias('a.type'),
   childType:   alias('b.type'),
+
+  aPosition:   alias('a.position'),
+  bPosition:   alias('b.position'),
 
   childNodes:  alias("b.childNodes"),
   childEdges:  alias("b.childEdges"),
@@ -46,23 +51,20 @@ export default DS.Model.extend({
 
   normalizedChildren: computed("b.normalizedChildren", "b.normalizedTree", "normalizedQuantity", function() {
     const mul = obj => {
-      return {
-        label: obj.label,
-        node: obj.node,
-        type: obj.type,
-        uom: obj.uom,
-        forceUomsParsed: obj.forceUomsParsed,
+      const newData = {
         factor: obj.factor * this.get("normalizedQuantity"),
         tree: normalizeLeaf(obj.tree, this.get("normalizedQuantity"))
       }
+
+      return Object.assign({}, obj, newData);
     };
 
-    const childDatoms = this.get("b.normalizedChildren") || {};
+    const childDatoms = this.get("b.normalizedChildren");
 
     return R.map(mul, childDatoms);
   }),
 
-  normalizedTree: computed("b.normalizedTree", "normalizedQuantity", function() {
-    return normalizeLeaf(this.get('b.normalizedTree'), this.get("normalizedQuantity"));
+  normalizedTree: computed("b.normalizedTree", "normalizedQuantity", 'notes', function() {
+    return normalizeLeaf(this.get('b.normalizedTree'), this.get("normalizedQuantity"), this.get('notes'));
   })
 });

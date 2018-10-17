@@ -1,7 +1,6 @@
-{{one-way-input value
-    class='node-label'
-    placeholder=placeholder
-    update=update}}
+<input class='node-label'
+       placeholder=placeholder
+       value={{value}} oninput={{action update value="target.value"}}>
 
 <div class="description">
   {{description}}

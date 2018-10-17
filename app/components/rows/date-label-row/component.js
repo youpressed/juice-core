@@ -7,8 +7,6 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  classNames: ['layout-row'],
-
   hasDestroyAction: notEmpty('destroyAction'),
 
   click() {

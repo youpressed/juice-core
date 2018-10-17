@@ -1,7 +1,11 @@
-{{lists/label-list
-    label='Recipes'
-    rowType='rows/label-row'
-    createAction=(route-action 'createNode')
-    createLabel='Create New Recipe'
-    selectAction=(route-action 'showNode')
-    model=model}}
+<div class="w-full flex justify-center">
+  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
+    {{lists/label-list
+        label='Recipes'
+        rowType='rows/label-row'
+        createAction=(route-action 'createNode')
+        createLabel='Create New Recipe'
+        selectAction=(route-action 'showNode')
+        model=model}}
+  </div>
+</div>

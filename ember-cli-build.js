@@ -30,6 +30,13 @@ module.exports = function(defaults) {
     'ember-cli-qunit': {
       useLintTree: false
     },
+    'ember-cli-uglify': {
+			uglify: {
+				compress: {
+					collapse_vars: false
+				}
+			}
+		},
     dotEnv: {
       clientAllowedKeys: ['API_KEY', 'AUTH_DOMAIN', 'DATABASE_URL', 'STORAGE_BUCKET']
     }

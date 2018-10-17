@@ -4,9 +4,9 @@
   padding: 2em;
   color: $dark-grey;
 
-  @include breakpoint(1000px) {
-    padding: 5em;
-  }
+  // @include breakpoint(1000px) {
+  //   padding: 5em;
+  // }
 }
 
 .image-container {
@@ -14,9 +14,9 @@
   flex: 1;
   display: none;
 
-  @include breakpoint(1000px) {
-    display: block;
-  }
+  // @include breakpoint(1000px) {
+  //   display: block;
+  // }
 
 }
 
@@ -24,9 +24,9 @@
   justify-content: center;
   flex: 1;
 
-  @include breakpoint(1000px) {
-    padding-right: 5em;
-  }
+  // @include breakpoint(1000px) {
+  //   padding-right: 5em;
+  // }
 }
 
 .landing-image {
@@ -68,11 +68,11 @@
     text-align: center;
   }
 
-  @include breakpoint(1700px) {
-    font-size: 1em;
-  }
-
-  @include breakpoint(1810px) {
-    font-size: 1.5em;
-  }
+  // @include breakpoint(1700px) {
+  //   font-size: 1em;
+  // }
+  //
+  // @include breakpoint(1810px) {
+  //   font-size: 1.5em;
+  // }
 }

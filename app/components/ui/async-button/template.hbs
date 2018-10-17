@@ -1,8 +1,10 @@
 <div class="flex items-baseline p-4 bg-blue-dark text-white shadow rounded cursor-pointer {{if loading 'cursor-wait'}}">
   <span class="text-lg mr-2">{{label}}</span>
-  {{#if loading}}
-    <span class="icon">{{ui-icon 'spinner' pulse=true}}</span>
-  {{else}}
-    <span class="icon">{{ui-icon icon}}</span>
-  {{/if}}
+  <div class="w-10 flex justify-center">
+    {{#if loading}}
+      {{fa-icon "cog" spin=true}}
+    {{else}}
+      {{fa-icon icon}}
+    {{/if}}
+  </div>
 </div>

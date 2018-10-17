@@ -13,6 +13,9 @@ export default Controller.extend({
   quoteService: service(),
 
   actions: {
+    shit() {
+        console.log('Shit');
+    },
     async didTransition() {
       await this.checkMigration();
     },

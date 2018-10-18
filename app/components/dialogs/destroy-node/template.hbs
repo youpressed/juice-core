@@ -5,7 +5,7 @@
       <span class="title">Delete {{nodeLabel}}</span>
       <div class="ui-container">
         {{ui/icon-label-button
-            class='cancel-button'
+            class='btn-blue'
             click=cancel
             icon='times'}}
       </div>
@@ -18,13 +18,13 @@
 
     <div class="ui-container">
       {{ui/icon-label-button
-          class='cancel-button'
+          class='btn-blue'
           click=cancel
           label='Cancel'
           icon='cancel'}}
 
       {{ui/icon-label-button
-          class='delete-button'
+          class='btn-red'
           click=(action 'handleSubmit')
           label='Delete'
           icon='trash'}}

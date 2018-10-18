@@ -67,5 +67,13 @@
         placeholder='Instructions/notes...'
         update=(action handleUpdate model "note")}}
     </div>
+
+    <div class="mb-6">
+      {{ui/desc-input
+          value=model.tags
+          description='Tags'
+          placeholder='Start typing...'
+          update=(action handleUpdate model "tags")}}
+    </div>
   </div>
 </div>

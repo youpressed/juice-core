@@ -51,8 +51,8 @@ module.exports = function(defaults) {
   app.import("bower_components/mathjs/dist/math.min.js");
   app.import('bower_components/localforage/dist/localforage.min.js');
 
-  const netlifyTree = new Funnel('.', {
-    files: ['.netlifyconfig']
+  const netlifyTree = new Funnel('netlify', {
+    files: ['_redirects', '_headers']
   });
 
   return MergeTrees([app.toTree(), netlifyTree]);

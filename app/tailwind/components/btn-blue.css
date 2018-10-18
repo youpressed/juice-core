@@ -1,0 +1,11 @@
+.btn-blue {
+  @apply flex items-baseline;
+  @apply p-4;
+  @apply bg-blue-dark text-white;
+  @apply shadow rounded;
+  @apply cursor-pointer;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-light;
+}

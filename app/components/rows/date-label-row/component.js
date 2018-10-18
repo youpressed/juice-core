@@ -8,6 +8,7 @@ const {
 
 export default Ember.Component.extend({
   hasDestroyAction: notEmpty('destroyAction'),
+  isShowingExtrasMenu: false,
 
   click() {
     this.get('clickAction')(this.get('model'));
@@ -16,6 +17,13 @@ export default Ember.Component.extend({
   actions: {
     handleDestroyClicked() {
       this.get('destroyAction')(this.get('model'));
+    },
+
+    toggleExtrasMenu(e) {
+      if(e) {
+        e.stopPropagation();
+      }
+      this.toggleProperty('isShowingExtrasMenu');
     }
   }
 });

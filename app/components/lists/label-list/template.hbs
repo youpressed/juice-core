@@ -19,6 +19,7 @@
     {{#each sortedContent as |item index|}}
       {{component rowType
           clickAction=selectAction
+          destroyAction=destroyAction
           model=item
           index=(inc index)}}
     {{/each}}

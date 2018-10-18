@@ -53,7 +53,7 @@
     "ember-lodash": "^4.17.3",
     "ember-math-helpers": "^2.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-modal-dialog": "^2.2.0",
+    "ember-modal-dialog": "^3.0.0-beta.0",
     "ember-moment": "^7.3.0",
     "ember-pikaday": "^2.2.2",
     "ember-power-select": "^2.0.9",
@@ -67,6 +67,9 @@
     "ember-truth-helpers": "^2.1.0",
     "emberfire": "^2.0.10",
     "eslint-plugin-ember": "^5.2.0",
+    "liquid-fire": "^0.29.5",
+    "liquid-tether": "^2.0.7",
+    "liquid-wormhole": "^2.1.5",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
     "sass": "^1.14.2"

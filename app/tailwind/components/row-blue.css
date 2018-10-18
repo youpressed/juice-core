@@ -17,5 +17,5 @@
 
 
 .row-blue {
-  @apply flex pl-12 pr-12 pt-4 pb-4 justify-between cursor-pointer border-b-2 border-dashed bg-blue-lightest;
+  @apply flex pl-12 pr-12 pt-4 pb-4 justify-between cursor-pointer border-b-2 border-dotted bg-blue-lightest;
 }

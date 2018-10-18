@@ -1,8 +1,17 @@
 <div class="row-blue">
-  <div class="flex items-baseline">
+  <div class="flex items-baseline w-full">
     <div class="text-base italic mr-4">{{index}}.</div>
-    <div class="flex items-center text-2xl">
-      <div class="bold">{{model.label}}</div>
+    <div class="flex flex-grow items-center text-2xl">
+      <div class="flex w-full items-baseline justify-between">
+        <div class="bold">
+          {{model.label}}
+        </div>
+        {{#if (not model.isActive)}}
+          <div class="italic text-2xl ml-4 text-red">
+            Inactive
+          </div>
+        {{/if}}
+      </div>
     </div>
   </div>
 </div>

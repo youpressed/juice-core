@@ -50,7 +50,7 @@
                     onClick=(action 'logout')}}
               </div>
 
-              <div class="xl:p-8 mb-12">
+              <div class="mb-24">
                 {{outlet}}
               </div>
 
@@ -72,14 +72,6 @@
         <p>
           ©2016-2018 You Pressed - <a href="mailto:hello@youpressed.com">hello@youpressed.com</a>
         </p>
-        <div class="flex items-baseline {{if quoteService.hasQuote 'visible' 'invisible'}}">
-          <p class="bold mr-2">
-            {{quoteService.quote}}
-          </p>
-          <p class="text-sm italic">
-            ~{{quoteService.author}}
-          </p>
-        </div>
       </footer>
 </div>
 

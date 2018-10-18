@@ -45,7 +45,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
       this.get('userService').manage(auth0Data);
       this.get('settingsService').boot();
-      this.get('quoteService').refreshQuote();
+      // this.get('quoteService').refreshQuote();
     } else {
       return Ember.RSVP.resolve();
     }

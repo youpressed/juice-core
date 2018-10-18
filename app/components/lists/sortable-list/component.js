@@ -1,23 +1,32 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 const {
-  computed,
-  computed: {
-    notEmpty,
-    sort
-  }
-} = Ember;
+  filterBy,
+  notEmpty,
+  sort
+} = computed;
 
+export default Component.extend({
+  showInactive:     false,
 
-export default Ember.Component.extend({
-  didReceiveAttrs() {
-    const sorted = this.get('model').sortBy('position');
-    this.set('sortedModel', sorted);
-  },
+  inactiveItems:    filterBy('model', 'isActive', false),
+  hasInactiveItems: notEmpty('inactiveItems'),
+
+  sortProps:        ['position'],
+  sortedItems:      sort('model', 'sortProps'),
+
+  activeItems: computed('sortedItems.@each.{isActive}', 'showInactive', function() {
+    if(!this.get('showInactive')) {
+      return this.get('sortedItems').filter(n => n.get('isActive'));
+    }
+
+    return this.get('sortedItems');
+  }),
 
   actions: {
     sortEndAction() {
-      this.get('sortedModel')
+      this.get('activeItems')
         .forEach((item, index) => {
           item.set('position', index);
           item.save();

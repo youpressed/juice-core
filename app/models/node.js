@@ -89,7 +89,7 @@ export default DS.Model.extend({
     return 1/this.get("yield");
   }),
 
-  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "children.@each.{normalizedTree,q}", "forceUomsParsed", "normalizedYield", "position", function() {
+  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "children.@each.{normalizedTree,q}", "forceUomsParsed", "normalizedYield", "position", "tags", "label", "description", "uom", function() {
     const normalizedYield = this.get("normalizedYield");
     const forceUomsParsed = this.get('forceUomsParsed');
 

@@ -1,4 +1,4 @@
-<div class="row-blue">
+<div class="row-blue group what-son">
   <div class="flex items-baseline">
     <div class="text-base italic mr-4">{{index}}.</div>
     <div class="flex items-center text-2xl">
@@ -7,8 +7,34 @@
       <div class="bold">{{moment-format model.date 'MM/DD' 'YYYY-MM-DD'}}</div>
     </div>
   </div>
-  <div class="flex items-baseline">
-    <span class="text-2xl">{{model.totalChildQuantity}}</span>
-    <span class="text-base ml-4">Total Units</span>
+  <div class="flex items-center">
+    <div class="flex items-baseline">
+      <p class="text-2xl">{{model.totalChildQuantity}}</p>
+      <p class="text-base ml-4">Total Units</p>
+    </div>
+    <div data-tether-id="menu">
+      {{fa-icon 'cog' class="ml-4 text-2xl text-grey-darkest" click=(action 'toggleExtrasMenu')}}
+    </div>
   </div>
 </div>
+
+{{#if isShowingExtrasMenu}}
+  {{#modal-dialog
+      animatable=true
+      hasOverlay=false
+      clickOutsideToClose=true
+      onClose=(action 'toggleExtrasMenu')
+      targetAttachment="bottom right"
+      attachment="top left"
+      tetherTarget='[data-tether-id="menu"]'}}
+    <div class="bg-grey-lightest shadow p-6 rounded-lg">
+      <div class="flex flex-col">
+        {{ui/label-button
+            label="delete"
+            class='btn-red'
+            click=(action 'handleDestroyClicked')
+            icon='close'}}
+      </div>
+    </div>
+  {{/modal-dialog}}
+{{/if}}

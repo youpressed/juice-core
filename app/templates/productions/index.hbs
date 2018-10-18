@@ -1,11 +1,12 @@
 <div class="w-full flex justify-center">
-  <div class="xl:w-2/3 xxl:w-1/2 w-full  shadow-md">
+  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
     {{lists/label-list
         label='Productions'
         rowType='rows/date-label-row'
-        createAction=(route-action 'createNode')
+        createAction=(action 'createNode')
         createLabel='Create New Production'
-        selectAction=(route-action 'showNode')
+        selectAction=(action 'showNode')
+        destroyAction=(action 'destroyNode')
         model=recentProductions}}
   </div>
 </div>

@@ -17,9 +17,7 @@ export default Ember.Component.extend({
   pdfGenerator: inject(),
   settingsService: inject(),
 
-  edges: alias('model.children'),
-
-  sortedRow: sort('edges.@each.{bPosition}', (a, b) => {
+  sortedRow: sort('normalEdges.@each.{bPosition}', (a, b) => {
     if (a.get('bPosition') > b.get('bPosition')) {
       return 1;
     } else if (a.get('bPosition') < b.get('bPosition')) {

@@ -1,10 +1,14 @@
 <div class="w-full flex justify-center">
   <div class="xl:w-2/3 xxl:w-1/2 w-full">
   {{editors/production-editor
-      navigateToProductionSheets=(route-action 'navigateToProductionSheets')
-      handleUpdate=(route-action 'handleUpdate')
-      updateProductionDate=(route-action 'updateProductionDate' model)
-      destroyNode=(route-action 'destroyNode')
-      model=model}}
+      model=model
+      normalEdges=normalEdges
+      adjustmentEdges=adjustmentEdges
+      validSubtractableNodes=validSubtractableNodes
+      createAdjustmentEdge=(action 'createAdjustmentEdge')
+      navigateToProductionSheets=(action 'navigateToProductionSheets')
+      handleUpdate=(action 'handleUpdate')
+      updateProductionDate=(action 'updateProductionDate' model)
+      destroyNode=(action 'destroyNode')}}
     </div>
 </div>

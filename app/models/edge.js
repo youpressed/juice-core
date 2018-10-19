@@ -33,6 +33,8 @@ export default DS.Model.extend({
   uom:         attr('string', {defaultValue: 'floz'}),
   notes:       attr('string'),
 
+  sign:        attr('number', {default: 1}),
+
   a:           belongsTo('node', {inverse: 'children'}),
   b:           belongsTo('node', {inverse: 'parents'}),
 
@@ -45,8 +47,9 @@ export default DS.Model.extend({
   childNodes:  alias("b.childNodes"),
   childEdges:  alias("b.childEdges"),
 
-  normalizedQuantity: computed("q", "uom", 'b.uom', function() {
-    return uom(this.get('q'), this.get('uom')).to(this.get('b.uom'));
+  normalizedQuantity: computed("q", "uom", 'b.uom', 'sign', function() {
+    const step = uom(this.get('q'), this.get('uom')).to(this.get('b.uom'));
+    return step * (this.get('sign') || 1);
   }),
 
   normalizedChildren: computed("b.normalizedChildren", "b.normalizedTree", "normalizedQuantity", function() {

@@ -4118,6 +4118,15 @@ ember-cli@~3.5.0:
     watch-detector "^0.1.0"
     yam "^0.0.24"
 
+ember-collapsible-panel@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-collapsible-panel/-/ember-collapsible-panel-3.1.1.tgz#7fa04b0217c7c333d04fd74d0fb0d568f4cb31b1"
+  integrity sha1-f6BLAhfHwzPQT9dND7DVaPTLMbE=
+  dependencies:
+    ember-cli-babel "^6.12.0"
+    ember-cli-htmlbars "^2.0.3"
+    ember-cli-version-checker "^2.1.0"
+
 ember-compatibility-helpers@^1.0.2, ember-compatibility-helpers@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.1.2.tgz#ae0ee4a7a2858b5ffdf79b428c23aee85c47d93d"

@@ -8,7 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   model(params) {
-    return Ember.RSVP.Promise.all([
+    return Ember.RSVP.all([
       this.store.findRecord("node", params.product_id),
       this.store.findAll('node'),
       this.store.findAll('edge')

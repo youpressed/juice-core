@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-import _ from 'lodash';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   setupController(controller, model) {
@@ -9,18 +8,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model(params) {
     return Ember.RSVP.Promise.all([
-      this.store.query('node', {
-        orderBy: "type",
-        equalTo: "production"
-      }),
-      this.store.query('node', {
-        orderBy: "type",
-        equalTo: "product"
-      })
+      this.store.findAll('node'),
+      this.store.findAll('edge')
     ]);
-  },
-
-  actions: {
-    
   }
 });

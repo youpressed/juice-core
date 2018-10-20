@@ -1,19 +1,21 @@
 <div class="flex flex-col shadow-md bg-blue-lightest w-full">
-  <div class="text-5xl font-bold text-grey-darkest p-12">
-    Edit Production
-  </div>
-  <div class="flex-row md:flex items-baseline justify-between pl-12 pr-12 pt-4 pb-4">
 
-    <div class="flex-row md:flex items-baseline">
-      <p class="text-2xl mr-4 mb-12 md:mb-0">Production for:</p>
-      <label class="border-4 p-2 pl-4 pr-4 bg-white border-grey-light text-lg hover:border-grey">
-        {{pikaday-input format="ddd MM/DD/YY" value=model.date onSelection=updateProductionDate}}
+  <div class="px-12 py-6 text-5xl bold border-b border-dashed">
+    Production
+  </div>
+  <div class="flex flex-col sm:flex-row items-baseline justify-between px-12 py-4">
+    <div class="flex items-baseline">
+      <p class="text-lg mr-2 mb-6 italic">Production for:</p>
+      <label class="border-b w-48 border-dotted border-grey-darkest text-3xl focus:border-blue">
+        {{pikaday-input
+            class="bg-blue-lightest"
+            format="ddd MM/DD/YY" value=model.date onSelection=updateProductionDate}}
       </label>
     </div>
 
-    <div class="invisible md:visible">
+    <div>
       {{ui/async-button
-          label='Print Production Sheets'
+          label='Print'
           icon='print'
           onClick=(action 'printAll')}}
     </div>

@@ -1,15 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { notEmpty, filterBy } from '@ember/object/computed';
 import _ from 'lodash';
 
-const {
-  computed,
-  computed: {
-    filterBy,
-    notEmpty
-  }
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: ['hasParents::hide'],
 
   hasParents:   notEmpty('model.parents'),

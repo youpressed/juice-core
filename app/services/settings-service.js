@@ -1,14 +1,8 @@
-import Ember from 'ember';
+import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import RenderTypes from 'juice-core/constants/render-types';
 
-const {
-  inject: {
-    service
-  }
-} = Ember;
-
-export default Ember.Service.extend({
+export default Service.extend({
   userService: service(),
 
   printTemplate: computed('data.printTemplate', function() {

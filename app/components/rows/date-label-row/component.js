@@ -1,13 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { notEmpty } from '@ember/object/computed';
 import { computed } from '@ember/object';
 
-const {
-  computed: {
-    notEmpty
-  }
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   hasDestroyAction: notEmpty('destroyAction'),
   isShowingExtrasMenu: false,
 

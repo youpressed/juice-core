@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { notEmpty, equal } from '@ember/object/computed';
 import DS from 'ember-data';
 import _ from 'lodash';
 import { toBest, uom } from 'juice-core/utils/converters';
@@ -7,14 +8,6 @@ const {
   attr,
   hasMany
 } = DS;
-
-const {
-  computed,
-  computed: {
-    equal,
-    notEmpty
-  }
-} = Ember;
 
 const buildAndNormalize = node => {
   const children = node.get('children').map(edge => edge.get('normalizedTree'));

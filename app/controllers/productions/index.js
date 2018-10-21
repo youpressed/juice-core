@@ -1,16 +1,11 @@
-import Ember from 'ember';
+import { all } from 'rsvp';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { sort, filterBy } from '@ember/object/computed';
 import _ from 'lodash';
 import { inject as service } from '@ember/service';
 
-const {
-  computed,
-  computed: {
-    filterBy,
-    sort
-  }
-} = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   store: service(),
 
@@ -42,10 +37,10 @@ export default Ember.Controller.extend({
 
       node.save();
 
-      await Ember.RSVP.all(products
+      await all(products
         .map(b => {
           const edge = this.get('store').createRecord('edge', {a:node, b, q: 0});
-          return edge.save().then(() => Ember.RSVP.all([node.save(), b.save()]))
+          return edge.save().then(() => all([node.save(), b.save()]));
         }));
 
       this.transitionToRoute('productions.show', node.get('id'));

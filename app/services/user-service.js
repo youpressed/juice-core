@@ -1,14 +1,8 @@
-import Ember from 'ember';
+import Service, { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 
-const {
-  inject: {
-    service
-  }
-} = Ember;
-
-export default Ember.Service.extend({
+export default Service.extend({
   firebaseApp: service(),
   intercom: service(),
   store: service(),

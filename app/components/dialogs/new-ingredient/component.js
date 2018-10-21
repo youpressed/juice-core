@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
 
-export default Ember.Component.extend({
+export default Component.extend({
   uoms: unitTypes,
   uom: 'lb',
   

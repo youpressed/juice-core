@@ -1,10 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-const {
-  computed
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   validNodes: computed('model.@each.{type}', function() {
     return this.get('nodes')
       .filter(n => !n.get('isProduct') && !n.get('isProduction'))

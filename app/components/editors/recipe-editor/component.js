@@ -1,11 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
 
-const {
-  computed
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   uoms: unitTypes,
 
   validNodes: computed('model.@each.{type}', function() {

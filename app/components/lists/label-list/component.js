@@ -1,14 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { sort, notEmpty } from '@ember/object/computed';
 
-const {
-  computed,
-  computed: {
-    notEmpty,
-    sort
-  }
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   hasContent: notEmpty('model'),
 
   sortRules: computed('sortBy', function(){

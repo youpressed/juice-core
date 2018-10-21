@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import { resolve } from 'rsvp';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
 
-const {
-  inject: {
-    service
-  }
-} = Ember;
-
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Route.extend(ApplicationRouteMixin, {
   firebaseApp: service(),
   userService: service(),
   settingsService: service(),
@@ -45,7 +41,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.get('userService').manage(auth0Data);
       this.get('settingsService').boot();
     } else {
-      return Ember.RSVP.resolve();
+      return resolve();
     }
   },
 

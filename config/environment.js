@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'juice-core',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
 

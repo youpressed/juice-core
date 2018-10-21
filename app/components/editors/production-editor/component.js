@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import downloadFile from "juice-core/utils/download-file";
-import { sort, alias, filterBy } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { inject } from '@ember/service';
 import RenderMap from 'juice-core/renderers/render-map';
 

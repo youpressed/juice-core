@@ -6,13 +6,6 @@ export default Controller.extend({
   session: service(),
 
   actions: {
-    shit() {
-        console.log('Shit');
-    },
-    async didTransition() {
-      await this.checkMigration();
-    },
-
     navigateTo(path) {
       this.transitionToRoute(path);
     },

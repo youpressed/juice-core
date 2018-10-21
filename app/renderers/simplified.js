@@ -1,8 +1,7 @@
 import NodeRender from 'juice-core/renderers/partials/node';
 
 import {
-  positionSort,
-  labelSort
+  positionSort
 } from 'juice-core/utils/sorting';
 
 const buildPayload = async function (production) {

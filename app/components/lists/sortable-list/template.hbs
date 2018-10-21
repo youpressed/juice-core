@@ -1,5 +1,9 @@
-<div class="flex flex-col shadow-md bg-blue-lightest w-full">
-  <div class="flex-row md:flex items-center justify-between px-12 pt-12 pb-4">
+<div
+  class="flex flex-col shadow-md bg-blue-lightest w-full"
+>
+  <div
+    class="flex-row md:flex items-center justify-between px-12 pt-12 pb-4"
+  >
 
     <div class="text-5xl font-bold text-grey-darkest">
       {{label}}
@@ -7,33 +11,57 @@
 
     <div class="invisible md:visible">
       {{ui/icon-label-button
-          class="btn-blue"
-          click=createAction
-          label=createLabel
-          icon='plus'}}
+        class="btn-blue"
+        click=createAction
+        label=createLabel
+        icon="plus"
+      }}
     </div>
   </div>
 
-  <div class="flex items-center bg-yellow-lightest px-12 py-6 shadow-inner {{if hasInactiveItems 'visible' 'invisible'}}">
-
+  <div
+    class="flex items-center bg-yellow-lightest px-12 py-6 shadow-inner {{if hasInactiveItems "visible" "invisible"}}"
+  >
     <div>
       <div class="form-switch inline-block align-middle">
-          <input type="checkbox" name="showInactive" id="showInactive" class="form-switch-checkbox" checked={{showInactive}} onclick={{action (mut showInactive) value="target.checked"}}/>
-          <label class="form-switch-label" for="showInactive"></label>
+        <input
+          type="checkbox"
+          name="showInactive"
+          id="showInactive"
+          class="form-switch-checkbox"
+          checked={{showInactive}}
+          onclick={{action
+            (mut showInactive)
+            value="target.checked"
+          }}
+        >
+        <label class="form-switch-label" for="showInactive"></label>
       </div>
       <label class="text-lg text-grey-darkest cursor-pointer" for="showInactive">Show Inactive Items</label>
-  </div>
-
+    </div>
   </div>
 
   <div class="pt-6">
-    {{#sortable-objects sortableObjectList=activeItems sortEndAction=(action 'sortEndAction') enableSort=true useSwap=true inPlace=false sortingScope="sortingGroup"}}
+    {{#sortable-objects
+      sortableObjectList=activeItems
+      sortEndAction=(action "sortEndAction")
+      enableSort=true
+      useSwap=true
+      inPlace=false
+      sortingScope="sortingGroup"
+    }}
       {{#each activeItems as |item index|}}
-        {{#draggable-object content=item isSortable=true sortingScope="sortingGroup"}}
-          {{component rowType
-              clickAction=selectAction
-              model=item
-              index=(inc index)}}
+        {{#draggable-object
+          content=item
+          isSortable=true
+          sortingScope="sortingGroup"
+        }}
+          {{component
+            rowType
+            clickAction=selectAction
+            model=item
+            index=(inc index)
+          }}
         {{/draggable-object}}
       {{/each}}
     {{/sortable-objects}}

@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 import { uom } from 'juice-core/utils/converters';
 import { toBest } from 'juice-core/utils/converters';
+import R from 'ramda';
 
 const {
   attr,
@@ -46,7 +47,7 @@ export default DS.Model.extend({
     return step * (this.get('sign') || 1);
   }),
 
-  normalizedChildren: computed("b.normalizedChildren", "b.normalizedTree", "normalizedQuantity", function() {
+  normalizedChildren: computed("b.{normalizedChildren,normalizedTree}", "normalizedQuantity", function() {
     const mul = obj => {
       const newData = {
         factor: obj.factor * this.get("normalizedQuantity"),

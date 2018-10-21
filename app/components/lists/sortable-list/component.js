@@ -13,7 +13,7 @@ export default Component.extend({
   inactiveItems:    filterBy('model', 'isActive', false),
   hasInactiveItems: notEmpty('inactiveItems'),
 
-  sortProps:        ['position'],
+  sortProps:        Object.freeze(['position']),
   sortedItems:      sort('model', 'sortProps'),
 
   activeItems: computed('sortedItems.@each.{isActive}', 'showInactive', function() {

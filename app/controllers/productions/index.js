@@ -4,12 +4,13 @@ import { computed } from '@ember/object';
 import { sort, filterBy } from '@ember/object/computed';
 import _ from 'lodash';
 import { inject as service } from '@ember/service';
+import moment from 'moment';
 
 export default Controller.extend({
 
   store: service(),
 
-  sortByTimestamp: ['ts:desc'],
+  sortByTimestamp: Object.freeze(['ts:desc']),
   sortedProductions: sort('productions', 'sortByTimestamp'),
 
   productions: filterBy('nodes', 'isProduction', true),

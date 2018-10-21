@@ -3,39 +3,49 @@
   <div class="px-12 py-6 text-5xl bold border-b border-dashed">
     Production
   </div>
-  <div class="flex flex-col sm:flex-row items-baseline justify-between px-12 py-4">
+  <div
+    class="flex flex-col sm:flex-row items-baseline justify-between px-12 py-4"
+  >
     <div class="flex items-baseline">
       <p class="text-lg mr-2 mb-6 italic">Production for:</p>
-      <label class="border-b w-48 border-dotted border-grey-darkest text-3xl focus:border-blue">
+      <label
+        class="border-b w-48 border-dotted border-grey-darkest text-3xl focus:border-blue"
+      >
         {{pikaday-input
-            class="bg-blue-lightest"
-            format="ddd MM/DD/YY" value=model.date onSelection=updateProductionDate}}
+          class="bg-blue-lightest"
+          format="ddd MM/DD/YY"
+          value=model.date
+          onSelection=updateProductionDate
+        }}
       </label>
     </div>
 
     <div>
       {{ui/async-button
-          label='Print'
-          icon='print'
-          onClick=(action 'printAll')}}
+        label="Print"
+        icon="print"
+        onClick=(action "printAll")
+      }}
     </div>
   </div>
 
-  <div class="flex flex-col shadow-inner bg-teal-lightest px-12 py-4">
-  {{#cp-panel as |panel|}}
-    {{#panel.toggle}}
-      <div class="flex items-center justify-between">
-        <div class="flex items-baseline">
-          <p class="text-3xl">Adjustments</p>
-          <p class="italic text-sm ml-4">Add stock from previous productions</p>
+  <div
+    class="flex flex-col shadow-inner bg-teal-lightest px-12 py-4"
+  >
+    {{#cp-panel as |panel|}}
+      {{#panel.toggle}}
+        <div class="flex items-center justify-between">
+          <div class="flex items-baseline">
+            <p class="text-3xl">Adjustments</p>
+            <p class="italic text-sm ml-4">Add stock from previous productions</p>
+          </div>
+          {{#if panel.isOpen}}
+            {{fa-icon "chevron-up" class="text-2xl cursor-pointer"}}
+          {{else}}
+            {{fa-icon "chevron-down" class="text-2xl cursor-pointer"}}
+          {{/if}}
         </div>
-        {{#if panel.isOpen}}
-          {{fa-icon "chevron-up" class="text-2xl cursor-pointer"}}
-        {{else}}
-          {{fa-icon "chevron-down" class="text-2xl cursor-pointer"}}
-        {{/if}}
-      </div>
-    {{/panel.toggle}}
+      {{/panel.toggle}}
 
       {{#panel.body}}
         <div class="py-4">
@@ -44,34 +54,42 @@
           </div>
           <div class="w-1/2 py-4">
             {{#power-select
-                options=validSubtractableNodes
-                searchField="label"
-                onchange=createAdjustmentEdge
-                placeholder="Search and add recipes or ingredients..." as |node|}}
-                  {{node.label}}
+              options=validSubtractableNodes
+              searchField="label"
+              onchange=createAdjustmentEdge
+              placeholder="Search and add recipes or ingredients..."
+            as |node|
+            }}
+              {{node.label}}
             {{/power-select}}
           </div>
 
           {{#each adjustmentEdges as |edge index|}}
-            <div class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted">
+            <div
+              class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted"
+            >
 
               <div class="flex items-baseline">
                 <div class="mr-2 w-10 text-lg italic">
                   {{inc index}}.
                 </div>
 
-                {{#link-to 'products.show' edge.b.id tabindex="-1"}}
-                    <div class="text-2xl bold hover:border-teal-light border-b-2 border-teal-lightest">
-                      {{edge.b.label}}
-                    </div>
+                {{#link-to "products.show" edge.b.id tabindex="-1"}}
+                  <div
+                    class="text-2xl bold hover:border-teal-light border-b-2 border-teal-lightest"
+                  >
+                    {{edge.b.label}}
+                  </div>
                 {{/link-to}}
               </div>
 
               <div class="flex items-baseline">
-                <input class='p-2 border-2 border-teal-lighter text-2xl w-24 focus:border-teal'
+                <input
+                  class="p-2 border-2 border-teal-lighter text-2xl w-24 focus:border-teal"
                   value={{edge.q}}
-                  oninput={{action (action 'handleQuantityUpdate' edge) value="target.value"}}
-                  onblur={{action 'handleQuantityBlur' edge}}>
+                  oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
+                  onblur={{action "handleQuantityBlur" edge}}
+                >
 
                 <p class="italic text-lg ml-4">{{uom-format edge.b.uom}}</p>
               </div>
@@ -81,10 +99,12 @@
         </div>
       {{/panel.body}}
 
-  {{/cp-panel}}
+    {{/cp-panel}}
   </div>
 
-  <div class="flex pl-12 pr-12 pt-4 pb-4 bold text-2xl justify-between items-baseline bg-blue-light text-white">
+  <div
+    class="flex pl-12 pr-12 pt-4 pb-4 bold text-2xl justify-between items-baseline bg-blue-light text-white"
+  >
     <div class="flex items-baseline">
       <div class="w-10">#</div>
       <div class="label-col">Product Name</div>
@@ -95,24 +115,30 @@
 
   <div class="pl-12 pr-12 pt-6">
     {{#each sortedRow as |edge index|}}
-      <div class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted">
+      <div
+        class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted"
+      >
 
         <div class="flex items-baseline">
           <div class="mr-2 w-10 text-lg italic">
             {{inc index}}.
           </div>
 
-          {{#link-to 'products.show' edge.b.id tabindex="-1"}}
-              <div class="text-2xl bold hover:border-blue-light border-b-2 border-blue-lightest">
-                {{edge.b.label}}
-              </div>
+          {{#link-to "products.show" edge.b.id tabindex="-1"}}
+            <div
+              class="text-2xl bold hover:border-blue-light border-b-2 border-blue-lightest"
+            >
+              {{edge.b.label}}
+            </div>
           {{/link-to}}
         </div>
 
-        <input class='p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue'
+        <input
+          class="p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue"
           value={{edge.q}}
-          oninput={{action (action 'handleQuantityUpdate' edge) value="target.value"}}
-          onblur={{action 'handleQuantityBlur' edge}}>
+          oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
+          onblur={{action "handleQuantityBlur" edge}}
+        >
 
       </div>
     {{/each}}

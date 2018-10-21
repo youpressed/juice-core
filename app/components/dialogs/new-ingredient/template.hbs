@@ -1,4 +1,8 @@
-{{#modal-dialog onClose=cancel translucentOverlay=true containerClass=componentCssClassName}}
+{{#modal-dialog
+  onClose=cancel
+  translucentOverlay=true
+  containerClass=componentCssClassName
+}}
   <div class="header">
     <span class="title">Create new ingredient</span>
     <div class="ui-container">
@@ -9,17 +13,19 @@
   <div class="content">
     <div class="label form-field">
       {{ui/desc-input
-          value=label
-          description='Ingredient name'
-          placeholder='Start typing...'
-          update=(action (mut label))}}
+        value=label
+        description="Ingredient name"
+        placeholder="Start typing..."
+        update=(action (mut label))
+      }}
     </div>
     <div class="description form-field">
       {{ui/desc-input
-          value=description
-          description='Ingredient description'
-          placeholder='Start typing...'
-          update=(action (mut description))}}
+        value=description
+        description="Ingredient description"
+        placeholder="Start typing..."
+        update=(action (mut description))
+      }}
     </div>
     <div class="uom-container form-field">
       <div class="instructions">
@@ -27,11 +33,12 @@
       </div>
       <div class="uom">
         {{#power-select
-            selected=uom
-            options=uoms
-            onchange=(action (mut uom))
-            as |uom|}}
-              {{uom}}
+          selected=uom
+          options=uoms
+          onchange=(action (mut uom))
+        as |uom|
+        }}
+          {{uom}}
         {{/power-select}}
       </div>
     </div>
@@ -39,6 +46,6 @@
 
   <div class="ui-container">
     <button onclick={{action cancel}}>Cancel</button>
-    <button onclick={{action 'handleSubmit'}}>Create</button>
+    <button onclick={{action "handleSubmit"}}>Create</button>
   </div>
 {{/modal-dialog}}

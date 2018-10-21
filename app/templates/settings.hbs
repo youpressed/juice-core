@@ -6,23 +6,32 @@
 
   <div class="w-1/2 shadow bg-blue-lightest p-6">
     <h2 class="text-3xl text-grey-darkest">Print settings</h2>
-
     <div class="mt-6">
-       <fieldset class="text-lg">
-          <legend class="bold text-2xl mb-4">Default template set for printing</legend>
+      <fieldset class="text-lg">
+        <legend class="bold text-2xl mb-4">Default template set for printing</legend>
 
-          <div class="cursor-pointer mb-2" onclick={{action 'updatePrintTemplate' 'detailed'}}>
-              <input type="radio" name="printTemplate" value="detailed" checked={{eq "detailed" settingsService.printTemplate}}>
-              <label class="pointer-events-none" for="detailed">Detailed</label>
-          </div>
+        <div>
+          <input
+            type="radio"
+            name="printTemplate"
+            value="detailed"
+            checked={{eq "detailed" settingsService.printTemplate}}
+            onclick={{action "updatePrintTemplate" "detailed"}}
+          >
+          <label class="pointer-events-none" for="detailed">Detailed</label>
+        </div>
 
-          <div class="cursor-pointer" onclick={{action 'updatePrintTemplate' 'simplified'}}>
-              <input type="radio" name="printTemplate" value="simplified" checked={{eq "simplified" settingsService.printTemplate}}>
-              <label class="pointer-events-none" for="simplified">Simplified</label>
-          </div>
+        <div>
+          <input
+            type="radio"
+            name="printTemplate"
+            value="simplified"
+            checked={{eq "simplified" settingsService.printTemplate}}
+            onclick={{action "updatePrintTemplate" "simplified"}}
+          >
+          <label class="pointer-events-none" for="simplified">Simplified</label>
+        </div>
       </fieldset>
-
     </div>
   </div>
-
 </div>

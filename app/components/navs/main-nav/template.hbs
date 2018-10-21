@@ -1,27 +1,31 @@
 <span class="logo">
-  <a href="#" {{action navigateTo 'productions'}}>you pressed</a>
+  <a href="#" {{action navigateTo "productions"}}>you pressed</a>
 </span>
 
 {{#if session.isAuthenticated}}
   <div class="grid-noGutter-middle">
     {{ui/label-button
-        class='main-menu-button col'
-        label='Productions'
-        onClick=(action navigateTo 'productions')}}
+      class="main-menu-button col"
+      label="Productions"
+      onClick=(action navigateTo "productions")
+    }}
 
     {{#navs/drop-down-menu label="Settings"}}
       {{ui/label-button
-          class='main-menu-button col'
-          label='Products'
-          onClick=(action navigateTo 'products')}}
+        class="main-menu-button col"
+        label="Products"
+        onClick=(action navigateTo "products")
+      }}
       {{ui/label-button
-          class='main-menu-button col'
-          label='Recipes'
-          onClick=(action navigateTo 'recipes')}}
+        class="main-menu-button col"
+        label="Recipes"
+        onClick=(action navigateTo "recipes")
+      }}
       {{ui/label-button
-          class='main-menu-button col'
-          label='Ingredients'
-          onClick=(action navigateTo 'ingredients')}}
+        class="main-menu-button col"
+        label="Ingredients"
+        onClick=(action navigateTo "ingredients")
+      }}
     {{/navs/drop-down-menu}}
   </div>
 {{/if}}
@@ -34,13 +38,15 @@
     <span class="divider">|</span>
 
     {{ui/label-button
-        class='main-menu-button col'
-        label='Logout'
-        onClick=logout}}
+      class="main-menu-button col"
+      label="Logout"
+      onClick=logout
+    }}
   </div>
 {{else}}
   {{ui/label-button
-      class='main-menu-button'
-      label='Login'
-      onClick=login}}
+    class="main-menu-button"
+    label="Login"
+    onClick=login
+  }}
 {{/if}}

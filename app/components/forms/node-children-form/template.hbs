@@ -5,14 +5,15 @@
     </div>
     <div class="options-container">
       {{#power-select
-          options=validNodes
-          searchField="label"
-          search=(action 'search')
-          onchange=(action 'handleSelect')
-          placeholder="Search and add recipes or ingredients..."
-          beforeOptionsComponent=(component "power-select/before-options" autofocus=true)
-          as |node|}}
-            {{node.label}}
+        options=validNodes
+        searchField="label"
+        search=(action "search")
+        onchange=(action "handleSelect")
+        placeholder="Search and add recipes or ingredients..."
+        beforeOptionsComponent=(component "power-select/before-options" autofocus=true)
+      as |node|
+      }}
+        {{node.label}}
       {{/power-select}}
     </div>
   </div>
@@ -20,18 +21,20 @@
   <div class="line-items-container">
     {{#each model.children as |edge index|}}
       {{rows/line-item-row
-          index=(inc index)
-          model=edge
-          handleUpdate=handleUpdate
-          deleteEdge=deleteEdge
-          uoms=uoms}}
+        index=(inc index)
+        model=edge
+        handleUpdate=handleUpdate
+        deleteEdge=deleteEdge
+        uoms=uoms
+      }}
     {{/each}}
   </div>
 </div>
 
 {{#if showCreateIngredient}}
   {{dialogs/new-ingredient
-      cancel=(action 'cancelCreateIngredient')
-      create=createAndAddNode
-      label=tempIngredientName}}
+    cancel=(action "cancelCreateIngredient")
+    create=createAndAddNode
+    label=tempIngredientName
+  }}
 {{/if}}

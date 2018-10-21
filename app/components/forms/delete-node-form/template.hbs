@@ -1,13 +1,15 @@
 {{ui/icon-label-button
-  class='btn-red'
-  click=(action 'showDestroyNode')
+  class="btn-red"
+  click=(action "showDestroyNode")
   label=destroyLabel
-  icon='trash'}}
+  icon="trash"
+}}
 
 
 {{#if showDestroyModal}}
   {{dialogs/destroy-node
-      cancel=(action 'cancelDestroyNode')
-      submit=(action destroyNode node)
-      nodeLabel=nodeLabel}}
+    cancel=(action "cancelDestroyNode")
+    submit=(action destroyNode node)
+    nodeLabel=nodeLabel
+  }}
 {{/if}}

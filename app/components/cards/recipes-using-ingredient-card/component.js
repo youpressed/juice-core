@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { notEmpty, filterBy } from '@ember/object/computed';
-import _ from 'lodash';
 
 export default Component.extend({
   classNameBindings: ['hasParents::hide'],

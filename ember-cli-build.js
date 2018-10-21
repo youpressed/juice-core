@@ -47,9 +47,9 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  app.import("bower_components/ramda/dist/ramda.min.js");
+  // app.import("bower_components/ramda/dist/ramda.min.js");
   app.import("bower_components/mathjs/dist/math.min.js");
-  app.import('bower_components/localforage/dist/localforage.min.js');
+  // app.import('bower_components/localforage/dist/localforage.min.js');
 
   const netlifyTree = new Funnel('netlify', {
     files: ['_redirects', '_headers']

@@ -1,6 +1,0 @@
-{
-  "name": "juice-core",
-  "dependencies": {
-    "mathjs": "^3.13.1"
-  }
-}

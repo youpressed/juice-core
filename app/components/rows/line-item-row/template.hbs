@@ -4,27 +4,52 @@
   </div>
 
   <div class="text-lg w-64 hover:border-2 border-blue">
-    {{link-to model.b.label (node-link-path model.b) model.b.id}}
+    {{link-to
+      model.b.label
+      (node-link-path model.b)
+      model.b.id
+    }}
   </div>
 
   <div class="flex items-center mr-2">
-    <input class='p-2 w-16 border-2 border-grey-light focus:border-grey mr-2'
-           value={{model.q}} oninput={{action (action handleUpdate model "q") value="target.value"}}>
+    <input
+      class="p-2 w-16 border-2 border-grey-light focus:border-grey mr-2"
+      value={{model.q}}
+      oninput={{action
+        (action
+          handleUpdate
+          model
+          "q")
+        value="target.value"
+      }}
+    >
 
-    <input class='p-2 w-32 border-2 border-grey-light focus:border-grey'
-           value={{model.notes}} oninput={{action (action handleUpdate model "notes") value="target.value"}}>
+    <input
+      class="p-2 w-32 border-2 border-grey-light focus:border-grey"
+      value={{model.notes}}
+      oninput={{action
+        (action
+          handleUpdate
+          model
+          "notes")
+        value="target.value"
+      }}
+    >
   </div>
 
   <div class="w-24">
     {{#power-select
-        class='options-select'
-        selected=model.uom
-        options=uoms
-        onchange=(action handleUpdate model "uom")
-        as |option|}}
-          {{option}}
+      class="options-select"
+      selected=model.uom
+      options=uoms
+      onchange=(action handleUpdate model "uom")
+    as |option|
+    }}
+      {{option}}
     {{/power-select}}
   </div>
 
-  <div class="ml-4 cursor-pointer" {{action (action deleteEdge model)}}>X</div>
+  <div class="ml-4 cursor-pointer">
+    <button {{action (action deleteEdge model)}}>X</button>
+  </div>
 </div>

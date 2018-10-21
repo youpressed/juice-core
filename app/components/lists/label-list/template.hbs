@@ -1,6 +1,10 @@
-<div class="flex flex-col shadow-md bg-blue-lightest w-full">
+<div
+  class="flex flex-col shadow-md bg-blue-lightest w-full"
+>
 
-  <div class="flex-row md:flex items-center justify-between pl-12 pr-12 pt-12 pb-4">
+  <div
+    class="flex-row md:flex items-center justify-between pl-12 pr-12 pt-12 pb-4"
+  >
 
     <div class="text-5xl font-bold text-grey-darkest">
       {{label}}
@@ -8,20 +12,23 @@
 
     <div class="invisible md:visible">
       {{ui/icon-label-button
-          class="btn-blue"
-          click=createAction
-          label=createLabel
-          icon='plus'}}
+        class="btn-blue"
+        click=createAction
+        label=createLabel
+        icon="plus"
+      }}
     </div>
   </div>
 
   <div class="pt-6">
     {{#each sortedContent as |item index|}}
-      {{component rowType
-          clickAction=selectAction
-          destroyAction=destroyAction
-          model=item
-          index=(inc index)}}
+      {{component
+        rowType
+        clickAction=selectAction
+        destroyAction=destroyAction
+        model=item
+        index=(inc index)
+      }}
     {{/each}}
   </div>
 </div>

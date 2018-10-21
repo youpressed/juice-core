@@ -1,17 +1,19 @@
 <div class="grid-noGutter stretch">
   <div class="col-4_sm-12_md-6">
     {{ui/label-button
-        class='back-button'
-        label='< Back to ingredients'
-        onClick=(action navigateTo 'ingredients')}}
+      class="back-button"
+      label="< Back to ingredients"
+      onClick=(action navigateTo "ingredients")
+    }}
 
     {{editors/ingredient-editor
-        handleUpdate=handleUpdate
-        addUom=addUom
-        removeUom=removeUom
-        destroyNode=destroyNode
-        nodes=nodes
-        model=model}}
+      handleUpdate=handleUpdate
+      addUom=addUom
+      removeUom=removeUom
+      destroyNode=destroyNode
+      nodes=nodes
+      model=model
+    }}
   </div>
   <div class="col-8_sm-12_md-6">
     <div class="card-container">

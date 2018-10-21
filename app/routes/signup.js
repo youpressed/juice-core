@@ -1,14 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-const {
-  inject: {
-    service
-  },
-  get
-} = Ember;
-
-export default Ember.Route.extend(UnauthenticatedRouteMixin, {
+export default Route.extend(UnauthenticatedRouteMixin, {
   session: service(),
 
   startSignup() {

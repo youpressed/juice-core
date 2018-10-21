@@ -18,9 +18,10 @@
     {{#each data.model.children as |edge index|}}
       <div class="col-12">
         {{cards/product-card/line-item
-            index=(inc index)
-            factor=data.factor
-            edge=edge}}
+          index=(inc index)
+          factor=data.factor
+          edge=edge
+        }}
       </div>
     {{/each}}
   </div>

@@ -1,11 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { filterBy } from '@ember/object/computed';
 
-const {
-  computed: {
-    filterBy
-  }
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   ingredients: filterBy('model', 'type', 'ingredient')
 });

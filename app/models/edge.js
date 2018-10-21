@@ -1,19 +1,14 @@
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
-import Ember from "ember";
 import { uom } from 'juice-core/utils/converters';
 import { toBest } from 'juice-core/utils/converters';
+import R from 'ramda';
 
 const {
   attr,
   belongsTo
 } = DS;
-
-const {
-  computed,
-  computed: {
-    alias
-  }
-} = Ember;
 
 const normalizeLeaf = (leaf, q, notes) => {
   const converted = toBest(leaf.q * q, leaf.uom, leaf.forceUomsParsed)[0];
@@ -52,7 +47,7 @@ export default DS.Model.extend({
     return step * (this.get('sign') || 1);
   }),
 
-  normalizedChildren: computed("b.normalizedChildren", "b.normalizedTree", "normalizedQuantity", function() {
+  normalizedChildren: computed("b.{normalizedChildren,normalizedTree}", "normalizedQuantity", function() {
     const mul = obj => {
       const newData = {
         factor: obj.factor * this.get("normalizedQuantity"),

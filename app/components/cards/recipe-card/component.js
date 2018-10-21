@@ -1,12 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { notEmpty } from '@ember/object/computed';
 
-const {
-  computed: {
-    notEmpty
-  }
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: ['hasChildren::hide'],
 
   hasNote: notEmpty('data.model.note'),

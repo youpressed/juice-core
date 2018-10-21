@@ -1,20 +1,15 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { notEmpty, equal } from '@ember/object/computed';
 import DS from 'ember-data';
 import _ from 'lodash';
+import R from 'ramda';
 import { toBest, uom } from 'juice-core/utils/converters';
+import moment from 'moment';
 
 const {
   attr,
   hasMany
 } = DS;
-
-const {
-  computed,
-  computed: {
-    equal,
-    notEmpty
-  }
-} = Ember;
 
 const buildAndNormalize = node => {
   const children = node.get('children').map(edge => edge.get('normalizedTree'));
@@ -89,7 +84,7 @@ export default DS.Model.extend({
     return 1/this.get("yield");
   }),
 
-  normalizedChildren: computed("children.@each.{normalizedChildren,q}", "children.@each.{normalizedTree,q}", "forceUomsParsed", "normalizedYield", "position", "tags", "label", "description", "uom", function() {
+  normalizedChildren: computed("children.@each.{normalizedChildren,normalizedTree,q}", "forceUomsParsed", "normalizedYield", "position", "tags", "label", "description", "uom", function() {
     const normalizedYield = this.get("normalizedYield");
     const forceUomsParsed = this.get('forceUomsParsed');
 

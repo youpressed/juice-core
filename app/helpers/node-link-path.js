@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 
 export function nodeLinkPath(params/*, hash*/) {
   const model = params[0];
@@ -7,4 +7,4 @@ export function nodeLinkPath(params/*, hash*/) {
   return `${type}s.show`;
 }
 
-export default Ember.Helper.helper(nodeLinkPath);
+export default buildHelper(nodeLinkPath);

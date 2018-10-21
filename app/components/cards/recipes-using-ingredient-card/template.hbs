@@ -8,8 +8,9 @@
   <div class="line-item-container grid-spaceBetween">
     {{#each recipes as |recipe index|}}
       {{cards/recipes-using-ingredient-card/line-item
-          index=(inc index)
-          model=recipe}}
+        index=(inc index)
+        model=recipe
+      }}
     {{/each}}
   </div>
 </div>

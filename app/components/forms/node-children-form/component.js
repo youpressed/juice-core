@@ -1,11 +1,8 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import Component from '@ember/component';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
 
-const {
-  computed
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   uoms: unitTypes,
   showCreateIngredient: false,
 
@@ -19,7 +16,7 @@ export default Ember.Component.extend({
       const reg = new RegExp(q, "i");
       const matches = data.options.filter(n => reg.test(n.get('label')));
 
-      if(Ember.isEmpty(matches)) {
+      if(isEmpty(matches)) {
         return [
           {
             label:`${q} not found, create it...`,

@@ -1,5 +1,7 @@
 <div class="flex flex-col">
-  <div class="flex flex-col mb-2 p-4 shadow bg-blue-light text-white">
+  <div
+    class="flex flex-col mb-2 p-4 shadow bg-blue-light text-white"
+  >
     <div class="text-3xl">
       {{title}}
     </div>
@@ -8,30 +10,35 @@
     </div>
   </div>
 
-  <div class="flex justify-between item-center mb-2 p-4 shadow bg-blue-lightest">
+  <div
+    class="flex justify-between item-center mb-2 p-4 shadow bg-blue-lightest"
+  >
     <div class="flex-grow mr-4">
       {{ui/desc-input
-          value=model.label
-          description='Name'
-          placeholder='Start typing...'
-          update=(action handleUpdate model "label")}}
+        value=model.label
+        description="Name"
+        placeholder="Start typing..."
+        update=(action handleUpdate model "label")
+      }}
     </div>
 
     <div class="w-12 mr-4">
       {{ui/desc-input
-          value=model.shelfLife
-          description="Shelf Life"
-          placeholder='Qty...'
-          update=(action handleUpdate model "shelfLife")}}
+        value=model.shelfLife
+        description="Shelf Life"
+        placeholder="Qty..."
+        update=(action handleUpdate model "shelfLife")
+      }}
     </div>
 
     <div class="">
       {{#power-select
-          selected=model.shelfLifeUom
-          options=timeUoms
-          onchange=(action handleUpdate model "shelfLifeUom")
-          as |uom|}}
-            {{uom}}
+        selected=model.shelfLifeUom
+        options=timeUoms
+        onchange=(action handleUpdate model "shelfLifeUom")
+      as |uom|
+      }}
+        {{uom}}
       {{/power-select}}
     </div>
   </div>
@@ -39,7 +46,18 @@
   <div class="flex flex-col mb-2 p-4 shadow bg-blue-lightest">
     <label class="is-active-container">
 
-      <input type="checkbox" class="mr-2 leading-tight" checked={{model.isActive}} onclick={{action (action handleUpdate model "isActive") value="target.checked"}}>
+      <input
+        type="checkbox"
+        class="mr-2 leading-tight"
+        checked={{model.isActive}}
+        onclick={{action
+          (action
+            handleUpdate
+            model
+            "isActive")
+          value="target.checked"
+        }}
+      >
 
       <span class="text-lg">
         Active
@@ -47,33 +65,36 @@
     </label>
 
     <span class="text-sm italic">
-      Making things inactive will hide them from lists when convenient. It won't change data or calculatioins if used by other product or recipes.
+      Making things inactive will hide them from lists when convenient. It won"t change data or calculatioins if used by other product or recipes.
     </span>
   </div>
 
   <div class="flex flex-col mb-2 p-4 shadow bg-blue-lightest">
     <div class="mb-6">
       {{ui/desc-input
-          value=model.description
-          description='Description'
-          placeholder='Start typing...'
-          update=(action handleUpdate model "description")}}
+        value=model.description
+        description="Description"
+        placeholder="Start typing..."
+        update=(action handleUpdate model "description")
+      }}
     </div>
 
     <div class="mb-6">
       {{ui/desc-text-area
         value=model.note
-        description='Instructions/notes'
-        placeholder='Instructions/notes...'
-        update=(action handleUpdate model "note")}}
+        description="Instructions/notes"
+        placeholder="Instructions/notes..."
+        update=(action handleUpdate model "note")
+      }}
     </div>
 
     <div class="mb-6">
       {{ui/desc-input
-          value=model.tags
-          description='Tags'
-          placeholder='Start typing...'
-          update=(action handleUpdate model "tags")}}
+        value=model.tags
+        description="Tags"
+        placeholder="Start typing..."
+        update=(action handleUpdate model "tags")
+      }}
     </div>
   </div>
 </div>

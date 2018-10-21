@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Service from '@ember/service';
 import config from 'juice-core/config/environment';
 
-export default Ember.Service.extend({
+export default Service.extend({
   async generatePdf(payload) {
-    return Ember.$.ajax({
+    return $.ajax({
       url: config.docService.allDocsEndpoint,
       type:"POST",
       headers: { 'Content-Type': 'application/json' },

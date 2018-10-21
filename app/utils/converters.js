@@ -1,5 +1,4 @@
 import { units } from 'juice-core/constants/unit-conversions';
-import { roundTo } from 'juice-core/utils/math';
 import _ from 'lodash';
 
 const buildAllowedUoms = (from, allowed) => {
@@ -37,41 +36,6 @@ const toBest = (q, from, allowed) => {
   return [sorted[0]];
 }
 
-const toMixed = (q, from, allowed) => {
-  const uoms = buildAllowedUoms(from, allowed);
-  const firstPass = toBest(q, from, allowed);
-
-  const firstUnit = {q: Math.floor(firstPass.q), uom:firstPass.uom};
-
-  const remainder = firstPass.q - firstUnit.q;
-
-  let secondUnit;
-
-  if(remainder > 0) {
-    const currentUom = uoms.find(uom => uom.uom === firstUnit.uom)
-    const nextIndex = uoms.indexOf(currentUom) - 1;
-    const nextUom = uoms[nextIndex];
-
-    if(nextUom !== undefined) {
-      const next = uom(remainder, firstUnit.uom).to(nextUom.uom);
-      secondUnit = {q: Math.round(next), uom:nextUom.uom};
-    }
-  }
-
-  let results = [
-    firstUnit,
-    secondUnit
-  ]
-  .filter(measure => measure !== undefined)
-  .filter(measure => measure.q > 0);
-
-  if(results.length < 1) {
-    results = [{q: roundTo(firstPass.q, 1), uom:firstPass.uom}];
-  }
-
-  return results;
-}
-
 const uom = (q, from) => {
   const castQ = parseFloat(q);
   const unitData = units[from];
@@ -99,6 +63,5 @@ const uom = (q, from) => {
 
 export {
   toBest,
-  toMixed,
   uom
 }

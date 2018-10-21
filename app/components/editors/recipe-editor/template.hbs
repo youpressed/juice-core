@@ -1,20 +1,22 @@
 <div class="info-form-container">
   {{forms/node-info-form
-      title='Recipe Editor'
-      instructions='Add the basic info for this recipe.'
-      model=model
-      handleUpdate=handleUpdate}}
+    title="Recipe Editor"
+    instructions="Add the basic info for this recipe."
+    model=model
+    handleUpdate=handleUpdate
+  }}
 </div>
 
 <div class="children-form-container">
   {{forms/node-children-form
-      title='Ingredients'
-      validNodes=validNodes
-      model=model
-      addNode=addNode
-      handleUpdate=handleUpdate
-      createAndAddNode=createAndAddNode
-      deleteEdge=deleteEdge}}
+    title="Ingredients"
+    validNodes=validNodes
+    model=model
+    addNode=addNode
+    handleUpdate=handleUpdate
+    createAndAddNode=createAndAddNode
+    deleteEdge=deleteEdge
+  }}
 </div>
 
 
@@ -24,19 +26,21 @@
   </span>
   <div class="yield-container">
     {{ui/desc-input
-        value=model.yield
-        description='qty'
-        placeholder='Qty...'
-        update=(action handleUpdate model "yield")}}
+      value=model.yield
+      description="qty"
+      placeholder="Qty..."
+      update=(action handleUpdate model "yield")
+    }}
   </div>
 
   <div class="uom-container">
     {{#power-select
-        selected=model.uom
-        options=uoms
-        onchange=(action handleUpdate model "uom")
-        as |uom|}}
-          {{uom}}
+      selected=model.uom
+      options=uoms
+      onchange=(action handleUpdate model "uom")
+    as |uom|
+    }}
+      {{uom}}
     {{/power-select}}
   </div>
 </div>
@@ -45,20 +49,22 @@
 <div class="forced-uom-container col">
   <div class="label">Only use the following units</div>
   {{#power-select-multiple
-      options=uoms
-      selected=model.forceUomsParsed
-      placeholder="Any"
-      onchange=(action addUom model)
-      as |uom|}}
-        {{uom}}
+    options=uoms
+    selected=model.forceUomsParsed
+    placeholder="Any"
+    onchange=(action addUom model)
+  as |uom|
+  }}
+    {{uom}}
   {{/power-select-multiple}}
 </div>
 
 
 <div class="destroy-form-container">
   {{forms/delete-node-form
-      destroyNode=destroyNode
-      destroyLabel='Delete Recipe'
-      nodeLabel=model.label
-      node=model}}
+    destroyNode=destroyNode
+    destroyLabel="Delete Recipe"
+    nodeLabel=model.label
+    node=model
+  }}
 </div>

@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import downloadFile from "juice-core/utils/download-file";
 import NodeRender from 'juice-core/renderers/partials/node';
 
-const {
-  computed
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   unitCount: 10,
 
   pdfGenerator: service(),

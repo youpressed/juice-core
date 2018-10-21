@@ -1,13 +1,17 @@
-{{#modal-dialog onClose=cancel translucentOverlay=true containerClass=componentCssClassName}}
-
+{{#modal-dialog
+  onClose=cancel 
+  translucentOverlay=true
+  containerClass=componentCssClassName
+}}
   <div class="wrapper">
     <div class="header">
       <span class="title">Delete {{nodeLabel}}</span>
       <div class="ui-container">
         {{ui/icon-label-button
-            class='btn-blue'
-            click=cancel
-            icon='times'}}
+          class="btn-blue"
+          click=cancel
+          icon="times"
+        }}
       </div>
     </div>
 
@@ -18,18 +22,18 @@
 
     <div class="ui-container">
       {{ui/icon-label-button
-          class='btn-blue'
-          click=cancel
-          label='Cancel'
-          icon='cancel'}}
+        class="btn-blue"
+        click=cancel
+        label="Cancel"
+        icon="cancel"
+      }}
 
       {{ui/icon-label-button
-          class='btn-red'
-          click=(action 'handleSubmit')
-          label='Delete'
-          icon='trash'}}
+        class="btn-red"
+        click=(action "handleSubmit")
+        label="Delete"
+        icon="trash"
+      }}
     </div>
-
   </div>
-
 {{/modal-dialog}}

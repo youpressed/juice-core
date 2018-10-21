@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 import { uom } from 'juice-core/utils/converters';
 
 export function nearestVolume(params) {
@@ -8,4 +8,4 @@ export function nearestVolume(params) {
   };
 }
 
-export default Ember.Helper.helper(nearestVolume);
+export default buildHelper(nearestVolume);

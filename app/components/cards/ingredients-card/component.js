@@ -1,10 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { notEmpty } from '@ember/object/computed';
 
-const {
-  notEmpty
-} = Ember.computed;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: ['hasIngredients::hide'],
   hasIngredients: notEmpty('data.model')
 });

@@ -1,4 +1,11 @@
-{{#with (to-best-unit (mult edge.q factor) edge.uom edge.forceUomsParsed) as |mixed|}}
+{{#with
+  (to-best-unit
+    (mult edge.q factor)
+    edge.uom
+    edge.forceUomsParsed
+  )
+as |mixed|
+}}
   <div class="grid-spaceBetween row-content-container">
     <div class="">
       <span class="index">

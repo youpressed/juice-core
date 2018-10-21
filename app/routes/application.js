@@ -1,13 +1,10 @@
-import Ember from 'ember';
+import { resolve } from 'rsvp';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
+import localforage from 'localforage';
 
-const {
-  inject: {
-    service
-  }
-} = Ember;
-
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Route.extend(ApplicationRouteMixin, {
   firebaseApp: service(),
   userService: service(),
   settingsService: service(),
@@ -18,6 +15,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this.get('session').invalidate();
   },
 
+  // Use this if there are breaking changes to the data model. This will wipe the session object from LS
+  // and force a hard refresh to avoid weird migration issues with simple auth
   async checkMigration() {
     let appData = await localforage.getItem("appdata");
 
@@ -40,12 +39,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     if(auth0Data) {
       await this.get('firebaseApp').auth()
         .signInWithCustomToken(auth0Data['https://app.youpressed.com/fbToken'])
-        .catch(error => console.log(error.code, error.message));
+        .catch((/* error */) => {/* @TODO: Log this and show flash */});
 
       this.get('userService').manage(auth0Data);
       this.get('settingsService').boot();
     } else {
-      return Ember.RSVP.resolve();
+      return resolve();
     }
   },
 
@@ -67,5 +66,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel() {
     this._super(...arguments);
     return this.signInFB();
+  },
+
+  actions: {
+    async didTransition() {
+      await this.checkMigration();
+    }
   }
 });

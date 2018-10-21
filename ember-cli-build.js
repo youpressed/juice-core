@@ -1,7 +1,6 @@
 /*jshint node:true*/
 /* global require, module */
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const fs = require('fs-extra');
 const Funnel = require('broccoli-funnel');
 const MergeTrees = require('broccoli-merge-trees');
 

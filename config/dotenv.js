@@ -1,4 +1,4 @@
-module.exports = function(env) {
+module.exports = function() {
   return {
     clientAllowedKeys: [
       'ALL_DOCS_ENDPOINT',

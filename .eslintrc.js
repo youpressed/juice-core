@@ -36,5 +36,8 @@ module.exports = {
         node: true
       }
     }
-  ]
+  ],
+  globals: {
+    window: true
+  }
 };

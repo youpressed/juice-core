@@ -6,7 +6,6 @@ import {
 } from 'juice-core/utils/sorting';
 
 const buildPayload = async function (production) {
-  const date = moment(production.get('date')).format('ddd MM/DD/YY');
 
   const ingredientsData = await NodeRender(production, 'ingredient');
   const ingredients = {
@@ -31,7 +30,7 @@ const buildPayload = async function (production) {
   const productionDetails = {
     renderer: 'detailed/productionDetails',
     title: 'Production Details',
-    date,
+    date: production.get('date'),
     collection: productionData
   };
 

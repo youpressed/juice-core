@@ -73,7 +73,7 @@
                   oninput={{action (action 'handleQuantityUpdate' edge) value="target.value"}}
                   onblur={{action 'handleQuantityBlur' edge}}>
 
-                <p class="italic text-lg ml-4">{{edge.b.uom}}</p>
+                <p class="italic text-lg ml-4">{{uom-format edge.b.uom}}</p>
               </div>
 
             </div>

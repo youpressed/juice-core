@@ -32,6 +32,7 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   async signInFB() {
+
     const auth0Data = this.get('session.data.authenticated.profile');
 
     this.get('firebaseApp');
@@ -39,9 +40,10 @@ export default Route.extend(ApplicationRouteMixin, {
     if(auth0Data) {
       await this.get('firebaseApp').auth()
         .signInWithCustomToken(auth0Data['https://app.youpressed.com/fbToken'])
-        .catch((/* error */) => {/* @TODO: Log this and show flash */});
+        .catch(() => this.get('session').invalidate());
 
       this.get('userService').manage(auth0Data);
+
       this.get('settingsService').boot();
     } else {
       return resolve();
@@ -60,7 +62,7 @@ export default Route.extend(ApplicationRouteMixin, {
 
   sessionInvalidated() {
     this.signOutFB();
-    window.location.replace('https://www.youpressed.com');
+    this.transitionTo('login');
   },
 
   beforeModel() {

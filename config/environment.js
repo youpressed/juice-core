@@ -8,14 +8,14 @@ module.exports = function(environment) {
     locationType: 'auto',
 
     firebase: {
-      apiKey: process.env.API_KEY,
-      authDomain: process.env.AUTH_DOMAIN,
-      databaseURL: process.env.DATABASE_URL,
-      storageBucket: process.env.STORAGE_BUCKET
+      apiKey: process.env.API_KEY || 'apikey',
+      authDomain: process.env.AUTH_DOMAIN || 'juice-core-dev.firebaseapp.com',
+      databaseURL: process.env.DATABASE_URL || 'https://juice-core-dev.firebaseio.com',
+      storageBucket: process.env.STORAGE_BUCKET || 'juice-core-dev.appspot.com'
     },
 
     intercom: {
-      appId: process.env.INTERCOM_APP_ID,
+      appId: process.env.INTERCOM_APP_ID || 'appId',
       enabled: true,
     },
 
@@ -24,14 +24,14 @@ module.exports = function(environment) {
       routeAfterAuthentication: 'productions',
       routeIfAlreadyAuthenticated: 'productions',
       auth0: {
-        domain: process.env.AUTH0_DOMAIN,
-        clientID: process.env.AUTH0_CLIENT_ID,
+        domain: process.env.AUTH0_DOMAIN || 'youpressed-dev.auth0.com',
+        clientID: process.env.AUTH0_CLIENT_ID || 'client',
         logoutReturnToURL: 'index',
       }
     },
 
     docService: {
-      allDocsEndpoint: process.env.ALL_DOCS_ENDPOINT
+      allDocsEndpoint: process.env.ALL_DOCS_ENDPOINT || 'docsUrl'
     },
 
     EmberENV: {
@@ -67,6 +67,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.urlAfterLogout = 'http://localhost:4200/login';
   }
 
   if (environment === 'test') {

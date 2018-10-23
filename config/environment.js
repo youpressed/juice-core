@@ -85,7 +85,6 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.urlAfterLogout = 'https://www.youpressed.com';
   }
 
   return ENV;

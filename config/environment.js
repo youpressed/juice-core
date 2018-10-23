@@ -81,6 +81,33 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV.APP.firebase = {
+      apiKey: 'apikey',
+      authDomain: 'http://firebase.com',
+      databaseURL: 'http://firebase.com',
+      storageBucket: 'http://firebase.com'
+    };
+
+    ENV.APP.intercom = {
+      appId: 'na',
+      enabled: true,
+    },
+
+    ENV.APP['ember-simple-auth'] = {
+      authenticationRoute: 'login',
+      routeAfterAuthentication: 'productions',
+      routeIfAlreadyAuthenticated: 'productions',
+      auth0: {
+        domain: 'domain',
+        clientID: 'clientid',
+        logoutReturnToURL: 'index',
+      }
+    };
+
+    ENV.APP['docService'] = {
+      allDocsEndpoint: 'http:/google.com'
+    };
   }
 
   if (environment === 'production') {

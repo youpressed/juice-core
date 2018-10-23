@@ -32,7 +32,6 @@
     "ember-cli-babel": "^6.16.0",
     "ember-cli-dependency-checker": "^3.0.0",
     "ember-cli-deprecation-workflow": "^1.0.0",
-    "ember-cli-dotenv": "^2.0.0",
     "ember-cli-eslint": "^4.2.3",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
@@ -81,6 +80,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
+    "dotenv": "^6.1.0",
     "ember-font-awesome": "^4.0.0-rc.4",
     "localforage": "^1.7.2",
     "ramda": "^0.25.0"

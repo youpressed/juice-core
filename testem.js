@@ -9,8 +9,12 @@ module.exports = {
   ],
   browser_args: {
     "Chrome": [
+      '--no-sandbox',
       '--headless',
       '--disable-gpu',
+      '--disable-dev-shm-usage',
+      '--disable-software-rasterizer',
+      '--mute-audio',
       '--remote-debugging-port=9222',
       '--window-size=1440,900'
     ]

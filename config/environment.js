@@ -17,9 +17,9 @@ module.exports = function(environment) {
 
     firebase: {
       apiKey: process.env.API_KEY || 'apikey',
-      authDomain: process.env.AUTH_DOMAIN || 'authDomain',
-      databaseURL: process.env.DATABASE_URL || 'dbUrl',
-      storageBucket: process.env.STORAGE_BUCKET || 'storageBucket'
+      authDomain: process.env.AUTH_DOMAIN || 'juice-core-dev.firebaseapp.com',
+      databaseURL: process.env.DATABASE_URL || 'https://juice-core-dev.firebaseio.com',
+      storageBucket: process.env.STORAGE_BUCKET || 'juice-core-dev.appspot.com'
     },
 
     intercom: {
@@ -32,7 +32,7 @@ module.exports = function(environment) {
       routeAfterAuthentication: 'productions',
       routeIfAlreadyAuthenticated: 'productions',
       auth0: {
-        domain: process.env.AUTH0_DOMAIN || 'domain',
+        domain: process.env.AUTH0_DOMAIN || 'youpressed-dev.auth0.com',
         clientID: process.env.AUTH0_CLIENT_ID || 'client',
         logoutReturnToURL: 'index',
       }

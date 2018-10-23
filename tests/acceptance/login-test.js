@@ -3,14 +3,12 @@ import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import fireBaseFixture from '../fixtures/firebase-default';
-// import fireBaseFixture2 from '../fixtures/firebase-default2';
 import sessionFixture from '../fixtures/session-default';
 
 import { authenticateSession } from 'ember-simple-auth/test-support';
 
 import {
   mockFirebase,
-  // teardownFirebase,
   mockAuthFirebase
 } from '../helpers/firebase-helpers';
 
@@ -20,10 +18,6 @@ import {
 
 module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
-
-  hooks.afterEach(function() {
-    // teardownFirebase(this);
-  });
 
   test('logs user and sets correct tenant data', async function(assert) {
     mockAuthFirebase(this);

@@ -22,6 +22,8 @@ export default {
         "production-id": {
           "label": "Crazy Production",
           "type": "production",
+          "ts": 1523136300570,
+          "date": "2018-04-07T21:25:00.565Z",
           "children": {
             "production<->product": true
           }

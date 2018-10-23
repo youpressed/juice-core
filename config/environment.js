@@ -67,6 +67,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.urlAfterLogout = 'http://localhost:4200/login';
   }
 
   if (environment === 'test') {
@@ -83,6 +85,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.urlAfterLogout = 'https://www.youpressed.com';
   }
 
   return ENV;

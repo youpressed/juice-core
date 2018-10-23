@@ -4,7 +4,9 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 export default Route.extend(UnauthenticatedRouteMixin, {
   actions: {
     didTransition() {
-      window.location.replace('https://www.youpressed.com');
+      // @TODO: Pull this redirect from config so we can work during dev
+      // window.location.replace(config.urlAfterLogout);
+      this.transitionTo('login');
     }
   }
 });

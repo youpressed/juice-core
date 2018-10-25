@@ -1,0 +1,4 @@
+codeship_example:
+  build:
+    image: codeship_example
+    dockerfile: Dockerfile

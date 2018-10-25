@@ -18,12 +18,13 @@ import {
   mockAuth0Lock
 } from '../helpers/auth0-helpers';
 
+import {
+  clearLocalStorage
+} from 'juice-core/tests/helpers';
+
 module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
-
-  hooks.afterEach(() => {
-    // console.log('');
-  });
+  clearLocalStorage(hooks);
 
   test('logs user and sets correct tenant data', async function(assert) {
     await mockAuth0Lock(this, sessionFixture);
@@ -112,7 +113,7 @@ module('Acceptance | login', function(hooks) {
 
     assert.dom('[data-test-id="date-label-row"]').exists({count: 1})
   });
-  
+
 
   // test('defaults to landing page on login', async function(assert) {
   //   mockFirebase(this);

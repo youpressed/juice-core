@@ -65,14 +65,9 @@ export default Route.extend(ApplicationRouteMixin, {
     this.transitionTo('login');
   },
 
-  beforeModel() {
-    this._super(...arguments);
-    return this.signInFB();
-  },
+  async beforeModel() {
+    await this.checkMigration();
 
-  actions: {
-    async didTransition() {
-      await this.checkMigration();
-    }
+    return this.signInFB();
   }
 });

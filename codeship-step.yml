@@ -1,0 +1,5 @@
+- type: parallel
+  name: example_parallel_step
+  steps:
+    - service: codeship_example
+      command: yarn test

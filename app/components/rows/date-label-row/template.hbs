@@ -1,7 +1,7 @@
 <div class="row-blue group" data-test-id="date-label-row">
   <div class="flex items-baseline">
     <div class="text-base italic mr-4">{{index}}.</div>
-    <div class="flex items-center text-2xl">
+    <div class="flex items-center text-2xl" data-test-id="date-row-date-label">
       <div class="bold">{{moment-format model.date "ddd" "YYYY-MM-DD"}}</div>
       <span class="ml-2 mr-2">-</span>
       <div class="bold">{{moment-format model.date "MM/DD" "YYYY-MM-DD"}}</div>
@@ -9,7 +9,7 @@
   </div>
   <div class="flex items-center">
     <div class="flex items-baseline">
-      <p class="text-2xl">{{totalCount}}</p>
+      <p class="text-2xl" data-test-id="date-row-total-count">{{totalCount}}</p>
       <p class="text-base ml-4">Total Units</p>
     </div>
     <div data-tether-id="menu">

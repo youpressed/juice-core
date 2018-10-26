@@ -66,6 +66,7 @@
     "ember-simple-auth": "^1.7.0",
     "ember-simple-auth-auth0": "^v4.2.0-beta.3",
     "ember-source": "~3.5.0",
+    "ember-test-selectors": "^2.0.0",
     "ember-tether": "^1.0.0",
     "ember-truth-helpers": "^2.1.0",
     "emberfire": "^2.0.10",

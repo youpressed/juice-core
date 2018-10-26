@@ -18,6 +18,7 @@ env:
     - JOBS=1
 
 before_install:
+  - export TZ=America/Los_Angeles
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
 

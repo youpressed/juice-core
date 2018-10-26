@@ -1,36 +1,20 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { visit } from '@ember/test-helpers';
 
 import fireBaseFixture from '../fixtures/firebase-production-default';
-import sessionFixture from '../fixtures/session-default';
 
 import {
-  mockFirebase,
-  mockAuthFirebase
-} from '../helpers/firebase-helpers';
-
-import {
-  mockAuth0Lock
-} from '../helpers/auth0-helpers';
-
-import {
-  clearLocalStorage
-} from 'juice-core/tests/helpers';
+  initAcceptanceTest
+} from '../helpers/acceptance-helpers';
 
 module('Acceptance | productions', function(hooks) {
-  setupApplicationTest(hooks);
-  clearLocalStorage(hooks);
+  initAcceptanceTest(hooks, fireBaseFixture);
 
-  test('shows current date and total units', async function(assert) {
-    await mockAuth0Lock(this, sessionFixture);
-
-    mockAuthFirebase(this);
-    mockFirebase(this, fireBaseFixture);
-
+  hooks.beforeEach(async () => {
     await visit('/productions');
-    assert.equal(currentURL(), '/productions');
+  });
 
+  test('shows date and total units of production', async function(assert) {
     assert.dom('[data-test-id="date-row-date-label"]').hasText('Sun - 04/08');
     assert.dom('[data-test-id="date-row-total-count"]').hasText('25');
   });

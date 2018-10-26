@@ -14,7 +14,7 @@ module('Acceptance | productions', function(hooks) {
   });
 
   test('shows date and total units of production', async function(assert) {
-    assert.dom('[data-test-date-row-label]').hasText('Sun - 04/08');
+    assert.dom('[data-test-date-row-label]').hasText('Sat - 04/07');
     assert.dom('[data-test-date-row-total-count]').hasText('25');
   });
 });

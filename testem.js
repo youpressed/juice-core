@@ -34,3 +34,6 @@ module.exports = {
     // }
   }
 };
+
+// Set the same timezone with CI server
+process.env.TZ = 'America/Los_Angeles';

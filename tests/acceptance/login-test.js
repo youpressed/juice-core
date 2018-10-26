@@ -1,6 +1,5 @@
 import { module, test } from 'qunit';
 import { visit } from '@ember/test-helpers';
-
 import fireBaseFixture from '../fixtures/firebase-default';
 
 import {
@@ -13,6 +12,6 @@ module('Acceptance | login', function(hooks) {
   test('logs user and sets correct tenant data', async function(assert) {
     await visit('/login');
 
-    assert.dom('[data-test-id="date-label-row"]').exists({count: 1})
+    assert.dom('[data-test-date-row]').exists({count: 1})
   });
 });

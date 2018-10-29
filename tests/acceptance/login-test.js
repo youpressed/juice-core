@@ -1,10 +1,10 @@
 import { module, test } from 'qunit';
 import { visit } from '@ember/test-helpers';
-import fireBaseFixture from '../fixtures/firebase-default';
+import fireBaseFixture from 'juice-core/tests/fixtures/firebase-default';
 
 import {
   initAcceptanceTest
-} from '../helpers/acceptance-helpers';
+} from 'juice-core/tests/helpers/acceptance-helpers';
 
 module('Acceptance | login', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);

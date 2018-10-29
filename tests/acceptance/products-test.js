@@ -9,6 +9,15 @@ import {
 module('Acceptance | products', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
+  test('displays active products as default', async function (assert) {
+    await visit('/products');
+    await click('[data-test-menu-toggle-button]');
+    await click('[data-test-menu-item-products]');
+
+    assert.dom('[data-test-label-row-label]').exists({count: 1});
+    assert.dom('[data-test-label-row-label]').hasText('Tasty Salad');
+  });
+
   test('displays production information correctly on view product page', async function(assert) {
     await visit('/products/product-id1');
     await click('[data-test-date-row-label]');

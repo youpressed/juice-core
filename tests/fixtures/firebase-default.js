@@ -85,6 +85,7 @@ export default {
           "label": "Tomato Sauce",
           "type": "recipe",
           "isActive": true,
+          "shelfLife": 2,
           "parents": {
             "product1<->recipe2": true
           },

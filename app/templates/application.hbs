@@ -34,9 +34,9 @@
         </ul>
       {{/burger.menu}}
       <button
+        data-test-menu-toggle-button
         class="pin-t pin-l absolute ml-4 mt-4"
         {{action burger.state.actions.toggle}}
-        data-test-menu-toggle-button
       >
         {{fa-icon "bars" class="text-5xl cursor-pointer"}}
       </button>

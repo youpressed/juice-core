@@ -42,6 +42,8 @@ export default {
         "product-id1": {
           "label": "Tasty Salad",
           "type": "product",
+          "isActive": true,
+          "shelfLife": 3,
           "parents": {
             "production<->product1": true
           },

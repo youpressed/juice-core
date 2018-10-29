@@ -28,6 +28,6 @@ module('Acceptance | products', function(hooks) {
     assert.dom('[data-test-node-active]').isChecked();
 
     assert.dom('[data-test-line-item-name]').hasText('Salty Sauce');
-    assert.dom('[data-test-line-item-qty]').hasValue('10');
+    assert.dom('[data-test-line-item-qty]').hasValue('4');
   });
 });

@@ -9,25 +9,25 @@ import {
 module('Acceptance | recipes', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
-  test('displays active recipes as default', async function (assert) {
+  hooks.beforeEach(async () => {
     await visit('/recipes');
     await click('[data-test-menu-toggle-button]');
     await click('[data-test-menu-item-recipes]');
+  });
 
+  test('displays active recipes as default', async function (assert) {
     assert.dom('[data-test-label-row-label]').exists({count: 1});
     assert.dom('[data-test-label-row-label]').hasText('Tomato Sauce');
   });
 
-  // test('displays production information correctly on view product page', async function(assert) {
-  //   await visit('/products/product-id1');
-  //   await click('[data-test-date-row-label]');
-  //   await click('[data-test-production-name]');
+  test('displays recipe information correctly', async function(assert) {
+    await click('[data-test-label-row-label]');
 
-  //   assert.dom('[data-test-desc-input="input-node-name"]').hasValue('Tasty Salad');
-  //   assert.dom('[data-test-desc-input="input-node-qty"]').hasValue('3');
-  //   assert.dom('[data-test-node-active]').isChecked();
+    assert.dom('[data-test-desc-input="input-node-name"]').hasValue('Tomato Sauce');
+    assert.dom('[data-test-desc-input="input-node-qty"]').hasValue('2');
+    assert.dom('[data-test-node-active]').isChecked();
 
-  //   assert.dom('[data-test-line-item-name]').hasText('Salty Sauce');
-  //   assert.dom('[data-test-line-item-qty]').hasValue('10');
-  // });
+    assert.dom('[data-test-line-item-name]').hasText('Salt');
+    assert.dom('[data-test-line-item-qty]').hasValue('7');
+  });
 });

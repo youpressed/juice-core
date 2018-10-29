@@ -18,7 +18,7 @@ module('Acceptance | products', function(hooks) {
     assert.dom('[data-test-label-row-label]').hasText('Tasty Salad');
   });
 
-  test('displays production information correctly on view product page', async function(assert) {
+  test('displays product information correctly', async function(assert) {
     await visit('/products/product-id1');
     await click('[data-test-date-row-label]');
     await click('[data-test-production-name]');

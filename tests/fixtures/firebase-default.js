@@ -7,25 +7,35 @@ export default {
           "b": "product-id1",
           "q": 10
         },
-        "product1<->recipe": {
+        "product1<->recipe1": {
           "a": "product-id1",
-          "b": "recipe-id",
-          "q": 10
+          "b": "recipe-id1",
+          "q": 4
+        },
+        "product1<->recipe2": {
+          "a": "product-id1",
+          "b": "recipe-id2",
+          "q": 8
         },
         "production<->product2": {
           "a": "production-id",
           "b": "product-id2",
           "q": 15
         },
-        "product2<->recipe": {
+        "product2<->recipe1": {
           "a": "product-id2",
-          "b": "recipe-id",
+          "b": "recipe-id1",
           "q": 20
         },
-        "recipe->ingredient": {
-          "a": "recipe-id",
+        "recipe1->ingredient": {
+          "a": "recipe-id1",
           "b": "ingredient-id",
-          "q": 10
+          "q": 12
+        },
+        "recipe2->ingredient": {
+          "a": "recipe-id2",
+          "b": "ingredient-id",
+          "q": 7
         }
       },
       "nodes": {
@@ -48,7 +58,7 @@ export default {
             "production<->product1": true
           },
           "children": {
-            "product1<->recipe": true
+            "product1<->recipe1": true
           }
         },
         "product-id2": {
@@ -58,24 +68,36 @@ export default {
             "production<->product2": true
           },
           "children": {
-            "product2<->recipe": true
+            "product2<->recipe1": true
           }
         },
-        "recipe-id": {
+        "recipe-id1": {
           "label": "Salty Sauce",
           "type": "recipe",
           "parents": {
-            "product<->recipe": true
+            "product1<->recipe1": true
           },
           "children": {
-            "recipe<->ingredient": true
+            "recipe1->ingredient": true
+          }
+        },
+        "recipe-id2": {
+          "label": "Tomato Sauce",
+          "type": "recipe",
+          "isActive": true,
+          "parents": {
+            "product1<->recipe2": true
+          },
+          "children": {
+            "recipe2->ingredient": true
           }
         },
         "ingredient-id": {
           "label": "Salt",
           "type": "ingredient",
           "parents": {
-            "recipe<->ingredient": true
+            "recipe1->ingredient": true,
+            "recipe2->ingredient": true
           }
         }
       }

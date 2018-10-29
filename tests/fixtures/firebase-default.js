@@ -29,12 +29,12 @@ export default {
         },
         "recipe1->ingredient": {
           "a": "recipe-id1",
-          "b": "ingredient-id",
+          "b": "ingredient-id1",
           "q": 12
         },
         "recipe2->ingredient": {
           "a": "recipe-id2",
-          "b": "ingredient-id",
+          "b": "ingredient-id1",
           "q": 7
         }
       },
@@ -93,13 +93,19 @@ export default {
             "recipe2->ingredient": true
           }
         },
-        "ingredient-id": {
+        "ingredient-id1": {
           "label": "Salt",
           "type": "ingredient",
+          "isActive": true,
+          "shelfLife": 5,
           "parents": {
             "recipe1->ingredient": true,
             "recipe2->ingredient": true
           }
+        },
+        "ingredient-id2": {
+          "label": "Tomato",
+          "type": "ingredient"
         }
       }
     }

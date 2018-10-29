@@ -6,7 +6,7 @@
   <div
     class="flex flex-col sm:flex-row items-baseline justify-between px-12 py-4"
   >
-    <div class="flex items-baseline">
+    <div class="flex items-baseline" data-test-production-date-row>
       <p class="text-lg mr-2 mb-6 italic">Production for:</p>
       <label
         class="border-b w-48 border-dotted border-grey-darkest text-3xl focus:border-blue"
@@ -127,6 +127,7 @@
           {{#link-to "products.show" edge.b.id tabindex="-1"}}
             <div
               class="text-2xl bold hover:border-blue-light border-b-2 border-blue-lightest"
+              data-test-production-name
             >
               {{edge.b.label}}
             </div>
@@ -138,6 +139,7 @@
           value={{edge.q}}
           oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
           onblur={{action "handleQuantityBlur" edge}}
+          data-test-production-child-quantity
         >
 
       </div>

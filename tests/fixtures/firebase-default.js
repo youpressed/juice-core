@@ -1,16 +1,26 @@
 export default {
-  "orgs" : {
-    "acme" : {
+  "orgs": {
+    "acme": {
       "edges": {
-        "production<->product": {
+        "production<->product1": {
           "a": "production-id",
-          "b": "product-id",
+          "b": "product-id1",
           "q": 10
         },
-        "product<->recipe": {
-          "a": "product-id",
+        "product1<->recipe": {
+          "a": "product-id1",
           "b": "recipe-id",
           "q": 10
+        },
+        "production<->product2": {
+          "a": "production-id",
+          "b": "product-id2",
+          "q": 15
+        },
+        "product2<->recipe": {
+          "a": "product-id2",
+          "b": "recipe-id",
+          "q": 20
         },
         "recipe->ingredient": {
           "a": "recipe-id",
@@ -23,19 +33,30 @@ export default {
           "label": "Crazy Production",
           "type": "production",
           "ts": 1523136300570,
-          "date": "2018-04-07T21:25:00.565Z",
+          "date": "2018-04-07T08:25:00.565Z",
           "children": {
-            "production<->product": true
+            "production<->product1": true,
+            "production<->product2": true
           }
         },
-        "product-id": {
+        "product-id1": {
           "label": "Tasty Salad",
           "type": "product",
           "parents": {
-            "production<->product": true
+            "production<->product1": true
           },
           "children": {
-            "product<->recipe": true
+            "product1<->recipe": true
+          }
+        },
+        "product-id2": {
+          "label": "Aswesome Lemon Juice",
+          "type": "product",
+          "parents": {
+            "production<->product2": true
+          },
+          "children": {
+            "product2<->recipe": true
           }
         },
         "recipe-id": {

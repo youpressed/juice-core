@@ -1,0 +1,10 @@
+{{input
+  id="node-tooltip-id"
+  value=search_term
+}}
+
+{{#ember-popover targetId="node-tooltip-id"}}
+  {{#each found_rows as |row|}}
+    <h1>{{row}}</h1>
+  {{/each}}
+{{/ember-popover}}

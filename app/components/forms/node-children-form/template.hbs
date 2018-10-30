@@ -4,6 +4,9 @@
       {{title}}
     </div>
     <div class="options-container">
+      {{forms/search-node-form}}
+    </div>
+    {{!-- <div class="options-container">
       {{#power-select
         options=validNodes
         searchField="label"
@@ -15,20 +18,7 @@
       }}
         {{node.label}}
       {{/power-select}}
-    </div>
-    <div class="options-container">
-      {{#power-select
-        options=validNodes
-        searchField="label"
-        search=(action "search")
-        onchange=(action "handleSelect")
-        placeholder="Search and add recipes or ingredients..."
-        beforeOptionsComponent=(component "power-select/before-options" autofocus=true)
-      as |node|
-      }}
-        {{node.label}}
-      {{/power-select}}
-    </div>
+    </div> --}}
   </div>
 
   <div class="line-items-container">

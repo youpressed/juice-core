@@ -46,6 +46,9 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  // Lightweight fuzzy-search library
+  app.import('node_modules/fuse.js/dist/fuse.min.js');
+
   const netlifyTree = new Funnel('netlify', {
     files: ['_redirects', '_headers']
   });

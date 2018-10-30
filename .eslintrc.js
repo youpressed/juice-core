@@ -38,6 +38,7 @@ module.exports = {
     }
   ],
   globals: {
-    window: true
+    window: true,
+    Fuse: true
   }
 };

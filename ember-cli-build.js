@@ -49,6 +49,9 @@ module.exports = function(defaults) {
   // Lightweight fuzzy-search library
   app.import('node_modules/fuse.js/dist/fuse.min.js');
 
+  // SEARCH TECHNOLOGY
+  app.import('node_modules/algoliasearch/dist/algoliasearchLite.min.js');
+
   const netlifyTree = new Funnel('netlify', {
     files: ['_redirects', '_headers']
   });

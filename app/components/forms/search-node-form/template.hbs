@@ -1,18 +1,9 @@
 {{input
-  id="node-tooltip-id"
-  value=search_term
+  value=searchTerm
 }}
 
-<div id="search-box">
-  <!-- SearchBox widget will appear here -->
-</div>
-
-<div id="hits">
-  <!-- Hits widget will appear here -->
-</div>
-
-{{#ember-popover targetId="node-tooltip-id"}}
-  {{#each found_rows as |row|}}
-    <h1>{{row.title}}</h1>
+<div class="block">
+  {{#each (await results) as |row|}}
+    {{row.label}}
   {{/each}}
-{{/ember-popover}}
+</div>

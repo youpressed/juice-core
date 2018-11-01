@@ -4,7 +4,10 @@
       {{title}}
     </div>
     <div class="options-container">
-      {{forms/search-node-form}}
+      {{forms/search-node-form
+        frontloadData=validNodes
+        indexName="ingredients"
+      }}
     </div>
     {{!-- <div class="options-container">
       {{#power-select

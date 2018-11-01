@@ -1,25 +1,42 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { task } from 'ember-concurrency';
+
+const options = {
+  keys: ['label'],
+  threshold: 0.1,
+};
+
+const client = window.algoliasearch('G9G4H982VD', 'a1d260eff2a0be134462d031d611b146');
 
 export default Component.extend({
-  search_term: '',
-  found_rows: computed('search_term', function(){
+  searchTerm: '',
+  indexName: 'ingredients',
 
-    var books = [{
-      'title': "Old Man's War",
-      'author': 'John Scalzi',
-      'tags': ['fiction']
-    }, {
-      'title': 'The Lock Artist',
-      'author': 'Steve',
-      'tags': ['thriller']
-    }];
+  fuseService: computed('frontloadData.[]', function(){
+    return new window.Fuse(this.get('frontloadData'), options);
+  }),
 
-    var options = {
-      keys: ['author', 'tags']
-    };
-    var fuse = new window.Fuse(books, options);
-    return fuse.search(this.get('search_term'));
+  remoteIndexService: computed('indexName', function(){
+    return client.initIndex(this.get('indexName'));
+  }),
+
+  results: computed('searchTerm', function(){
+    let searchTerm = this.get('searchTerm');
+    if (isEmpty(searchTerm)) {
+      return [];
+    }
+
+    let fuse_results = this.get('fuseService').search(searchTerm);
+    if (!isEmpty(fuse_results)) {
+      return fuse_results;
+    }
+
+    return this.get('searchOnRemoteEndpoint').perform(searchTerm);
+  }),
+
+  searchOnRemoteEndpoint: task(function* (searchTerm) {
+    return (yield this.get('remoteIndexService').search(searchTerm)).hits;
   })
 });

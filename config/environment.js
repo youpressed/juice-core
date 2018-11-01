@@ -19,6 +19,11 @@ module.exports = function(environment) {
       enabled: true,
     },
 
+    algolia: {
+      appId: process.env.ALGOLIA_APPLICATION_ID || 'appId',
+      searchApiId: process.env.ALGOLIA_SEARCH_API_ID || 'searchApiId',
+    },
+
     'ember-simple-auth': {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'productions',

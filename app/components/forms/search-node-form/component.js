@@ -2,13 +2,14 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { task } from 'ember-concurrency';
+import config from 'juice-core/config/environment';
 
 const options = {
   keys: ['label'],
   threshold: 0.1,
 };
 
-const client = window.algoliasearch('G9G4H982VD', 'a1d260eff2a0be134462d031d611b146');
+const client = window.algoliasearch(config.algolia.appId, config.algolia.searchApiId);
 
 export default Component.extend({
   searchTerm: '',

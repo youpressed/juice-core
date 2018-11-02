@@ -1,6 +1,12 @@
 import { isEmpty } from '@ember/utils';
 import Component from '@ember/component';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
+import { task } from 'ember-concurrency';
+import config from 'juice-core/config/environment';
+import _ from 'lodash';
+
+const client = window.algoliasearch(config.algolia.appId, config.algolia.searchApiId);
+const index = client.initIndex('nodes');
 
 export default Component.extend({
   uoms: unitTypes,
@@ -11,24 +17,28 @@ export default Component.extend({
     this.set('showCreateIngredient', true);
   },
 
-  actions: {
-    search(q, data) {
-      const reg = new RegExp(q, "i");
-      const matches = data.options.filter(n => reg.test(n.get('label')));
+  searchTask: task(function* (term, data) {
+    const reg = new RegExp(term, "i");
+    let matches = data.options.filter(n => reg.test(n.get('label')));
+    if (!isEmpty(matches)) {
+      return matches;
+    }
 
-      if(isEmpty(matches)) {
-        return [
-          {
-            label:`${q} not found, create it...`,
-            stashedName: q,
-            action:'createIngredient'
-          }
-        ]
-      } else {
-        return matches;
+    matches = (yield index.search(term)).hits;
+    if (!isEmpty(matches)) {
+      return _.each(matches, i => i.fromRemote = true);
+    }
+
+    return [
+      {
+        label: `${term} not found, create it...`,
+        stashedName: term,
+        action: 'createIngredient'
       }
-    },
+    ]
+  }),
 
+  actions: {
     cancelCreateIngredient() {
       this.set('showCreateIngredient', false);
     },
@@ -38,12 +48,16 @@ export default Component.extend({
       this.set('showCreateIngredient', false);
     },
 
-    handleSelect(option) {
+    async handleSelect(option) {
       if(option.action === "createIngredient") {
-        this.startCreateIngredient(option.stashedName);
-      } else {
-        this.get('addNode')(option);
+        return this.startCreateIngredient(option.stashedName);
       }
+
+      if(option.fromRemote) {
+        return this.get('cloneGrandCentralNode')(option.fbId);
+      }
+
+      this.get('addNode')(option);
     }
   }
 });

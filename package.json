@@ -57,6 +57,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-modal-dialog": "^3.0.0-beta.0",
     "ember-moment": "^7.8.0",
+    "ember-paper": "^1.0.0-beta.18",
     "ember-percy": "^1.5.0",
     "ember-pikaday": "^2.2.2",
     "ember-power-select": "^2.0.9",
@@ -75,7 +76,7 @@
     "liquid-wormhole": "^2.1.5",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "sass": "^1.14.2"
+    "sass": "^1.14.3"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

@@ -10,12 +10,12 @@
     </div>
 
     <div class="invisible md:visible">
-      {{ui/icon-label-button
-        class="btn-blue"
-        click=createAction
-        label=createLabel
-        icon="plus"
-      }}
+      {{#paper-button
+          raised=true
+          primary=true
+          onClick=createAction}}
+            {{createLabel}}
+      {{/paper-button}}
     </div>
   </div>
 

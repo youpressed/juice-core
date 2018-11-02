@@ -49,11 +49,6 @@ module.exports = function(defaults) {
   // Lightweight fuzzy-search library
   app.import('node_modules/fuse.js/dist/fuse.min.js');
 
-  // Lightning-fast search by Algolia
-  app.import('node_modules/instantsearch.js/dist/instantsearch.min.js');
-  app.import('node_modules/instantsearch.js/dist/instantsearch.min.css');
-  app.import('node_modules/instantsearch.js/dist/instantsearch-theme-algolia.min.css');
-
   const netlifyTree = new Funnel('netlify', {
     files: ['_redirects', '_headers']
   });

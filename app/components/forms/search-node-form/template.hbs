@@ -3,6 +3,14 @@
   value=search_term
 }}
 
+<div id="search-box">
+  <!-- SearchBox widget will appear here -->
+</div>
+
+<div id="hits">
+  <!-- Hits widget will appear here -->
+</div>
+
 {{#ember-popover targetId="node-tooltip-id"}}
   {{#each found_rows as |row|}}
     <h1>{{row.title}}</h1>

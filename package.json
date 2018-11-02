@@ -87,6 +87,7 @@
   "dependencies": {
     "ember-font-awesome": "^4.0.0-rc.4",
     "fuse.js": "^3.3.0",
+    "instantsearch.js": "^2.10.3",
     "localforage": "^1.7.2",
     "ramda": "^0.25.0"
   }

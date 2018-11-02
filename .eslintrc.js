@@ -38,7 +38,6 @@ module.exports = {
     }
   ],
   globals: {
-    window: true,
-    Fuse: true
+    window: true
   }
 };

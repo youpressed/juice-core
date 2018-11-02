@@ -24,6 +24,11 @@ module.exports = function(environment) {
       searchApiId: process.env.ALGOLIA_SEARCH_API_ID || 'searchApiId',
     },
 
+    grandCentralFirebase: {
+      dbUrl: process.env.GRAND_CENTRAL_FB_DATABASE_URL || 'dbUrl',
+      orgId: process.env.GRAND_CENTRAL_FB_ORG_ID || 'orgId',
+    },
+
     'ember-simple-auth': {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'productions',

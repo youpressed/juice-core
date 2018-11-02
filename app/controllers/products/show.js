@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   store: service(),
+  grandCentralFirebase: service(),
 
   actions: {
     navigateTo(path) {
@@ -31,12 +32,16 @@ export default Controller.extend({
       b.save();
     },
 
+    async cloneGrandCentralNode(currentNode, childId) {
+      await this.get('grandCentralFirebase').addChildNode(currentNode, childId);
+    },
+
     async createAndAddNode(a, data) {
       const { type, label, description, uom } = data;
-      const b = this.get('store').createRecord('node', {type, label, description, uom});
+      const b = this.get('store').createRecord('node', { type, label, description, uom });
       await b.save();
 
-      const edge = this.get('store').createRecord('edge', {a, b, q: 0, uom});
+      const edge = this.get('store').createRecord('edge', { a, b, q: 0, uom });
       await edge.save();
 
       a.save();

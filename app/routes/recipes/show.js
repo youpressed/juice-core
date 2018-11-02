@@ -1,8 +1,11 @@
 import { Promise } from 'rsvp';
 import Route from '@ember/routing/route';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import { inject as service } from '@ember/service';
 
 export default Route.extend(AuthenticatedRouteMixin, {
+  grandCentralFirebase: service(),
+
   setupController(controller, model) {
     controller.set('model', model[0]);
     controller.set('nodes', this.store.peekAll('node'));
@@ -47,6 +50,10 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
       a.save();
       b.save();
+    },
+
+    async cloneGrandCentralNode(currentNode, childId) {
+      await this.get('grandCentralFirebase').addChildNode(currentNode, childId);
     },
 
     async createAndAddNode(a, data) {

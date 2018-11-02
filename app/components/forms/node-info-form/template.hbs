@@ -19,6 +19,7 @@
         description="Name"
         placeholder="Start typing..."
         update=(action handleUpdate model "label")
+        dataTestId="node-name"
       }}
     </div>
 
@@ -28,6 +29,7 @@
         description="Shelf Life"
         placeholder="Qty..."
         update=(action handleUpdate model "shelfLife")
+        dataTestId="node-qty"
       }}
     </div>
 
@@ -57,6 +59,7 @@
             "isActive")
           value="target.checked"
         }}
+        data-test-node-active
       >
 
       <span class="text-lg">

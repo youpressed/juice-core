@@ -8,6 +8,8 @@ export default Controller.extend({
   paperTheme: service(),
 
   init() {
+    this._super(...arguments);
+
     const primary = generatePalette('#355C7D');
     const accent = generatePalette('#99B898');
     const warn = generatePalette('#FC3FBB');

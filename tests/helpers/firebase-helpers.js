@@ -37,8 +37,15 @@ async function teardownFirebase(context) {
   return await destroyFirebaseApps();
 }
 
+function mockFirebaseData(hooks, fixtureData) {
+  hooks.beforeEach(function () {
+    mockFirebase(this, fixtureData);
+  });
+}
+
 export {
   mockFirebase,
+  mockFirebaseData,
   teardownFirebase,
   mockAuthFirebase
 }

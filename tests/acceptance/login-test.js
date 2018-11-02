@@ -1,47 +1,17 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
-
-import fireBaseFixture from '../fixtures/firebase-default';
-// import fireBaseFixture2 from '../fixtures/firebase-default2';
-import sessionFixture from '../fixtures/session-default';
-
-import { authenticateSession } from 'ember-simple-auth/test-support';
+import { visit } from '@ember/test-helpers';
+import fireBaseFixture from 'juice-core/tests/fixtures/firebase-default';
 
 import {
-  mockFirebase,
-  // teardownFirebase,
-  mockAuthFirebase
-} from '../helpers/firebase-helpers';
-
-import {
-  mockAuth0Lock
-} from '../helpers/auth0-helpers';
+  initAcceptanceTest
+} from 'juice-core/tests/helpers/acceptance-helpers';
 
 module('Acceptance | login', function(hooks) {
-  setupApplicationTest(hooks);
-
-  hooks.afterEach(function() {
-    // teardownFirebase(this);
-  });
+  initAcceptanceTest(hooks, fireBaseFixture);
 
   test('logs user and sets correct tenant data', async function(assert) {
-    mockAuthFirebase(this);
-    mockFirebase(this, fireBaseFixture);
-
-    await mockAuth0Lock(this, sessionFixture);
-
     await visit('/login');
 
-    assert.dom('[data-test-id="date-label-row"]').exists({count: 1})
-  });
-
-  test('defaults to landing page on login', async function(assert) {
-    mockFirebase(this);
-    authenticateSession();
-
-    await visit('/login');
-
-    assert.equal(currentURL(), '/productions');
+    assert.dom('[data-test-date-row]').exists({count: 1})
   });
 });

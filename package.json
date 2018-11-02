@@ -69,9 +69,11 @@
     "ember-source": "~3.5.0",
     "ember-test-selectors": "^2.0.0",
     "ember-tether": "^1.0.0",
+    "ember-tooltips": "^3.0.0",
     "ember-truth-helpers": "^2.1.0",
     "emberfire": "^2.0.10",
     "eslint-plugin-ember": "^5.2.0",
+    "fuse": "^0.4.0",
     "liquid-fire": "^0.29.5",
     "liquid-tether": "^2.0.7",
     "liquid-wormhole": "^2.1.5",
@@ -84,6 +86,7 @@
   },
   "dependencies": {
     "ember-font-awesome": "^4.0.0-rc.4",
+    "fuse.js": "^3.3.0",
     "localforage": "^1.7.2",
     "ramda": "^0.25.0"
   }

@@ -1,9 +1,9 @@
 import { Promise } from 'rsvp';
-import Route from '@ember/routing/route';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import { inject as service } from '@ember/service';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+import AuthenticatedRoute from 'juice-core/routes/authenticated-route';
+
+export default AuthenticatedRoute.extend({
   grandCentralFirebase: service(),
 
   setupController(controller, model) {

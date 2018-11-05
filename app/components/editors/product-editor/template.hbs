@@ -12,9 +12,37 @@
 </div> --}}
 
 {{#containers/section-container title="Edit Product"}}
-  <div class="card-blue mt-8 flex">
-    <p class="text-5xl font-light p-4 pl-8 text-grey-dark">{{model.label}}</p>
 
+  <div class="flex items-center mt-8">
+    <div class="flex w-6/7 card-blue">
+      <input
+        class="text-5xl font-light p-4 pl-8 text-grey-darker bg-transparent"
+        value={{model.label}}
+        oninput={{action
+          (action
+            handleUpdate
+            model
+            "label")
+          value="target.value"
+        }}
+      >
+    </div>
+    <div class="flex justify-center w-1/7 text-2xl text-grey-dark">
+      {{fa-icon "cog"}}
+    </div>
+  </div>
+
+  <div class="card-yellow mt-8">
+    {{forms/node-children-form
+      title="Product Recipe"
+      validNodes=validNodes
+      model=model
+      addNode=addNode
+      handleUpdate=handleUpdate
+      createAndAddNode=createAndAddNode
+      cloneGrandCentralNode=cloneGrandCentralNode
+      deleteEdge=deleteEdge
+    }}
   </div>
 {{/containers/section-container}}
 

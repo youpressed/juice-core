@@ -4,6 +4,7 @@ import { unitTypes } from 'juice-core/constants/unit-conversions';
 import { task } from 'ember-concurrency';
 import config from 'juice-core/config/environment';
 import _ from 'lodash';
+import { notEmpty } from '@ember/object/computed';
 
 const client = window.algoliasearch(config.algolia.appId, config.algolia.searchApiId);
 const index = client.initIndex('nodes');
@@ -11,6 +12,7 @@ const index = client.initIndex('nodes');
 export default Component.extend({
   uoms: unitTypes,
   showCreateIngredient: false,
+  hasChildren: notEmpty("model.children"),
 
   startCreateIngredient(newName) {
     this.set('tempIngredientName', newName);
@@ -20,6 +22,8 @@ export default Component.extend({
   searchTask: task(function* (term, data) {
     const reg = new RegExp(term, "i");
     let matches = data.options.filter(n => reg.test(n.get('label')));
+    matches = _.take(matches, 5);
+
     if (!isEmpty(matches)) {
       return matches;
     }

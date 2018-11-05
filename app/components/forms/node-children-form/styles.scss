@@ -1,30 +1,11 @@
-.form-header {
-	padding: 2em;
-	border-bottom: 1px dashed $dark-grey;
-}
 
-.title {
-	font-size: 1.4em;
-	margin-bottom: 1em;
-}
-
-.unit-container {
-	width: 4em;
-}
-
-.options-container > .ember-power-select-trigger {
-	border-radius: 0;
-	padding: 0.5em;
-}
-
-.options-container > .ember-power-select-trigger .ember-power-select-status-icon {
-	display: none;
-}
-
-.line-items-container {
-	padding-top: 2em;
-}
-
-.line-item-row {
-	padding: 0.5em 2em;
+.search {
+  .ember-power-select-trigger {
+    border-bottom: 1px solid rgba(237, 233, 237, 0.5);
+    font-size: 2em;
+    color: red;
+    font-style: italic;
+    font-weight: 300;
+    padding-left: 2rem;
+  }
 }

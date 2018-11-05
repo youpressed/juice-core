@@ -42,6 +42,7 @@ module.exports = {
   ],
   globals: {
     server: true,
-    window: true
+    window: true,
+    jwplayer: true
   }
 };

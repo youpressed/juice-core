@@ -82,6 +82,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
+
     ENV.urlAfterLogout = 'http://localhost:4200/login';
   }
 

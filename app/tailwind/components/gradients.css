@@ -5,3 +5,7 @@
 .grad-blue {
   background: linear-gradient(266.6deg, #FBFCFF -14.76%, #FBFCFF 99.95%);
 }
+
+.grad-green {
+  background: linear-gradient(270deg, #DFFFDA -0.02%, #DFFFDA 105.86%);
+}

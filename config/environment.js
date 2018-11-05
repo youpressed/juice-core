@@ -25,7 +25,7 @@ module.exports = function(environment) {
     },
 
     grandCentralFirebase: {
-      dbUrl: process.env.GRAND_CENTRAL_FB_DATABASE_URL || 'dbUrl',
+      dbUrl: process.env.GRAND_CENTRAL_FB_DATABASE_URL || 'juice-core-dev.firebaseapp.com',
       orgId: process.env.GRAND_CENTRAL_FB_ORG_ID || 'orgId',
     },
 

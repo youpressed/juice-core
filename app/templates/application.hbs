@@ -17,15 +17,15 @@
           {{/menu.item}}
 
           {{#menu.item}}
-            {{link-to "Products" "products"}}
+            {{link-to "Products" "products" data-test-menu-item-products}}
           {{/menu.item}}
 
           {{#menu.item}}
-            {{link-to "Recipes" "recipes"}}
+            {{link-to "Recipes" "recipes" data-test-menu-item-recipes}}
           {{/menu.item}}
 
           {{#menu.item}}
-            {{link-to "Ingredients" "ingredients"}}
+            {{link-to "Ingredients" "ingredients" data-test-menu-item-ingredients}}
           {{/menu.item}}
 
           {{#menu.item}}
@@ -34,6 +34,7 @@
         </ul>
       {{/burger.menu}}
       <button
+        data-test-menu-toggle-button
         class="pin-t pin-l absolute ml-4 mt-4"
         {{action burger.state.actions.toggle}}
       >

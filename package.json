@@ -37,6 +37,7 @@
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
     "ember-cli-inject-live-reload": "^1.8.2",
+    "ember-cli-mirage": "^0.4.9",
     "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-sass": "^8.0.1",
     "ember-cli-shims": "^1.2.0",
@@ -47,6 +48,7 @@
     "ember-collapsible-panel": "^3.1.1",
     "ember-component-css": "^0.6.5",
     "ember-composable-helpers": "^2.0.1",
+    "ember-concurrency": "^0.8.22",
     "ember-data": "~3.4.0",
     "ember-drag-drop": "^0.5.1",
     "ember-export-application-global": "^2.0.0",
@@ -57,6 +59,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-modal-dialog": "^3.0.0-beta.0",
     "ember-moment": "^7.8.0",
+    "ember-paper": "^1.0.0-beta.18",
     "ember-percy": "^1.5.0",
     "ember-pikaday": "^2.2.2",
     "ember-power-select": "^2.0.9",
@@ -65,7 +68,8 @@
     "ember-route-action-helper": "^2.0.3",
     "ember-simple-auth": "^1.7.0",
     "ember-simple-auth-auth0": "^v4.2.0-beta.3",
-    "ember-source": "~3.4.0",
+    "ember-source": "~3.5.0",
+    "ember-test-selectors": "^2.0.0",
     "ember-tether": "^1.0.0",
     "ember-truth-helpers": "^2.1.0",
     "emberfire": "^2.0.10",
@@ -75,12 +79,13 @@
     "liquid-wormhole": "^2.1.5",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "sass": "^1.14.2"
+    "sass": "^1.14.3"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
+    "algoliasearch": "^3.30.0",
     "ember-font-awesome": "^4.0.0-rc.4",
     "localforage": "^1.7.2",
     "ramda": "^0.25.0"

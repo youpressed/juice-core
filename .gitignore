@@ -17,6 +17,8 @@
 /testem.log
 /yarn-error.log
 .env
+.vscode/
+jsconfig.json
 
 # ember-try
 /.node_modules.ember-try/

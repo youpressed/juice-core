@@ -7,25 +7,29 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('products', function() {
-    this.route('show', {path:':product_id'});
-  });
 
-  this.route('productions', function() {
-    this.route('show', {path:'/edit/:production_id'});
-  });
+  this.route('authenticated', {path:'a'}, function() {
+    this.route('products', function() {
+      this.route('show', {path:':product_id'});
+    });
 
-  this.route('recipes', function() {
-    this.route('show', {path:':recipe_id'});
-  });
+    this.route('productions', function() {
+      this.route('show', {path:':production_id'});
+    });
 
-  this.route('ingredients', function() {
-    this.route('show', {path:':ingredient_id'});
+    this.route('recipes', function() {
+      this.route('show', {path:':recipe_id'});
+    });
+
+    this.route('ingredients', function() {
+      this.route('show', {path:':ingredient_id'});
+    });
+
+    this.route('settings');
   });
 
   this.route('signup');
   this.route('login');
-  this.route('settings');
 });
 
 export default Router;

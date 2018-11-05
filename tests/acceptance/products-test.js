@@ -10,7 +10,7 @@ module('Acceptance | products', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   test('displays active products as default', async function (assert) {
-    await visit('/products');
+    await visit('/authenticated/products');
     await click('[data-test-menu-toggle-button]');
     await click('[data-test-menu-item-products]');
 
@@ -19,10 +19,8 @@ module('Acceptance | products', function(hooks) {
   });
 
   test('displays product information correctly', async function(assert) {
-    await visit('/products/product-id1');
-    await click('[data-test-date-row-label]');
-    await click('[data-test-production-name]');
-
+    await visit('/authenticated/products/product-id1');
+    
     assert.dom('[data-test-desc-input="input-node-name"]').hasValue('Tasty Salad');
     assert.dom('[data-test-desc-input="input-node-qty"]').hasValue('3');
     assert.dom('[data-test-node-active]').isChecked();

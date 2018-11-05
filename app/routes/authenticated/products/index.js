@@ -11,7 +11,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     showNode(node) {
-      this.transitionTo('products.show', node.get('id'));
+      this.transitionTo('authenticated.products.show', node.get('id'));
     },
 
     async createNode() {
@@ -39,7 +39,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
       await node.save();
 
-      this.transitionTo('products.show', node.get('id'));
+      this.transitionTo('authenticated.products.show', node.get('id'));
     }
   }
 });

@@ -6,7 +6,7 @@ export default Controller.extend({
 
   actions: {
     showNode(node) {
-      this.transitionToRoute('ingredients.show', node.get('id'));
+      this.transitionToRoute('authenticated.ingredients.show', node.get('id'));
     },
 
     async createNode() {
@@ -19,7 +19,7 @@ export default Controller.extend({
 
       await node.save();
 
-      this.transitionToRoute('ingredients.show', node.get('id'));
+      this.transitionToRoute('authenticated.ingredients.show', node.get('id'));
     }
   }
 });

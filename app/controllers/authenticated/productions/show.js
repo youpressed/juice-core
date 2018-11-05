@@ -28,7 +28,7 @@ export default Controller.extend({
     },
 
     navigateToProductionSheets(productionId) {
-      this.transitionToRoute('productions.sheets', productionId);
+      this.transitionToRoute('authenticated.productions.sheets', productionId);
     },
 
     handleUpdate(model, key, val) {
@@ -59,7 +59,7 @@ export default Controller.extend({
 
       node.destroyRecord();
 
-      this.transitionToRoute('products');
+      this.transitionToRoute('authenticated.products');
     }
   }
 });

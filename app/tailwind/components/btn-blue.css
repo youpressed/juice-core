@@ -1,11 +1,18 @@
-.btn-blue {
+.btn {
   @apply flex items-baseline justify-center;
   @apply p-4;
-  @apply bg-blue-dark text-white;
+  @apply text-white;
   @apply shadow rounded;
   @apply cursor-pointer;
+  transition: height 1s ease-out;
+}
+
+.btn-blue {
+  @apply btn;
+  background: linear-gradient(69.68deg, #608AF7 0%, #789EFF 100%);
 }
 
 .btn-blue:hover {
-  @apply bg-blue-light;
+  @apply btn;
+  background: linear-gradient(69.68deg, #8AA9F9 0%, #95B3FF 100%);
 }

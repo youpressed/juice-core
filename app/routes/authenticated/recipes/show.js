@@ -101,7 +101,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
       node.destroyRecord();
 
-      this.transitionTo('recipes');
+      this.transitionTo('authenticated.recipes');
     }
   }
 });

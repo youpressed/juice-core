@@ -10,7 +10,7 @@ module('Acceptance | recipes', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   hooks.beforeEach(async () => {
-    await visit('/recipes');
+    await visit('/authenticated/recipes');
     await click('[data-test-menu-toggle-button]');
     await click('[data-test-menu-item-recipes]');
   });

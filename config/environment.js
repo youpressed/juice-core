@@ -29,10 +29,14 @@ module.exports = function(environment) {
       orgId: process.env.GRAND_CENTRAL_FB_ORG_ID || 'orgId',
     },
 
+    jwplayer: {
+      key: process.env.JWPLAYER_KEY || 'key',
+    },
+
     'ember-simple-auth': {
       authenticationRoute: 'login',
-      routeAfterAuthentication: 'productions',
-      routeIfAlreadyAuthenticated: 'productions',
+      routeAfterAuthentication: 'authenticated',
+      routeIfAlreadyAuthenticated: 'authenticated',
       auth0: {
         domain: process.env.AUTH0_DOMAIN || 'youpressed-dev.auth0.com',
         clientID: process.env.AUTH0_CLIENT_ID || 'client',

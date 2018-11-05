@@ -1,4 +1,25 @@
-{{forms/node-info-form
+{{!-- <div class="flex flex-col items-center min-h-screen min-w-full pt-12">
+    <div class="w-9/11">
+      <h1 class="section-title">
+        {{title}}
+      </h1>
+    </div>
+    <div class="w-7/11">
+      <div class="card-yellow">
+        {{yield}}
+      </div>
+    </div>
+</div> --}}
+
+{{#containers/section-container title="Edit Product"}}
+  <div class="card-blue mt-8 flex">
+    <p class="text-5xl font-light p-4 pl-8 text-grey-dark">{{model.label}}</p>
+
+  </div>
+{{/containers/section-container}}
+
+
+{{!-- {{forms/node-info-form
   title="Product Editor"
   instructions="Add the basic info for this product."
   model=model
@@ -21,4 +42,4 @@
   destroyLabel="Delete Product"
   nodeLabel=model.label
   node=model
-}}
+}} --}}

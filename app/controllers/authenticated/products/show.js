@@ -68,7 +68,7 @@ export default Controller.extend({
 
       node.destroyRecord();
 
-      this.transitionToRoute('products');
+      this.transitionToRoute('authenticated.products');
     }
   }
 });

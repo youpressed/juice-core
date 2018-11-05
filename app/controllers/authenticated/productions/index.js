@@ -21,7 +21,7 @@ export default Controller.extend({
 
   actions: {
     showNode(node) {
-      this.transitionToRoute('productions.show', node.get('id'));
+      this.transitionToRoute('authenticated.productions.show', node.get('id'));
     },
 
     async createNode() {
@@ -44,7 +44,7 @@ export default Controller.extend({
           return edge.save().then(() => all([node.save(), b.save()]));
         }));
 
-      this.transitionToRoute('productions.show', node.get('id'));
+      this.transitionToRoute('authenticated.productions.show', node.get('id'));
     },
 
     async destroyNode(node) {

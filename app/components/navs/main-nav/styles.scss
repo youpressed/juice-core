@@ -1,29 +1,10 @@
-& {
-  padding: 1em 1em;
-  background: $dark-orange;
-  color: $dark-grey;
-  align-items: center;
-  font-weight: 500;
-}
-
-.logo {
-	font-size: 1.5em;
-	margin-right: 1em;
-}
-
-.logo a {
-	border: none;
-	text-decoration: none;
-}
-
-.main-menu-button {
-	margin-right: 1em;
-}
-
-.account-ui-container {
-	align-items: baseline;
-}
-
-.account-ui-container .divider {
-	margin: 0 1.2em;
+.nav-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #F2F8FF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.03);
+  border-right: 1px solid rgba(151, 186, 228, 0.4);
+  font-size: 0.5625rem;
 }

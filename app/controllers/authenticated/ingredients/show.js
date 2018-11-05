@@ -44,7 +44,7 @@ export default Controller.extend({
 
       node.destroyRecord();
 
-      this.transitionToRoute('ingredients');
+      this.transitionToRoute('authenticated.ingredients');
     }
   }
 });

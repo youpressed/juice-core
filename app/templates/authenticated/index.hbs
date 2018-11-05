@@ -1,0 +1,25 @@
+<div class="min-h-screen flex justify-center items-center">
+  <div class="card-yellow w-7/11">
+    <div class="flex flex-col p-12">
+      <h1 class="font-thin text-5xl">Welcome to You Pressed</h1>
+      <h1 class="font-thin text-2xl">Here’s a short tutorial to get started</h1>
+
+      <div class="mt-12 rounded-lg overflow-hidden">
+        {{media/video-player
+          image="95HvdlvK-1920.jpg"
+          mediaId="95HvdlvK"
+          file="95HvdlvK-thOJELFu.mp4"
+        }}
+      </div>
+
+      <div class="flex justify-end mt-12">
+        {{#link-to
+          "authenticated.products"
+          class="btn-blue uppercase text-2xl"
+        }}
+          Create Product
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+</div>

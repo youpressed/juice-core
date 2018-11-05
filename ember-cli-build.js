@@ -46,6 +46,9 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  // SEARCH TECHNOLOGY
+  app.import('node_modules/algoliasearch/dist/algoliasearchLite.min.js');
+
   const netlifyTree = new Funnel('netlify', {
     files: ['_redirects', '_headers']
   });

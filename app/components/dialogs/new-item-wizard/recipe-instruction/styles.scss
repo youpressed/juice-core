@@ -1,0 +1,49 @@
+& {
+  // padding: 1em;
+  border-radius: 6px;
+  background: $light-blue;
+  color: $dark-grey;
+
+  > .ui-container {
+    border-top: 1px dashed $dark-grey;
+    padding: 1em;
+    background: $medium-blue;
+  }
+}
+
+.header {
+  padding: 1em;
+  background: $medium-blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.content {
+  padding: 0 1em;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-right: 5em;
+}
+
+.form-field {
+  margin-bottom: 2em;
+}
+
+.uom-container {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+
+  .instructions {
+    margin-right: 1em;
+  }
+
+  .uom {
+    min-width: 4em;
+  }
+}

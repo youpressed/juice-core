@@ -1,0 +1,11 @@
+{{#if isShowRecipeInstruction}}
+  {{dialogs/new-item-wizard/recipe-instruction
+    onClose=cancel
+  }}
+{{else}}
+  {{dialogs/new-item-wizard/item-input
+    cancel=cancel
+    create=(action "createItem")
+    label=itemLabel
+  }}
+{{/if}}

@@ -1,0 +1,24 @@
+{{#modal-dialog
+  onClose=onClose
+  translucentOverlay=true
+  containerClass=componentCssClassName
+}}
+  <div class="header">
+    <span class="title">ITEM CREATED!</span>
+  </div>
+  <p>
+    Since this is something you make, don’t forget to add raw materials to the recipe.
+  </p>
+
+  <p>
+    You can edit any item by clicking its title.
+  </p>
+
+  <p>
+    Click Here to watch a short tutorial on how to do this.
+  </p>
+
+  <div class="ui-container">
+    <button onclick={{onClose}}>GOT IT!</button>
+  </div>
+{{/modal-dialog}}

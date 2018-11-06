@@ -7,7 +7,6 @@
       search=(perform searchTask)
       onchange=(action "handleSelect")
       placeholder="Search and add recipes or ingredients..."
-
     as |node|
     }}
       {{node.label}}
@@ -36,9 +35,9 @@
 </div>
 
 {{#if showCreateIngredient}}
-  {{dialogs/new-ingredient
+  {{dialogs/new-item-wizard
     cancel=(action "cancelCreateIngredient")
     create=createAndAddNode
-    label=tempIngredientName
+    itemLabel=tempIngredientName
   }}
 {{/if}}

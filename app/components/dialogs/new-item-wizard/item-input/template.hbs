@@ -1,0 +1,33 @@
+
+{{#modal-dialog
+  onClose=cancel
+  translucentOverlay=true
+  containerClass=componentCssClassName
+}}
+  <div class="header">
+    <span class="title">CREATE NEW ITEM</span>
+  </div>
+
+  <div class="content">
+    <div class="label form-field">
+      {{ui/desc-input
+        value=label
+        description="Ingredient name"
+        placeholder="Start typing..."
+        update=(action (mut label))
+      }}
+    </div>
+  </div>
+
+  <div>HOW DO YOU GET THIS ITEM?</div>
+  <input type="radio" name="isIngredient" checked={{not isIngredient}} onclick={{action (mut isIngredient) false}} />
+  We buy it ready made
+
+  <input type="radio" name="isIngredient" checked={{isIngredient}} onclick={{action (mut isIngredient) true}} />
+  We make it here
+
+  <div class="ui-container">
+    <button onclick={{action cancel}}>Cancel</button>
+    <button onclick={{action "handleSubmit"}}>Create</button>
+  </div>
+{{/modal-dialog}}

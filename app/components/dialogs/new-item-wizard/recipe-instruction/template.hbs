@@ -1,24 +1,37 @@
-{{#modal-dialog
+{{#dialogs/base-dialog
   onClose=onClose
-  translucentOverlay=true
-  containerClass=componentCssClassName
+as |dialog|
 }}
-  <div class="header">
-    <span class="title">ITEM CREATED!</span>
-  </div>
-  <p>
-    Since this is something you make, don’t forget to add raw materials to the recipe.
-  </p>
+  {{#dialog.header}}
+    ITEM CREATED!
+  {{/dialog.header}}
 
-  <p>
-    You can edit any item by clicking its title.
-  </p>
+  {{#dialog.row}}
+    <p class="text-4xl font-thin">
+      Since this is something you make, don’t forget to add raw materials to the recipe.
+    </p>
+  {{/dialog.row}}
 
-  <p>
-    Click Here to watch a short tutorial on how to do this.
-  </p>
+  {{#dialog.row}}
+    <p class="text-4xl font-thin">
+      You can edit any item by clicking its title.
+    </p>
+  {{/dialog.row}}
 
-  <div class="ui-container">
-    <button onclick={{onClose}}>GOT IT!</button>
-  </div>
-{{/modal-dialog}}
+  {{#dialog.row}}
+    <div class="flex items-center text-base">
+      {{fa-icon "question-circle" class="text-2xl"}}
+      <a class="underline font-semibold pl-2" href="#">Click Here</a>
+      <span class="pl-2">to watch a short tutorial on how to do this.</span>
+    </div>
+  {{/dialog.row}}
+
+  {{#dialog.footer as |footer|}}
+    {{#footer.button
+      color="blue"
+      onClick=onClose
+    }}
+      GOT IT!
+    {{/footer.button}}
+  {{/dialog.footer}}
+{{/dialogs/base-dialog}}

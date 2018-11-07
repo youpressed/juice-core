@@ -1,0 +1,8 @@
+<button
+  class={{concat
+    "px-6 py-4 font-medium text-2xl uppercase "
+    (if (eq color "blue") "left-blue-dark-grad text-white ")
+  }}
+>
+  {{yield}}
+</button>

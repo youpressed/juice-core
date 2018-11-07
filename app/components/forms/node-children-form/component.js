@@ -11,7 +11,7 @@ const index = client.initIndex('nodes');
 
 export default Component.extend({
   uoms: unitTypes,
-  showCreateIngredient: true,
+  showCreateIngredient: false,
   hasChildren: notEmpty("model.children"),
 
   startCreateIngredient(newName) {

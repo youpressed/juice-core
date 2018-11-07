@@ -1,0 +1,16 @@
+{{#modal-dialog
+  onClose=onClose
+  translucentOverlay=true
+  containerClass=componentCssClassName
+}}
+  <div class="left-blue-grad shadow rounded">
+    {{yield
+      (hash
+        header=(component "dialogs/base-dialog/dialog-header")
+        row=(component "dialogs/base-dialog/dialog-row")
+        footer=(component "dialogs/base-dialog/dialog-footer")
+      )
+    }}
+  </div>
+{{/modal-dialog}}
+

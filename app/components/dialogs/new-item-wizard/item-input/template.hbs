@@ -1,62 +1,40 @@
 
-{{#modal-dialog
+{{#dialogs/base-dialog
   onClose=cancel
-  translucentOverlay=true
-  containerClass=componentCssClassName
+as |dialog|
 }}
-  <div class="left-blue-grad shadow rounded">
-    <div class="px-12 py-8 flex-col">
-      <div class="text-4xl font-thin text-grey-darker">
-        CREATE NEW ITEM
-      </div>
+  {{#dialog.header}}
+    CREATE NEW ITEM
+  {{/dialog.header}}
 
-      <div class="pt-12">
-        {{ui/desc-input
-        value=label
-        description="Ingredient name"
-        placeholder="Start typing..."
-        update=(action (mut label))
-        }}
-      </div>
+  {{#dialog.row}}
+    {{ui/desc-input
+      value=label
+      description="Item name"
+      placeholder="Start typing..."
+      update=(action (mut label))
+    }}
+  {{/dialog.row}}
 
-      <div class="pt-12">
-        <div class="uppercase text-lg text-blue-dark">
-          HOW DO YOU GET THIS ITEM?
-        </div>
+  {{#dialog.row}}
+    {{#ui/radio-button
+      label="HOW DO YOU GET THIS ITEM?"
+      value=isIngredient
+      options=typeOptions
+    }}
+    {{/ui/radio-button}}
+  {{/dialog.row}}
 
-        <div class="pt-4 flex items-center">
-          <input
-            type="radio"
-            checked={{not isIngredient}}
-            onclick={{action (mut isIngredient) false}}
-          >
-          <span class="pl-4 text-4xl font-light {{if isIngredient "text-grey-dark"}}">We buy it ready made</span>
-        </div>
+  {{#dialog.footer as |footer|}}
+    {{#footer.button
+      color="blue"
+      onClick=(action "handleSubmit")
+    }}
+      Create
+    {{/footer.button}}
 
-        <div class="pt-4 flex items-center">
-          <input
-            type="radio"
-            checked={{isIngredient}}
-            onclick={{action (mut isIngredient) true}}
-          >
-          <span class="pl-4 text-4xl font-light {{unless isIngredient "text-grey-dark"}}">We make it here</span>
-        </div>
-      </div>
-    </div>
-    <div class="pt-12 flex flex-row-reverse">
-      <button
-        class="left-blue-dark-grad px-6 py-4 text-white font-medium text-2xl uppercase"
-        onclick={{action "handleSubmit"}}
-      >
-        Create
-      </button>
-
-      <button
-        class="px-6 py-4 font-medium text-2xl uppercase"
-        onclick={{action cancel}}
-      >
-        Cancel
-      </button>
-    </div>
-  </div>
-{{/modal-dialog}}
+    {{#footer.button onClick=(action cancel)}}
+      Cancel
+    {{/footer.button}}
+  {{/dialog.footer}}
+{{/dialogs/base-dialog}}

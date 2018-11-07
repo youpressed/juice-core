@@ -1,0 +1,22 @@
+<div class="uppercase text-lg text-blue-dark">
+  {{label}}
+</div>
+
+{{#each options as |option|}}
+  <div class="pt-4 flex items-center">
+    <input
+      type="radio"
+      checked={{eq value option.value}}
+      onclick={{action "setValue" option.value}}
+    >
+
+    {{#ui/label-button
+      label=option.label
+      class=(concat
+        "pl-4 text-4xl font-light "
+        (if (not-eq value option.value) "text-grey-dark "))
+      onClick=(action "setValue" option.value)
+    }}
+    {{/ui/label-button}}
+  </div>
+{{/each}}

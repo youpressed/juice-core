@@ -58,7 +58,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
     async createAndAddNode(a, data) {
       const { type, label, description, uom } = data;
-      const b = this.store.createRecord('node', {type, label, description, uom});
+      const b = this.store.createRecord('node', {type, label, description, uom, isActive: true});
       await b.save();
 
       const edge = this.store.createRecord('edge', {a, b, q: 0, uom});

@@ -38,7 +38,7 @@ export default Controller.extend({
 
     async createAndAddNode(a, data) {
       const { type, label, description, uom } = data;
-      const b = this.get('store').createRecord('node', { type, label, description, uom });
+      const b = this.get('store').createRecord('node', { type, label, description, uom, isActive: true });
       await b.save();
 
       const edge = this.get('store').createRecord('edge', { a, b, q: 0, uom });

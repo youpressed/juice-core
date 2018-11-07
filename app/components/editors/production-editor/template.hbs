@@ -1,21 +1,24 @@
 {{#containers/section-container title="Edit Productions"}}
-  <label class="border-b w-48 border-dotted border-grey-darkest text-3xl focus:border-blue">
-    {{pikaday-input
-    class="bg-blue-lightest"
-    format="ddd MM/DD/YY"
-    value=model.date
-    onSelection=updateProductionDate
-    }}
-  </label>
+  <div class="flex items-center mt-8">
+    {{#ui/icon-row}}
+      {{pikaday-input
+        class="text-5xl font-light p-4 pl-8 text-grey-darker bg-transparent"
+        format="MM/DD/YY"
+        value=model.date
+        onSelection=updateProductionDate
+      }}
+    {{/ui/icon-row}}
 
-  <div>
-    {{ui/async-button
-    label="Print"
-    icon="print"
-    onClick=(action "printAll")
-    }}
+    <div class="flex">
+      {{ui/async-button
+      label="Print"
+      icon="print"
+      onClick=(action "printAll")
+      }}
+    </div>
   </div>
 
+<div class="card-yellow mt-8">
   {{#cp-panel as |panel|}}
   {{#panel.toggle}}
   <div class="flex items-center justify-between">
@@ -98,7 +101,7 @@
 
   </div>
   {{/each}}
-
+</div>
 {{/containers/section-container}}
 {{!-- <div class="flex flex-col shadow-md bg-blue-lightest w-full">
 

@@ -1,20 +1,19 @@
 {{!-- <div class="flex flex-col items-center min-h-screen min-w-full pt-12">
-    <div class="w-9/11">
-      <h1 class="section-title">
-        {{title}}
-      </h1>
+  <div class="w-9/11">
+    <h1 class="section-title">
+      {{title}}
+    </h1>
+  </div>
+  <div class="w-7/11">
+    <div class="card-yellow">
+      {{yield}}
     </div>
-    <div class="w-7/11">
-      <div class="card-yellow">
-        {{yield}}
-      </div>
-    </div>
+  </div>
 </div> --}}
 
 {{#containers/section-container title="Edit Product"}}
-
   <div class="flex items-center mt-8">
-    <div class="flex w-6/7 card-blue">
+    {{#ui/icon-row}}
       <input
         class="text-5xl font-light p-4 pl-8 text-grey-darker bg-transparent"
         value={{model.label}}
@@ -26,10 +25,7 @@
           value="target.value"
         }}
       >
-    </div>
-    <div class="flex justify-center w-1/7 text-2xl text-grey-dark">
-      {{fa-icon "cog"}}
-    </div>
+    {{/ui/icon-row}}
   </div>
 
   <div class="card-yellow mt-8">
@@ -48,26 +44,26 @@
 
 
 {{!-- {{forms/node-info-form
-  title="Product Editor"
-  instructions="Add the basic info for this product."
-  model=model
-  handleUpdate=handleUpdate
+title="Product Editor"
+instructions="Add the basic info for this product."
+model=model
+handleUpdate=handleUpdate
 }}
 
 {{forms/node-children-form
-  title="Product Recipe"
-  validNodes=validNodes
-  model=model
-  addNode=addNode
-  handleUpdate=handleUpdate
-  createAndAddNode=createAndAddNode
-  cloneGrandCentralNode=cloneGrandCentralNode
-  deleteEdge=deleteEdge
+title="Product Recipe"
+validNodes=validNodes
+model=model
+addNode=addNode
+handleUpdate=handleUpdate
+createAndAddNode=createAndAddNode
+cloneGrandCentralNode=cloneGrandCentralNode
+deleteEdge=deleteEdge
 }}
 
 {{forms/delete-node-form
-  destroyNode=destroyNode
-  destroyLabel="Delete Product"
-  nodeLabel=model.label
-  node=model
+destroyNode=destroyNode
+destroyLabel="Delete Product"
+nodeLabel=model.label
+node=model
 }} --}}

@@ -5,7 +5,6 @@ import { inject } from '@ember/service';
 import RenderMap from 'juice-core/renderers/render-map';
 
 export default Component.extend({
-  classNames: ['row', 'center'],
   pdfGenerator: inject(),
   settingsService: inject(),
 

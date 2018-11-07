@@ -4,30 +4,59 @@
   translucentOverlay=true
   containerClass=componentCssClassName
 }}
-  <div class="header">
-    <span class="title">CREATE NEW ITEM</span>
-  </div>
+  <div class="left-blue-grad shadow rounded">
+    <div class="px-12 py-8 flex-col">
+      <div class="text-4xl font-thin text-grey-darker">
+        CREATE NEW ITEM
+      </div>
 
-  <div class="content">
-    <div class="label form-field">
-      {{ui/desc-input
+      <div class="pt-12">
+        {{ui/desc-input
         value=label
         description="Ingredient name"
         placeholder="Start typing..."
         update=(action (mut label))
-      }}
+        }}
+      </div>
+
+      <div class="pt-12">
+        <div class="uppercase text-lg text-blue-dark">
+          HOW DO YOU GET THIS ITEM?
+        </div>
+
+        <div class="pt-4 flex items-center">
+          <input
+            type="radio"
+            checked={{not isIngredient}}
+            onclick={{action (mut isIngredient) false}}
+          >
+          <span class="pl-4 text-4xl font-light {{if isIngredient "text-grey-dark"}}">We buy it ready made</span>
+        </div>
+
+        <div class="pt-4 flex items-center">
+          <input
+            type="radio"
+            checked={{isIngredient}}
+            onclick={{action (mut isIngredient) true}}
+          >
+          <span class="pl-4 text-4xl font-light {{unless isIngredient "text-grey-dark"}}">We make it here</span>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="pt-12 flex flex-row-reverse">
+      <button
+        class="left-blue-dark-grad px-6 py-4 text-white font-medium text-2xl uppercase"
+        onclick={{action "handleSubmit"}}
+      >
+        Create
+      </button>
 
-  <div>HOW DO YOU GET THIS ITEM?</div>
-  <input type="radio" name="isIngredient" checked={{not isIngredient}} onclick={{action (mut isIngredient) false}} />
-  We buy it ready made
-
-  <input type="radio" name="isIngredient" checked={{isIngredient}} onclick={{action (mut isIngredient) true}} />
-  We make it here
-
-  <div class="ui-container">
-    <button onclick={{action cancel}}>Cancel</button>
-    <button onclick={{action "handleSubmit"}}>Create</button>
+      <button
+        class="px-6 py-4 font-medium text-2xl uppercase"
+        onclick={{action cancel}}
+      >
+        Cancel
+      </button>
+    </div>
   </div>
 {{/modal-dialog}}

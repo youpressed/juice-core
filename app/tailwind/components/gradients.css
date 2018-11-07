@@ -9,3 +9,11 @@
 .grad-green {
   background: linear-gradient(270deg, #DFFFDA -0.02%, #DFFFDA 105.86%);
 }
+
+.left-blue-grad {
+  background: linear-gradient(90deg, #D5D6FF 50%, #EDF8FF 100%);
+}
+
+.left-blue-dark-grad {
+  background: linear-gradient(90deg, #608AF7 50%, #789EFF 100%);
+}

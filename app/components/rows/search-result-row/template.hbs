@@ -1,0 +1,15 @@
+{{#if (eq model.action "create")}}
+  <div
+    class="flex p-4"
+  >
+    <span class="text-2xl">
+      {{model.label}} Not found, create it...
+    </span>
+  </div>
+{{else}}
+  <div
+    class="flex p-4 {{if highlighted "bg-blue-lightest" "bg-white"}}"
+  >
+    <span class="text-2xl {{if highlighted "text-black" "text-grey"}}">{{model.label}}</span>
+  </div>
+{{/if}}

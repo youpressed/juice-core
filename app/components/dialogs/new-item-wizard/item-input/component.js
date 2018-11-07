@@ -6,8 +6,8 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     let typeOptions = [
-      { label: 'We buy it ready made', value: false },
-      { label: 'We make it here', value: true }
+      { label: 'We buy it ready made', value: true },
+      { label: 'We make it here', value: false }
     ];
     this.set('typeOptions', typeOptions);
   },

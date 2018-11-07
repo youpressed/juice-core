@@ -1,0 +1,25 @@
+<div class="border-b">
+  {{input
+    class="text-4xl w-full bg-transparent px-8 py-4"
+    value=query
+    key-down="onKeyDown"
+    key-up="onQueryChanged"
+    submit="onSubmit"
+    focus-out="onBlur"
+    placeholder=placeholder
+  }}
+</div>
+
+<div class="relative">
+  <div class="absolute pl-8">
+    <div class="bg-white">
+      {{#each results as |result i|}}
+        {{rows/search-result-row
+          model=result
+          onselect=(action "onSelect" result)
+          highlighted=(eq i currentHighlightedIndex)
+        }}
+      {{/each}}
+    </div>
+  </div>
+</div>

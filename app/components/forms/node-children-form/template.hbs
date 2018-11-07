@@ -1,16 +1,10 @@
 <div class="flex flex-col">
-
-  <div class="search">
-    {{#power-select
+  <div class="search z-20">
+    {{ui/simple-search
       options=validNodes
-      searchField="label"
-      search=(perform searchTask)
-      onchange=(action "handleSelect")
+      onselect=(action "handleSelect")
       placeholder="Search and add recipes or ingredients..."
-    as |node|
     }}
-      {{node.label}}
-    {{/power-select}}
   </div>
 
   {{#if hasChildren}}

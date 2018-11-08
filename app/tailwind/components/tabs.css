@@ -1,0 +1,7 @@
+.tab-title {
+  @apply uppercase rounded-t-lg pt-2 px-6 text-2xl text-white;
+}
+
+.tab-title:hover {
+  @apply left-blue-dark-grad;
+}

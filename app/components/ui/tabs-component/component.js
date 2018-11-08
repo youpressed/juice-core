@@ -8,11 +8,5 @@ export default Component.extend({
     let panels = _.map(this.childViews, v => _.pick(v, ['title', 'elementId']));
     this.set('panels', panels);
     this.set('activeId', _.first(panels).elementId);
-  },
-
-  actions: {
-    select(elementId) {
-      this.set('activeId', elementId);
-    }
   }
 });

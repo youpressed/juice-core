@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="mt-16 pb-16">
+  <div class="mt-16">
     {{#ui/tabs-component as |tab|}}
       {{#tab.panel title="make"}}
         {{#each sortedRow as |edge|}}
@@ -26,6 +26,7 @@
             model=edge
             handleUpdate=handleUpdate
             deleteEdge=deleteEdge
+            class="my-4"
           }}
         {{/each}}
       {{/tab.panel}}

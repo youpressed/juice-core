@@ -10,13 +10,15 @@
   {{#if hasChildren}}
     <div class="z-10 py-8">
       {{#each model.children as |edge index|}}
-        {{rows/line-item-row
-          index=(inc index)
-          model=edge
-          handleUpdate=handleUpdate
-          deleteEdge=deleteEdge
-          uoms=uoms
-        }}
+        <div class="mx-8 my-4">
+          {{rows/line-item-row
+            index=(inc index)
+            model=edge
+            handleUpdate=handleUpdate
+            deleteEdge=deleteEdge
+            uoms=uoms
+          }}
+        </div>
       {{/each}}
     </div>
   {{else}}

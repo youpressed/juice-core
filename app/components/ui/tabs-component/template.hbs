@@ -1,0 +1,21 @@
+<nav>
+  <ul class="list-reset flex border-b">
+    {{#each panels as |item|}}
+      <li class="mr-1">
+        <a
+          class= {{concat
+            "uppercase inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-dark font-semibold "
+            (if (eq activeId item.elementId) "bg-green" "bg-white")
+          }}
+          href="#{{item.elementId}}"
+          {{action (action "select" item.elementId)}}
+        >
+          {{item.title}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</nav>
+{{yield
+  (hash panel=(component "ui/tabs-component/tab-panel" activeId=activeId))
+}}

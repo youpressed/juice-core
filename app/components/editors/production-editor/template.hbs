@@ -32,6 +32,35 @@
       {{/tab.panel}}
 
       {{#tab.panel title="adjust"}}
+        {{!-- <div class="search">
+          {{ui/simple-search
+            options=validSubtractableNodes
+            onselect=createAdjustmentEdge
+            placeholder="Search and add recipes or ingredients..."
+          }}
+        </div>
+
+        {{#unless (is-empty adjustmentEdges)}}
+          <div class="z-10 py-8">
+            {{#each adjustmentEdges as |edge|}}
+              <div class="mx-8 my-4">
+                {{rows/line-item-row
+                  model=edge
+                  handleUpdate=handleUpdate
+                  deleteEdge=deleteEdge
+                  uoms=uoms
+                }}
+              </div>
+            {{/each}}
+          </div>
+        {{else}}
+          <div class="flex justify-center items-center p-12">
+            <p class="text-5xl text-grey font-thin py-8">
+              Alright, let’s start adjusting!
+            </p>
+          </div>
+        {{/unless}} --}}
+
         <div class="py-4">
           <div class="py-2 text-4x italic">
             Search for recipes or ingredients and add in quantities on hand. These will be subtracted from your production

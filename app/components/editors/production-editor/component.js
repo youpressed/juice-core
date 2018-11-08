@@ -3,8 +3,10 @@ import downloadFile from "juice-core/utils/download-file";
 import { sort } from '@ember/object/computed';
 import { inject } from '@ember/service';
 import RenderMap from 'juice-core/renderers/render-map';
+import { unitTypes } from 'juice-core/constants/unit-conversions';
 
 export default Component.extend({
+  uoms: unitTypes,
   pdfGenerator: inject(),
   settingsService: inject(),
 

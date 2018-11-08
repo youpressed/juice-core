@@ -23,8 +23,8 @@ export default Controller.extend({
       const edge = this.get('store').createRecord('edge', {a, b, q: 0, sign:-1});
       await edge.save();
 
-      a.save();
-      b.save();
+      await a.save();
+      await b.save();
     },
 
     navigateToProductionSheets(productionId) {

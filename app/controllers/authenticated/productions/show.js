@@ -31,6 +31,15 @@ export default Controller.extend({
       this.transitionToRoute('authenticated.productions.sheets', productionId);
     },
 
+    async deleteEdge(edge) {
+      const a = await edge.get('a');
+      const b = await edge.get('b');
+      await edge.destroyRecord();
+
+      await a.save();
+      await b.save();
+    },
+
     handleUpdate(model, key, val) {
       model.set(key, val);
       model.save();

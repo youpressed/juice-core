@@ -29,15 +29,14 @@ export default Component.extend({
 
       return downloadFile(url, 'mykey');
     },
-
     handleQuantityUpdate(edge, val) {
-      if(val !== undefined) {
+      if (val !== undefined) {
         this.get('handleUpdate')(edge, "q", val);
       }
     },
 
     handleQuantityBlur(edge, event) {
-      if(event.target.value === "" || event.target.value === undefined) {
+      if (event.target.value === "" || event.target.value === undefined) {
         this.get('handleUpdate')(edge, "q", 0);
       }
     }

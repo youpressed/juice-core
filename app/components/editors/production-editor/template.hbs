@@ -18,28 +18,15 @@
     </div>
   </div>
 
-  <div class="mt-16">
+  <div class="mt-16 pb-16">
     {{#ui/tabs-component as |tab|}}
       {{#tab.panel title="make"}}
-        {{#each sortedRow as |edge index|}}
-          <div class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted">
-
-            <div class="flex items-baseline">
-              <div class="mr-2 w-10 text-lg italic">
-                {{inc index}}.
-              </div>
-
-              {{#link-to "authenticated.products.show" edge.b.id tabindex="-1"}}
-              <div class="text-2xl bold hover:border-blue-light border-b-2 border-blue-lightest" data-test-production-name>
-                {{edge.b.label}}
-              </div>
-              {{/link-to}}
-            </div>
-
-            <input class="p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue" value={{edge.q}} oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
-              onblur={{action "handleQuantityBlur" edge}} data-test-production-child-quantity>
-
-          </div>
+        {{#each sortedRow as |edge|}}
+          {{rows/line-item-row
+            model=edge
+            handleUpdate=handleUpdate
+            deleteEdge=deleteEdge
+          }}
         {{/each}}
       {{/tab.panel}}
 

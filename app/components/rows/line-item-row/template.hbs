@@ -1,4 +1,4 @@
-<div class="card-blue flex mx-8 my-4 items-stretch justify-between">
+<div class="card-blue flex mx-8 my-4 items-stretch justify-between shadow">
 
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
@@ -34,25 +34,21 @@
           data-test-line-item-qty
         >
       </div>
-      <div class="flex items-center px-4 uom">
-        <div class="w-12">
-          {{#power-select
-            selected=model.uom
-            options=uoms
-            onchange=(action handleUpdate model "uom")
-          as |option|
-          }}
-            {{option}}
-          {{/power-select}}
+
+      {{#unless (is-empty uoms)}}
+        <div class="flex items-center px-4 uom">
+          <div class="w-12">
+            {{#power-select
+              selected=model.uom
+              options=uoms
+              onchange=(action handleUpdate model "uom")
+            as |option|
+            }}
+              {{option}}
+            {{/power-select}}
+          </div>
         </div>
-      </div>
+      {{/unless}}
     </div>
-
-
-
   </div>
-
-  {{!-- <div class="ml-4 cursor-pointer">
-    <button {{action (action deleteEdge model)}}>X</button>
-  </div> --}}
 </div>

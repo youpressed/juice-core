@@ -1,4 +1,37 @@
-<div class="info-form-container">
+{{#containers/section-container title="EDIT PREP ITEM"}}
+  <div class="flex items-center mt-8">
+    {{#ui/icon-row}}
+      <input
+        class="text-5xl font-light p-4 pl-8 text-grey-darker bg-transparent"
+        value={{model.label}}
+        placeholder="Untitled Prep Item"
+        oninput={{action
+          (action
+            handleUpdate
+            model
+            "label")
+          value="target.value"
+        }}
+      >
+    {{/ui/icon-row}}
+  </div>
+
+  <div class="card-yellow mt-8 rounded-lg">
+    {{forms/node-children-form
+      validNodes=validNodes
+      children=model.children
+      addNode=addNode
+      handleUpdate=handleUpdate
+      createAndAddNode=createAndAddNode
+      cloneGrandCentralNode=cloneGrandCentralNode
+      deleteEdge=deleteEdge
+      searchPlaceholder="Add items to this prep item"
+      emptyNodeText="Alright, let’s start building!"
+    }}
+  </div>
+{{/containers/section-container}}
+
+{{!-- <div class="info-form-container">
   {{forms/node-info-form
     title="Recipe Editor"
     instructions="Add the basic info for this recipe."
@@ -68,4 +101,4 @@
     nodeLabel=model.label
     node=model
   }}
-</div>
+</div> --}}

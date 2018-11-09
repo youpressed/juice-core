@@ -6,6 +6,7 @@ export default Component.extend({
   showCreateIngredient: false,
   localOnly: false,
   searchPlaceholder: 'Search and add recipes or ingredients...',
+  emptyNodeText: 'Alright, let’s start creating!',
 
   startCreateIngredient(newName) {
     this.set('tempIngredientName', newName);

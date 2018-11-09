@@ -23,12 +23,21 @@ export default Controller.extend({
       const edge = this.get('store').createRecord('edge', {a, b, q: 0, sign:-1});
       await edge.save();
 
-      a.save();
-      b.save();
+      await a.save();
+      await b.save();
     },
 
     navigateToProductionSheets(productionId) {
       this.transitionToRoute('authenticated.productions.sheets', productionId);
+    },
+
+    async deleteEdge(edge) {
+      const a = await edge.get('a');
+      const b = await edge.get('b');
+      await edge.destroyRecord();
+
+      await a.save();
+      await b.save();
     },
 
     handleUpdate(model, key, val) {

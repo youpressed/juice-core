@@ -15,5 +15,9 @@
 }
 
 .left-blue-dark-grad {
-  background: linear-gradient(90deg, #608AF7 50%, #789EFF 100%);
+  background: linear-gradient(69.68deg, #608AF7 0%, #789EFF 100%);
+}
+
+.left-blue-light-grad {
+  background: linear-gradient(69.68deg, #8AA9F9 0%, #95B3FF 100%);
 }

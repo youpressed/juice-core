@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import config from 'juice-core/config/environment';
 import _ from 'lodash';
-import { notEmpty } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 
 const client = window.algoliasearch(config.algolia.appId, config.algolia.searchApiId);
@@ -12,9 +11,10 @@ export default Component.extend({
   query: "",
   results: [],
   currentHighlightedIndex: 0,
+  localOnly: false,
 
   clearResults() {
-    this.set("hasNoMatches", false);
+    // this.set("hasNoMatches", false);
     this.set("results", []);
   },
 
@@ -49,6 +49,10 @@ export default Component.extend({
       return;
     }
 
+    if(this.get('localOnly')) {
+      return;
+    }
+
     yield timeout(300);
 
     const algoliaResults = yield algoliaNodeIndex.search(term).hits;
@@ -75,14 +79,16 @@ export default Component.extend({
         label: term
       }
     ]);
-    this.set("hasNoMatches", true);
+    // this.set("hasNoMatches", true);
   }).restartable(),
 
   submitCurrentSelection() {
     const match = this.get("results")[this.get("currentHighlightedIndex")];
     this.reset();
 
-    this.get("onselect")(match);
+    if (!isEmpty(match)) {
+      this.get("onselect")(match);
+    }
   },
 
   highlightPrevious() {

@@ -1,9 +1,11 @@
 <div class="card-blue flex items-stretch justify-between shadow">
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
-      <button class="text-grey" {{action (action deleteEdge model)}} tabindex="-1">
-        {{fa-icon "trash"}}
-      </button>
+      {{#if isDeleteable}}
+        <button class="text-grey" {{action (action handleDestroy model)}} tabindex="-1">
+          {{fa-icon "trash"}}
+        </button>
+      {{/if}}
     </div>
 
     <div class="">

@@ -11,7 +11,7 @@ export default Component.extend({
   query: "",
   results: [],
   currentHighlightedIndex: 0,
-  allowAddItem: true,
+  localOnly: false,
 
   clearResults() {
     // this.set("hasNoMatches", false);
@@ -49,7 +49,7 @@ export default Component.extend({
       return;
     }
 
-    if(!this.get('allowAddItem')) {
+    if(this.get('localOnly')) {
       return;
     }
 

@@ -21,237 +21,29 @@
   <div class="mt-16">
     {{#ui/tabs-component as |tab|}}
       {{#tab.panel title="make"}}
-        {{#each sortedRow as |edge|}}
-          {{rows/line-item-row
-            model=edge
-            handleUpdate=handleUpdate
-            deleteEdge=deleteEdge
-            class="my-4"
-          }}
-        {{/each}}
+        <div class="p-10">
+          {{#each sortedRow as |edge|}}
+            {{rows/line-item-row
+              model=edge
+              handleUpdate=handleUpdate
+              deleteEdge=deleteEdge
+              class="my-4"
+            }}
+          {{/each}}
+        </div>
       {{/tab.panel}}
 
       {{#tab.panel title="adjust"}}
-        {{!-- <div class="search">
-          {{ui/simple-search
-            options=validSubtractableNodes
-            onselect=createAdjustmentEdge
-            placeholder="Search and add recipes or ingredients..."
-          }}
-        </div>
-
-        {{#unless (is-empty adjustmentEdges)}}
-          <div class="z-10 py-8">
-            {{#each adjustmentEdges as |edge|}}
-              <div class="mx-8 my-4">
-                {{rows/line-item-row
-                  model=edge
-                  handleUpdate=handleUpdate
-                  deleteEdge=deleteEdge
-                  uoms=uoms
-                }}
-              </div>
-            {{/each}}
-          </div>
-        {{else}}
-          <div class="flex justify-center items-center p-12">
-            <p class="text-5xl text-grey font-thin py-8">
-              Alright, let’s start adjusting!
-            </p>
-          </div>
-        {{/unless}} --}}
-
-        <div class="py-4">
-          <div class="py-2 text-4x italic">
-            Search for recipes or ingredients and add in quantities on hand. These will be subtracted from your production
-            sheets upon printing.
-          </div>
-          <div class="w-1/2 py-4">
-            {{#power-select
-            options=validSubtractableNodes
-            searchField="label"
-            onchange=createAdjustmentEdge
-            placeholder="Search and add recipes or ingredients..."
-            as |node|
-            }}
-            {{node.label}}
-            {{/power-select}}
-          </div>
-
-          {{#each adjustmentEdges as |edge index|}}
-          <div class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted">
-
-            <div class="flex items-baseline">
-              <div class="mr-2 w-10 text-lg italic">
-                {{inc index}}.
-              </div>
-
-              {{#link-to "authenticated.products.show" edge.b.id tabindex="-1"}}
-              <div class="text-2xl bold hover:border-teal-light border-b-2 border-teal-lightest">
-                {{edge.b.label}}
-              </div>
-              {{/link-to}}
-            </div>
-
-            <div class="flex items-baseline">
-              <input class="p-2 border-2 border-teal-lighter text-2xl w-24 focus:border-teal" value={{edge.q}} oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
-                onblur={{action "handleQuantityBlur" edge}}>
-
-              <p class="italic text-lg ml-4">{{uom-format edge.b.uom}}</p>
-            </div>
-
-          </div>
-          {{/each}}
-        </div>
+        {{forms/node-children-form
+          allowAddItem=false
+          searchPlaceholder="Add recipes or ingredients to exclude"
+          validNodes=validSubtractableNodes
+          children=adjustmentEdges
+          addNode=createAdjustmentEdge
+          handleUpdate=handleUpdate
+          deleteEdge=deleteEdge
+        }}
       {{/tab.panel}}
     {{/ui/tabs-component}}
   </div>
 {{/containers/section-container}}
-{{!-- <div class="flex flex-col shadow-md bg-blue-lightest w-full">
-
-  <div class="px-12 py-6 text-5xl bold border-b border-dashed">
-
-  </div>
-  <div
-    class="flex flex-col sm:flex-row items-baseline justify-between px-12 py-4"
-  >
-    <div class="flex items-baseline" data-test-production-date-row>
-      <p class="text-lg mr-2 mb-6 italic">Production for:</p>
-      <label
-        class="border-b w-48 border-dotted border-grey-darkest text-3xl focus:border-blue"
-      >
-        {{pikaday-input
-          class="bg-blue-lightest"
-          format="ddd MM/DD/YY"
-          value=model.date
-          onSelection=updateProductionDate
-        }}
-      </label>
-    </div>
-
-    <div>
-      {{ui/async-button
-        label="Print"
-        icon="print"
-        onClick=(action "printAll")
-      }}
-    </div>
-  </div>
-
-  <div
-    class="flex flex-col shadow-inner bg-teal-lightest px-12 py-4"
-  >
-    {{#cp-panel as |panel|}}
-      {{#panel.toggle}}
-        <div class="flex items-center justify-between">
-          <div class="flex items-baseline">
-            <p class="text-3xl">Adjustments</p>
-            <p class="italic text-sm ml-4">Add stock from previous productions</p>
-          </div>
-          {{#if panel.isOpen}}
-            {{fa-icon "chevron-up" class="text-2xl cursor-pointer"}}
-          {{else}}
-            {{fa-icon "chevron-down" class="text-2xl cursor-pointer"}}
-          {{/if}}
-        </div>
-      {{/panel.toggle}}
-
-      {{#panel.body}}
-        <div class="py-4">
-          <div class="py-2 text-4x italic">
-            Search for recipes or ingredients and add in quantities on hand. These will be subtracted from your production sheets upon printing.
-          </div>
-          <div class="w-1/2 py-4">
-            {{#power-select
-              options=validSubtractableNodes
-              searchField="label"
-              onchange=createAdjustmentEdge
-              placeholder="Search and add recipes or ingredients..."
-            as |node|
-            }}
-              {{node.label}}
-            {{/power-select}}
-          </div>
-
-          {{#each adjustmentEdges as |edge index|}}
-            <div
-              class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted"
-            >
-
-              <div class="flex items-baseline">
-                <div class="mr-2 w-10 text-lg italic">
-                  {{inc index}}.
-                </div>
-
-                {{#link-to "authenticated.products.show" edge.b.id tabindex="-1"}}
-                  <div
-                    class="text-2xl bold hover:border-teal-light border-b-2 border-teal-lightest"
-                  >
-                    {{edge.b.label}}
-                  </div>
-                {{/link-to}}
-              </div>
-
-              <div class="flex items-baseline">
-                <input
-                  class="p-2 border-2 border-teal-lighter text-2xl w-24 focus:border-teal"
-                  value={{edge.q}}
-                  oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
-                  onblur={{action "handleQuantityBlur" edge}}
-                >
-
-                <p class="italic text-lg ml-4">{{uom-format edge.b.uom}}</p>
-              </div>
-
-            </div>
-          {{/each}}
-        </div>
-      {{/panel.body}}
-
-    {{/cp-panel}}
-  </div>
-
-  <div
-    class="flex pl-12 pr-12 pt-4 pb-4 bold text-2xl justify-between items-baseline bg-blue-light text-white"
-  >
-    <div class="flex items-baseline">
-      <div class="w-10">#</div>
-      <div class="label-col">Product Name</div>
-    </div>
-
-    <div class="w-24">Total</div>
-  </div>
-
-  <div class="pl-12 pr-12 pt-6">
-    {{#each sortedRow as |edge index|}}
-      <div
-        class="flex justify-between items-baseline pt-2 pb-2 border-b border-grey-light border-dotted"
-      >
-
-        <div class="flex items-baseline">
-          <div class="mr-2 w-10 text-lg italic">
-            {{inc index}}.
-          </div>
-
-          {{#link-to "authenticated.products.show" edge.b.id tabindex="-1"}}
-            <div
-              class="text-2xl bold hover:border-blue-light border-b-2 border-blue-lightest"
-              data-test-production-name
-            >
-              {{edge.b.label}}
-            </div>
-          {{/link-to}}
-        </div>
-
-        <input
-          class="p-2 border-2 border-blue-lighter text-2xl w-24 focus:border-blue"
-          value={{edge.q}}
-          oninput={{action (action "handleQuantityUpdate" edge) value="target.value"}}
-          onblur={{action "handleQuantityBlur" edge}}
-          data-test-production-child-quantity
-        >
-
-      </div>
-    {{/each}}
-  </div>
-</div> --}}

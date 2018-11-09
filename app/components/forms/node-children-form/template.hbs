@@ -3,16 +3,16 @@
     {{ui/simple-search
       options=validNodes
       onselect=(action "handleSelect")
-      placeholder="Search and add recipes or ingredients..."
+      placeholder=searchPlaceholder
+      allowAddItem=allowAddItem
     }}
   </div>
 
-  {{#if hasChildren}}
+  {{#unless (is-empty children)}}
     <div class="z-10 py-8">
-      {{#each model.children as |edge index|}}
+      {{#each children as |edge|}}
         <div class="mx-8 my-4">
           {{rows/line-item-row
-            index=(inc index)
             model=edge
             handleUpdate=handleUpdate
             deleteEdge=deleteEdge
@@ -27,7 +27,7 @@
         Alright, let’s start creating!
       </p>
     </div>
-  {{/if}}
+  {{/unless}}
 </div>
 
 {{#if showCreateIngredient}}

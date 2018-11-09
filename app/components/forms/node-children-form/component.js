@@ -5,7 +5,8 @@ import { notEmpty } from '@ember/object/computed';
 export default Component.extend({
   uoms: unitTypes,
   showCreateIngredient: false,
-  hasChildren: notEmpty("model.children"),
+  allowAddItem: true,
+  searchPlaceholder: 'Search and add recipes or ingredients...',
 
   startCreateIngredient(newName) {
     this.set('tempIngredientName', newName);

@@ -66,6 +66,18 @@ export default DS.Model.extend({
 
   isActive:     attr('boolean', true),
 
+  nodeName: computed("type", function() {
+    if(this.get("isIngredient")) {
+      return "Ingredient";
+    } else if(this.get("isRecipe")) {
+      return "Prep Item";
+    } else if(this.get("isProduct")) {
+      return "Product";
+    } else {
+      return "Production";
+    }
+  }),
+
   forceUomsParsed: computed("forceUoms", function() {
     const str = this.get('forceUoms');
 

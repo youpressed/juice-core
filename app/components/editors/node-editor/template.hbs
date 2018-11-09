@@ -1,0 +1,35 @@
+<div class="flex items-center w-full">
+  <div class="flex w-6/7 card-blue">
+    <input
+      class="text-5xl font-light p-4 pl-8 text-grey-darker bg-transparent"
+      value={{model.label}}
+      placeholder={{concat "Untitiled " model.nodeName}}
+      oninput={{action
+        (action
+          handleUpdate
+          model
+          "label")
+        value="target.value"
+      }}
+    >
+  </div>
+  <div class="flex justify-center w-1/7 text-2xl text-grey-dark">
+    <div class="w-10 flex justify-center">
+      {{fa-icon "cog"}}
+    </div>
+    <button
+      class="w-10 flex justify-center hover:text-red text-grey-dark"
+      {{action (mut isDestroyingNode) true}}
+    >
+      {{fa-icon "trash"}}
+    </button>
+  </div>
+</div>
+
+{{#if isDestroyingNode}}
+  {{dialogs/destroy-node
+    cancel=(action (mut isDestroyingNode) false)
+    destroyNode=destroyNode
+    model=model
+  }}
+{{/if}}

@@ -1,39 +1,33 @@
-{{#modal-dialog
-  onClose=cancel 
-  translucentOverlay=true
-  containerClass=componentCssClassName
+{{#dialogs/base-dialog
+  onClose=cancel
+as |dialog|
 }}
-  <div class="wrapper">
-    <div class="header">
-      <span class="title">Delete {{nodeLabel}}</span>
-      <div class="ui-container">
-        {{ui/icon-label-button
-          class="btn-blue"
-          click=cancel
-          icon="times"
-        }}
-      </div>
-    </div>
+  {{#dialog.header}}
+    DELETE {{model.nodeName}}
+  {{/dialog.header}}
 
-    <div class="content">
-      Are you sure you want to delete {{nodeLabel}}?
+  {{#dialog.row}}
+    <p class="text-4xl font-thin">
+      Are you sure you want to delete {{model.label}}?
+    </p>
+  {{/dialog.row}}
+
+  {{#dialog.row}}
+    <p class="text-4xl font-thin">
       This cannot be undone.
-    </div>
+    </p>
+  {{/dialog.row}}
 
-    <div class="ui-container">
-      {{ui/icon-label-button
-        class="btn-blue"
-        click=cancel
-        label="Cancel"
-        icon="cancel"
-      }}
+  {{#dialog.footer as |footer|}}
+    {{#footer.button
+      color="red"
+      onClick=destroyNode
+    }}
+      DELETE
+    {{/footer.button}}
 
-      {{ui/icon-label-button
-        class="btn-red"
-        click=(action "handleSubmit")
-        label="Delete"
-        icon="trash"
-      }}
-    </div>
-  </div>
-{{/modal-dialog}}
+    {{#footer.button onClick=cancel}}
+      Cancel
+    {{/footer.button}}
+  {{/dialog.footer}}
+{{/dialogs/base-dialog}}

@@ -1,19 +1,11 @@
 {{#containers/section-container title="EDIT PREP ITEM"}}
   <div class="flex items-center mt-8">
-    {{#ui/icon-row}}
-      <input
-        class="text-5xl font-light p-4 pl-8 text-grey-darker bg-transparent"
-        value={{model.label}}
-        placeholder="Untitled Prep Item"
-        oninput={{action
-          (action
-            handleUpdate
-            model
-            "label")
-          value="target.value"
-        }}
-      >
-    {{/ui/icon-row}}
+    {{#editors/node-editor
+      model=model
+      destroyNode=destroyNode
+      handleUpdate=handleUpdate
+    }}
+    {{/editors/node-editor}}
   </div>
 
   <div class="card-yellow mt-8 rounded-lg">

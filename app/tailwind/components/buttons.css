@@ -16,3 +16,23 @@
   @apply btn;
   background: linear-gradient(69.68deg, #8AA9F9 0%, #95B3FF 100%);
 }
+
+.btn-red {
+  @apply flex items-baseline justify-center;
+  @apply p-4;
+  @apply bg-red-dark text-white;
+  @apply shadow rounded;
+  @apply cursor-pointer;
+}
+
+.btn-red:hover {
+  @apply bg-red-light;
+}
+
+.btn-red-grad {
+  @apply grad-red
+}
+
+.btn-red-grad:hover {
+  @apply grad-red-light
+}

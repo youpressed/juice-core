@@ -10,6 +10,14 @@
   background: linear-gradient(270deg, #DFFFDA -0.02%, #DFFFDA 105.86%);
 }
 
+.grad-red {
+  background: linear-gradient(270deg, #F76060 0%, #D03E3E 100%);
+}
+
+.grad-red-light {
+  background: linear-gradient(270deg, rgb(241, 158, 158) 0%, rgb(204, 115, 115) 100%);
+}
+
 .left-blue-grad {
   background: linear-gradient(90deg, #D5D6FF 50%, #EDF8FF 100%);
 }

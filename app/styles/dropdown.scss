@@ -62,3 +62,16 @@ $ember-power-select-multiple-option-line-height: 2;
     color: $ember-power-select-material-active-color;
   }
 }
+
+.ember-power-select-trigger.ember-basic-dropdown-trigger {
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 24px 0 12px;
+
+  .ember-power-select-multiple-option  {
+    margin: 8px;
+    border: 1px solid;
+    border-radius: 0;
+    background: none;
+  }
+}

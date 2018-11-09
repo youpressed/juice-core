@@ -10,9 +10,7 @@ module('Acceptance | ingredients', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   hooks.beforeEach(async () => {
-    await visit('/authenticated/ingredients');
-    await click('[data-test-menu-toggle-button]');
-    await click('[data-test-menu-item-ingredients]');
+    await visit('/a/ingredients');
   });
 
   test('displays active ingredients as default', async function (assert) {
@@ -23,8 +21,7 @@ module('Acceptance | ingredients', function(hooks) {
   test('displays ingredient information correctly', async function(assert) {
     await click('[data-test-label-row-label]');
 
-    assert.dom('[data-test-desc-input="input-node-name"]').hasValue('Salt');
-    assert.dom('[data-test-desc-input="input-node-qty"]').hasValue('5');
-    assert.dom('[data-test-node-active]').isChecked();
+    assert.dom('[data-test-node-name]').hasValue('Salt');
+    debugger;
   });
 });

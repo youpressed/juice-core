@@ -7,3 +7,20 @@
   border-right: 1px solid rgba(151, 186, 228, 0.4);
   font-size: 0.5625rem;
 }
+
+a {
+  padding: 1em 0 1em 0;
+  transition: background-color 200ms linear;
+}
+
+a:hover {
+  background-color: white;
+}
+
+a.active {
+  background-color: #D2E4F8;
+}
+
+a.active:hover {
+  background-color: #D2E4F8;
+}

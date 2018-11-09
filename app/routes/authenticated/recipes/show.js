@@ -40,16 +40,16 @@ export default Route.extend(AuthenticatedRouteMixin, {
       const b = await edge.get('b');
       await edge.destroyRecord();
 
-      a.save();
-      b.save();
+      await a.save();
+      await b.save();
     },
 
     async addNode(a, b) {
       const edge = this.store.createRecord('edge', {a, b, q: 0, uom:b.get('uom')});
       await edge.save();
 
-      a.save();
-      b.save();
+      await a.save();
+      await b.save();
     },
 
     async cloneGrandCentralNode(currentNode, childId) {
@@ -64,8 +64,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
       const edge = this.store.createRecord('edge', {a, b, q: 0, uom});
       await edge.save();
 
-      a.save();
-      b.save();
+      await a.save();
+      await b.save();
     },
 
     async addUom(node, uoms) {

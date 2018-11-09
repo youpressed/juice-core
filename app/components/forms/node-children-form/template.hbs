@@ -8,7 +8,7 @@
     }}
   </div>
 
-  {{#unless (is-empty children)}}
+  {{#if hasChilden}}
     <div class="z-10 py-8">
       {{#each children as |edge|}}
         <div class="mx-8 my-4">
@@ -27,7 +27,7 @@
         {{emptyNodeText}}
       </p>
     </div>
-  {{/unless}}
+  {{/if}}
 </div>
 
 {{#if showCreateIngredient}}

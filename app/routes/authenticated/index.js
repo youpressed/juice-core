@@ -10,7 +10,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     })
   },
 
-  afterModel(model, transition) {
+  afterModel(model) {
     if(!isEmpty(model)) {
       this.transitionTo("authenticated.productions.index");
     }

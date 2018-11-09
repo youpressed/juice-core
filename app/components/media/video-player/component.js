@@ -11,7 +11,9 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    this.set('player', jwplayer(this.get('guid')));
+    if(jwplayer) {
+      this.set('player', jwplayer(this.get('guid')));
+    }
   },
 
   didRender() {

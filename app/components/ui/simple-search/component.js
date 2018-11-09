@@ -9,7 +9,6 @@ const algoliaNodeIndex = client.initIndex('nodes');
 
 export default Component.extend({
   query: "",
-  results: [],
   currentHighlightedIndex: 0,
   localOnly: false,
 
@@ -128,8 +127,8 @@ export default Component.extend({
       }
     },
 
-    onSelect(result) {
-      console.log(result);
+    onSelect(/*result*/) {
+
     },
 
     onBlur() {

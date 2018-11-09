@@ -3,6 +3,9 @@ module.exports = {
     embertest: true
   },
   globals: {
+    "server": true,
+    "window": true,
+    "jwplayer": true,
     "R": true,
     "math": true,
     "moment": true,

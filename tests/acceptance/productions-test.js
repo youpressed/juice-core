@@ -10,14 +10,14 @@ module('Acceptance | productions', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   test('shows date and total units of productions', async function(assert) {
-    await visit('/authenticated/productions');
+    await visit('/a/productions');
 
     assert.dom('[data-test-date-row-label]').hasText('Sat - 04/07');
     assert.dom('[data-test-date-row-total-count]').hasText('25');
   });
 
   test('shows production information correctly', async function (assert) {
-    await visit('/authenticated/productions/production-id');
+    await visit('/a/productions/production-id');
 
     assert.dom('[data-test-production-date-row] input').hasValue('Sat 04/07/18');
     assert.dom('[data-test-production-name]').exists({ count: 2 });

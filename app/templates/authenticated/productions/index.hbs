@@ -1,13 +1,19 @@
-<div class="w-full flex justify-center">
-  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
+{{#containers/section-container title="PRODUCTIONS"}}
+  <div class="flex justify-end -mt-8">
+    <button
+      class="btn-blue uppercase text-xl"
+      {{action "createNode"}}
+    >
+      Create Production
+    </button>
+  </div>
+
+  <div class="card-yellow mt-8 p-10 rounded-lg">
     {{lists/label-list
-      label="Productions"
       rowType="rows/date-label-row"
-      createAction=(action "createNode")
-      createLabel="Create New Production"
       selectAction=(action "showNode")
       destroyAction=(action "destroyNode")
       model=recentProductions
     }}
   </div>
-</div>
+{{/containers/section-container}}

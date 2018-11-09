@@ -1,8 +1,8 @@
 <div class="card-blue flex items-stretch justify-between shadow">
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
-      <button {{action (action deleteEdge model)}}>
-        <span class="text-grey">{{fa-icon "trash"}}</span>
+      <button class="text-grey" {{action (action deleteEdge model)}} tabindex="-1">
+        {{fa-icon "trash"}}
       </button>
     </div>
 
@@ -11,6 +11,7 @@
         (node-link-path model.b)
         model.b.id
         data-test-line-item-name
+        tabindex="-1"
       }}
         <p class="p-4">{{model.b.label}}</p>
       {{/link-to}}
@@ -19,25 +20,20 @@
 
   <div class="flex items-stretch">
     <div class="flex">
-      <div class="flex items-centermr-2 grad-green p-4">
-        <input
-          class="w-16 mr-2 bg-transparent text-3xl font-bold text-grey-darker text-right"
-          value={{model.q}}
-          oninput={{action
-            (action
-              handleUpdate
-              model
-              "q")
-            value="target.value"
-          }}
-          data-test-line-item-qty
-        >
+      <div class="flex items-center mr-2 p-4 qty-input" data-test-line-item-qty>
+        {{input
+          class="w-24 mr-2 bg-transparent text-3xl font-bold text-grey-darker text-right"
+          value=model.q
+          key-up=(action handleUpdate model "q")
+          placeholder="0"
+        }}
       </div>
 
       {{#unless (is-empty uoms)}}
         <div class="flex items-center px-4 uom">
           <div class="w-12">
             {{#power-select
+              tabindex="-1"
               selected=model.uom
               options=uoms
               onchange=(action handleUpdate model "uom")

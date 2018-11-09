@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
   store: service(),
   grandCentralFirebase: service(),
+  nodeService: service(),
 
   actions: {
     navigateTo(path) {
@@ -49,24 +50,7 @@ export default Controller.extend({
     },
 
     async destroyNode(node) {
-      const children = await node.get("children");
-      const parents = await node.get("parents");
-
-      children
-        .forEach(async edge => {
-          const b = await edge.get("b");
-          edge.destroyRecord();
-          b.save();
-        });
-
-      parents
-        .forEach(async edge => {
-          const a = await edge.get("a");
-          edge.destroyRecord();
-          a.save();
-        });
-
-      node.destroyRecord();
+      await this.get("nodeService").destroyNode(node);
 
       this.transitionToRoute('authenticated.products');
     }

@@ -1,11 +1,14 @@
 import Component from '@ember/component';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
+import { notEmpty } from '@ember/object/computed';
 
 export default Component.extend({
   uoms: unitTypes,
   showCreateIngredient: false,
   localOnly: false,
   searchPlaceholder: 'Search and add recipes or ingredients...',
+  emptyNodeText: 'Alright, let’s start creating!',
+  hasChilden: notEmpty('children'),
 
   startCreateIngredient(newName) {
     this.set('tempIngredientName', newName);

@@ -1,11 +1,10 @@
-{{sections/recipes-show
-  navigateTo=(route-action "navigateTo")
+{{editors/recipe-editor
   handleUpdate=(route-action "handleUpdate")
   addNode=(route-action "addNode" model)
   deleteEdge=(route-action "deleteEdge")
   createAndAddNode=(route-action "createAndAddNode" model)
   cloneGrandCentralNode=(route-action "cloneGrandCentralNode" model)
-  destroyNode=(route-action "destroyNode")
+  destroyNode=(route-action "destroyNode" model)
   addUom=(route-action "addUom")
   removeUom=(route-action "removeUom")
   nodes=nodes

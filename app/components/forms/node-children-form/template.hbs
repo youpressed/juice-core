@@ -8,7 +8,7 @@
     }}
   </div>
 
-  {{#unless (is-empty children)}}
+  {{#if hasChilden}}
     <div class="z-10 py-8">
       {{#each children as |edge|}}
         <div class="mx-8 my-4">
@@ -24,10 +24,10 @@
   {{else}}
     <div class="flex justify-center items-center p-12">
       <p class="text-5xl text-grey font-thin py-8">
-        Alright, let’s start creating!
+        {{emptyNodeText}}
       </p>
     </div>
-  {{/unless}}
+  {{/if}}
 </div>
 
 {{#if showCreateIngredient}}

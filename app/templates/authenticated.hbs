@@ -1,5 +1,9 @@
 <div class="relative min-h-screen">
   {{navs/main-nav}}
+  {{navs/account-nav
+      username=session.data.authenticated.profile.email
+      logout=(action "logout")}}
+
   <div class="ml-24">
     {{outlet}}
   </div>

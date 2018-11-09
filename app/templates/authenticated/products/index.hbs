@@ -1,12 +1,20 @@
-<div class="w-full flex justify-center">
-  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
+{{#containers/section-container title="PRODUCTS"}}
+  <div class="flex justify-end -mt-8">
+    <button
+      class="btn-blue uppercase text-xl"
+      {{action "createNode"}}
+    >
+      Create New Product
+    </button>
+  </div>
+
+  <div class="card-yellow mt-8 p-10 rounded-lg">
     {{lists/sortable-list
-      label="Products"
       rowType="rows/label-row"
-      createAction=(action "createNode")
-      createLabel="Create New Product"
       selectAction=(action "showNode")
       model=model
     }}
   </div>
-</div>
+{{/containers/section-container}}
+
+

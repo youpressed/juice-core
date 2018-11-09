@@ -1,12 +1,10 @@
-<div class="w-full flex justify-center">
-  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
+{{#containers/section-container title="Ingredients"}}
+  <div class="card-yellow mt-8 p-10 rounded-lg">
     {{lists/sortable-list
-      label="Ingredients"
       rowType="rows/label-row"
-      createAction=(action "createNode")
-      createLabel="Create New Ingredient"
       selectAction=(action "showNode")
       model=model
     }}
   </div>
-</div>
+{{/containers/section-container}}
+

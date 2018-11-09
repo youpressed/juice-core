@@ -1,12 +1,9 @@
-<div class="w-full flex justify-center">
-  <div class="xl:w-2/3 xxl:w-1/2 w-full shadow-md">
+{{#containers/section-container title="PREP ITEMS"}}
+  <div class="card-yellow mt-8 p-10 rounded-lg">
     {{lists/sortable-list
-      label="Recipes"
       rowType="rows/label-row"
-      createAction=(route-action "createNode")
-      createLabel="Create New Recipe"
       selectAction=(route-action "showNode")
       model=model
     }}
   </div>
-</div>
+{{/containers/section-container}}

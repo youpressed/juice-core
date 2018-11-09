@@ -1,31 +1,32 @@
-<div class="info-form-container">
-  {{forms/node-info-form
-    title="Ingredient Editor"
-    instructions="Add/edit basic info for this ingredient."
-    model=model
-    handleUpdate=handleUpdate
-  }}
-</div>
-
-<div class="uom-form-container">
-  <div class="forced-uom-container">
-    <div class="label">Only use the following units</div>
-    {{#power-select-multiple
-      options=uoms
-      selected=model.forceUomsParsed
-      placeholder="Any"
-      onchange=(action addUom model)
-    as |uom|
+{{#containers/section-container title="EDIT INGREDIENT"}}
+  <div class="flex items-center mt-8">
+    {{#editors/node-editor
+      model=model
+      destroyNode=destroyNode
+      handleUpdate=handleUpdate
     }}
-      {{uom}}
-    {{/power-select-multiple}}
+    {{/editors/node-editor}}
   </div>
 
-  <div class="uom-container form-field">
-    <div class="instructions">
-      We use this by the
+  <div class="card-yellow mt-8 rounded-lg p-10">
+    <div class="flex items-center">
+      <label class="text-2xl font-light">Ingredient Type</label>
+      <input
+        class="text-4xl font-light text-grey-darker bg-transparent border-b ml-6 flex-auto pb-2"
+        value={{model.tags}}
+        placeholder="Produce, Bulk, Spice etc."
+        oninput={{action
+          (action
+            handleUpdate
+            model
+            "tags")
+          value="target.value"
+        }}
+      >
     </div>
-    <div class="uom">
+
+    <div class="mt-10 flex items-center">
+      <label class="text-2xl font-light pr-6">We use this by the</label>
       {{#power-select
         selected=model.uom
         options=uoms
@@ -35,14 +36,22 @@
         {{uom}}
       {{/power-select}}
     </div>
-  </div>
-</div>
 
-<div class="destroy-form-container">
-  {{forms/delete-node-form
-    destroyNode=destroyNode
-    destroyLabel="Delete Ingredient"
-    nodeLabel=model.label
-    node=model
-  }}
-</div>
+    <div class="mt-10 flex-col items-centerr">
+      <label class="text-2xl font-light">Only show this in the following unit(s)</label>
+
+      <div class="mt-4">
+        {{#power-select-multiple
+          options=uoms
+          selected=model.forceUomsParsed
+          placeholder="Any"
+          onchange=(action addUom model)
+        as |uom|
+        }}
+          {{uom}}
+        {{/power-select-multiple}}
+      </div>
+    </div>
+    <div class="label"></div>
+  </div>
+{{/containers/section-container}}

@@ -1,8 +1,7 @@
-{{sections/ingredients-show
-  navigateTo=(action "navigateTo")
+{{editors/ingredient-editor
   handleUpdate=(action "handleUpdate")
   addUom=(action "addUom")
   removeUom=(action "removeUom")
-  destroyNode=(action "destroyNode")
+  destroyNode=(action "destroyNode" model)
   model=model
 }}

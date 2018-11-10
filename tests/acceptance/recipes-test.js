@@ -14,14 +14,15 @@ module('Acceptance | recipes', function(hooks) {
   });
 
   test('displays active recipes as default', async function (assert) {
-    assert.dom('[data-test-label-row]').hasText('Tomato Sauce');
+
+    assert.dom('[data-test-label-row]').exists({count: 2})
   });
 
   test('displays recipe information correctly', async function(assert) {
     await click('[data-test-label-row]');
 
-    assert.dom('[data-test-node-name]').hasValue('Tomato Sauce');
+    assert.dom('[data-test-node-name]').hasValue('Salty Sauce');
     assert.dom('[data-test-line-item-row] [data-test-label]').hasText('Salt');
-    assert.dom('[data-test-edge-quantity] input').hasValue('7');
+    assert.dom('[data-test-edge-quantity] input').hasValue('12');
   });
 });

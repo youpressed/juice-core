@@ -1,11 +1,10 @@
 <div class="border-b">
   {{input
-    class="text-4xl w-full bg-transparent px-8 py-4"
+    class="search-input text-4xl w-full bg-transparent px-8 py-4"
     value=query
     key-down="onKeyDown"
     key-up="onQueryChanged"
     submit="onSubmit"
-    focus-out="onBlur"
     placeholder=placeholder
   }}
 </div>
@@ -16,7 +15,7 @@
       {{#each results as |result i|}}
         {{rows/search-result-row
           model=result
-          onselect=(action "onSelect" result)
+          onSelect=(action "onSelect" i)
           highlighted=(eq i currentHighlightedIndex)
         }}
       {{/each}}

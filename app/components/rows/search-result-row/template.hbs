@@ -1,15 +1,20 @@
 {{#if (eq model.action "create")}}
   <div
-    class="flex p-4"
+    class="search-result-row flex p-4"
   >
     <span class="text-2xl">
       {{model.label}} Not found, create it...
     </span>
   </div>
 {{else}}
-  <div
-    class="flex p-4 {{if highlighted "bg-blue-lightest" "bg-white"}}"
+  <button
+    class="search-result-row flex w-full p-4 hover:bg-blue-lightest {{if highlighted "bg-blue-lightest" "bg-white"}}"
+    {{action onSelect}}
   >
-    <span class="text-2xl {{if highlighted "text-black" "text-grey"}}">{{model.label}}</span>
-  </div>
+    <span
+      class="text-2xl hover:text-black {{if highlighted "text-black" "text-grey"}}"
+    >
+      {{model.label}}
+    </span>
+  </button>
 {{/if}}

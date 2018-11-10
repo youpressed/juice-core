@@ -6,7 +6,8 @@ module.exports = {
     "R": true,
     "math": true,
     "moment": true,
-    "Set": true
+    "Set": true,
+    "module": true
   },
   root: true,
   parserOptions: {

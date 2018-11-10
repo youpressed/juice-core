@@ -7,6 +7,8 @@ import { isEmpty } from '@ember/utils';
 const client = window.algoliasearch(config.algolia.appId, config.algolia.searchApiId);
 const algoliaNodeIndex = client.initIndex('nodes');
 
+const NAV_KEY_CODES = ["Enter", "Tab", "ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
+
 export default Component.extend({
   query: "",
   currentHighlightedIndex: 0,
@@ -55,10 +57,10 @@ export default Component.extend({
 
     yield timeout(300);
 
-    const algoliaResults = yield algoliaNodeIndex.search(term).hits;
+    const algoliaResults = yield algoliaNodeIndex.search(term);
 
     const remoteMatches = _
-      .chain(algoliaResults)
+      .chain(algoliaResults.hits)
       .map(match => ({
           action: "clone",
           type: match.type,
@@ -120,8 +122,10 @@ export default Component.extend({
   },
 
   actions: {
-    onQueryChanged(q){
-      this.get("search").perform(q);
+    onQueryChanged(q, e){
+      if(!NAV_KEY_CODES.includes(e.key)) {
+        this.get("search").perform(q);
+      }
     },
 
     onKeyDown(str, e) {
@@ -137,6 +141,10 @@ export default Component.extend({
           break;
         case "ArrowUp":
           this.highlightPrevious();
+          break;
+        case "ArrowLeft":
+          break;
+        case "ArrowRight":
           break;
         default:
           this.set("currentHighlightedIndex", 0);

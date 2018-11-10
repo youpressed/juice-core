@@ -21,12 +21,14 @@ const weights = {
   map: {
     g: 1/453.592,
     oz: 1/16,
-    lb: 1
+    lb: 1,
+    kg: 2.20462/1
   },
   list: [
     {uom: 'g', factor: 1/453.592},
     {uom: 'oz', factor: 1/16},
-    {uom: 'lb', factor: 1}
+    {uom: 'lb', factor: 1},
+    {uom: 'kg', factor: 2.20462/1}
   ]
 }
 
@@ -49,6 +51,7 @@ const units = {
   oz: weights,
   lb: weights,
   g: weights,
+  kg: weights,
   count: counts
 };
 
@@ -61,6 +64,7 @@ const unitTypes = [
   'oz',
   'lb',
   'g',
+  'kg',
   'count'
 ];
 

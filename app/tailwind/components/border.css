@@ -1,0 +1,5 @@
+@variants group-hover {
+  .border-b-grey {
+    @apply border-b border-solid border-grey-dark;
+  }
+}

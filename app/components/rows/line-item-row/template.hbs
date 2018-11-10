@@ -5,20 +5,20 @@
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
       {{#if isDeleteable}}
-        <button class="text-grey" {{action (action handleDestroy model)}} tabindex="-1">
+        <button
+          class="text-grey hover:text-red"
+          tabindex="-1"
+          {{action (action handleDestroy model)}}
+        >
           {{fa-icon "trash"}}
         </button>
       {{/if}}
     </div>
 
-    <div class="">
-      {{#link-to
-        (node-link-path model.b)
-        model.b.id
-        data-test-line-item-name
-        tabindex="-1"
-      }}
-        <p class="p-4" data-test-label>{{model.b.label}}</p>
+    <div>
+      {{#link-to (node-link-path model.b) model.b.id tabindex="-1" class="group"}}
+        <span class="ml-4 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
+        <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
       {{/link-to}}
     </div>
   </div>
@@ -36,7 +36,7 @@
 
       {{#if (not (is-empty uoms))}}
         <div class="flex items-center px-4 uom">
-          <div class="w-12">
+          <div class="w-24">
             {{#power-select
               tabindex="-1"
               selected=model.uom

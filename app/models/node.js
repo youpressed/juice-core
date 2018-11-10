@@ -53,6 +53,7 @@ export default DS.Model.extend({
   date:         attr('date'),
   ts:           attr('number', {defaultValue: () => moment.utc().valueOf()}),
   forceUoms:    attr('string', {defaultValue: ""}),
+  isActive:     attr('boolean', {defaultValue: true}),
 
   children:     hasMany('edge'),
   parents:      hasMany('edge'),
@@ -63,8 +64,6 @@ export default DS.Model.extend({
   isRecipe:     equal('type', 'recipe'),
   isProduct:    equal('type', 'product'),
   isProduction: equal('type', 'production'),
-
-  isActive:     attr('boolean', true),
 
   nodeName: computed("type", function() {
     if(this.get("isIngredient")) {

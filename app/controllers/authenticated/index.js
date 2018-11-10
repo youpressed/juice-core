@@ -1,6 +1,13 @@
 import Controller from '@ember/controller';
-import { notEmpty } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  hasProducts: notEmpty("model")
+  nodeService: service(),
+
+  actions: {
+    async createProduct(){
+      let product = await this.get('nodeService').createProduct();
+      this.transitionToRoute('authenticated.products.show', product.get('id'));
+    }
+  }
 });

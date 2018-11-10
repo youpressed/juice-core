@@ -13,13 +13,14 @@
       </div>
 
       <div class="flex justify-end mt-12">
-        {{#link-to
-          "authenticated.products"
+        <button
           class="btn-blue uppercase text-2xl"
-        }}
+          {{action "createProduct"}}
+        >
           Create Product
-        {{/link-to}}
+        </button>
       </div>
+
     </div>
   </div>
 </div>

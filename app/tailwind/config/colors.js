@@ -42,7 +42,7 @@ export default {
   orange: '#f6993f',
   'orange-light': '#faad63',
   'orange-lighter': '#fcd9b6',
-  'orange-lightest': '#fff5eb',
+  'orange-lightest': '#FFF1EB',
 
   'yellow-darkest': '#453411',
   'yellow-darker': '#684f1d',

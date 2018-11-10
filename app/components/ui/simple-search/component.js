@@ -13,8 +13,9 @@ export default Component.extend({
   localOnly: false,
 
   clearResults() {
-    // this.set("hasNoMatches", false);
-    this.set("results", []);
+    if(!isEmpty(this.get('results'))){
+      this.set("results", []);
+    }
   },
 
   reset() {
@@ -102,6 +103,22 @@ export default Component.extend({
     this.set("currentHighlightedIndex", newIndex);
   },
 
+  focusOut(event){
+    // The search results are deplaying as absoluted elements.
+    // Therefore this focusOut event is still be striggered when focusing on the children elements itself
+    // Reset data in case focus out only, not focus on its chilren
+    // @TODO: Refactor this code if possible
+    let isOutside = true;
+    if(event.relatedTarget){
+      let targetClass = event.relatedTarget.classList;
+      isOutside = !_.includes(targetClass, 'search-result-row') && !_.includes(targetClass, 'search-input');
+    }
+
+    if(isOutside) {
+      this.reset();
+    }
+  },
+
   actions: {
     onQueryChanged(q){
       this.get("search").perform(q);
@@ -127,12 +144,9 @@ export default Component.extend({
       }
     },
 
-    onSelect(/*result*/) {
-
-    },
-
-    onBlur() {
-      this.reset();
+    onSelect(index) {
+      this.set('currentHighlightedIndex', index);
+      this.submitCurrentSelection();
     }
   }
 });

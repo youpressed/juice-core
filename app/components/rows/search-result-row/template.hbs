@@ -1,15 +1,24 @@
 {{#if (eq model.action "create")}}
-  <div
-    class="flex p-4"
+  <button
+    class="search-result-row flex w-full items-center p-4 bg-orange-lightest text-2xl font-light text-grey-darker"
+    {{action onSelect}}
   >
-    <span class="text-2xl">
-      {{model.label}} Not found, create it...
+    <span>
+      No matches :/ - Hit return or click to create it...
     </span>
-  </div>
+    <span class="pl-6">
+      {{fa-icon "keyboard-o"}}
+    </span>
+  </button>
 {{else}}
-  <div
-    class="flex p-4 {{if highlighted "bg-blue-lightest" "bg-white"}}"
+  <button
+    class="search-result-row flex w-full p-4 hover:bg-blue-lightest {{if highlighted "bg-blue-lightest" "bg-white"}}"
+    {{action onSelect}}
   >
-    <span class="text-2xl {{if highlighted "text-black" "text-grey"}}">{{model.label}}</span>
-  </div>
+    <span
+      class="text-2xl hover:text-black {{if highlighted "text-black" "text-grey"}}"
+    >
+      {{model.label}}
+    </span>
+  </button>
 {{/if}}

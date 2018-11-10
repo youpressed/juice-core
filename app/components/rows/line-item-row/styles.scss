@@ -2,15 +2,15 @@
   display: flex;
   justify-content: flex-end;
 }
-
-.qty-input {
-  position: relative;
-}
-
-.qty-input::after {
-  content: "";
-  position:absolute;
-  border: 1px solid grey;
-  width: 6rem;
-  bottom: 1rem;
-}
+//
+// .qty-input {
+//   position: relative;
+// }
+//
+// .qty-input::after {
+//   content: "";
+//   position:absolute;
+//   border: 1px solid grey;
+//   width: 6rem;
+//   bottom: 1rem;
+// }

@@ -12,6 +12,6 @@ module('Acceptance | login', function(hooks) {
   test('logs user and sets correct tenant data', async function(assert) {
     await visit('/login');
 
-    assert.dom('[data-test-date-row]').exists({count: 1})
+    assert.dom('[data-test-date-row-label]').exists({count: 1})
   });
 });

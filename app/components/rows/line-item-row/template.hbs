@@ -1,4 +1,7 @@
-<div class="card-blue flex items-stretch justify-between shadow">
+<div
+  class="card-blue flex items-stretch justify-between shadow"
+  data-test-line-item-row
+>
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
       {{#if isDeleteable}}
@@ -15,14 +18,14 @@
         data-test-line-item-name
         tabindex="-1"
       }}
-        <p class="p-4">{{model.b.label}}</p>
+        <p class="p-4" data-test-label>{{model.b.label}}</p>
       {{/link-to}}
     </div>
   </div>
 
   <div class="flex items-stretch">
     <div class="flex">
-      <div class="flex items-center mr-2 p-4 qty-input" data-test-line-item-qty>
+      <div class="flex items-center mr-2 p-4 qty-input" data-test-edge-quantity>
         {{input
           class="w-24 mr-2 bg-transparent text-3xl font-bold text-grey-darker text-right"
           value=model.q
@@ -31,7 +34,7 @@
         }}
       </div>
 
-      {{#unless (is-empty uoms)}}
+      {{#if (not (is-empty uoms))}}
         <div class="flex items-center px-4 uom">
           <div class="w-12">
             {{#power-select
@@ -45,7 +48,7 @@
             {{/power-select}}
           </div>
         </div>
-      {{/unless}}
+      {{/if}}
     </div>
   </div>
 </div>

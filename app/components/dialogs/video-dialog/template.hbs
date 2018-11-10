@@ -1,0 +1,23 @@
+{{#modal-dialog
+  onClose=onClose
+  translucentOverlay=true
+  containerClass=componentCssClassName
+}}
+  <div class="shadow-lg w-screen-1/2">
+    <button
+      class="mt-1 mr-1 py-1 px-2 z-10 rounded text-3xl font-thin absolute pin-r hover:bg-black text-white"
+      {{action onClose}}
+    >
+      {{fa-icon "window-close-o"}}
+    </button>
+
+    <div class="rounded-lg overflow-hidden">
+      {{media/video-player
+        image=image
+        mediaId=mediaId
+        file=file
+      }}
+    </div>
+  </div>
+{{/modal-dialog}}
+

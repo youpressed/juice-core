@@ -1,26 +1,56 @@
 <div class="flex flex-col">
   <div class="flex flex-col justify-center items-center my-8">
     <svg xmlns="http://www.w3.org/2000/svg" width="58" height="54" fill="none">
-      <path fill="#353535" fill-rule="evenodd" d="M29.016 0L0 28.783l.781.775L29.03 1.537l28.203 27.976.768-.762L29.016 0z" clip-rule="evenodd"/>
-      <path fill="#353535" fill-rule="evenodd" d="M29.03.944L57.231 28.92l.17-.169L29.016.593.598 28.783l.183.182L29.03.944zM.78 29.558L0 28.783 29.016 0l28.983 28.75.001.001-.768.762L29.028 1.536.781 29.558z" clip-rule="evenodd"/>
-      <path fill="#353535" fill-rule="evenodd" d="M28.55 54V.652h.843V54h-.844z" clip-rule="evenodd"/>
+      <path
+        fill="#353535"
+        fill-rule="evenodd"
+        d="M29.016 0L0 28.783l.781.775L29.03 1.537l28.203 27.976.768-.762L29.016 0z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill="#353535"
+        fill-rule="evenodd"
+        d="M29.03.944L57.231 28.92l.17-.169L29.016.593.598 28.783l.183.182L29.03.944zM.78 29.558L0 28.783 29.016 0l28.983 28.75.001.001-.768.762L29.028 1.536.781 29.558z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill="#353535"
+        fill-rule="evenodd"
+        d="M28.55 54V.652h.843V54h-.844z"
+        clip-rule="evenodd"
+      />
     </svg>
     <div class="border-4 border-grey-darkest p-4">
       <span class="text-3xl">The above quantity makes</span>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" width="58" height="54" fill="none">
-      <path fill="#353535" fill-rule="evenodd" d="M28.984 54L58 25.217l-.781-.775L28.97 52.463.768 24.487 0 25.25 28.984 54z" clip-rule="evenodd"/>
-      <path fill="#353535" fill-rule="evenodd" d="M28.97 53.056L.768 25.08l-.17.169 28.386 28.158 28.418-28.19-.183-.182L28.97 53.056zM57.22 24.442l.781.775L28.984 54 .001 25.25 0 25.248l.768-.762 28.203 27.976 28.248-28.021z" clip-rule="evenodd"/>
-      <path fill="#353535" fill-rule="evenodd" d="M29.45 0v53.348h-.843V0h.844z" clip-rule="evenodd"/>
+      <path
+        fill="#353535"
+        fill-rule="evenodd"
+        d="M28.984 54L58 25.217l-.781-.775L28.97 52.463.768 24.487 0 25.25 28.984 54z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill="#353535"
+        fill-rule="evenodd"
+        d="M28.97 53.056L.768 25.08l-.17.169 28.386 28.158 28.418-28.19-.183-.182L28.97 53.056zM57.22 24.442l.781.775L28.984 54 .001 25.25 0 25.248l.768-.762 28.203 27.976 28.248-28.021z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill="#353535"
+        fill-rule="evenodd"
+        d="M29.45 0v53.348h-.843V0h.844z"
+        clip-rule="evenodd"
+      />
     </svg>
   </div>
 
   <div class="flex justify-center">
     <div class="card-yellow flex w-2/5 justify-center">
       <div class="px-24 py-12 flex items-center justify-center">
-        <div class="w-12 mr-8">
+        <div class="w-24 mr-8">
           {{input
-            class="w-12 bg-transparent text-5xl font-bold text-grey-darker text-center border-b"
+            class="w-24 bg-transparent text-5xl font-bold text-grey-darker text-center border-b"
             value=model.yield
             key-up=(action handleUpdate model "yield")
             placeholder="0"

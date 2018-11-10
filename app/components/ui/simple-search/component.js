@@ -7,9 +7,10 @@ import { isEmpty } from '@ember/utils';
 const client = window.algoliasearch(config.algolia.appId, config.algolia.searchApiId);
 const algoliaNodeIndex = client.initIndex('nodes');
 
+const NAV_KEY_CODES = ["Enter", "Tab", "ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
+
 export default Component.extend({
   query: "",
-  results: [],
   currentHighlightedIndex: 0,
   localOnly: false,
 
@@ -121,8 +122,10 @@ export default Component.extend({
   },
 
   actions: {
-    onQueryChanged(q){
-      this.get("search").perform(q);
+    onQueryChanged(q, e){
+      if(!NAV_KEY_CODES.includes(e.key)) {
+        this.get("search").perform(q);
+      }
     },
 
     onKeyDown(str, e) {
@@ -138,6 +141,10 @@ export default Component.extend({
           break;
         case "ArrowUp":
           this.highlightPrevious();
+          break;
+        case "ArrowLeft":
+          break;
+        case "ArrowRight":
           break;
         default:
           this.set("currentHighlightedIndex", 0);

@@ -4,4 +4,5 @@ export default function(){
       this.matchSelector('.ember-modal-dialog'),
       this.use('fade', {duration: 100})
     );
+
 }

@@ -1,6 +1,13 @@
 module.exports = {
   globals: {
-    server: true,
+    "server": true,
+    "window": true,
+    "jwplayer": true,
+    "R": true,
+    "math": true,
+    "moment": true,
+    "Set": true,
+    "module": true
   },
   root: true,
   parserOptions: {
@@ -39,10 +46,5 @@ module.exports = {
         node: true
       }
     }
-  ],
-  globals: {
-    server: true,
-    window: true,
-    jwplayer: true
-  }
+  ]
 };

@@ -1,7 +1,11 @@
 import config from 'juice-core/config/environment';
 
 export function initialize() {
-  jwplayer.key = config.jwplayer.key;
+  try {
+    jwplayer.key = config.jwplayer.key;
+  } catch (e){
+    // continue regardless of error
+  }
 }
 
 export default {

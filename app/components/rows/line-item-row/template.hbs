@@ -1,22 +1,23 @@
-<div class="card-blue flex items-stretch justify-between shadow">
+<div
+  class="card-blue flex items-stretch justify-between shadow"
+  data-test-line-item-row
+>
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
       {{#if isDeleteable}}
-        <button class="text-grey hover:text-red" {{action (action handleDestroy model)}} tabindex="-1">
+        <button
+          class="text-grey hover:text-red"
+          tabindex="-1"
+          {{action (action handleDestroy model)}}
+        >
           {{fa-icon "trash"}}
         </button>
       {{/if}}
     </div>
 
-    <div class="">
-      {{#link-to
-        (node-link-path model.b)
-        model.b.id
-        data-test-line-item-name
-        tabindex="-1"
-        class="group"
-      }}
-        <span class="ml-4 group-hover:border-b-grey">{{model.b.label}}</span>
+    <div>
+      {{#link-to (node-link-path model.b) model.b.id tabindex="-1" class="group"}}
+        <span class="ml-4 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
         <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
       {{/link-to}}
     </div>
@@ -24,7 +25,7 @@
 
   <div class="flex items-stretch">
     <div class="flex">
-      <div class="flex items-center mr-2 p-4 qty-input" data-test-line-item-qty>
+      <div class="flex items-center mr-2 p-4 qty-input" data-test-edge-quantity>
         {{input
           class="w-24 mr-2 bg-transparent text-3xl font-bold text-grey-darker text-right"
           value=model.q
@@ -33,9 +34,9 @@
         }}
       </div>
 
-      {{#unless (is-empty uoms)}}
+      {{#if (not (is-empty uoms))}}
         <div class="flex items-center px-4 uom">
-          <div class="w-12">
+          <div class="w-24">
             {{#power-select
               tabindex="-1"
               selected=model.uom
@@ -47,7 +48,7 @@
             {{/power-select}}
           </div>
         </div>
-      {{/unless}}
+      {{/if}}
     </div>
   </div>
 </div>

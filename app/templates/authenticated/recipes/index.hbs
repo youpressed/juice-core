@@ -2,7 +2,7 @@
   <div class="flex justify-end -mt-8">
     <button
       class="btn-blue uppercase text-xl"
-      {{action (route-action "createNode")}}
+      {{action "createNode"}}
     >
       Create Prep Item
     </button>
@@ -11,7 +11,7 @@
   <div class="card-yellow mt-8 p-10 rounded-lg">
     {{lists/sortable-list
       rowType="rows/label-row"
-      selectAction=(route-action "showNode")
+      selectAction=(action "showNode")
       model=model
     }}
   </div>

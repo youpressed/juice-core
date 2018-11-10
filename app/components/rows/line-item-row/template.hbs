@@ -2,7 +2,7 @@
   <div class="text-3xl font-light flex items-center">
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
       {{#if isDeleteable}}
-        <button class="text-grey" {{action (action handleDestroy model)}} tabindex="-1">
+        <button class="text-grey hover:text-red" {{action (action handleDestroy model)}} tabindex="-1">
           {{fa-icon "trash"}}
         </button>
       {{/if}}
@@ -14,8 +14,10 @@
         model.b.id
         data-test-line-item-name
         tabindex="-1"
+        class="group"
       }}
-        <p class="p-4">{{model.b.label}}</p>
+        <span class="ml-4 group-hover:border-b-grey">{{model.b.label}}</span>
+        <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
       {{/link-to}}
     </div>
   </div>

@@ -1,4 +1,3 @@
-{{router.currentRouteName}}
 <div class="nav-container w-24">
   <div class="flex flex-col h-full justify-between py-8">
     <div>
@@ -68,12 +67,18 @@
 
     </div>
 
-    {{#link-to "authenticated.settings" class="flex flex-col items-center my-4"}}
-      <div class="text-3xl">
-        {{fa-icon "cog"}}
-      </div>
-      <p class="mt-2">SETTING</p>
-    {{/link-to}}
+    <div tabindex="-1">
+      {{#link-to
+        "authenticated.settings"
+        class="flex flex-col items-center my-4"
+        tabindex="-1"
+      }}
+        <div class="text-3xl">
+          {{fa-icon "cog"}}
+        </div>
+        <p class="mt-2">SETTINGS</p>
+      {{/link-to}}
+    </div>
   </div>
 
 </div>

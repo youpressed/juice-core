@@ -6,8 +6,8 @@
     <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
       {{#if isDeleteable}}
         <button
-          class="text-grey hover:text-red"
           tabindex="-1"
+          class="text-grey hover:text-red"
           {{action (action handleDestroy model)}}
         >
           {{fa-icon "trash"}}

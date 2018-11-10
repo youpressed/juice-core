@@ -23,7 +23,7 @@ export default Service.extend({
 
     const node = this.get("store").createRecord("node", {
       type:"product",
-      label:"untitled",
+      label:"",
       position: nextPosition,
       yield: 1,
       uom: "count"

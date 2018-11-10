@@ -1,0 +1,40 @@
+
+{{#dialogs/base-dialog
+  onClose=cancel
+as |dialog|
+}}
+  {{#dialog.header}}
+    CREATE NEW ITEM
+  {{/dialog.header}}
+
+  {{#dialog.row}}
+    {{ui/desc-input
+      value=label
+      description="Item name"
+      placeholder="Start typing..."
+      update=(action (mut label))
+    }}
+  {{/dialog.row}}
+
+  {{#dialog.row}}
+    {{#ui/radio-button
+      label="HOW DO YOU GET THIS ITEM?"
+      value=isIngredient
+      options=typeOptions
+    }}
+    {{/ui/radio-button}}
+  {{/dialog.row}}
+
+  {{#dialog.footer as |footer|}}
+    {{#footer.button
+      color="blue"
+      onClick=(action "handleSubmit")
+    }}
+      Create
+    {{/footer.button}}
+
+    {{#footer.button onClick=(action cancel)}}
+      Cancel
+    {{/footer.button}}
+  {{/dialog.footer}}
+{{/dialogs/base-dialog}}

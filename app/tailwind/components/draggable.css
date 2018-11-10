@@ -1,0 +1,8 @@
+.draggable-row {
+  @apply bg-white-light;
+}
+
+.draggable-row:hover {
+  @apply cursor-pointer;
+  background: linear-gradient(270deg, #DCE5FF 0%, #EFF3FF 100%);
+}

@@ -1,70 +1,6 @@
-<div class="relative min-h-screen">
+<div class="relative min-h-screen full-gradient">
   {{#if session.isAuthenticated}}
-    {{#burger-menu
-      class="min-h-screen w-full flex flex-1 flex-col items-left"
-    as |burger|
-    }}
-      {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
-        <div class="flex justify-end">
-          <button {{action burger.state.actions.close}}>
-            {{fa-icon "close" class="p-4 text-5xl"}}
-          </button>
-        </div>
-
-        <ul class="m-0 p-0">
-          {{#menu.item}}
-            {{link-to "Productions" "productions"}}
-          {{/menu.item}}
-
-          {{#menu.item}}
-            {{link-to "Products" "products" data-test-menu-item-products}}
-          {{/menu.item}}
-
-          {{#menu.item}}
-            {{link-to "Recipes" "recipes" data-test-menu-item-recipes}}
-          {{/menu.item}}
-
-          {{#menu.item}}
-            {{link-to "Ingredients" "ingredients" data-test-menu-item-ingredients}}
-          {{/menu.item}}
-
-          {{#menu.item}}
-            {{link-to "Settings" "settings"}}
-          {{/menu.item}}
-        </ul>
-      {{/burger.menu}}
-      <button
-        data-test-menu-toggle-button
-        class="pin-t pin-l absolute ml-4 mt-4"
-        {{action burger.state.actions.toggle}}
-      >
-        {{fa-icon "bars" class="text-5xl cursor-pointer"}}
-      </button>
-
-      <div class="min-h-full w-full self-center mt-20">
-        {{#burger.outlet}}
-
-          <div
-            class="absolute pin-t pin-r p-4 flex items-baseline"
-          >
-            <p class="bold">{{session.session.authenticated.profile.email}}</p>
-            <p class="ml-2 mr-2">|</p>
-
-            {{ui/label-button
-              class="rounded shadow bg-blue text-white p-2 pr-4 pl-4 hover:bg-blue-light"
-              label="Logout"
-              onClick=(action "logout")
-            }}
-          </div>
-
-          <div class="mb-24">
-            {{outlet}}
-          </div>
-
-        {{/burger.outlet}}
-      </div>
-    {{/burger-menu}}
-
+    {{outlet}}
   {{else}}
     <div
       class="absolute pin-t pin-r p-4 flex items-baseline"
@@ -76,13 +12,6 @@
       }}
     </div>
   {{/if}}
-  <footer
-    class="flex bg-blue absolute pin-b w-full p-4 text-white h-12 -mt-12 items-baseline justify-between"
-  >
-    <p>
-      ©2016-2018 You Pressed - <a href="mailto:hello@youpressed.com">hello@youpressed.com</a>
-    </p>
-  </footer>
 </div>
 
 {{intercom-io}}

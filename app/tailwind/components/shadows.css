@@ -1,0 +1,10 @@
+.shadow-underlay {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 50%;
+  bottom: 11px;
+  margin-left: 5%;
+  position: absolute;
+  z-index: -1;
+}

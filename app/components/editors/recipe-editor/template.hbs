@@ -1,71 +1,35 @@
-<div class="info-form-container">
-  {{forms/node-info-form
-    title="Recipe Editor"
-    instructions="Add the basic info for this recipe."
-    model=model
-    handleUpdate=handleUpdate
-  }}
-</div>
+{{#containers/section-container title="EDIT PREP ITEM"}}
+  <div class="flex items-center mt-8">
+    {{#editors/node-editor
+      model=model
+      destroyNode=destroyNode
+      handleUpdate=handleUpdate
+    }}
+    {{/editors/node-editor}}
+  </div>
 
-<div class="children-form-container">
-  {{forms/node-children-form
-    title="Ingredients"
-    validNodes=validNodes
-    model=model
-    addNode=addNode
-    handleUpdate=handleUpdate
-    createAndAddNode=createAndAddNode
-    cloneGrandCentralNode=cloneGrandCentralNode
-    deleteEdge=deleteEdge
-  }}
-</div>
-
-
-<div class="yield-form">
-  <span class="info">
-    This recipe makes
-  </span>
-  <div class="yield-container">
-    {{ui/desc-input
-      value=model.yield
-      description="qty"
-      placeholder="Qty..."
-      update=(action handleUpdate model "yield")
+  <div class="card-yellow mt-8 rounded-lg">
+    {{forms/node-children-form
+      validNodes=validNodes
+      children=model.children
+      addNode=addNode
+      handleUpdate=handleUpdate
+      createAndAddNode=createAndAddNode
+      cloneGrandCentralNode=cloneGrandCentralNode
+      deleteEdge=deleteEdge
+      searchPlaceholder="Add items to this prep item"
+      emptyNodeText="Alright, let’s start building!"
     }}
   </div>
 
-  <div class="uom-container">
-    {{#power-select
-      selected=model.uom
-      options=uoms
-      onchange=(action handleUpdate model "uom")
-    as |uom|
-    }}
-      {{uom}}
-    {{/power-select}}
-  </div>
-</div>
-
-
-<div class="forced-uom-container col">
-  <div class="label">Only use the following units</div>
-  {{#power-select-multiple
-    options=uoms
-    selected=model.forceUomsParsed
-    placeholder="Any"
-    onchange=(action addUom model)
-  as |uom|
+  {{forms/node-conversion-form
+    model=model
+    handleUpdate=handleUpdate
   }}
-    {{uom}}
-  {{/power-select-multiple}}
-</div>
 
-
-<div class="destroy-form-container">
-  {{forms/delete-node-form
-    destroyNode=destroyNode
-    destroyLabel="Delete Recipe"
-    nodeLabel=model.label
-    node=model
+  {{forms/node-uom-settings-form
+    model=model
+    handleUpdate=handleUpdate
+    uoms=uoms
   }}
-</div>
+{{/containers/section-container}}

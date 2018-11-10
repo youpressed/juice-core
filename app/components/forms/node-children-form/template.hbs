@@ -1,40 +1,39 @@
-<div class="flex flex-col mb-2 p-4 shadow bg-blue-lightest">
-  <div class="form-header">
-    <div class="title">
-      {{title}}
-    </div>
-    <div class="options-container">
-      {{#power-select
-        options=validNodes
-        searchField="label"
-        search=(perform searchTask)
-        onchange=(action "handleSelect")
-        placeholder="Search and add recipes or ingredients..."
-        beforeOptionsComponent=(component "power-select/before-options" autofocus=true)
-      as |node|
-      }}
-        {{node.label}}
-      {{/power-select}}
-    </div>
+<div class="flex flex-col">
+  <div class="search z-20">
+    {{ui/simple-search
+      options=validNodes
+      onselect=(action "handleSelect")
+      placeholder=searchPlaceholder
+      localOnly=localOnly
+    }}
   </div>
 
-  <div class="line-items-container">
-    {{#each model.children as |edge index|}}
-      {{rows/line-item-row
-        index=(inc index)
-        model=edge
-        handleUpdate=handleUpdate
-        deleteEdge=deleteEdge
-        uoms=uoms
-      }}
-    {{/each}}
-  </div>
+  {{#if hasChilden}}
+    <div class="z-10 py-8">
+      {{#each children as |edge|}}
+        <div class="mx-8 my-4">
+          {{rows/line-item-row
+            model=edge
+            handleUpdate=handleUpdate
+            handleDestroy=deleteEdge
+            uoms=uoms
+          }}
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="flex justify-center items-center p-12">
+      <p class="text-5xl text-grey font-thin py-8">
+        {{emptyNodeText}}
+      </p>
+    </div>
+  {{/if}}
 </div>
 
 {{#if showCreateIngredient}}
-  {{dialogs/new-ingredient
+  {{dialogs/new-item-wizard
     cancel=(action "cancelCreateIngredient")
     create=createAndAddNode
-    label=tempIngredientName
+    itemLabel=tempIngredientName
   }}
 {{/if}}

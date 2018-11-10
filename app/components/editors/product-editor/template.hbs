@@ -1,24 +1,23 @@
-{{forms/node-info-form
-  title="Product Editor"
-  instructions="Add the basic info for this product."
-  model=model
-  handleUpdate=handleUpdate
-}}
+{{#containers/section-container title="Edit Product"}}
+  <div class="flex items-center mt-8">
+    {{#editors/node-editor
+      model=model
+      destroyNode=destroyNode
+      handleUpdate=handleUpdate
+    }}
+    {{/editors/node-editor}}
+  </div>
 
-{{forms/node-children-form
-  title="Product Recipe"
-  validNodes=validNodes
-  model=model
-  addNode=addNode
-  handleUpdate=handleUpdate
-  createAndAddNode=createAndAddNode
-  cloneGrandCentralNode=cloneGrandCentralNode
-  deleteEdge=deleteEdge
-}}
-
-{{forms/delete-node-form
-  destroyNode=destroyNode
-  destroyLabel="Delete Product"
-  nodeLabel=model.label
-  node=model
-}}
+  <div class="card-yellow mt-8 rounded-lg">
+    {{forms/node-children-form
+      title="Product Recipe"
+      validNodes=validNodes
+      children=model.children
+      addNode=addNode
+      handleUpdate=handleUpdate
+      createAndAddNode=createAndAddNode
+      cloneGrandCentralNode=cloneGrandCentralNode
+      deleteEdge=deleteEdge
+    }}
+  </div>
+{{/containers/section-container}}

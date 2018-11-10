@@ -1,57 +1,54 @@
-<div class="flex items-baseline">
-  <div class="w-10">
-    {{index}}.
+<div
+  class="card-blue flex items-stretch justify-between shadow"
+  data-test-line-item-row
+>
+  <div class="text-3xl font-light flex items-center">
+    <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
+      {{#if isDeleteable}}
+        <button
+          tabindex="-1"
+          class="text-grey hover:text-red"
+          {{action (action handleDestroy model)}}
+        >
+          {{fa-icon "trash"}}
+        </button>
+      {{/if}}
+    </div>
+
+    <div>
+      {{#link-to (node-link-path model.b) model.b.id tabindex="-1" class="group"}}
+        <span class="ml-4 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
+        <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
+      {{/link-to}}
+    </div>
   </div>
 
-  <div class="text-lg w-64 hover:border-2 border-blue">
-    {{link-to
-      model.b.label
-      (node-link-path model.b)
-      model.b.id
-      data-test-line-item-name
-    }}
-  </div>
+  <div class="flex items-stretch">
+    <div class="flex">
+      <div class="flex items-center mr-2 p-4 qty-input" data-test-edge-quantity>
+        {{input
+          class="w-24 mr-2 bg-transparent text-3xl font-bold text-grey-darker text-right"
+          value=model.q
+          key-up=(action handleUpdate model "q")
+          placeholder="0"
+        }}
+      </div>
 
-  <div class="flex items-center mr-2">
-    <input
-      class="p-2 w-16 border-2 border-grey-light focus:border-grey mr-2"
-      value={{model.q}}
-      oninput={{action
-        (action
-          handleUpdate
-          model
-          "q")
-        value="target.value"
-      }}
-      data-test-line-item-qty
-    >
-
-    <input
-      class="p-2 w-32 border-2 border-grey-light focus:border-grey"
-      value={{model.notes}}
-      oninput={{action
-        (action
-          handleUpdate
-          model
-          "notes")
-        value="target.value"
-      }}
-    >
-  </div>
-
-  <div class="w-24">
-    {{#power-select
-      class="options-select"
-      selected=model.uom
-      options=uoms
-      onchange=(action handleUpdate model "uom")
-    as |option|
-    }}
-      {{option}}
-    {{/power-select}}
-  </div>
-
-  <div class="ml-4 cursor-pointer">
-    <button {{action (action deleteEdge model)}}>X</button>
+      {{#if (not (is-empty uoms))}}
+        <div class="flex items-center px-4 uom">
+          <div class="w-24">
+            {{#power-select
+              tabindex="-1"
+              selected=model.uom
+              options=uoms
+              onchange=(action handleUpdate model "uom")
+            as |option|
+            }}
+              {{option}}
+            {{/power-select}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
   </div>
 </div>

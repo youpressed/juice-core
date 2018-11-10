@@ -3,9 +3,10 @@ import downloadFile from "juice-core/utils/download-file";
 import { sort } from '@ember/object/computed';
 import { inject } from '@ember/service';
 import RenderMap from 'juice-core/renderers/render-map';
+import { unitTypes } from 'juice-core/constants/unit-conversions';
 
 export default Component.extend({
-  classNames: ['row', 'center'],
+  uoms: unitTypes,
   pdfGenerator: inject(),
   settingsService: inject(),
 
@@ -30,15 +31,14 @@ export default Component.extend({
 
       return downloadFile(url, 'mykey');
     },
-
     handleQuantityUpdate(edge, val) {
-      if(val !== undefined) {
+      if (val !== undefined) {
         this.get('handleUpdate')(edge, "q", val);
       }
     },
 
     handleQuantityBlur(edge, event) {
-      if(event.target.value === "" || event.target.value === undefined) {
+      if (event.target.value === "" || event.target.value === undefined) {
         this.get('handleUpdate')(edge, "q", 0);
       }
     }

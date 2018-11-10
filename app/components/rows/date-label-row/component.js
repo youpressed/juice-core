@@ -1,11 +1,7 @@
 import Component from '@ember/component';
-import { notEmpty } from '@ember/object/computed';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  hasDestroyAction: notEmpty('destroyAction'),
-  isShowingExtrasMenu: false,
-
   totalCount: computed('model.children.@each.{q,sign}', function() {
     return this.get('model.children')
       .filter(edge => edge.get('sign') !== -1)
@@ -17,15 +13,13 @@ export default Component.extend({
   },
 
   actions: {
-    handleDestroyClicked() {
-      this.get('destroyAction')(this.get('model'));
+    showDestroyDialog(e) {
+      e.stopPropagation();
+      this.set('isDestroyingNode', true);
     },
-
-    toggleExtrasMenu(e) {
-      if(e) {
-        e.stopPropagation();
-      }
-      this.toggleProperty('isShowingExtrasMenu');
+    handleDestroy() {
+      this.get('destroyAction')(this.get('model'));
+      this.set('isDestroyingNode', false);
     }
   }
 });

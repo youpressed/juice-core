@@ -10,24 +10,19 @@ module('Acceptance | recipes', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   hooks.beforeEach(async () => {
-    await visit('/recipes');
-    await click('[data-test-menu-toggle-button]');
-    await click('[data-test-menu-item-recipes]');
+    await visit('/a/recipes');
   });
 
   test('displays active recipes as default', async function (assert) {
-    assert.dom('[data-test-label-row-label]').exists({count: 1});
-    assert.dom('[data-test-label-row-label]').hasText('Tomato Sauce');
+
+    assert.dom('[data-test-label-row]').exists({count: 2})
   });
 
   test('displays recipe information correctly', async function(assert) {
-    await click('[data-test-label-row-label]');
+    await click('[data-test-label-row]');
 
-    assert.dom('[data-test-desc-input="input-node-name"]').hasValue('Tomato Sauce');
-    assert.dom('[data-test-desc-input="input-node-qty"]').hasValue('2');
-    assert.dom('[data-test-node-active]').isChecked();
-
-    assert.dom('[data-test-line-item-name]').hasText('Salt');
-    assert.dom('[data-test-line-item-qty]').hasValue('7');
+    assert.dom('[data-test-node-name]').hasValue('Salty Sauce');
+    assert.dom('[data-test-line-item-row] [data-test-label]').hasText('Salt');
+    assert.dom('[data-test-edge-quantity] input').hasValue('12');
   });
 });

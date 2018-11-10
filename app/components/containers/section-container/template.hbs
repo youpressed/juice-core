@@ -1,5 +1,10 @@
-<div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>
-<div class="layout-col flex">
-  {{yield}}
+<div class="flex flex-col items-center min-h-screen min-w-full pt-12">
+  <div class="w-9/11">
+    <h1 class="section-title">
+      {{title}}
+    </h1>
+  </div>
+  <div class="w-7/11 pb-16">
+    {{yield}}
+  </div>
 </div>
-<div class="layout-col flex-gt-lg-15 flex-gt-md-10"></div>

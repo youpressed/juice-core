@@ -1,0 +1,15 @@
+.full-gradient {
+  position: relative;
+}
+
+.full-gradient::after {
+  content: "";
+  display: block;
+  z-index: -100;
+  background: linear-gradient(56.07deg, #FFFCF7 0%, #F6F6FF 100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

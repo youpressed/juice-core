@@ -3,14 +3,12 @@
     {{ui/label-button
       class="back-button"
       label="< Back to recipes"
-      onClick=(action navigateTo "recipes")
+      onClick=(action navigateTo "authenticated.recipes")
     }}
 
     {{editors/recipe-editor
       handleUpdate=handleUpdate
       addNode=addNode
-      addUom=addUom
-      removeUom=removeUom
       deleteEdge=deleteEdge
       createAndAddNode=createAndAddNode
       cloneGrandCentralNode=cloneGrandCentralNode

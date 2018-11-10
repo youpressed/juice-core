@@ -1,46 +1,26 @@
-<div class="row-blue group" data-test-date-row>
-  <div class="flex items-baseline">
-    <div class="text-base italic mr-4">{{index}}.</div>
-    <div class="flex items-center text-2xl" data-test-date-row-label>
-      <div class="bold">{{moment-format model.date "ddd" "YYYY-MM-DD"}}</div>
-      <span class="ml-2 mr-2">-</span>
-      <div class="bold">{{moment-format model.date "MM/DD" "YYYY-MM-DD"}}</div>
-    </div>
+<div
+  class="py-2 px-4 text-3xl font-light mb-4 border draggable-row flex justify-between"
+  data-test-date-row-label
+  data-test-date-row-total-count
+>
+  <div class="flex">
+    <button
+      class="text-2xl justify-center hover:text-red text-grey-dark"
+      onclick={{action "showDestroyDialog"}}
+    >
+      {{fa-icon "trash"}}
+    </button>
+
+    <span class="pl-4">{{moment-format model.date "MM/DD/YYYY"}}</span>
   </div>
-  <div class="flex items-center">
-    <div class="flex items-baseline">
-      <p class="text-2xl" data-test-date-row-total-count>{{totalCount}}</p>
-      <p class="text-base ml-4">Total Units</p>
-    </div>
-    <div data-tether-id="menu">
-      {{fa-icon
-        "cog"
-        class="ml-4 text-2xl text-grey-darkest"
-        click=(action "toggleExtrasMenu")
-      }}
-    </div>
-  </div>
+
+  <span>{{totalCount}} units</span>
 </div>
 
-{{#if isShowingExtrasMenu}}
-  {{#modal-dialog
-    animatable=true
-    hasOverlay=false
-    clickOutsideToClose=true
-    onClose=(action "toggleExtrasMenu")
-    targetAttachment="bottom right"
-    attachment="top left"
-    tetherTarget="[data-tether-id='menu']"
+{{#if isDestroyingNode}}
+  {{dialogs/destroy-node
+    cancel=(action (mut isDestroyingNode) false)
+    destroyNode=(action "handleDestroy")
+    model=model
   }}
-    <div class="bg-grey-lightest shadow p-6 rounded-lg">
-      <div class="flex flex-col">
-        {{ui/label-button
-          label="delete"
-          class="btn-red"
-          click=(action "handleDestroyClicked")
-          icon="close"
-        }}
-      </div>
-    </div>
-  {{/modal-dialog}}
 {{/if}}

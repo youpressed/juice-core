@@ -13,6 +13,26 @@
     <link rel="stylesheet" href="{{rootURL}}assets/juice-core.css">
 
     {{content-for "head-footer"}}
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100066161-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-100066161-1');
+    </script>
+
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:517834,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
 
   </head>
   <body>
@@ -24,10 +44,11 @@
     <script>
       WebFont.load({
         google: {
-          families: ['Trocchi', 'Montserrat:400,800', 'Roboto:400,400i,500']
+          families: ['Raleway:200,300,300i,400']
         }
       });
     </script>
+    <script src='https://content.jwplatform.com/libraries/0BmBHH36.js'></script>
 
     {{content-for "body-footer"}}
   </body>

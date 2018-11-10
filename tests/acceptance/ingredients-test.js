@@ -10,21 +10,16 @@ module('Acceptance | ingredients', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   hooks.beforeEach(async () => {
-    await visit('/ingredients');
-    await click('[data-test-menu-toggle-button]');
-    await click('[data-test-menu-item-ingredients]');
+    await visit('/a/ingredients');
   });
 
   test('displays active ingredients as default', async function (assert) {
-    assert.dom('[data-test-label-row-label]').exists({count: 1});
-    assert.dom('[data-test-label-row-label]').hasText('Salt');
+    assert.dom('[data-test-label-row]').hasText('Salt');
   });
 
   test('displays ingredient information correctly', async function(assert) {
-    await click('[data-test-label-row-label]');
+    await click('[data-test-label-row]');
 
-    assert.dom('[data-test-desc-input="input-node-name"]').hasValue('Salt');
-    assert.dom('[data-test-desc-input="input-node-qty"]').hasValue('5');
-    assert.dom('[data-test-node-active]').isChecked();
+    assert.dom('[data-test-node-name]').hasValue('Salt');
   });
 });

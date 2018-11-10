@@ -1,0 +1,53 @@
+{{#containers/section-container title="PRODUCTIONS"}}
+  <div class="flex justify-end -mt-8">
+    <button
+      class="btn-blue uppercase text-xl {{if (not canCreateProduction) "disabled"}}"
+      {{action "createNode"}}
+    >
+      Create Production
+    </button>
+  </div>
+
+  {{#if hasProducts}}
+    {{#if hasProductions}}
+      <div class="card-yellow mt-8 p-10 rounded-lg">
+        {{lists/label-list
+          rowType="rows/date-label-row"
+          selectAction=(action "showNode")
+          destroyAction=(action "destroyNode")
+          model=recentProductions
+        }}
+      </div>
+    {{else}}
+      <div class="card-yellow mt-8 p-10 rounded-lg">
+        <div class="flex-col justify-center items-center p-16">
+          <p class="text-5xl text-center text-grey font-thin italic">
+            Hey! You don't have any productions yet.
+          </p>
+
+          <p class="text-4xl text-grey pt-10 font-light text-center">
+            Use the link above to create one
+          </p>
+        </div>
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="card-yellow mt-8 p-10 rounded-lg">
+      <div class="flex flex-col w-full justify-center items-center p-16">
+        <p class="text-5xl text-center text-grey font-thin italic">
+          Hey! It looks like you haven't created any products yet.
+        </p>
+
+        <p class="text-4xl text-grey pt-10 font-light text-center">
+          Create your first product and then you can create a production.
+        </p>
+        <button
+          class="btn-blue uppercase text-2xl mt-12"
+          {{action "createProduct"}}
+        >
+          Create Product
+        </button>
+      </div>
+    </div>
+  {{/if}}
+{{/containers/section-container}}

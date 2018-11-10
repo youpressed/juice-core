@@ -1,0 +1,4 @@
+.disabled {
+  @apply opacity-50;
+  pointer-events: none;
+}

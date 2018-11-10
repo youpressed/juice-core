@@ -8,7 +8,7 @@ const {
 } = computed;
 
 export default Component.extend({
-  showInactive:     false,
+  showInactive:     true,
 
   inactiveItems:    filterBy('model', 'isActive', false),
   hasInactiveItems: notEmpty('inactiveItems'),

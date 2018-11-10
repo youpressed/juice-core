@@ -1,0 +1,21 @@
+<nav>
+  <ul class="pl-10 h-24 list-reset flex items-end">
+    {{#each panels as |item|}}
+      <li class="flex">
+        <a
+          class= {{concat
+            "tab-title "
+            (if (eq activeId item.elementId) "pb-6 left-blue-dark-grad " "pb-2 left-blue-light-grad ")
+          }}
+          href="#"
+          {{action (mut activeId) item.elementId}}
+        >
+          {{item.title}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</nav>
+{{yield
+  (hash panel=(component "ui/tabs-component/tab-panel" activeId=activeId))
+}}

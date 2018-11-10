@@ -20,7 +20,9 @@ export default Controller.extend({
   actions: {
     async createAdjustmentEdge(b) {
       const a = this.get('model');
-      const edge = this.get('store').createRecord('edge', {a, b, q: 0, sign:-1});
+      const uom = b.get('uom');
+      const edgeData = {a, b, uom, sign:-1};
+      const edge = this.get('store').createRecord('edge', edgeData);
       await edge.save();
 
       await a.save();

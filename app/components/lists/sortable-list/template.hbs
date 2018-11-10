@@ -7,7 +7,7 @@
     inPlace=false
     sortingScope="sortingGroup"
   }}
-    {{#each activeItems as |item index|}}
+    {{#each sortedItems as |item index|}}
       {{#draggable-object
         content=item
         isSortable=true

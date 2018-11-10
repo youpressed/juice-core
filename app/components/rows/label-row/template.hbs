@@ -1,6 +1,18 @@
 <div
-  class="py-2 px-10 text-3xl font-light mb-4 border draggable-row"
+  class="flex items-center justify-between py-2 px-12 text-3xl font-light mb-4 border draggable-row group"
   data-test-label-row-label
 >
+  <span
+    class="text-lg text-grey-darker absolute -ml-8 invisible group-hover:visible"
+  >
+    {{fa-icon "reorder"}}
+  </span>
+
   {{model.label}}
+
+  <span
+    class="text-lg text-grey-darker absolute pin-r mr-16 invisible group-hover:visible"
+  >
+    {{fa-icon "angle-right"}}
+  </span>
 </div>

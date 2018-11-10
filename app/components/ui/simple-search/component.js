@@ -56,10 +56,10 @@ export default Component.extend({
 
     yield timeout(300);
 
-    const algoliaResults = yield algoliaNodeIndex.search(term).hits;
+    const algoliaResults = yield algoliaNodeIndex.search(term);
 
     const remoteMatches = _
-      .chain(algoliaResults)
+      .chain(algoliaResults.hits)
       .map(match => ({
           action: "clone",
           type: match.type,

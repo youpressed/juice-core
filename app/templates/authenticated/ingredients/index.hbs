@@ -1,19 +1,7 @@
-{{#containers/section-container title="Ingredients"}}
-  <div class="flex justify-end -mt-8">
-    <button
-      class="btn-blue uppercase text-xl"
-      {{action "createNode"}}
-    >
-      Create Ingredient
-    </button>
-  </div>
-
-  <div class="card-yellow mt-8 p-10 rounded-lg">
-    {{lists/sortable-list
-      rowType="rows/label-row"
-      selectAction=(action "showNode")
-      model=model
-    }}
-  </div>
-{{/containers/section-container}}
-
+{{#sections/node-list-index
+  nodeName="Ingredient"
+  nodes=model
+  showNode=(action "showNode")
+  createNode=(action "createNode")
+}}
+{{/sections/node-list-index}}

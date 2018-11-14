@@ -8,6 +8,13 @@
     {{/editors/node-editor}}
   </div>
 
+  <div class="pl-8 mt-8">
+    {{forms/node-active-checkbox
+      model=model
+      toggleActive=handleUpdate
+    }}
+  </div>
+
   {{forms/node-uom-settings-form
     model=model
     handleUpdate=handleUpdate

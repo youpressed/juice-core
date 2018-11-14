@@ -1,0 +1,10 @@
+<div class="flex text-2xl items-center font-light">
+  {{input
+    type="checkbox"
+    checked=model.isActive
+    change=(action "toggleActive")
+  }}
+  <div class="ml-3">
+    This <span class="lowercase">{{model.nodeName}} is {{if model.isActive "enabled" "disabled"}}</span>
+  </div>
+</div>

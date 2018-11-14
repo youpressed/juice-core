@@ -1,0 +1,8 @@
+<div class="font-semibold text-blue">
+  {{#if storeStateService.isSaving}}
+    <span class="text-orange">SAVING ...</span>
+  {{else}}
+    AUTO SAVED
+    <span class="ml-4">{{fa-icon "check"}}</span>
+  {{/if}}
+</div>

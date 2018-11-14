@@ -7,6 +7,8 @@ export default Service.extend({
   store: service(),
 
   init() {
+    this._super(...arguments);
+
     const nodes = this.get("store").peekAll("node");
     const edges = this.get("store").peekAll("edge");
 

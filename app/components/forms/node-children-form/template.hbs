@@ -8,26 +8,31 @@
     }}
   </div>
 
-  {{#if hasChilden}}
-    <div class="z-10 py-8">
-      {{#each children as |edge|}}
-        <div class="mx-8 my-4">
-          {{rows/line-item-row
-            model=edge
-            handleUpdate=handleUpdate
-            handleDestroy=deleteEdge
-            uoms=uoms
-          }}
+  <div class="mx-8 pb-8">
+    {{#sections/auto-save-indicator}}
+      {{#if hasChildren}}
+        <div class="z-10 py-8">
+          {{#each children as |edge|}}
+            <div class="my-4">
+              {{rows/line-item-row
+                model=edge
+                handleUpdate=handleUpdate
+                handleDestroy=deleteEdge
+                uoms=uoms
+              }}
+            </div>
+          {{/each}}
         </div>
-      {{/each}}
-    </div>
-  {{else}}
-    <div class="flex justify-center items-center p-12">
-      <p class="text-5xl text-grey font-thin py-8">
-        {{emptyNodeText}}
-      </p>
-    </div>
-  {{/if}}
+      {{else}}
+        <div class="flex justify-center items-center py-12">
+          <p class="text-5xl text-grey font-thin py-8">
+            {{emptyNodeText}}
+          </p>
+        </div>
+      {{/if}}
+    {{/sections/auto-save-indicator}}
+  </div>
+
 </div>
 
 {{#if showCreateIngredient}}

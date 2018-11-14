@@ -8,7 +8,7 @@ export default Component.extend({
   localOnly: false,
   searchPlaceholder: 'Search and add recipes or ingredients...',
   emptyNodeText: 'Alright, let’s start creating!',
-  hasChilden: notEmpty('children'),
+  hasChildren: notEmpty('children'),
 
   startCreateIngredient(newName) {
     this.set('tempIngredientName', newName);

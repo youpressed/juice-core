@@ -32,7 +32,7 @@ export default Component.extend({
       return;
     }
 
-    const reg = new RegExp(term, "i");
+    const reg = new RegExp(`(\\s+|^)${term}`, "i");
 
     const localMatches = _
       .chain(this.get("options"))

@@ -9,14 +9,23 @@
   </div>
 
   {{#if hasChilden}}
+    {{#if hasChildrenSelected}}
+      <button
+        class="absolute btn-red-grad p-6 -ml-18 mt-32 rounded-l"
+        {{action "deleteEdges"}}
+      >
+        <span class="text-3xl text-white">{{fa-icon "trash"}}</span>
+      </button>
+    {{/if}}
+
     <div class="z-10 py-8">
       {{#each children as |edge|}}
         <div class="mx-8 my-4">
           {{rows/line-item-row
             model=edge
             handleUpdate=handleUpdate
-            handleDestroy=deleteEdge
             uoms=uoms
+            isDestroyable=true
           }}
         </div>
       {{/each}}

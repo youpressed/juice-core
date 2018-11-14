@@ -3,24 +3,16 @@
   data-test-line-item-row
 >
   <div class="text-3xl font-light flex items-center">
-    <div class="ml-4 cursor-pointer bg-blue-lightest text-base">
-      {{#if isDeleteable}}
-        <button
-          tabindex="-1"
-          class="text-grey hover:text-red"
-          {{action (action handleDestroy model)}}
-        >
-          {{fa-icon "trash"}}
-        </button>
-      {{/if}}
-    </div>
+    {{#if isDestroyable}}
+      <div class="cursor-pointer bg-blue-lightest text-base p-6">
+        {{input type="checkbox" checked=model.isSelected}}
+      </div>
+    {{/if}}
 
-    <div>
-      {{#link-to (node-link-path model.b) model.b.id tabindex="-1" class="group"}}
-        <span class="ml-4 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
-        <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
-      {{/link-to}}
-    </div>
+    {{#link-to (node-link-path model.b) model.b.id tabindex="-1" class="group"}}
+      <span class="ml-6 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
+      <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
+    {{/link-to}}
   </div>
 
   <div class="flex items-stretch">

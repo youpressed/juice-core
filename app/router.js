@@ -30,6 +30,8 @@ Router.map(function() {
 
   this.route('signup');
   this.route('login');
+
+  this.route("four-oh-four", { path: "*path"});
 });
 
 export default Router;

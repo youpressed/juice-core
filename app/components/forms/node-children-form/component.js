@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { unitTypes } from 'juice-core/constants/unit-conversions';
-import { notEmpty } from '@ember/object/computed';
+import { notEmpty, filter } from '@ember/object/computed';
+import _ from 'lodash';
 
 export default Component.extend({
   uoms: unitTypes,
@@ -9,6 +10,11 @@ export default Component.extend({
   searchPlaceholder: 'Search and add recipes or ingredients...',
   emptyNodeText: 'Alright, let’s start creating!',
   hasChilden: notEmpty('children'),
+
+  selectedChildren: filter('children.@each.isSelected', function(node){
+    return node.get('isSelected');
+  }),
+  hasChildrenSelected: notEmpty('selectedChildren'),
 
   startCreateIngredient(newName) {
     this.set('tempIngredientName', newName);
@@ -37,6 +43,10 @@ export default Component.extend({
           this.startCreateIngredient(option.label);
           break;
       }
+    },
+
+    deleteEdges(){
+      _.each(this.get('selectedChildren'), async edge => await this.get('deleteEdge')(edge));
     }
   }
 });

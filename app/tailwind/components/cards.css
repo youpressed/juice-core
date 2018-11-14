@@ -4,21 +4,10 @@
 }
 
 .card-yellow {
-  @apply card;
+  @apply card shadow-lg;
   @apply grad-yellow;
 }
-
-.card-yellow::after {
-  @apply shadow-underlay;
-  box-shadow: 0px 10px 40px rgba(70, 125, 101, 0.4);
-}
-
 .card-blue {
-  @apply card;
+  @apply card shadow-lg;
   @apply grad-blue;
-}
-
-.card-blue::after {
-  @apply shadow-underlay;
-  box-shadow: 0px 10px 40px rgba(62, 77, 119, 0.2);
 }

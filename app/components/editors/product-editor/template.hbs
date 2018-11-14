@@ -8,6 +8,13 @@
     {{/editors/node-editor}}
   </div>
 
+  <div class="pl-8 mt-8">
+    {{forms/node-active-checkbox
+      model=model
+      toggleActive=handleUpdate
+    }}
+  </div>
+
   <div class="card-yellow mt-8 rounded-lg">
     {{forms/node-children-form
       title="Product Recipe"

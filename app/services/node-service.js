@@ -78,5 +78,10 @@ export default Service.extend({
       });
 
     await node.destroyRecord();
+  },
+
+  async handleUpdate(model, key, val) {
+    model.set(key, val);
+    await model.save();
   }
 });

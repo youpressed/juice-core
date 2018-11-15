@@ -20,7 +20,12 @@ export default {
         "production<->product2": {
           "a": "production-id",
           "b": "product-id2",
-          "q": 15,
+          "q": 15
+        },
+        "production<->recipe1": {
+          "a": "production-id",
+          "b": "recipe-id1",
+          "q": 5,
           "sign": -1
         },
         "product2<->recipe1": {

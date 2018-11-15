@@ -15,7 +15,7 @@ module('Acceptance | Productions', function(hooks) {
 
   test('shows date and total units of productions', async function(assert) {
     assert.dom('[data-test-date-row-label]').includesText('04/07/2018');
-    assert.dom('[data-test-date-row-total-count]').includesText('10');
+    assert.dom('[data-test-date-row-total-count]').includesText('25');
   });
 
   test('be able to create a production', async function(assert) {

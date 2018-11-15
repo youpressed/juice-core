@@ -21,7 +21,7 @@
   <div class="mt-16">
     {{#ui/tabs-component as |tab|}}
       {{#tab.panel title="make"}}
-        <div class="p-10">
+        <div class="p-10" data-test-make-tab>
           {{#each sortedRow as |edge|}}
             {{rows/line-item-row
               model=edge

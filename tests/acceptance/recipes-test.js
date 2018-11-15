@@ -1,28 +1,31 @@
 import { module, test } from 'qunit';
-import { visit, click } from '@ember/test-helpers';
+import { visit, click, currentURL } from '@ember/test-helpers';
 import fireBaseFixture from 'juice-core/tests/fixtures/firebase-default';
 
 import {
   initAcceptanceTest
 } from 'juice-core/tests/helpers/acceptance-helpers';
 
-module('Acceptance | recipes', function(hooks) {
+module('Acceptance | Recipes', function(hooks) {
   initAcceptanceTest(hooks, fireBaseFixture);
 
   hooks.beforeEach(async () => {
     await visit('/a/recipes');
   });
 
-  test('displays active recipes as default', async function (assert) {
-
+  test('displays recipes', async function (assert) {
     assert.dom('[data-test-label-row]').exists({count: 2})
   });
 
-  test('displays recipe information correctly', async function(assert) {
+  test('be able to create a recipe', async function(assert) {
+    await click('[data-test-create-button]');
+
+    assert.dom('[data-test-page-title]').hasText('EDIT PREP ITEM');
+  });
+
+  test('be able to open recipe show page', async function(assert) {
     await click('[data-test-label-row]');
 
-    assert.dom('[data-test-node-name]').hasValue('Salty Sauce');
-    assert.dom('[data-test-line-item-row] [data-test-label]').hasText('Salt');
-    assert.dom('[data-test-edge-quantity] input').hasValue('12');
+    assert.equal(currentURL(), '/a/recipes/recipe-id1');
   });
 });

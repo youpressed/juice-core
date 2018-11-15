@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, click, triggerKeyEvent, typeIn, currentURL } from '@ember/test-helpers';
+import { visit, click, triggerKeyEvent, typeIn, currentURL, waitUntil, find } from '@ember/test-helpers';
 
 import fireBaseFixture from 'juice-core/tests/fixtures/firebase-default';
 
@@ -43,5 +43,24 @@ module('Acceptance | Products | Show', function(hooks) {
     await click('[data-test-dialog-button]');
 
     assert.equal(currentURL(), '/a/products');
+  });
+
+  test('be able to view an ingredient or a recipe in details', async function (assert) {
+    await click('[data-test-node-children] [data-test-label]')
+
+    assert.equal(currentURL(), '/a/recipes/recipe-id1');
+  });
+
+  test('be able to create an ingredient or a recipe when searching if not exist', async function (assert) {
+    assert.dom('[data-test-node-children] [data-test-line-item-row]').exists({count: 2});
+
+    await typeIn('[data-test-search-input]', 'Not existing');
+
+    await waitUntil(() => find('[data-test-search-create]'));
+    await triggerKeyEvent('[data-test-search-input]', 'keydown', 13) // enter
+
+    await click('[data-test-dialog-button]');
+
+    assert.dom('[data-test-node-children] [data-test-line-item-row]').exists({count: 3});
   });
 });

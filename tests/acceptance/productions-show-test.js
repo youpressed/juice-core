@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, click, triggerKeyEvent, typeIn, currentURL } from '@ember/test-helpers';
+import { visit, click, triggerKeyEvent, typeIn, currentURL, waitUntil, find } from '@ember/test-helpers';
 
 import fireBaseFixture from 'juice-core/tests/fixtures/firebase-default';
 
@@ -43,5 +43,19 @@ module('Acceptance | Productions | Show', function(hooks) {
     await click('[data-test-node-children] [data-test-label]')
 
     assert.equal(currentURL(), '/a/recipes/recipe-id1');
+  });
+
+  test('be able to delete an adjusting', async function (assert) {
+    // Open Adjusting tab
+    await click('[data-test-tab-title="1"]');
+
+    assert.dom('[data-test-node-children] [data-test-line-item-row]').exists({count: 1});
+
+    await click('[data-test-node-children] [data-test-select]');
+    await click('[data-test-node-children] [data-test-delete-button]');
+
+    await waitUntil(() => !find('[data-test-node-children] [data-test-line-item-row]'));
+
+    assert.dom('[data-test-node-children] [data-test-line-item-row]').exists({count: 0});
   });
 });

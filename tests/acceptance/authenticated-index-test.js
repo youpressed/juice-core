@@ -16,7 +16,7 @@ module('Acceptance | Authenticated | Index', function(hooks) {
     assert.dom('[data-test-header]').hasText('Welcome to You Pressed');
   });
 
-  test('clicks button for creating a product', async function(assert) {
+  test('be able to create a product', async function(assert) {
     await click('[data-test-create-button]');
     assert.dom('[data-test-page-title]').hasText('Edit Product');
   });

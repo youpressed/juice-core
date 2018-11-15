@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, click, triggerKeyEvent, typeIn, currentURL, waitUntil, find } from '@ember/test-helpers';
+import { visit, click, triggerKeyEvent, typeIn, currentURL, waitFor } from '@ember/test-helpers';
 
 import fireBaseFixture from 'juice-core/tests/fixtures/firebase-default';
 
@@ -56,7 +56,7 @@ module('Acceptance | Products | Show', function(hooks) {
 
     await typeIn('[data-test-search-input]', 'Not existing');
 
-    await waitUntil(() => find('[data-test-search-create]'));
+    await waitFor('[data-test-search-create]');
     await triggerKeyEvent('[data-test-search-input]', 'keydown', 13) // enter
 
     await click('[data-test-dialog-button]');

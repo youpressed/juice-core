@@ -7,10 +7,6 @@ export default Controller.extend({
   nodeService: service(),
 
   actions: {
-    navigateTo(path) {
-      this.transitionToRoute(path);
-    },
-
     handleUpdate(model, key, val) {
       model.set(key, val);
       model.save();

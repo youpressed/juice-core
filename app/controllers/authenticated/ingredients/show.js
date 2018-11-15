@@ -2,10 +2,6 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    navigateTo(path) {
-      this.transitionToRoute(path);
-    },
-
     handleUpdate(model, key, val) {
       model.set(key, val);
       model.save();

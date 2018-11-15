@@ -10,10 +10,6 @@ export default Controller.extend({
   },
 
   actions: {
-    navigateTo(path) {
-      this.transitionToRoute(path);
-    },
-
     login () {
       const lockOptions = {
         autoclose: true,

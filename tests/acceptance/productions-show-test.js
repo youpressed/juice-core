@@ -23,11 +23,11 @@ module('Acceptance | Productions | Show', function(hooks) {
     // Open Adjusting tab
     await click('[data-test-tab-title="1"]');
 
-    assert.dom('[data-test-node-children] [data-test-line-item-row').exists({count: 1});
+    assert.dom('[data-test-node-children] [data-test-line-item-row]').exists({count: 1});
 
     await typeIn('[data-test-search-input]', 'Sa');
     await triggerKeyEvent('[data-test-search-input]', 'keydown', 13) // enter
 
-    assert.dom('[data-test-node-children] [data-test-line-item-row').exists({count: 2});
+    assert.dom('[data-test-node-children] [data-test-line-item-row]').exists({count: 2});
   });
 });

@@ -12,6 +12,7 @@
     {{#if hasChildrenSelected}}
       <button
         class="absolute btn-red-grad p-6 -ml-18 mt-32 rounded-l"
+        data-test-delete-button
         {{action "deleteEdges"}}
       >
         <span class="text-3xl text-white">{{fa-icon "trash"}}</span>

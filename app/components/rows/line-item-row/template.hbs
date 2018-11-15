@@ -5,7 +5,7 @@
   <div class="text-3xl font-light flex items-center">
     {{#if isDestroyable}}
       <div class="cursor-pointer bg-blue-lightest text-base p-6">
-        {{input type="checkbox" checked=model.isSelected}}
+        {{input type="checkbox" checked=model.isSelected data-test-select=true}}
       </div>
     {{/if}}
 

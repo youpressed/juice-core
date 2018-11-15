@@ -24,6 +24,7 @@
     <button
       class="w-10 flex justify-center hover:text-red text-grey-dark"
       tabindex="-1"
+      data-test-delete-node-button
       {{action (mut isDestroyingNode) true}}
     >
       {{fa-icon "trash"}}

@@ -29,4 +29,13 @@ module('Acceptance | Productions', function(hooks) {
 
     assert.equal(currentURL(), '/a/productions/production-id');
   });
+
+  test('be able to delete a production', async function (assert) {
+    assert.dom('[data-test-date-row-label]').exists({count: 1});
+
+    await click('[data-test-delete-item-button]');
+    await click('[data-test-dialog-button]');
+
+    assert.dom('[data-test-date-row-label]').exists({count: 0});
+  });
 });

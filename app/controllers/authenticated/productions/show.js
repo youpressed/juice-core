@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   store: service(),
+  nodeService: service(),
 
   adjustmentEdges: computed('model.children.@each.{sign}', function(){
     return this.get('model.children').filter(edge => edge.get('sign') === -1);
@@ -42,35 +43,13 @@ export default Controller.extend({
       await b.save();
     },
 
-    handleUpdate(model, key, val) {
-      model.set(key, val);
-      model.save();
+    async handleUpdate(model, key, val) {
+      await this.get('nodeService').handleUpdate(model, key, val);
     },
 
     updateProductionDate(production, date) {
       production.set('date', date);
       production.save();
-    },
-
-    async addProductToProduction(a, b) {
-      const edge = this.get('store').createRecord('edge', {a, b, q: 0});
-      await edge.save();
-
-      a.save();
-      b.save();
-    },
-
-    async destroyNode(node) {
-      const edges = await node.get("children");
-      edges.forEach(async edge => {
-        const b = await edge.get("b");
-        edge.destroyRecord();
-        b.save();
-      });
-
-      node.destroyRecord();
-
-      this.transitionToRoute('authenticated.products');
     }
   }
 });

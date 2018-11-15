@@ -83,5 +83,34 @@ export default Service.extend({
   async handleUpdate(model, key, val) {
     model.set(key, val);
     await model.save();
+  },
+
+  async deleteEdge(edge) {
+    const a = await edge.get('a');
+    const b = await edge.get('b');
+    await edge.destroyRecord();
+
+    await a.save();
+    await b.save();
+  },
+
+  async addEdge(a, b) {
+    const edge = this.get('store').createRecord('edge', {a, b, q: 0, uom:b.get('uom')});
+    await edge.save();
+
+    await a.save();
+    await b.save();
+  },
+
+  async createAndAddNode(a, data) {
+    const { type, label, description, uom } = data;
+    const b = this.get('store').createRecord('node', { type, label, description, uom, isActive: true });
+    await b.save();
+
+    const edge = this.get('store').createRecord('edge', { a, b, q: 0, uom });
+    await edge.save();
+
+    await a.save();
+    await b.save();
   }
 });

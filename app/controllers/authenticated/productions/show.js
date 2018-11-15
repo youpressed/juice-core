@@ -35,12 +35,7 @@ export default Controller.extend({
     },
 
     async deleteEdge(edge) {
-      const a = await edge.get('a');
-      const b = await edge.get('b');
-      await edge.destroyRecord();
-
-      await a.save();
-      await b.save();
+      await this.get('nodeService').deleteEdge(edge);
     },
 
     async handleUpdate(model, key, val) {

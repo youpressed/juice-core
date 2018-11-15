@@ -7,26 +7,16 @@ export default Controller.extend({
   nodeService: service(),
 
   actions: {
-    handleUpdate(model, key, val) {
-      model.set(key, val);
-      model.save();
+    async handleUpdate(model, key, val) {
+      await this.get('nodeService').handleUpdate(model, key, val);
     },
 
     async deleteEdge(edge) {
-      const a = await edge.get('a');
-      const b = await edge.get('b');
-      await edge.destroyRecord();
-
-      a.save();
-      b.save();
+      await this.get('nodeService').deleteEdge(edge);
     },
 
     async addNode(a, b) {
-      const edge = this.get('store').createRecord('edge', {a, b, q: 0, uom:b.get('uom')});
-      await edge.save();
-
-      a.save();
-      b.save();
+      await this.get('nodeService').addEdge(a, b);
     },
 
     async cloneGrandCentralNode(currentNode, childId) {
@@ -34,20 +24,11 @@ export default Controller.extend({
     },
 
     async createAndAddNode(a, data) {
-      const { type, label, description, uom } = data;
-      const b = this.get('store').createRecord('node', { type, label, description, uom, isActive: true });
-      await b.save();
-
-      const edge = this.get('store').createRecord('edge', { a, b, q: 0, uom });
-      await edge.save();
-
-      a.save();
-      b.save();
+      await this.get('nodeService').createAndAddNode(a, data);
     },
 
     async destroyNode(node) {
       await this.get("nodeService").destroyNode(node);
-
       this.transitionToRoute('authenticated.products');
     }
   }

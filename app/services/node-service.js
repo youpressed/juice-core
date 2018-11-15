@@ -1,7 +1,32 @@
 import Service, { inject as service }  from '@ember/service';
+import moment from 'moment';
+import { all } from 'rsvp';
 
 export default Service.extend({
   store: service(),
+
+  async createProduction() {
+    const products = this.get('store').peekAll('node')
+      .filter(node => node.get('isProduct'))
+      .filter(node => node.get('isActive'));
+
+    const date = moment().toDate();
+    const node = this.get('store').createRecord("node", {
+      type:"production",
+      uom:"count",
+      date
+    });
+
+    await node.save();
+
+    await all(products
+      .map(b => {
+        const edge = this.get('store').createRecord('edge', {a:node, b, q: 0});
+        return edge.save().then(() => all([node.save(), b.save()]));
+      }));
+
+    return node;
+  },
 
   async createProduct() {
     let products = await this.get("store").query('node', {

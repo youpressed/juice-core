@@ -1,7 +1,7 @@
 <div class="min-h-screen flex justify-center items-center">
   <div class="card-yellow w-7/11 rounded-lg">
     <div class="flex flex-col p-12">
-      <h1 class="font-thin text-5xl">Welcome to You Pressed</h1>
+      <h1 class="font-thin text-5xl" data-test-header>Welcome to You Pressed</h1>
       <h1 class="font-thin text-2xl">Here’s a short tutorial to get started</h1>
 
       <div class="mt-12 rounded-lg overflow-hidden">
@@ -15,6 +15,7 @@
       <div class="flex justify-end mt-12">
         <button
           class="btn-blue uppercase text-2xl"
+          data-test-create-button
           {{action "createProduct"}}
         >
           Create Product

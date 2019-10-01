@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import {
-  labelSort
+  positionSort
 } from 'juice-core/utils/sorting';
 
 const buildCollection = (data, type, sortFunc) => {
@@ -14,6 +14,9 @@ const buildCollection = (data, type, sortFunc) => {
     // Filter out empty collections
     .filter(child => child.factor > 0)
 
+    // Filter out exlcuded nodes
+    .filter(child => child.excludeInPrinting != true)
+
     // Sort it
     .sort(sortFunc)
 
@@ -24,7 +27,7 @@ const buildCollection = (data, type, sortFunc) => {
     .map(tree => Object.assign({}, tree, {collection: tree.tree.sort(sortFunc)}));
 }
 
-const buildPayload = async function (node, type, sort = labelSort) {
+const buildPayload = async function (node, type, sort = positionSort) {
   const normalizedChildren = await node.get('normalizedChildren');
   return buildCollection(normalizedChildren, type, sort);
 }

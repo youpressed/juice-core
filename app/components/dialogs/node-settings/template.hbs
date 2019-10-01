@@ -1,0 +1,37 @@
+{{#dialogs/base-dialog
+  onClose=cancel
+as |dialog|
+}}
+  {{#dialog.header}}
+    SETTINGS {{model.nodeName}}
+  {{/dialog.header}}
+
+  {{#dialog.row}}
+    <div class="flex text-2xl items-center font-light">
+      {{input
+        type="checkbox"
+        checked=model.excludeInPrinting
+        change=(action "toggleExcludeInPrinting")
+      }}
+      <div class="ml-3">
+        Exclude during printing
+      </div>
+    </div>
+  {{/dialog.row}}
+
+  {{#dialog.row}}
+    {{ui/desc-input
+      value=model.shelfLife
+      description="Shelf Life"
+      placeholder="Start typing..."
+      update=(action handleUpdate model "shelfLife")
+    }}
+  {{/dialog.row}}
+
+  {{#dialog.footer as |footer|}}
+    {{#footer.button onClick=(action cancel)}}
+      Done
+    {{/footer.button}}
+  {{/dialog.footer}}
+
+{{/dialogs/base-dialog}}

@@ -19,8 +19,17 @@
     tabindex="-1"
   >
     <div class="w-10 flex justify-center">
-      {{fa-icon "cog"}}
+      
     </div>
+
+    <button
+      class="w-10 flex justify-center hover:text-red text-grey-dark"
+      tabindex="-1"
+      {{action (mut showSettings) true}}
+    >
+      {{fa-icon "cog"}}
+    </button>
+
     <button
       class="w-10 flex justify-center hover:text-red text-grey-dark"
       tabindex="-1"
@@ -35,6 +44,14 @@
   {{dialogs/destroy-node
     cancel=(action (mut isDestroyingNode) false)
     destroyNode=destroyNode
+    model=model
+  }}
+{{/if}}
+
+{{#if showSettings}}
+  {{dialogs/node-settings
+    cancel=(action (mut showSettings) false)
+    handleUpdate=handleUpdate
     model=model
   }}
 {{/if}}

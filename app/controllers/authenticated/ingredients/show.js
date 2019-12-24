@@ -1,36 +1,16 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  actions: {
-    navigateTo(path) {
-      this.transitionToRoute(path);
-    },
+  nodeService: service(),
 
-    handleUpdate(model, key, val) {
-      model.set(key, val);
-      model.save();
+  actions: {
+    async handleUpdate(model, key, val) {
+      await this.get('nodeService').handleUpdate(model, key, val);
     },
 
     async destroyNode(node) {
-      const children = await node.get("children");
-      const parents = await node.get("parents");
-
-      children
-        .forEach(async edge => {
-          const b = await edge.get("b");
-          edge.destroyRecord();
-          b.save();
-        });
-
-      parents
-        .forEach(async edge => {
-          const a = await edge.get("a");
-          edge.destroyRecord();
-          a.save();
-        });
-
-      node.destroyRecord();
-
+      await this.get('nodeService').destroyNode(node);
       this.transitionToRoute('authenticated.ingredients');
     }
   }

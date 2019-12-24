@@ -1,7 +1,32 @@
 import Service, { inject as service }  from '@ember/service';
+import moment from 'moment';
+import { all } from 'rsvp';
 
 export default Service.extend({
   store: service(),
+
+  async createProduction() {
+    const products = this.get('store').peekAll('node')
+      .filter(node => node.get('isProduct'))
+      .filter(node => node.get('isActive'));
+
+    const date = moment().toDate();
+    const node = this.get('store').createRecord("node", {
+      type:"production",
+      uom:"count",
+      date
+    });
+
+    await node.save();
+
+    await all(products
+      .map(b => {
+        const edge = this.get('store').createRecord('edge', {a:node, b, q: 0});
+        return edge.save().then(() => all([node.save(), b.save()]));
+      }));
+
+    return node;
+  },
 
   async createProduct() {
     let products = await this.get("store").query('node', {
@@ -53,5 +78,39 @@ export default Service.extend({
       });
 
     await node.destroyRecord();
+  },
+
+  async handleUpdate(model, key, val) {
+    model.set(key, val);
+    await model.save();
+  },
+
+  async deleteEdge(edge) {
+    const a = await edge.get('a');
+    const b = await edge.get('b');
+    await edge.destroyRecord();
+
+    await a.save();
+    await b.save();
+  },
+
+  async addEdge(a, b) {
+    const edge = this.get('store').createRecord('edge', {a, b, q: 0, uom:b.get('uom')});
+    await edge.save();
+
+    await a.save();
+    await b.save();
+  },
+
+  async createAndAddNode(a, data) {
+    const { type, label, description, uom } = data;
+    const b = this.get('store').createRecord('node', { type, label, description, uom, isActive: true });
+    await b.save();
+
+    const edge = this.get('store').createRecord('edge', { a, b, q: 0, uom });
+    await edge.save();
+
+    await a.save();
+    await b.save();
   }
 });

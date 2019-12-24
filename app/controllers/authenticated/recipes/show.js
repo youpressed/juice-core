@@ -2,7 +2,6 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  store: service(),
   grandCentralFirebase: service(),
   nodeService: service(),
 
@@ -29,7 +28,7 @@ export default Controller.extend({
 
     async destroyNode(node) {
       await this.get("nodeService").destroyNode(node);
-      this.transitionToRoute('authenticated.products');
+      this.transitionToRoute('authenticated.recipes');
     }
   }
 });

@@ -2,6 +2,7 @@
   <div class="flex justify-end -mt-8">
     <button
       class="btn-blue uppercase text-xl {{if (not canCreateProduction) "disabled"}}"
+      data-test-create-button
       {{action "createNode"}}
     >
       Create Production

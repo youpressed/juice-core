@@ -5,7 +5,6 @@ module.exports = {
     "jwplayer": true,
     "R": true,
     "math": true,
-    "moment": true,
     "Set": true,
     "module": true
   },

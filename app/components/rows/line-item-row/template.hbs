@@ -1,17 +1,14 @@
-<div
-  class="card-blue flex items-stretch justify-between shadow"
-  data-test-line-item-row
->
+<div class="card-blue flex items-stretch justify-between shadow" data-test-line-item-row>
   <div class="text-3xl font-light flex items-center">
     {{#if isDestroyable}}
-      <div class="cursor-pointer bg-blue-lightest text-base p-6">
-        {{input type="checkbox" checked=model.isSelected}}
-      </div>
+    <div class="cursor-pointer bg-blue-lightest text-base p-6">
+      {{input type="checkbox" checked=model.isSelected}}
+    </div>
     {{/if}}
 
     {{#link-to (node-link-path model.b) model.b.id tabindex="-1" class="group"}}
-      <span class="ml-6 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
-      <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
+    <span class="ml-6 group-hover:border-b-grey" data-test-label>{{model.b.label}}</span>
+    <span class="ml-1 text-lg text-grey-darker invisible group-hover:visible">{{fa-icon "pencil"}}</span>
     {{/link-to}}
   </div>
 
@@ -27,19 +24,19 @@
       </div>
 
       {{#if (not (is-empty uoms))}}
-        <div class="flex items-center px-4 uom">
-          <div class="w-24">
-            {{#power-select
+      <div class="flex items-center px-4 uom">
+        <div class="w-24">
+          {{#power-select
               tabindex="-1"
               selected=model.uom
               options=uoms
               onchange=(action handleUpdate model "uom")
             as |option|
             }}
-              {{option}}
-            {{/power-select}}
-          </div>
+          {{option}}
+          {{/power-select}}
         </div>
+      </div>
       {{/if}}
     </div>
   </div>

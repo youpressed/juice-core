@@ -1,3 +1,4 @@
+<h2>This list is sortable</h2>
 <div class="flex-col">
   {{#sortable-objects
     sortableObjectList=activeItems
@@ -7,19 +8,19 @@
     inPlace=true
     sortingScope="sortingGroup"
   }}
-    {{#each sortedItems as |item index|}}
-      {{#draggable-object
+  {{#each sortedItems as |item index|}}
+  {{#draggable-object
         content=item
         isSortable=true
         sortingScope="sortingGroup"
       }}
-        {{component
+  {{component
           rowType
           clickAction=selectAction
           model=item
           index=(inc index)
         }}
-      {{/draggable-object}}
-    {{/each}}
+  {{/draggable-object}}
+  {{/each}}
   {{/sortable-objects}}
 </div>

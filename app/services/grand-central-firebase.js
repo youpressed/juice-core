@@ -12,7 +12,7 @@ export default Service.extend({
 
     let fbApp = firebase.initializeApp(
       {
-        databaseURL: config.grandCentralFirebase.dbUrl
+        databaseURL: config.grandCentralFirebase.dbUrl,
       },
       "grandCentral"
     );
@@ -49,7 +49,7 @@ export default Service.extend({
       await childNode.save();
 
       if (!isEmpty(childFbNode.children)) {
-        _.keys(childFbNode.children).forEach(edgeId => {
+        _.keys(childFbNode.children).forEach((edgeId) => {
           this.get("_cloneEdge").call(this, childNode, edgeId);
         }, this);
       }
@@ -64,7 +64,7 @@ export default Service.extend({
       a: parentNode,
       b: childNode,
       q: qty,
-      uom
+      uom,
     });
     await edge.save();
 
@@ -93,15 +93,17 @@ export default Service.extend({
   },
 
   async _fetchNode(fbId) {
-    return await this.get("_fetch")("nodes", fbId);
+    return await this.get("_fetch")("nodes", fbId, this);
   },
   async _fetchEdge(fbId) {
-    return await this.get("_fetch")("edges", fbId);
+    return await this.get("_fetch")("edges", fbId, this);
   },
-  async _fetch(nodeName, fbId) {
-    let snapshot = await this.get("fbRef")
+  async _fetch(nodeName, fbId, scope) {
+    debugger;
+    let snapshot = await scope
+      .get("fbRef")
       .child(`${nodeName}/${fbId}`)
       .once("value");
     return snapshot.val();
-  }
+  },
 });

@@ -1,24 +1,25 @@
 <div class="flex-col">
   {{#sortable-objects
-    sortableObjectList=activeItems
-    sortEndAction=(action "sortEndAction")
-    enableSort=true
-    useSwap=false
-    inPlace=true
-    sortingScope="sortingGroup"
+  sortableObjectList=activeItems
+  sortEndAction=(action "sortEndAction")
+  enableSort=true
+  useSwap=false
+  inPlace=true
+  sortingScope="sortingGroup"
   }}
   {{#each sortedItems as |item index|}}
   {{#draggable-object
-        content=item
-        isSortable=true
-        sortingScope="sortingGroup"
-      }}
+  content=item
+  isSortable=true
+  sortingScope="sortingGroup"
+  }}
   {{component
-          rowType
-          clickAction=selectAction
-          model=item
-          index=(inc index)
-        }}
+  rowType
+  clickAction=selectAction
+  model=item
+  handleUpdate=handleUpdate
+  index=(inc index)
+  }}
   {{/draggable-object}}
   {{/each}}
   {{/sortable-objects}}

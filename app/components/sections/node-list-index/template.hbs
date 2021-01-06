@@ -1,30 +1,28 @@
 {{#containers/section-container title=(concat nodeName "s")}}
-  <div class="flex justify-end -mt-8">
-    <button
-      class="btn-blue uppercase text-xl"
-      {{action createNode}}
-    >
-      Create {{nodeName}}
-    </button>
-  </div>
+<div class="flex justify-end -mt-8">
+  <button class="btn-blue uppercase text-xl" {{action createNode}}>
+    Create {{nodeName}}
+  </button>
+</div>
 
-  <div class="card-yellow mt-8 p-10 rounded-lg">
-    {{#if hasNodes}}
-      {{lists/sortable-list
-        rowType="rows/label-row"
-        selectAction=showNode
-        model=nodes
-      }}
-    {{else}}
-      <div class="flex-col justify-center items-center p-16">
-        <p class="text-5xl text-center text-grey font-thin italic">
-          Hey! You don't have any {{lowercase (pluralize nodeName)}} yet.
-        </p>
+<div class="card-yellow mt-8 p-10 rounded-lg">
+  {{#if hasNodes}}
+  {{lists/sortable-list
+  rowType="rows/label-row"
+  selectAction=showNode
+  handleUpdate=handleUpdate
+  model=nodes
+  }}
+  {{else}}
+  <div class="flex-col justify-center items-center p-16">
+    <p class="text-5xl text-center text-grey font-thin italic">
+      Hey! You don't have any {{lowercase (pluralize nodeName)}} yet.
+    </p>
 
-        <p class="text-4xl text-grey pt-10 font-light text-center">
-          Use the link above to create one
-        </p>
-      </div>
-    {{/if}}
+    <p class="text-4xl text-grey pt-10 font-light text-center">
+      Use the link above to create one
+    </p>
   </div>
+  {{/if}}
+</div>
 {{/containers/section-container}}

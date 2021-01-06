@@ -6,7 +6,21 @@
 
   {{index}}. {{model.label}}
 
-  <span class="text-lg text-grey-darker absolute pin-r mr-16 invisible group-hover:visible">
+  <div class="flex items-center justify-between">
+    {{input
+    class=" mr-4"
+    type="checkbox"
+    checked=(not model.excludeInPrinting)
+    change=(action "toggleExcludeInPrinting")
+    }}
+
+    {{ui/icon-label-button
+    class="text-lg text-grey-darker absolute pin-r mr-16 invisible group-hover:visible"
+    click=(action "showDetail")
+    icon="angle-right"
+    }}
+  </div>
+  {{!-- <span class="text-lg text-grey-darker absolute pin-r mr-16 invisible group-hover:visible">
     {{fa-icon "angle-right"}}
-  </span>
+  </span> --}}
 </div>
